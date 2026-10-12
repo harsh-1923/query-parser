@@ -1,0 +1,45 @@
+tagger/large: 139,399 params
+
+== ../eval/datasets/llm-written/v0/bio.jsonl  (n=204) ==
+span P 0.5631  R 0.5812  F1 0.5720  | exact match 0.2647  | token acc 0.6636
+role                 P       R      F1  support
+ACTOR            0.489   0.738   0.588       61
+ATTR             0.652   0.283   0.395       53
+CONTAINER        0.517   0.714   0.600       21
+KIND             0.548   0.789   0.647      123
+MENTION          0.000   0.000   0.000        0
+NEG              0.875   0.824   0.848       17
+ORDER            0.750   0.750   0.750       12
+PARTICIPANT      0.200   0.429   0.273        7
+RECIPIENT        0.333   0.250   0.286       12
+TIME             0.683   0.717   0.699       60
+TOPIC            0.605   0.346   0.440      133
+names with cue   0.525   0.689   0.596       45
+names no cue     0.333   0.571   0.421       35
+source               P       R      F1    exact  support
+s02              0.563   0.581   0.572    0.265      499
+
+== ../eval/datasets/generated/v0/test-generated.jsonl  (n=3000) ==
+span P 0.8433  R 0.8662  F1 0.8546  | exact match 0.6607  | token acc 0.9002
+role                 P       R      F1  support
+ACTOR            0.862   0.952   0.905     1326
+ATTR             0.408   0.448   0.427      317
+CONTAINER        0.973   0.979   0.976      477
+KIND             0.922   0.959   0.940     2525
+MENTION          1.000   0.031   0.061      159
+NEG              0.991   1.000   0.995      313
+ORDER            0.634   0.586   0.609      157
+PARTICIPANT      0.908   1.000   0.952      158
+RECIPIENT        0.364   0.252   0.298      314
+TIME             0.967   0.991   0.979      950
+TOPIC            0.701   0.797   0.746     1166
+names with cue   0.876   0.761   0.815     1016
+names no cue     0.747   0.778   0.762      941
+source               P       R      F1    exact  support
+template         0.843   0.866   0.855    0.661     7862
+
+latency (batch 1, 1 thread, 10 tokens, p50/p95 ms):
+  forward: {'p50_ms': 0.18410449411021546, 'p95_ms': 0.18825420702341944}
+  forward_plus_viterbi: {'p50_ms': 0.26556300872471184, 'p95_ms': 0.2759232505923136}
+
+wrote runs/s1/tagger-large/eval.json

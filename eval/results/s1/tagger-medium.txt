@@ -1,0 +1,44 @@
+tagger/medium: 77,623 params
+
+== ../eval/datasets/llm-written/v0/bio.jsonl  (n=204) ==
+span P 0.5748  R 0.5852  F1 0.5799  | exact match 0.2941  | token acc 0.6794
+role                 P       R      F1  support
+ACTOR            0.551   0.803   0.653       61
+ATTR             0.478   0.208   0.289       53
+CONTAINER        0.424   0.667   0.519       21
+KIND             0.601   0.797   0.685      123
+NEG              0.842   0.941   0.889       17
+ORDER            0.818   0.750   0.783       12
+PARTICIPANT      0.286   0.571   0.381        7
+RECIPIENT        0.364   0.333   0.348       12
+TIME             0.717   0.717   0.717       60
+TOPIC            0.518   0.331   0.404      133
+names with cue   0.607   0.822   0.698       45
+names no cue     0.377   0.571   0.455       35
+source               P       R      F1    exact  support
+s02              0.575   0.585   0.580    0.294      499
+
+== ../eval/datasets/generated/v0/test-generated.jsonl  (n=3000) ==
+span P 0.8351  R 0.8696  F1 0.8520  | exact match 0.6177  | token acc 0.8987
+role                 P       R      F1  support
+ACTOR            0.897   0.968   0.931     1326
+ATTR             0.405   0.297   0.342      317
+CONTAINER        0.925   0.983   0.953      477
+KIND             0.924   0.974   0.949     2525
+MENTION          0.087   0.038   0.053      159
+NEG              0.972   1.000   0.986      313
+ORDER            0.820   0.465   0.593      157
+PARTICIPANT      0.786   1.000   0.880      158
+RECIPIENT        0.545   0.525   0.535      314
+TIME             0.934   0.966   0.950      950
+TOPIC            0.646   0.770   0.703     1166
+names with cue   0.871   0.841   0.856     1016
+names no cue     0.741   0.807   0.773      941
+source               P       R      F1    exact  support
+template         0.835   0.870   0.852    0.618     7862
+
+latency (batch 1, 1 thread, 10 tokens, p50/p95 ms):
+  forward: {'p50_ms': 0.13308299821801484, 'p95_ms': 0.143046144512482}
+  forward_plus_viterbi: {'p50_ms': 0.21116650168551132, 'p95_ms': 0.22325414756778628}
+
+wrote runs/s1/tagger-medium/eval.json

@@ -1,0 +1,152 @@
+- latest version of the pitch deck
+    gold ORDER[latest version] TOPIC[pitch] KIND[deck]
+    pred ORDER[latest version] KIND[of] KIND[pitch deck]
+- who said the settlement cutoff is 6pm
+    gold TOPIC[settlement cutoff is 6pm]
+    pred TIME[is 6pm]
+- unread mentions from @sneha
+    gold ATTR[unread] KIND[mentions] ACTOR[@sneha]
+    pred TOPIC[unread] KIND[mentions] ACTOR[@sneha]
+- pinned stuff in #risk-review
+    gold ATTR[pinned] CONTAINER[#risk-review]
+    pred ATTR[pinned] KIND[stuff] CONTAINER[#risk-review]
+- anything from jake about the bbps integration not from dms
+    gold ACTOR[jake] TOPIC[bbps integration] NEG[not] CONTAINER[dms]
+    pred ACTOR[jake] TOPIC[bbps integration] NEG[not] ACTOR[dms]
+- call transcript from the 3/10 vendor call
+    gold KIND[call transcript] TIME[3/10] TOPIC[vendor call]
+    pred KIND[call transcript] ACTOR[the] TIME[3/10 vendor] KIND[call]
+- before the offsite what did we decide on pricing
+    gold TIME[before the offsite] TOPIC[decide on pricing]
+    pred TIME[before the] KIND[offsite] ACTOR[we decide] TOPIC[pricing]
+- slides from the board prep march
+    gold KIND[slides] TOPIC[board prep] TIME[march]
+    pred KIND[slides] ACTOR[the board prep] TIME[march]
+- my notes on fraud rules
+    gold ACTOR[my] KIND[notes] TOPIC[fraud rules]
+    pred ACTOR[my] KIND[notes] CONTAINER[fraud rules]
+- screenshot of the upi failure dashboard vikram sent
+    gold KIND[screenshot] TOPIC[upi failure dashboard] ACTOR[vikram]
+    pred KIND[screenshot] TOPIC[upi failure dashboard vikram]
+- dispute tat sla figures excluding test merchants
+    gold TOPIC[dispute tat sla figures] NEG[excluding] TOPIC[test merchants]
+    pred TOPIC[dispute tat sla figures] NEG[excluding] TOPIC[test] KIND[merchants]
+- how did we handle chargebacks last quarter
+    gold TOPIC[handle chargebacks] TIME[last quarter]
+    pred ACTOR[we handle] KIND[chargebacks] TIME[last quarter]
+- #eng-alerts yesterday 2am outage
+    gold CONTAINER[#eng-alerts] TIME[yesterday 2am] TOPIC[outage]
+    pred CONTAINER[#eng-alerts] TIME[yesterday 2am] KIND[outage]
+- excel with merchant onboarding funnel in march
+    gold KIND[excel] TOPIC[merchant onboarding funnel] TIME[in march]
+    pred KIND[excel] PARTICIPANT[merchant onboarding funnel] TIME[in march]
+- ananya the rbi audit checklist doc
+    gold ACTOR[ananya] TOPIC[rbi audit checklist] KIND[doc]
+    pred ACTOR[ananya] TOPIC[rbi] TOPIC[audit checklist] KIND[doc]
+- hhmm what was the decision on penny drop vendor
+    gold TOPIC[decision on penny drop vendor]
+    pred TOPIC[penny drop vendor]
+- aditya recording from the design review call
+    gold ACTOR[aditya] KIND[recording] TOPIC[design review call]
+    pred ACTOR[aditya] KIND[recording] ACTOR[the design review] KIND[call]
+- kavya budget sheet v3 final final
+    gold ACTOR[kavya] TOPIC[budget] KIND[sheet] TOPIC[v3 final final]
+    pred ACTOR[kavya budget] KIND[sheet] TIME[v3 final final]
+- nikhil 's comment on the vpa validation pr
+    gold ACTOR[nikhil] KIND[comment] TOPIC[vpa validation pr]
+    pred ACTOR[nikhil] KIND[comment] CONTAINER[vpa validation pr]
+- escalation for axis bank settlement last tuesday
+    gold TOPIC[escalation for axis bank settlement] TIME[last tuesday]
+    pred KIND[escalation] RECIPIENT[axis bank] KIND[settlement] TIME[last tuesday]
+- messages with idempotency key this month except bot posts
+    gold KIND[messages] TOPIC[idempotency key] TIME[this month] NEG[except] ATTR[bot posts]
+    pred KIND[messages] PARTICIPANT[idempotency key] TIME[this month] NEG[except] TOPIC[bot posts]
+- sort by date newest first refund flow
+    gold ORDER[newest first] TOPIC[refund flow]
+    pred KIND[sort] ACTOR[date newest] TOPIC[first refund flow]
+- merchant ids mentioned in #support 10/3
+    gold TOPIC[merchant ids] CONTAINER[#support] TIME[10/3]
+    pred TOPIC[merchant ids mentioned] CONTAINER[#support] TIME[10/3]
+- rohan pinged me abt the loan emi sheet
+    gold ACTOR[rohan] KIND[pinged] RECIPIENT[me] TOPIC[loan emi] KIND[sheet]
+    pred ACTOR[rohan] KIND[pinged] KIND[emi sheet]
+- things about kyc video verification in dms with divya
+    gold TOPIC[kyc video verification] CONTAINER[dms] PARTICIPANT[divya]
+    pred KIND[things] TOPIC[kyc video verification in] CONTAINER[dms] PARTICIPANT[divya]
+- tokenization pdf ppt
+    gold TOPIC[tokenization] KIND[pdf] KIND[ppt]
+    pred ACTOR[tokenization] KIND[pdf ppt]
+- cashback campaign results q2 pdf not the draft
+    gold TOPIC[cashback campaign results] TIME[q2] KIND[pdf] NEG[not] ATTR[draft]
+    pred TOPIC[cashback campaign results q2] KIND[pdf] NEG[not] TOPIC[draft]
+- who owns the reporting pipeline
+    gold TOPIC[reporting pipeline]
+    pred 
+- image of the error screen from sarah 's phone
+    gold KIND[image] TOPIC[error screen] ACTOR[sarah]
+    pred KIND[image] ACTOR[the error screen] ACTOR[sarah] ACTOR[phone]
+- standup notes before diwali
+    gold TOPIC[standup] KIND[notes] TIME[before diwali]
+    pred ORDER[standup] KIND[notes] ACTOR[diwali]
+- from razorpay invoice pdf
+    gold ACTOR[razorpay] TOPIC[invoice] KIND[pdf]
+    pred ACTOR[razorpay invoice] KIND[pdf]
+- unread from priya
+    gold ATTR[unread] ACTOR[priya]
+    pred KIND[unread] ACTOR[priya]
+- q2 budget
+    gold TOPIC[q2 budget]
+    pred TIME[q2] KIND[budget]
+- payslip march
+    gold TOPIC[payslip] TIME[march]
+    pred TOPIC[payslip march]
+- flagged emails from legal
+    gold ATTR[flagged] KIND[emails] ACTOR[legal]
+    pred ACTOR[flagged] KIND[emails] ACTOR[legal]
+- except from hr , unread
+    gold NEG[except] ACTOR[hr] ATTR[unread]
+    pred NEG[except] ACTOR[hr] ACTOR[unread]
+- contract signed docx
+    gold TOPIC[contract signed] KIND[docx]
+    pred ATTR[contract signed] KIND[docx]
+- sort oldest first to dana
+    gold ORDER[oldest first] RECIPIENT[dana]
+    pred KIND[sort] ORDER[oldest first] RECIPIENT[dana]
+- starred from finance
+    gold ATTR[starred] ACTOR[finance]
+    pred ACTOR[finance]
+- that thing dmitri sent about the vendor contract
+    gold ACTOR[dmitri] TOPIC[vendor contract]
+    pred TOPIC[the vendor contract]
+
+error types:
+    44  spurious KIND
+    35  missed TOPIC
+    21  missed KIND
+    21  missed ATTR
+    20  spurious ACTOR
+    17  boundary TOPIC
+    16  spurious TOPIC
+    11  missed TIME
+    11  role TOPIC→KIND
+    10  missed ACTOR
+    10  spurious CONTAINER
+     8  spurious TIME
+     6  role ATTR→TOPIC
+     6  role TOPIC→ACTOR (+boundary)
+     6  spurious ATTR
+     5  role ATTR→ACTOR
+     5  spurious RECIPIENT
+     4  boundary TIME
+     4  role ATTR→KIND
+     4  role TOPIC→ATTR
+     3  role TOPIC→CONTAINER
+     3  missed RECIPIENT
+     3  role TOPIC→ACTOR
+     3  role RECIPIENT→PARTICIPANT
+     3  spurious NEG
+     3  role ATTR→CONTAINER
+     2  role TOPIC→TIME (+boundary)
+     2  role CONTAINER→ACTOR
+     2  role TOPIC→PARTICIPANT
+     2  role TOPIC→TIME

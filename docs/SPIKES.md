@@ -12,9 +12,9 @@ Suggested order: S2 → S4 → S1 → S3 → S6, with S5, S7, S8 alongside M3–
 
 | # | Question | Blocks | Time box |
 |---|---|---|---|
-| S1 | Tagger or seq2seq? How small can it be? | M4 | 2 days |
+| S1 | Tagger or seq2seq? How small can it be? **Done: tagger (medium, 78k) wins; fails the F1 bar (0.58 on S02 vs rules 0.716); next is data** ([result](spikes/S01-tagger-vs-seq2seq.md)) | M4 | 2 days |
 | S2 | Does the role set cover real queries? **Done: pass with ADR 0002** ([result](spikes/S02-role-coverage.md)) | M2 | ½ day |
-| S3 | Can it spot names without cue words, including unseen Indian names? | M4 | 1 day |
+| S3 | Can it spot names without cue words, including unseen Indian names? **Interim: not yet (no-cue recall 0.57 on S02); waits on data fixes** ([numbers](spikes/S01-tagger-vs-seq2seq.md#s3-from-the-same-runs-interim)) | M4 | 1 day |
 | S4 | Hand-written time grammar or chrono-node? **Done: pass, grammar only ([ADR 0003](decisions/0003-time-grammar-no-chrono.md))** ([result](spikes/S04-time-normalization.md)) | M2 | 1 day |
 | S5 | Do alias lists cover kinds and attributes, or do we need embeddings? **Done: fails the bar (85.4% on fresh data); aliases stay, no embeddings in core, `unknownKind` hook** ([result](spikes/S05-kind-attr-vocab.md)) | M2 | ½ day |
 | S6 | Is plain-JS CPU inference fast enough on a mid-range phone? | M4 | ½ day |

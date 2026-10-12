@@ -1,0 +1,45 @@
+decoder/base: 79,264 params
+
+== ../eval/datasets/llm-written/v0/bio.jsonl  (n=204) ==
+span P 0.4542  R 0.4269  F1 0.4401  | exact match 0.1863  | token acc 0.5224
+role                 P       R      F1  support
+ACTOR            0.447   0.623   0.521       61
+ATTR             0.421   0.151   0.222       53
+CONTAINER        0.414   0.571   0.480       21
+KIND             0.475   0.618   0.537      123
+MENTION          0.000   0.000   0.000        0
+NEG              0.647   0.647   0.647       17
+ORDER            0.727   0.667   0.696       12
+PARTICIPANT      0.250   0.429   0.316        7
+RECIPIENT        0.167   0.083   0.111       12
+TIME             0.448   0.433   0.441       60
+TOPIC            0.435   0.226   0.297      133
+names with cue   0.511   0.511   0.511       45
+names no cue     0.311   0.543   0.396       35
+source               P       R      F1    exact  support
+s02              0.454   0.427   0.440    0.186      499
+
+== ../eval/datasets/generated/v0/test-generated.jsonl  (n=3000) ==
+span P 0.6738  R 0.6007  F1 0.6352  | exact match 0.3367  | token acc 0.6875
+role                 P       R      F1  support
+ACTOR            0.774   0.775   0.774     1326
+ATTR             0.226   0.170   0.194      317
+CONTAINER        0.883   0.954   0.917      477
+KIND             0.788   0.776   0.782     2525
+MENTION          0.778   0.044   0.083      159
+NEG              0.994   1.000   0.997      313
+ORDER            0.513   0.503   0.508      157
+PARTICIPANT      0.963   0.994   0.978      158
+RECIPIENT        0.085   0.045   0.058      314
+TIME             0.580   0.344   0.432      950
+TOPIC            0.308   0.283   0.295     1166
+names with cue   0.805   0.681   0.738     1016
+names no cue     0.638   0.546   0.588      941
+source               P       R      F1    exact  support
+template         0.674   0.601   0.635    0.337     7862
+
+latency (batch 1, 1 thread, 10 tokens, p50/p95 ms):
+  full_decode: {'p50_ms': 1.1200625012861565, 'p95_ms': 1.223681586998282}
+  generated_tokens: {'count': 10.0}
+
+wrote runs/s1/decoder-base/eval.json
