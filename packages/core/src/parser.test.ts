@@ -221,3 +221,31 @@ describe("toCanonical", () => {
     expect(toCanonical(parse("excluding test merchants"))).toBe('-"test merchants"')
   })
 })
+
+describe("name boundaries", () => {
+  const hintsB = {
+    "from utkarsh reasoning models": "from utkarsh/ACTOR reasoning/ACTOR models/TOPIC",
+    "from rahul reasoning": "from rahul/ACTOR reasoning/ACTOR",
+  }
+  it("shrinks an unknown multi-word name to the longest known prefix", async () => {
+    const p = createParser({ schema, tagger: stubTagger(hintsB), sources: { person, channel } })
+    for (const r of [
+      p.parseSync("from utkarsh reasoning models", opts),
+      await p.parse("from utkarsh reasoning models", opts),
+    ]) {
+      expect(r.filters).toEqual({ from: ["u_utk"] })
+      expect(r.text).toBe("reasoning models")
+      expect(r.spans.find((s) => s.role === "ACTOR")).toMatchObject({
+        text: "utkarsh",
+        start: 5,
+        end: 12,
+      })
+    }
+  })
+  it("still reports ambiguity on the shrunk name", () => {
+    const p = createParser({ schema, tagger: stubTagger(hintsB), sources: { person, channel } })
+    const r = p.parseSync("from rahul reasoning", opts)
+    expect(r.filters).toEqual({})
+    expect(r.issues[0]).toMatchObject({ kind: "ambiguous", span: { text: "rahul" } })
+  })
+})

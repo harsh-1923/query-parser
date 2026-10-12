@@ -248,7 +248,24 @@ export function createParser(config: ParserConfig): Parser {
 
     const finish = (resolved: Candidate[][]): ParseResult => {
       jobs.forEach((job, i) => {
-        settle(job, resolved[i] ?? [], result, toText, schema)
+        if (job.altOf !== undefined) return
+        let found = resolved[i] ?? []
+        if (!found.length) {
+          // The first (longest) prefix with an exact match wins; the rest goes back to text.
+          const j = jobs.findIndex(
+            (alt, k) => alt.altOf === i && (resolved[k] ?? []).some((c) => c.score >= EXACT),
+          )
+          const alt = jobs[j]
+          if (alt) {
+            const rest = q.slice(alt.span.end, job.span.end)
+            const lead = rest.length - rest.trimStart().length
+            toText({ ...job.span, start: alt.span.end + lead, text: rest.trim() })
+            job.span.end = alt.span.end
+            job.span.text = alt.span.text
+            found = resolved[j] ?? []
+          }
+        }
+        settle(job, found, result, toText, schema)
       })
       // Untagged content words are search text too (PLAN §4).
       tokens.forEach((t, i) => {
@@ -431,7 +448,18 @@ export function createParser(config: ParserConfig): Parser {
           toText(s)
           return
         }
+        const main = jobs.length
         jobs.push({ span: s, facet: facetId, multi: !!f.multi, fns, kind, bag })
+        // Shorter prefixes, longest first: if the whole span isn't a known name, the directory
+        // decides where the name ends ("from utkarsh reasoning …" → utkarsh).
+        const words = [...s.text.matchAll(/\S+/g)]
+        for (let k = words.length - 1; k >= 1; k--) {
+          const w = words[k - 1]
+          if (!w) continue
+          const end = s.start + w.index + w[0].length
+          const alt: TaggedSpan = { ...s, end, text: ctx.query.slice(s.start, end) }
+          jobs.push({ span: alt, facet: facetId, multi: !!f.multi, fns, kind, bag, altOf: main })
+        }
         return
       }
       default:
@@ -536,6 +564,8 @@ interface Job {
   fns: EntitySource[]
   kind: string | undefined
   bag: Record<string, unknown>
+  /** Set on a shorter-prefix variant of the job at this index; settled through that job. */
+  altOf?: number
 }
 
 /** Typed `key:value` operators bind directly (PLAN §5.8). Unknown keys stay as text. */
