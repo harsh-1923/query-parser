@@ -1,0 +1,532 @@
+
+######## rules
+
+ 51  miss TOPIC -> TOPIC
+      [S02] priya's sheet on q3 collections
+            gold ACTOR[priya] KIND[sheet] TOPIC[q3 collections]
+            pred ACTOR[priya] KIND[sheet] TIME[on q3] TOPIC[collections]
+      [S02] who said the settlement cutoff is 6pm
+            gold TOPIC[settlement cutoff is 6pm]
+            pred KIND[said] TOPIC[settlement cutoff] TIME[6pm]
+      [S02] call transcript from the 3/10 vendor call
+            gold KIND[call transcript] TIME[3/10] TOPIC[vendor call]
+            pred KIND[call transcript] TIME[from the 3/10] TOPIC[vendor] KIND[call]
+
+ 46  spurious TOPIC
+      [S02] hhmm what was the decision on penny drop vendor
+            gold TOPIC[decision on penny drop vendor]
+            pred TOPIC[hhmm] TOPIC[decision] TOPIC[penny drop vendor]
+      [S02] transcript where we discussed the nach mandate timeline
+            gold KIND[transcript] TOPIC[nach mandate timeline]
+            pred KIND[transcript] TOPIC[discussed] TOPIC[nach mandate timeline]
+      [S02] who owns the reporting pipeline
+            gold TOPIC[reporting pipeline]
+            pred TOPIC[owns] TOPIC[reporting pipeline]
+
+ 28  miss TOPIC -> KIND
+      [S02] latest version of the pitch deck
+            gold ORDER[latest version] TOPIC[pitch] KIND[deck]
+            pred ORDER[latest] TOPIC[version] KIND[pitch deck]
+      [S02] things about kyc video verification in dms with divya
+            gold TOPIC[kyc video verification] CONTAINER[dms] PARTICIPANT[divya]
+            pred TOPIC[kyc] KIND[video] TOPIC[verification] KIND[dms] PARTICIPANT[divya]
+      [S02] standup notes before diwali
+            gold TOPIC[standup] KIND[notes] TIME[before diwali]
+            pred KIND[standup] KIND[notes] TOPIC[diwali]
+
+ 15  miss ACTOR (nocue) -> TOPIC
+      [S02] rahul pdf from last week about kyc drop-off
+            gold ACTOR[rahul] KIND[pdf] TIME[from last week] TOPIC[kyc drop-off]
+            pred TOPIC[rahul] KIND[pdf] TIME[from last week] TOPIC[kyc drop-off]
+      [S02] meera canvas api rate limits
+            gold ACTOR[meera] KIND[canvas] TOPIC[api rate limits]
+            pred TOPIC[meera] KIND[canvas] TOPIC[api rate limits]
+      [S02] ananya the rbi audit checklist doc
+            gold ACTOR[ananya] TOPIC[rbi audit checklist] KIND[doc]
+            pred TOPIC[ananya] TOPIC[rbi audit checklist] KIND[doc]
+
+ 13  miss TOPIC -> ACTOR
+      [S02] slides from the board prep march
+            gold KIND[slides] TOPIC[board prep] TIME[march]
+            pred KIND[slides] ACTOR[board prep] TIME[march]
+      [S02] screenshot of the upi failure dashboard vikram sent
+            gold KIND[screenshot] TOPIC[upi failure dashboard] ACTOR[vikram]
+            pred KIND[screenshot] TOPIC[upi failure] ACTOR[dashboard vikram]
+      [S02] aditya recording from the design review call
+            gold ACTOR[aditya] KIND[recording] TOPIC[design review call]
+            pred TOPIC[aditya] KIND[recording] ACTOR[design] ATTR[review] KIND[call]
+
+ 12  miss CONTAINER -> TOPIC
+      [S02] checkout project blocked tickets
+            gold CONTAINER[checkout] ATTR[blocked] KIND[tickets]
+            pred TOPIC[checkout project] ATTR[blocked] KIND[tickets]
+      [S02] sprint 42 unfinished stories
+            gold CONTAINER[sprint 42] ATTR[unfinished] KIND[stories]
+            pred TOPIC[sprint 42] ATTR[unfinished] KIND[stories]
+      [S02] marketing folder slides
+            gold CONTAINER[marketing] KIND[slides]
+            pred TOPIC[marketing] KIND[folder] KIND[slides]
+
+ 11  miss KIND -> KIND
+      [S02] latest version of the pitch deck
+            gold ORDER[latest version] TOPIC[pitch] KIND[deck]
+            pred ORDER[latest] TOPIC[version] KIND[pitch deck]
+      [S02] mails with pdf attachments over 5mb
+            gold KIND[mails] KIND[pdf attachments] ATTR[over 5mb]
+            pred KIND[mails] KIND[pdf] KIND[attachments] TOPIC[5mb]
+      [S02] pitch deck v3 final
+            gold TOPIC[pitch] KIND[deck] TOPIC[v3 final]
+            pred KIND[pitch deck] TOPIC[v3 final]
+
+ 11  spurious KIND
+      [S02] who said the settlement cutoff is 6pm
+            gold TOPIC[settlement cutoff is 6pm]
+            pred KIND[said] TOPIC[settlement cutoff] TIME[6pm]
+      [S02] docs i commented on last week
+            gold KIND[docs] ACTOR[i] TIME[last week]
+            pred KIND[docs] ACTOR[i] KIND[commented] TIME[on last week]
+      [S02] which emails mention the migration cutover
+            gold KIND[emails] TOPIC[migration cutover]
+            pred KIND[emails] KIND[mention] TOPIC[migration cutover]
+
+ 11  miss TIME -> TOPIC
+      [S02] before the offsite what did we decide on pricing
+            gold TIME[before the offsite] TOPIC[decide on pricing]
+            pred TOPIC[offsite] TOPIC[decide] TOPIC[pricing]
+      [S02] standup notes before diwali
+            gold TOPIC[standup] KIND[notes] TIME[before diwali]
+            pred KIND[standup] KIND[notes] TOPIC[diwali]
+      [S02] bugs rohan filed this sprint
+            gold KIND[bugs] ACTOR[rohan] TIME[this sprint]
+            pred KIND[bugs] TOPIC[rohan filed] TOPIC[sprint]
+
+ 11  miss ATTR -> TOPIC
+      [S02] mails with pdf attachments over 5mb
+            gold KIND[mails] KIND[pdf attachments] ATTR[over 5mb]
+            pred KIND[mails] KIND[pdf] KIND[attachments] TOPIC[5mb]
+      [S02] checkout crash on android since 4.2.1
+            gold TOPIC[checkout crash] ATTR[android] TIME[since 4.2.1]
+            pred TOPIC[checkout crash] TOPIC[android] TOPIC[4.2.1]
+      [GLM] attatchment missing from anand
+            gold ATTR[attatchment missing] ACTOR[anand]
+            pred TOPIC[attatchment missing] ACTOR[anand]
+
+ 11  miss TOPIC -> ATTR
+      [S02] meeting notes from the design review
+            gold KIND[meeting notes] TOPIC[design review]
+            pred KIND[meeting notes] ACTOR[design] ATTR[review]
+      [S02] sprint review notes last friday
+            gold TOPIC[sprint review] KIND[notes] TIME[last friday]
+            pred TOPIC[sprint] ATTR[review] KIND[notes] TIME[last friday]
+      [S02] design review with meera
+            gold TOPIC[design review] PARTICIPANT[meera]
+            pred TOPIC[design] ATTR[review] PARTICIPANT[meera]
+
+  5  miss ATTR -> ATTR
+      [S02] p0 bugs not closed
+            gold ATTR[p0] KIND[bugs] NEG[not] ATTR[closed]
+            pred ATTR[p0] KIND[bugs] ATTR[not closed]
+      [S02] not done high priority mobile
+            gold NEG[not] ATTR[done] ATTR[high priority] TOPIC[mobile]
+            pred ATTR[not done] ATTR[high priority] TOPIC[mobile]
+      [GLM] unassigned and not done
+            gold ATTR[unassigned] NEG[not] ATTR[done]
+            pred ATTR[unassigned] ATTR[not done]
+
+  5  spurious ACTOR
+      [S02] blocked by infra
+            gold ATTR[blocked]
+            pred ATTR[blocked] ACTOR[infra]
+      [S02] which meetings did i miss this morning
+            gold KIND[meetings] TIME[this morning]
+            pred KIND[meetings] ACTOR[i] TOPIC[miss] TIME[this morning]
+      [GLM] infra board sorted by priority
+            gold CONTAINER[infra]
+            pred TOPIC[infra board sorted] ACTOR[priority]
+
+  4  miss ORDER -> ORDER
+      [S02] latest version of the pitch deck
+            gold ORDER[latest version] TOPIC[pitch] KIND[deck]
+            pred ORDER[latest] TOPIC[version] KIND[pitch deck]
+      [S02] latest version of the pricing sheet
+            gold ORDER[latest version] TOPIC[pricing] KIND[sheet]
+            pred ORDER[latest] TOPIC[version] TOPIC[pricing] KIND[sheet]
+      [S02] oldest version of the vendor contract
+            gold ORDER[oldest version] TOPIC[vendor contract]
+            pred ORDER[oldest] TOPIC[version] TOPIC[vendor contract]
+
+  4  miss TIME -> TIME
+      [S02] call transcript from the 3/10 vendor call
+            gold KIND[call transcript] TIME[3/10] TOPIC[vendor call]
+            pred KIND[call transcript] TIME[from the 3/10] TOPIC[vendor] KIND[call]
+      [S02] docs i commented on last week
+            gold KIND[docs] ACTOR[i] TIME[last week]
+            pred KIND[docs] ACTOR[i] KIND[commented] TIME[on last week]
+      [S02] ppt from the dec offsite
+            gold KIND[ppt] TIME[dec] TOPIC[offsite]
+            pred KIND[ppt] TIME[from the dec] TOPIC[offsite]
+
+  4  miss TOPIC -> PARTICIPANT
+      [S02] excel with merchant onboarding funnel in march
+            gold KIND[excel] TOPIC[merchant onboarding funnel] TIME[in march]
+            pred KIND[excel] PARTICIPANT[merchant onboarding funnel] TIME[in march]
+      [S02] messages with idempotency key this month except bot posts
+            gold KIND[messages] TOPIC[idempotency key] TIME[this month] NEG[except] ATTR[bot posts]
+            pred KIND[messages] PARTICIPANT[idempotency key] TIME[this month] NEG[except] ATTR[bot posts]
+      [GLM] dm with vikram pricing
+            gold KIND[dm] PARTICIPANT[vikram] TOPIC[pricing]
+            pred KIND[dm] PARTICIPANT[vikram pricing]
+
+  4  miss ACTOR (cue) -> ACTOR
+      [S02] from razorpay invoice pdf
+            gold ACTOR[razorpay] TOPIC[invoice] KIND[pdf]
+            pred ACTOR[razorpay invoice] KIND[pdf]
+      [S02] from stripe receipts
+            gold ACTOR[stripe] TOPIC[receipts]
+            pred ACTOR[stripe receipts]
+      [S02] emails from the cfo this month
+            gold KIND[emails] ACTOR[the cfo] TIME[this month]
+            pred KIND[emails] ACTOR[cfo] TIME[this month]
+
+  4  miss NEG -> ATTR
+      [S02] p0 bugs not closed
+            gold ATTR[p0] KIND[bugs] NEG[not] ATTR[closed]
+            pred ATTR[p0] KIND[bugs] ATTR[not closed]
+      [S02] not done high priority mobile
+            gold NEG[not] ATTR[done] ATTR[high priority] TOPIC[mobile]
+            pred ATTR[not done] ATTR[high priority] TOPIC[mobile]
+      [GLM] unassigned and not done
+            gold ATTR[unassigned] NEG[not] ATTR[done]
+            pred ATTR[unassigned] ATTR[not done]
+
+  4  miss TOPIC -> TIME
+      [S02] q3 board pack folder
+            gold TOPIC[q3 board pack] KIND[folder]
+            pred TIME[q3] TOPIC[board pack] KIND[folder]
+      [S02] q2 sales forecast sheet
+            gold TOPIC[q2 sales forecast] KIND[sheet]
+            pred TIME[q2] TOPIC[sales forecast] KIND[sheet]
+      [S02] what did priya say about the q3 numbers
+            gold ACTOR[priya] KIND[say] TOPIC[q3 numbers]
+            pred ACTOR[priya] KIND[say] TIME[the q3] TOPIC[numbers]
+
+  3  miss CONTAINER -> KIND
+      [S02] anything from jake about the bbps integration not from dms
+            gold ACTOR[jake] TOPIC[bbps integration] NEG[not] CONTAINER[dms]
+            pred ACTOR[jake] TOPIC[bbps integration] NEG[not] KIND[dms]
+      [S02] things about kyc video verification in dms with divya
+            gold TOPIC[kyc video verification] CONTAINER[dms] PARTICIPANT[divya]
+            pred TOPIC[kyc] KIND[video] TOPIC[verification] KIND[dms] PARTICIPANT[divya]
+      [S02] notes not from standups from this week
+            gold KIND[notes] NEG[not] CONTAINER[standups] TIME[from this week]
+            pred KIND[notes] NEG[not] KIND[standups] TIME[from this week]
+
+  3  spurious ORDER
+      [S02] sort by date newest first refund flow
+            gold ORDER[newest first] TOPIC[refund flow]
+            pred ORDER[sort by date] ORDER[newest first] TOPIC[refund flow]
+      [GLM] invoices sorted by date
+            gold TOPIC[invoices]
+            pred TOPIC[invoices] ORDER[sorted by date]
+      [GLM] my notes from board meeting sort by date
+            gold ACTOR[my] KIND[notes] TOPIC[board meeting]
+            pred ACTOR[my] KIND[notes] ACTOR[board] KIND[meeting] ORDER[sort by date]
+
+  3  miss RECIPIENT (cue) -> RECIPIENT
+      [S02] emails i sent to the auditor last quarter
+            gold KIND[emails] ACTOR[i] RECIPIENT[the auditor] TIME[last quarter]
+            pred KIND[emails] ACTOR[i] RECIPIENT[auditor] TIME[last quarter]
+      [S02] emails to the board on friday
+            gold KIND[emails] RECIPIENT[the board] TIME[on friday]
+            pred KIND[emails] RECIPIENT[board] TIME[on friday]
+      [GLM] assigned to kavya ios
+            gold RECIPIENT[kavya] TOPIC[ios]
+            pred RECIPIENT[kavya ios]
+
+  3  miss CONTAINER -> TIME
+      [S02] what is still open from release 4.2
+            gold ATTR[open] CONTAINER[release 4.2]
+            pred ATTR[open] ACTOR[release] TIME[4.2]
+      [GLM] epics in the q3 release
+            gold KIND[epics] CONTAINER[q3 release]
+            pred KIND[epics] TIME[in the q3] TOPIC[release]
+      [GLM] fixed in 2.14
+            gold ATTR[fixed] CONTAINER[2.14]
+            pred ATTR[fixed] TIME[in 2.14]
+
+  3  miss PARTICIPANT (nocue) -> TOPIC
+      [S02] sbi team call recording last week
+            gold PARTICIPANT[sbi team] KIND[call recording] TIME[last week]
+            pred TOPIC[sbi team] KIND[call recording] TIME[last week]
+      [GLM] meeting where kabir walked through churn numbers
+            gold KIND[meeting] PARTICIPANT[kabir] TOPIC[churn numbers]
+            pred KIND[meeting] TOPIC[kabir walked through churn numbers]
+      [GLM] call transcript where sunil from client got angry
+            gold KIND[call transcript] PARTICIPANT[sunil] TOPIC[client got angry]
+            pred KIND[call transcript] TOPIC[sunil] ACTOR[client] TOPIC[angry]
+
+######## model
+
+ 64  miss TOPIC -> TOPIC
+      [S02] priya's sheet on q3 collections
+            gold ACTOR[priya] KIND[sheet] TOPIC[q3 collections]
+            pred ACTOR[priya] KIND[sheet] TIME[on q3] TOPIC[collections]
+      [S02] call transcript from the 3/10 vendor call
+            gold KIND[call transcript] TIME[3/10] TOPIC[vendor call]
+            pred KIND[call transcript] TIME[3/10] TOPIC[vendor] KIND[call]
+      [S02] before the offsite what did we decide on pricing
+            gold TIME[before the offsite] TOPIC[decide on pricing]
+            pred TIME[before] ACTOR[the offsite] ACTOR[we] TOPIC[pricing]
+
+ 43  miss TOPIC -> KIND
+      [S02] aditya recording from the design review call
+            gold ACTOR[aditya] KIND[recording] TOPIC[design review call]
+            pred ACTOR[aditya] KIND[recording] ACTOR[the design review] KIND[call]
+      [S02] merchant ids mentioned in #support 10/3
+            gold TOPIC[merchant ids] CONTAINER[#support] TIME[10/3]
+            pred TOPIC[merchant] KIND[ids] CONTAINER[#support] TIME[10/3]
+      [S02] rohan pinged me abt the loan emi sheet
+            gold ACTOR[rohan] KIND[pinged] RECIPIENT[me] TOPIC[loan emi] KIND[sheet]
+            pred ACTOR[rohan] KIND[pinged] TOPIC[loan] KIND[emi] KIND[sheet]
+
+ 24  miss TOPIC -> ACTOR
+      [S02] kavya budget sheet v3 final final
+            gold ACTOR[kavya] TOPIC[budget] KIND[sheet] TOPIC[v3 final final]
+            pred ACTOR[kavya budget] KIND[sheet] TOPIC[v3 final final]
+      [S02] tokenization pdf ppt
+            gold TOPIC[tokenization] KIND[pdf] KIND[ppt]
+            pred ACTOR[tokenization] KIND[pdf] KIND[ppt]
+      [S02] from razorpay invoice pdf
+            gold ACTOR[razorpay] TOPIC[invoice] KIND[pdf]
+            pred ACTOR[razorpay invoice] KIND[pdf]
+
+ 23  miss TOPIC -> none
+      [S02] ananya edited the roadmap
+            gold ACTOR[ananya] TOPIC[roadmap]
+            pred ACTOR[ananya]
+      [S02] who edited the hiring plan
+            gold TOPIC[hiring plan]
+            pred 
+      [GLM] from:meera is:pinned kyc
+            gold TOPIC[kyc]
+            pred 
+
+ 20  spurious ACTOR
+      [S02] before the offsite what did we decide on pricing
+            gold TIME[before the offsite] TOPIC[decide on pricing]
+            pred TIME[before] ACTOR[the offsite] ACTOR[we] TOPIC[pricing]
+      [S02] slides from the board prep march
+            gold KIND[slides] TOPIC[board prep] TIME[march]
+            pred KIND[slides] ACTOR[the] TOPIC[board prep march]
+      [S02] sort by date newest first refund flow
+            gold ORDER[newest first] TOPIC[refund flow]
+            pred TOPIC[sort] ACTOR[date] ORDER[newest first] TOPIC[refund flow]
+
+ 14  spurious TOPIC
+      [S02] sort by date newest first refund flow
+            gold ORDER[newest first] TOPIC[refund flow]
+            pred TOPIC[sort] ACTOR[date] ORDER[newest first] TOPIC[refund flow]
+      [S02] sort oldest first to dana
+            gold ORDER[oldest first] RECIPIENT[dana]
+            pred TOPIC[sort] ORDER[oldest first] RECIPIENT[dana]
+      [S02] sort by most recent comments
+            gold ORDER[most recent] KIND[comments]
+            pred TOPIC[sort] ORDER[most recent] KIND[comments]
+
+ 14  spurious KIND
+      [S02] anyone blocked on the vespa reindex
+            gold ATTR[blocked] TOPIC[vespa reindex]
+            pred KIND[anyone] ATTR[blocked] TOPIC[vespa reindex]
+      [S02] whats in the backlog for search board
+            gold ATTR[backlog] CONTAINER[search]
+            pred KIND[whats] ATTR[in the backlog] RECIPIENT[search]
+      [S02] marketing folder slides
+            gold CONTAINER[marketing] KIND[slides]
+            pred CONTAINER[marketing] KIND[folder] KIND[slides]
+
+ 12  miss KIND -> KIND
+      [S02] standup notes before diwali
+            gold TOPIC[standup] KIND[notes] TIME[before diwali]
+            pred KIND[standup notes] ACTOR[diwali]
+      [S02] mails with pdf attachments over 5mb
+            gold KIND[mails] KIND[pdf attachments] ATTR[over 5mb]
+            pred KIND[mails] PARTICIPANT[pdf] KIND[attachments] TIME[over 5mb]
+      [S02] pdf invoices from 2024
+            gold KIND[pdf] TOPIC[invoices] TIME[from 2024]
+            pred KIND[pdf invoices] TIME[from 2024]
+
+  8  miss ATTR -> TOPIC
+      [S02] checkout crash on android since 4.2.1
+            gold TOPIC[checkout crash] ATTR[android] TIME[since 4.2.1]
+            pred TOPIC[checkout crash] TOPIC[android] TOPIC[since 4.2.1]
+      [GLM] e-mandate prd draft v2
+            gold TOPIC[e-mandate prd] ATTR[draft] TOPIC[v2]
+            pred TOPIC[e-mandate prd draft v2]
+      [GLM] whats left in sprnit 43
+            gold ATTR[left] CONTAINER[sprnit 43]
+            pred KIND[whats] TOPIC[left] CONTAINER[sprnit 43]
+
+  7  miss TIME -> TOPIC
+      [S02] slides from the board prep march
+            gold KIND[slides] TOPIC[board prep] TIME[march]
+            pred KIND[slides] ACTOR[the] TOPIC[board prep march]
+      [S02] payslip march
+            gold TOPIC[payslip] TIME[march]
+            pred TOPIC[payslip march]
+      [S02] checkout crash on android since 4.2.1
+            gold TOPIC[checkout crash] ATTR[android] TIME[since 4.2.1]
+            pred TOPIC[checkout crash] TOPIC[android] TOPIC[since 4.2.1]
+
+  7  spurious TIME
+      [S02] things about kyc video verification in dms with divya
+            gold TOPIC[kyc video verification] CONTAINER[dms] PARTICIPANT[divya]
+            pred TIME[things] TOPIC[kyc video verification] CONTAINER[dms] PARTICIPANT[divya]
+      [S02] docs i commented on last week
+            gold KIND[docs] ACTOR[i] TIME[last week]
+            pred KIND[docs] ACTOR[i] TIME[on] TIME[last week]
+      [S02] things i reported that are still in review
+            gold ACTOR[i] ATTR[in review]
+            pred TIME[things] ACTOR[i] ATTR[in review]
+
+  7  miss TOPIC -> CONTAINER
+      [GLM] release notes v2.14
+            gold TOPIC[release] KIND[notes] TOPIC[v2.14]
+            pred CONTAINER[release] KIND[notes] TOPIC[v2.14]
+      [GLM] diwali creatives folder
+            gold TOPIC[diwali creatives] KIND[folder]
+            pred CONTAINER[diwali creatives]
+      [GLM] sprint retro notes
+            gold TOPIC[sprint retro] KIND[notes]
+            pred CONTAINER[sprint] KIND[retro] KIND[notes]
+
+  6  miss TOPIC -> TIME
+      [S02] who said the settlement cutoff is 6pm
+            gold TOPIC[settlement cutoff is 6pm]
+            pred TOPIC[settlement] KIND[cutoff] TIME[is 6pm]
+      [S02] q3 board pack folder
+            gold TOPIC[q3 board pack] KIND[folder]
+            pred TIME[q3] TOPIC[board pack] KIND[folder]
+      [S02] q2 sales forecast sheet
+            gold TOPIC[q2 sales forecast] KIND[sheet]
+            pred TIME[q2] TOPIC[sales forecast] KIND[sheet]
+
+  6  miss KIND -> none
+      [S02] unread mentions from @sneha
+            gold ATTR[unread] KIND[mentions] ACTOR[@sneha]
+            pred ATTR[unread] ACTOR[@sneha]
+      [S02] reporter:priya type:bug
+            gold ACTOR[reporter:priya] KIND[type:bug]
+            pred 
+      [GLM] diwali creatives folder
+            gold TOPIC[diwali creatives] KIND[folder]
+            pred CONTAINER[diwali creatives]
+
+  6  miss TOPIC -> ATTR
+      [S02] travel reimbursement approval
+            gold TOPIC[travel reimbursement approval]
+            pred TOPIC[travel reimbursement] ATTR[approval]
+      [GLM] figma link new dashboard
+            gold TOPIC[figma link new dashboard]
+            pred ATTR[figma link] TOPIC[new dashboard]
+      [GLM] timezone off by 30 min ist
+            gold TOPIC[timezone off by 30 min ist]
+            pred TOPIC[timezone off] TIME[by 30] ATTR[min]
+
+  5  miss TIME -> ACTOR
+      [S02] standup notes before diwali
+            gold TOPIC[standup] KIND[notes] TIME[before diwali]
+            pred KIND[standup notes] ACTOR[diwali]
+      [S02] ppt from the dec offsite
+            gold KIND[ppt] TIME[dec] TOPIC[offsite]
+            pred KIND[ppt] ACTOR[the dec] TOPIC[offsite]
+      [S02] vendor call transcript kal wala
+            gold TOPIC[vendor call] KIND[transcript] TIME[kal]
+            pred TOPIC[vendor] KIND[call transcript] ACTOR[kal wala]
+
+  5  miss ACTOR (nocue) -> TOPIC
+      [S02] that thing dmitri sent about the vendor contract
+            gold ACTOR[dmitri] TOPIC[vendor contract]
+            pred TOPIC[dmitri] TOPIC[vendor contract]
+      [GLM] jonas in progress
+            gold ACTOR[jonas] ATTR[in progress]
+            pred TOPIC[jonas] ATTR[in progress]
+      [GLM] cohort analysis sheet rohan
+            gold TOPIC[cohort analysis] KIND[sheet] ACTOR[rohan]
+            pred TOPIC[cohort analysis] KIND[sheet] TOPIC[rohan]
+
+  4  miss TIME -> TIME
+      [S02] before the offsite what did we decide on pricing
+            gold TIME[before the offsite] TOPIC[decide on pricing]
+            pred TIME[before] ACTOR[the offsite] ACTOR[we] TOPIC[pricing]
+      [S02] wat did we ship in last release
+            gold TOPIC[ship] TIME[last release]
+            pred ACTOR[we] KIND[ship] TIME[in last] CONTAINER[release]
+      [S02] pending action items from yesterday's sync
+            gold ATTR[pending] KIND[action items] TIME[from yesterday 's] TOPIC[sync]
+            pred ATTR[pending] KIND[action items] TIME[from yesterday] KIND[sync]
+
+  4  miss RECIPIENT (cue) -> none
+      [S02] roadmap doc shared with me
+            gold TOPIC[roadmap] KIND[doc] RECIPIENT[me]
+            pred ACTOR[roadmap] KIND[doc]
+      [S02] shared with me this week
+            gold RECIPIENT[me] TIME[this week]
+            pred TIME[this week]
+      [S02] what did rohan share with me
+            gold ACTOR[rohan] RECIPIENT[me]
+            pred ACTOR[rohan]
+
+  4  spurious ATTR
+      [S02] stuck in qa more than a week
+            gold ATTR[in qa]
+            pred ATTR[stuck] ATTR[in qa] ATTR[more] TIME[than a week]
+      [S02] dupes of the invoice pdf issue
+            gold TOPIC[invoice pdf issue]
+            pred ATTR[dupes] TOPIC[invoice] KIND[pdf issue]
+      [GLM] assingnee:arjun updated last 3 days
+            gold TIME[last 3 days]
+            pred ATTR[updated] TIME[last 3 days]
+
+  4  miss ATTR -> ACTOR
+      [S02] mine that are p0 or p1
+            gold ACTOR[mine] ATTR[p0] ATTR[p1]
+            pred ATTR[p0] ACTOR[p1]
+      [GLM] my open bugs
+            gold ACTOR[my] ATTR[open] KIND[bugs]
+            pred ACTOR[my open] KIND[bugs]
+      [GLM] p0 or p1 not done
+            gold ATTR[p0] ATTR[p1] NEG[not] ATTR[done]
+            pred ATTR[p0] ACTOR[p1] NEG[not] ATTR[done]
+
+  3  miss ACTOR (nocue) -> ACTOR
+      [S02] kavya budget sheet v3 final final
+            gold ACTOR[kavya] TOPIC[budget] KIND[sheet] TOPIC[v3 final final]
+            pred ACTOR[kavya budget] KIND[sheet] TOPIC[v3 final final]
+      [GLM] my open bugs
+            gold ACTOR[my] ATTR[open] KIND[bugs]
+            pred ACTOR[my open] KIND[bugs]
+      [GLM] sneha ka figma link for dashboard
+            gold ACTOR[sneha] TOPIC[figma link for dashboard]
+            pred ACTOR[sneha ka] ATTR[figma link] TOPIC[dashboard]
+
+  3  miss TIME -> CONTAINER
+      [S02] bugs rohan filed this sprint
+            gold KIND[bugs] ACTOR[rohan] TIME[this sprint]
+            pred KIND[bugs] ACTOR[rohan] CONTAINER[sprint]
+      [S02] closed this sprint by frontend team
+            gold ATTR[closed] TIME[this sprint] ACTOR[frontend team]
+            pred ATTR[closed] CONTAINER[sprint] ACTOR[frontend team]
+      [GLM] closed this sprint order by priority
+            gold ATTR[closed] TIME[this sprint]
+            pred ATTR[closed] CONTAINER[sprint] KIND[order] ACTOR[priority]
+
+  3  miss ACTOR (nocue) -> none
+      [S02] reporter:priya type:bug
+            gold ACTOR[reporter:priya] KIND[type:bug]
+            pred 
+      [S02] mine that are p0 or p1
+            gold ACTOR[mine] ATTR[p0] ATTR[p1]
+            pred ATTR[p0] ACTOR[p1]
+      [GLM] where did i put the signed sow
+            gold ACTOR[i] TOPIC[signed sow]
+            pred 
