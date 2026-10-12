@@ -10,6 +10,14 @@
   --clock: #fff1c2;
   --open: #ece3ff;
   --text: #e2f4e8;
+  --kind: #dbe8ff;
+  --person: #d8f3e0;
+  --place: #ffe4cc;
+  --time: #fff1c2;
+  --attr: #ece3ff;
+  --order: #fbe0ef;
+  --neg: #ffd9d9;
+  --topic: #eef0f2;
   --code-bg: #f7f7f8;
   --accent: #2f6bff;
   --radius: 14px;
@@ -45,6 +53,14 @@
   --clock: #4a3d12;
   --open: #36285c;
   --text: #18382a;
+  --kind: #1f3360;
+  --person: #17402a;
+  --place: #4d2f12;
+  --time: #4a3d12;
+  --attr: #36285c;
+  --order: #4a1f37;
+  --neg: #5a1f22;
+  --topic: #262a30;
   --code-bg: #16181c;
   --accent: #7ea2ff;
   color-scheme: dark;
@@ -428,4 +444,106 @@ footer {
   h1 {
     font-size: 23px;
   }
+}
+
+/* Roles */
+mark.kind,
+.sw.kind,
+.chip.kind {
+  background: var(--kind);
+}
+mark.person,
+.sw.person {
+  background: var(--person);
+}
+mark.place,
+.sw.place {
+  background: var(--place);
+}
+mark.time,
+.sw.time,
+.chip.time {
+  background: var(--time);
+}
+mark.attr,
+.sw.attr {
+  background: var(--attr);
+}
+mark.order,
+.sw.order {
+  background: var(--order);
+}
+mark.neg,
+.sw.neg {
+  background: var(--neg);
+}
+mark.topic,
+.sw.topic {
+  background: var(--topic);
+}
+mark.negated {
+  text-decoration: line-through;
+  text-decoration-color: color-mix(in srgb, var(--fg) 55%, transparent);
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 4px 0 8px;
+}
+.chip {
+  display: inline-flex;
+  gap: 6px;
+  align-items: baseline;
+  font-size: 13px;
+  padding: 4px 9px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--panel);
+  max-width: 100%;
+}
+.chip b {
+  font-weight: 500;
+  color: var(--muted);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.chip.negated {
+  background: var(--neg);
+}
+.issues {
+  margin: 8px 0 0;
+  padding: 0 0 0 18px;
+  font-size: 13px;
+  color: var(--muted);
+}
+.issues li {
+  margin: 2px 0;
+}
+.muted {
+  color: var(--muted);
+}
+.api {
+  margin-top: 10px;
+  font-size: 12px;
+}
+.api summary {
+  cursor: pointer;
+  color: var(--muted);
+}
+.api code {
+  display: block;
+  margin-top: 6px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: var(--panel);
+  font-size: 11px;
+  overflow-wrap: anywhere;
+}
+.note {
+  margin: 8px 0 0;
+  font-size: 12px;
+  color: var(--muted);
 }

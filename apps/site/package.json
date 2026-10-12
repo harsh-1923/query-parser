@@ -9,6 +9,8 @@
     "typecheck": "tsc --noEmit -p ."
   },
   "dependencies": {
+    "@qp/adapter-xyne-spaces": "workspace:*",
+    "@qp/core": "workspace:*",
     "@qp/time": "workspace:*"
   },
   "devDependencies": {

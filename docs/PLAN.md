@@ -124,6 +124,7 @@ The SDK returns one `ParseResult`. Its `filters` field is typed from the product
 interface ParseResult<F> {
   query: string                     // the original input
   filters: Partial<F>               // facet id → typed value (see §5.2)
+  exclude: Partial<F>               // negated filters ("not from rahul"), same shape as filters
   text: string                      // residual search text (TOPIC spans + untagged content words)
   excludeText: string[]             // negated TOPIC spans ("excluding test merchants")
   order?: OrderSpec                 // from ORDER spans, if the schema maps it
@@ -353,7 +354,7 @@ backend already accepts:
 | `CONTAINER` | `in` | `in=<channelId>` |
 | `TIME` | `date` | `after=` / `before=` / `on=` |
 | `ATTR` | `status`, `stage`, … | `status=` / `stage=` |
-| `ORDER` | `sort` | not supported by the API yet; reported as `unbound` |
+| `ORDER` | `sort` | `orderBy=newest\|oldest` |
 | `TOPIC` | – | `q=` |
 
 **A hypothetical issue tracker** reuses the same model with a different schema: `ACTOR` →

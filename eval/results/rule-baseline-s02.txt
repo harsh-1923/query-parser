@@ -1,0 +1,30 @@
+rule tagger rules-0.1 on S02 (205 queries), span-level exact match
+
+role         P      R      F1     tp  fp  fn
+ACTOR         69.2   72.6   70.9   45  20  17
+ATTR          83.6   86.8   85.2   46   9   7
+CONTAINER     46.2   28.6   35.3    6   7  15
+KIND          76.8   95.1   85.0  116  35   6
+MENTION        0.0    0.0    0.0    0   2   0
+ORDER         58.3   58.3   58.3    7   5   5
+PARTICIPANT   44.4   57.1   50.0    4   5   3
+RECIPIENT     80.0   66.7   72.7    8   2   4
+TIME          70.8   76.7   73.6   46  19  14
+TOPIC         48.2   60.4   53.6   81  87  53
+overall       65.3   74.3   69.5  359 191 124
+
+exact-match queries: 86/205 (42.0%)
+
+most common error patterns:
+   23  TOPIC gold, predicted TOPIC (boundary)
+   23  TOPIC predicted, gold has nothing
+   10  TOPIC gold, predicted KIND
+   10  TOPIC gold, predicted ACTOR
+    8  ACTOR gold, predicted TOPIC
+    7  TIME gold, predicted TOPIC
+    6  TOPIC gold, predicted TIME
+    6  KIND predicted, gold has nothing
+    6  ACTOR gold, predicted ACTOR (boundary)
+    6  CONTAINER gold, predicted TOPIC
+    5  TIME gold, predicted TIME (boundary)
+    5  KIND gold, predicted KIND (boundary)

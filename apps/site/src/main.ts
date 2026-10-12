@@ -1,5 +1,14 @@
-import type { Options } from "@qp/time"
-import { findTimeSpans, type Span } from "./spans"
+import { schema, toSearchParams } from "@qp/adapter-xyne-spaces"
+import {
+  createParser,
+  directorySource,
+  type Issue,
+  type ParseResult,
+  ruleTaggerFor,
+  type TaggedSpan,
+  type TimeValue,
+} from "@qp/core"
+import directory from "./demo-directory.json"
 import "./style.css"
 
 declare const __COMMIT__: string
@@ -14,15 +23,38 @@ const dayFirst = $<HTMLSelectElement>("dayFirst")
 const weekStart = $<HTMLSelectElement>("weekStart")
 
 const EXAMPLES: [string, string][] = [
-  ["A name and a week", "pdfs from utkarsh last week"],
-  ["Day-first dates", "invoices before 3/10"],
-  ["Part of the day", "standup notes monday morning"],
-  ["Older than", "my tickets older than 30 days"],
-  ["A range", "payouts between 1st and 15th"],
-  ["Sloppy typing", "deploys frm mon 2 fri"],
+  ["The headline", "pdfs from utkarsh last week about sync engine"],
+  ["A ticket triage", "open p1 bugs assigned to me"],
+  ["Two people, one channel", "messages from ankit or neha in #payments-ops"],
+  ["Negation", "decks not from rahul verma"],
+  ["An ambiguous name", "files from rahul"],
+  ["A spelling the directory lacks", "sheets from utkarash yesterday"],
+  ["Sorting", "latest transcripts with priya iyer"],
+  ["Typed operators", "type:bug from:sneha flaky checkout"],
   ["Clock time", "#eng-alerts since yesterday 2am"],
-  ["Not a time", "latest pitch deck"],
+  ["Nothing to extract", "how do refunds work"],
 ]
+
+// ---------------------------------------------------------------------------------------------
+// Parser: the Xyne Spaces schema, the rule tagger and a fictional demo directory
+
+const SELF = "u_005"
+const people = new Map(directory.people.map((p) => [p.id, p]))
+const channels = new Map(directory.channels.map((c) => [c.id, c]))
+const parser = createParser({
+  schema,
+  tagger: ruleTaggerFor(schema),
+  sources: {
+    person: directorySource(directory.people, {
+      fields: (p) => ({ id: p.id, label: p.name, aliases: [p.handle] }),
+      self: SELF,
+    }),
+    channel: directorySource(directory.channels, {
+      fields: (c) => ({ id: c.id, label: c.name, aliases: [c.name.slice(1)] }),
+    }),
+  },
+})
+const nameOf = (id: string) => people.get(id)?.name ?? channels.get(id)?.name ?? id
 
 // ---------------------------------------------------------------------------------------------
 // Reference time and zone
@@ -75,37 +107,49 @@ function fromWallTime(wall: string, tz: string): Date {
 
 let pinnedRef: Date | null = null
 const reference = () => pinnedRef ?? new Date()
-
-function syncRefInput() {
+const syncRefInput = () => {
   refInput.value = wallTime(reference(), tzSelect.value)
 }
 
-function options(): Options {
-  return {
+function parse(query: string): ParseResult {
+  // The time policies live on the schema; the demo lets you flip them per parse.
+  schema.policies.time.dayFirst = dayFirst.value === "1"
+  schema.policies.time.weekStartsOn = Number(weekStart.value)
+  return parser.parseSync(query, {
     reference: reference().toISOString(),
     timeZone: tzSelect.value,
-    policies: { dayFirst: dayFirst.value === "1", weekStartsOn: Number(weekStart.value) },
-  }
+    self: SELF,
+  })
 }
 
 // ---------------------------------------------------------------------------------------------
 // Rendering
 
 const esc = (s: string) =>
-  s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]!)
+  s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c] ?? c)
 
-function kind(s: Span) {
-  const r = s.result
-  if (r.from === undefined || r.to === undefined) return "open"
-  return r.granularity === "hour" ? "clock" : "date"
+const ROLE_CLASS: Record<string, string> = {
+  KIND: "kind",
+  ACTOR: "person",
+  RECIPIENT: "person",
+  PARTICIPANT: "person",
+  MENTION: "person",
+  CONTAINER: "place",
+  TIME: "time",
+  ATTR: "attr",
+  ORDER: "order",
+  NEG: "neg",
+  TOPIC: "topic",
 }
+const markClass = (s: TaggedSpan) => `${ROLE_CLASS[s.role] ?? ""}${s.negated ? " negated" : ""}`
 
-function highlight(query: string, spans: Span[]): string {
+function highlight(query: string, spans: TaggedSpan[]): string {
   let html = ""
   let at = 0
   for (const s of spans) {
+    if (s.start < at) continue
     html += esc(query.slice(at, s.start))
-    html += `<mark class="${kind(s)}">${esc(s.text)}</mark>`
+    html += `<mark class="${markClass(s)}" title="${s.role}${s.cue ? ` · cue “${esc(s.cue)}”` : ""}">${esc(query.slice(s.start, s.end))}</mark>`
     at = s.end
   }
   return `${html + esc(query.slice(at))} `
@@ -122,74 +166,110 @@ const DAY_FMT: Intl.DateTimeFormatOptions = {
 }
 const TIME_FMT: Intl.DateTimeFormatOptions = { hour: "numeric", minute: "2-digit" }
 
-/** Human summary of a half-open range: the end is shown inclusive for whole days. */
-function describe(s: Span, tz: string): { main: string; side: string } {
-  const { from, to, granularity: g } = s.result
+/** A half-open range for people: whole days are shown with an inclusive end. */
+function describeTime(t: TimeValue, tz: string): string {
   const lastDay = (iso: string) => new Date(Date.parse(iso) - 1).toISOString()
   const day = (iso: string) => fmt(iso, tz, DAY_FMT)
   const time = (iso: string) => fmt(iso, tz, TIME_FMT)
-  const at = (iso: string) => (g === "hour" ? `${day(iso)} · ${time(iso)}` : day(iso))
-  if (from && !to) return { main: `From ${at(from)}`, side: "onward" }
-  if (!from && to) return { main: `Before ${at(to)}`, side: "" }
-  if (!from || !to) return { main: "", side: "" }
-  if (g === "hour") {
-    const sameDay = day(from) === day(lastDay(to))
-    return {
-      main: sameDay ? day(from) : `${day(from)} → ${day(lastDay(to))}`,
-      side: `${time(from)} – ${time(to)}`,
-    }
+  const at = (iso: string) => (t.granularity === "hour" ? `${day(iso)}, ${time(iso)}` : day(iso))
+  if (t.from && !t.to) return `from ${at(t.from)} on`
+  if (!t.from && t.to) return `before ${at(t.to)}`
+  if (!t.from || !t.to) return ""
+  if (t.granularity === "hour") {
+    const same = day(t.from) === day(lastDay(t.to))
+    return same ? `${day(t.from)}, ${time(t.from)} – ${time(t.to)}` : `${at(t.from)} → ${at(t.to)}`
   }
-  const a = day(from)
-  const b = day(lastDay(to))
-  return { main: a === b ? a : `${a} → ${b}`, side: g === "day" && a === b ? "All day" : g }
+  const a = day(t.from)
+  const b = day(lastDay(t.to))
+  return a === b ? a : `${a} → ${b}`
+}
+
+const FACET_LABEL: Record<string, string> = {
+  type: "Type",
+  from: "From",
+  to: "To",
+  assignee: "Assignee",
+  with: "With",
+  mentions: "Mentions",
+  in: "In",
+  date: "Date",
+  status: "Status",
+  priority: "Priority",
+  bots: "Bots",
+  sort: "Sort",
+}
+
+function chipValue(facet: string, value: unknown, tz: string): string {
+  if (facet === "date") return describeTime(value as TimeValue, tz)
+  if (facet === "sort")
+    return (value as { dir: string }).dir === "asc" ? "oldest first" : "newest first"
+  if (typeof value === "boolean") return value ? "yes" : "no"
+  const list = Array.isArray(value) ? value : [value]
+  const pretty = (v: string) =>
+    people.has(v) || channels.has(v) ? nameOf(v) : v.toLowerCase().replace(/_/g, " ")
+  const names = list.map((v) => (typeof v === "string" ? pretty(v) : String(v)))
+  return names.join(" or ")
+}
+
+function chips(bag: Record<string, unknown>, tz: string, negated: boolean): string {
+  return Object.entries(bag)
+    .map(([facet, value]) => {
+      const cls = facet === "date" ? "time" : facet === "type" ? "kind" : ""
+      return `<span class="chip ${cls}${negated ? " negated" : ""}"><b>${negated ? "Not " : ""}${esc(FACET_LABEL[facet] ?? facet)}</b> ${esc(chipValue(facet, value, tz))}</span>`
+    })
+    .join("")
+}
+
+function describeIssue(i: Issue): string {
+  switch (i.kind) {
+    case "ambiguous":
+      return `“${esc(i.span.text)}” could be ${i.candidates.map((c) => esc(c.label)).join(" or ")}. A UI would ask; the parser doesn't guess.`
+    case "unresolved":
+      return `“${esc(i.span.text)}” isn't in the directory, so it's searched as text.`
+    case "unbound":
+      return `“${esc(i.span.text)}” (${i.span.role.toLowerCase()}) has no Xyne Spaces filter yet, so it's searched as text.`
+    case "unsupported":
+      return `“${esc(i.span.text)}” isn't a time the normalizer understands, so it's searched as text.`
+    case "low-confidence":
+      return "Low confidence: returning the query as plain text."
+  }
 }
 
 function render() {
   const query = input.value
-  const opts = options()
-  const tz = opts.timeZone
-  const spans = query.trim() ? findTimeSpans(query, opts) : []
-  mirror.innerHTML = highlight(query, spans)
+  const tz = tzSelect.value
+  const r = parse(query)
+  mirror.innerHTML = highlight(query, r.spans)
   mirror.scrollLeft = input.scrollLeft
 
-  const refLine = `Relative to ${fmt(opts.reference, tz, DAY_FMT)}, ${fmt(opts.reference, tz, TIME_FMT)} · ${tz}`
+  const refLine = `Relative to ${fmt(r.meta.reference, tz, DAY_FMT)}, ${fmt(r.meta.reference, tz, TIME_FMT)} · ${tz} · signed in as ${esc(people.get(SELF)?.name ?? "")} · ${r.meta.tookMs.toFixed(2)} ms`
   if (!query.trim()) {
-    out.innerHTML = `<p class="hint">Type a search query with a time in it.</p><p class="ref">${esc(refLine)}</p>`
+    out.innerHTML = `<p class="hint">Type a search query.</p><p class="ref">${refLine}</p>`
     return
   }
-  let text = ""
-  let at = 0
-  for (const s of spans) {
-    text += `${query.slice(at, s.start)} `
-    at = s.end
-  }
-  text = (text + query.slice(at)).replace(/\s+/g, " ").trim()
-
-  const rows = spans.map((s) => {
-    const d = describe(s, tz)
-    const iso = `${s.result.from ?? "−∞"} → ${s.result.to ?? "+∞"}`
-    return `<div class="row">
-      <div class="phrase"><mark class="${kind(s)}">${esc(s.text)}</mark></div>
-      <div class="when"><span>${esc(d.main)}</span><span class="side">${esc(d.side)}</span></div>
-      <div class="iso">${esc(iso)}</div>
-    </div>`
-  })
+  const filters = chips(r.filters as Record<string, unknown>, tz, false)
+  const excludes = chips(r.exclude as Record<string, unknown>, tz, true)
+  const params = toSearchParams(r).toString().replace(/%2C/g, ",").replace(/%23/g, "#")
   out.innerHTML = `
-    ${rows.length ? rows.join("") : `<p class="hint">No time found. Phrases the grammar doesn't understand are left as text, never guessed.</p>`}
-    <div class="text"><span class="label">Search text</span><span>${text ? `<mark class="text">${esc(text)}</mark>` : "—"}</span></div>
-    <p class="ref">${esc(refLine)}</p>`
+    <div class="chips">${filters + excludes || `<span class="hint">No filters. Everything is search text.</span>`}</div>
+    <div class="text"><span class="label">Search text</span><span>${r.text ? `<mark class="topic">${esc(r.text)}</mark>` : "—"}${r.excludeText.length ? ` <span class="muted">minus</span> <mark class="topic negated">${esc(r.excludeText.join(", "))}</mark>` : ""}</span></div>
+    ${r.issues.length ? `<ul class="issues">${r.issues.map((i) => `<li>${describeIssue(i)}</li>`).join("")}</ul>` : ""}
+    ${Object.keys(r.exclude).length ? `<p class="note">Xyne Spaces' search API can't exclude filters yet, so the request below leaves the “not” out.</p>` : ""}
+    <details class="api"><summary>Xyne Spaces request</summary><code>GET /api/vespaSearch?${esc(params)}</code></details>
+    <p class="ref">${refLine}</p>`
 }
 
 function renderTiles() {
   const tiles = $<HTMLDivElement>("tiles")
   tiles.innerHTML = EXAMPLES.map(
     ([label, q], i) =>
-      `<button type="button" class="tile" data-i="${i}"><span class="eyebrow">${esc(label)}</span><span class="q">${highlight(q, findTimeSpans(q, options()))}</span></button>`,
+      `<button type="button" class="tile" data-i="${i}"><span class="eyebrow">${esc(label)}</span><span class="q">${highlight(q, parse(q).spans)}</span></button>`,
   ).join("")
   tiles.onclick = (e) => {
     const b = (e.target as HTMLElement).closest<HTMLButtonElement>(".tile")
-    if (!b) return
-    input.value = EXAMPLES[Number(b.dataset.i)]![1]
+    const ex = b && EXAMPLES[Number(b.dataset.i)]
+    if (!ex) return
+    input.value = ex[1]
     render()
     window.scrollTo({ top: 0, behavior: "smooth" })
     input.focus()
@@ -199,30 +279,27 @@ function renderTiles() {
 // ---------------------------------------------------------------------------------------------
 // Wiring
 
+const rerender = () => {
+  render()
+  renderTiles()
+}
 input.addEventListener("input", render)
 input.addEventListener("scroll", () => {
   mirror.scrollLeft = input.scrollLeft
 })
 refInput.addEventListener("change", () => {
   pinnedRef = refInput.value ? fromWallTime(refInput.value, tzSelect.value) : null
-  render()
-  renderTiles()
+  rerender()
 })
 tzSelect.addEventListener("change", () => {
   syncRefInput()
-  render()
-  renderTiles()
+  rerender()
 })
-for (const el of [dayFirst, weekStart])
-  el.addEventListener("change", () => {
-    render()
-    renderTiles()
-  })
+for (const el of [dayFirst, weekStart]) el.addEventListener("change", rerender)
 $<HTMLButtonElement>("resetRef").addEventListener("click", () => {
   pinnedRef = null
   syncRefInput()
-  render()
-  renderTiles()
+  rerender()
 })
 
 const commit = __COMMIT__
@@ -231,7 +308,6 @@ $<HTMLSpanElement>("build").innerHTML =
     ? "local build"
     : `build <a href="https://github.com/harsh-1923/query-parser/commit/${esc(commit)}">${esc(commit.slice(0, 7))}</a>`
 
-input.value = EXAMPLES[0]![1]
+input.value = EXAMPLES[0]?.[1] ?? ""
 syncRefInput()
-render()
-renderTiles()
+rerender()

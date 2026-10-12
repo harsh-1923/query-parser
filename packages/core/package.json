@@ -9,5 +9,8 @@
   },
   "scripts": {
     "typecheck": "tsc --noEmit -p ."
+  },
+  "dependencies": {
+    "@qp/time": "workspace:*"
   }
 }

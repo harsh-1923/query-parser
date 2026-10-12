@@ -1,3 +1,9 @@
 // @qp/core: Schema, pipeline, entity resolution and the parse result contract. No product knowledge.
-// Placeholder. See docs/PLAN.md for the design this package implements.
-export {}
+export { type AliasIndex, aliasIndex, normalizeAlias } from "./aliases"
+export { ruleTaggerFor } from "./defaults"
+export { type DirectoryEntry, type DirectoryOptions, directorySource } from "./directorySource"
+export { createParser } from "./parser"
+export { type RuleLexicon, ruleTagger } from "./ruleTagger"
+export { defineSchema, facet, SchemaError } from "./schema"
+export { tokenize } from "./tokenize"
+export * from "./types"

@@ -23,6 +23,12 @@ importers:
 
   apps/site:
     dependencies:
+      '@qp/adapter-xyne-spaces':
+        specifier: workspace:*
+        version: link:../../packages/adapter-xyne-spaces
+      '@qp/core':
+        specifier: workspace:*
+        version: link:../../packages/core
       '@qp/time':
         specifier: workspace:*
         version: link:../../packages/time
@@ -31,9 +37,17 @@ importers:
         specifier: 8.3.1
         version: 8.3.1(@types/node@22.20.5)(esbuild@0.28.2)
 
-  packages/adapter-xyne-spaces: {}
+  packages/adapter-xyne-spaces:
+    dependencies:
+      '@qp/core':
+        specifier: workspace:*
+        version: link:../core
 
-  packages/core: {}
+  packages/core:
+    dependencies:
+      '@qp/time':
+        specifier: workspace:*
+        version: link:../time
 
   packages/datagen: {}
 

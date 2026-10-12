@@ -1,0 +1,486 @@
+{
+  "people": [
+    {
+      "id": "u_001",
+      "name": "Utkarsh Sharma",
+      "handle": "utkarsh.s",
+      "team": "infra"
+    },
+    {
+      "id": "u_002",
+      "name": "Ankit Jain",
+      "handle": "ankit.jain",
+      "team": "payments"
+    },
+    {
+      "id": "u_003",
+      "name": "Sneha Rao",
+      "handle": "sneha",
+      "team": "mobile"
+    },
+    {
+      "id": "u_004",
+      "name": "Arjun Mehta",
+      "handle": "arjun.mehta",
+      "team": "growth"
+    },
+    {
+      "id": "u_005",
+      "name": "Meera Pillai",
+      "handle": "meera.p",
+      "team": "design"
+    },
+    {
+      "id": "u_006",
+      "name": "Rahul Verma",
+      "handle": "rahul.verma",
+      "team": "payments"
+    },
+    {
+      "id": "u_007",
+      "name": "Rahul Nair",
+      "handle": "rahul.nair",
+      "team": "mobile"
+    },
+    {
+      "id": "u_008",
+      "name": "Priya Iyer",
+      "handle": "priya.iyer",
+      "team": "data"
+    },
+    {
+      "id": "u_009",
+      "name": "Priya Desai",
+      "handle": "priya.d",
+      "team": "growth"
+    },
+    {
+      "id": "u_010",
+      "name": "Neha Kulkarni",
+      "handle": "neha.k",
+      "team": "support"
+    },
+    {
+      "id": "u_011",
+      "name": "Rohan Bhatia",
+      "handle": "rohan.b",
+      "team": "mobile"
+    },
+    {
+      "id": "u_012",
+      "name": "Kabir Sethi",
+      "handle": "kabir.s",
+      "team": "security"
+    },
+    {
+      "id": "u_013",
+      "name": "Aditya Bansal",
+      "handle": "aditya.b",
+      "team": "infra"
+    },
+    {
+      "id": "u_014",
+      "name": "Nikhil Arora",
+      "handle": "nikhil.arora",
+      "team": "payments"
+    },
+    {
+      "id": "u_015",
+      "name": "Shreya Tandon",
+      "handle": "shreya.t",
+      "team": "design"
+    },
+    {
+      "id": "u_016",
+      "name": "Ananya Kapoor",
+      "handle": "ananya.k",
+      "team": "people-ops"
+    },
+    {
+      "id": "u_017",
+      "name": "Pooja Yadav",
+      "handle": "pooja.yadav",
+      "team": "support"
+    },
+    {
+      "id": "u_018",
+      "name": "Devansh Mishra",
+      "handle": "devansh.m",
+      "team": "data"
+    },
+    {
+      "id": "u_019",
+      "name": "Gurpreet Singh",
+      "handle": "gurpreet.s",
+      "team": "infra"
+    },
+    {
+      "id": "u_020",
+      "name": "Harleen Kaur",
+      "handle": "harleen.k",
+      "team": "people-ops"
+    },
+    {
+      "id": "u_021",
+      "name": "Jaspreet Singh",
+      "handle": "jaspreet",
+      "team": "security"
+    },
+    {
+      "id": "u_022",
+      "name": "Ayesha Siddiqui",
+      "handle": "ayesha.s",
+      "team": "design"
+    },
+    {
+      "id": "u_023",
+      "name": "Imran Syed",
+      "handle": "imran.syed",
+      "team": "payments"
+    },
+    {
+      "id": "u_024",
+      "name": "Zoya Ansari",
+      "handle": "zoya.a",
+      "team": "growth"
+    },
+    {
+      "id": "u_025",
+      "name": "Faisal Rahman",
+      "handle": "faisal.r",
+      "team": "security"
+    },
+    {
+      "id": "u_026",
+      "name": "Sana Mirza",
+      "handle": "sana.mirza",
+      "team": "support"
+    },
+    {
+      "id": "u_027",
+      "name": "Karthik Subramanian",
+      "handle": "karthik.s",
+      "team": "data"
+    },
+    {
+      "id": "u_028",
+      "name": "Divya Raghavan",
+      "handle": "divya.r",
+      "team": "finance"
+    },
+    {
+      "id": "u_029",
+      "name": "Anusha Reddy",
+      "handle": "anusha.reddy",
+      "team": "mobile"
+    },
+    {
+      "id": "u_030",
+      "name": "Raghav Shetty",
+      "handle": "raghav.s",
+      "team": "infra"
+    },
+    {
+      "id": "u_031",
+      "name": "Sruthi Menon",
+      "handle": "sruthi.m",
+      "team": "design"
+    },
+    {
+      "id": "u_032",
+      "name": "Adarsh Balakrishnan",
+      "handle": "adarsh.b",
+      "team": "security"
+    },
+    {
+      "id": "u_033",
+      "name": "Sandeep Hegde",
+      "handle": "sandeep.h",
+      "team": "payments"
+    },
+    {
+      "id": "u_034",
+      "name": "Keyur Patel",
+      "handle": "keyur.patel",
+      "team": "finance"
+    },
+    {
+      "id": "u_035",
+      "name": "Omkar Joshi",
+      "handle": "omkar.j",
+      "team": "data"
+    },
+    {
+      "id": "u_036",
+      "name": "Tejaswini Patil",
+      "handle": "tejaswini.p",
+      "team": "support"
+    },
+    {
+      "id": "u_037",
+      "name": "Anirban Chatterjee",
+      "handle": "anirban.c",
+      "team": "growth"
+    },
+    {
+      "id": "u_038",
+      "name": "Moumita Sen",
+      "handle": "moumita.sen",
+      "team": "people-ops"
+    },
+    {
+      "id": "u_039",
+      "name": "Debasish Panda",
+      "handle": "debasish.p",
+      "team": "infra"
+    },
+    {
+      "id": "u_040",
+      "name": "Sayantani Ghosh",
+      "handle": "sayantani.g",
+      "team": "finance"
+    },
+    {
+      "id": "u_041",
+      "name": "Alisha D'Souza",
+      "handle": "alisha.d",
+      "team": "growth"
+    },
+    {
+      "id": "u_042",
+      "name": "Joel Varghese",
+      "handle": "joel.v",
+      "team": "mobile"
+    },
+    {
+      "id": "u_043",
+      "name": "Sarah Collins",
+      "handle": "sarah.c",
+      "team": "design"
+    },
+    {
+      "id": "u_044",
+      "name": "Emily Novak",
+      "handle": "emily.n",
+      "team": "growth"
+    },
+    {
+      "id": "u_045",
+      "name": "Tom Becker",
+      "handle": "tom.b",
+      "team": "infra"
+    },
+    {
+      "id": "u_046",
+      "name": "David Brennan",
+      "handle": "david.b",
+      "team": "data"
+    },
+    {
+      "id": "u_047",
+      "name": "Laura Vogel",
+      "handle": "laura.v",
+      "team": "people-ops"
+    },
+    {
+      "id": "u_048",
+      "name": "Chloe Dubois",
+      "handle": "chloe.d",
+      "team": "people-ops"
+    },
+    {
+      "id": "u_049",
+      "name": "Nina Rossi",
+      "handle": "nina.r",
+      "team": "growth"
+    },
+    {
+      "id": "u_050",
+      "name": "Yuki Tanaka",
+      "handle": "yuki.t",
+      "team": "mobile"
+    },
+    {
+      "id": "u_051",
+      "name": "Kenji Mori",
+      "handle": "kenji.m",
+      "team": "finance"
+    },
+    {
+      "id": "u_052",
+      "name": "Mei Chen",
+      "handle": "mei.chen",
+      "team": "data"
+    },
+    {
+      "id": "u_053",
+      "name": "Yuna Park",
+      "handle": "yuna.p",
+      "team": "design"
+    },
+    {
+      "id": "u_054",
+      "name": "Wei Zhang",
+      "handle": "wei.zhang",
+      "team": "infra"
+    },
+    {
+      "id": "u_055",
+      "name": "Layla Haddad",
+      "handle": "layla.h",
+      "team": "support"
+    },
+    {
+      "id": "u_056",
+      "name": "Omar Farouk",
+      "handle": "omar.f",
+      "team": "security"
+    },
+    {
+      "id": "u_057",
+      "name": "Diego Ortega",
+      "handle": "diego.o",
+      "team": "payments"
+    },
+    {
+      "id": "u_058",
+      "name": "Daria Volkova",
+      "handle": "daria.v",
+      "team": "finance"
+    },
+    {
+      "id": "u_059",
+      "name": "Thabo Nkosi",
+      "handle": "thabo.n",
+      "team": "support"
+    },
+    {
+      "id": "u_060",
+      "name": "Chidera Okafor",
+      "handle": "chidera.o",
+      "team": "data"
+    }
+  ],
+  "channels": [
+    {
+      "id": "c_001",
+      "name": "#general",
+      "topic": "Company-wide announcements"
+    },
+    {
+      "id": "c_002",
+      "name": "#random",
+      "topic": "Off-topic chatter"
+    },
+    {
+      "id": "c_003",
+      "name": "#eng-all",
+      "topic": "All engineering updates"
+    },
+    {
+      "id": "c_004",
+      "name": "#eng-alerts",
+      "topic": "Production alerts and on-call"
+    },
+    {
+      "id": "c_005",
+      "name": "#infra",
+      "topic": "Platform and infrastructure"
+    },
+    {
+      "id": "c_006",
+      "name": "#payments-ops",
+      "topic": "Payments operations and incidents"
+    },
+    {
+      "id": "c_007",
+      "name": "#design-crit",
+      "topic": "Design reviews and feedback"
+    },
+    {
+      "id": "c_008",
+      "name": "#design-system",
+      "topic": "Components, tokens, guidelines"
+    },
+    {
+      "id": "c_009",
+      "name": "#growth-experiments",
+      "topic": "A/B tests and funnels"
+    },
+    {
+      "id": "c_010",
+      "name": "#data-insights",
+      "topic": "Dashboards and analysis"
+    },
+    {
+      "id": "c_011",
+      "name": "#mobile-dev",
+      "topic": "iOS and Android work"
+    },
+    {
+      "id": "c_012",
+      "name": "#security-ops",
+      "topic": "Threats, audits, reviews"
+    },
+    {
+      "id": "c_013",
+      "name": "#support-escalations",
+      "topic": "Customer escalations"
+    },
+    {
+      "id": "c_014",
+      "name": "#fin-ops",
+      "topic": "Budgets and reimbursements"
+    },
+    {
+      "id": "c_015",
+      "name": "#people-team",
+      "topic": "Benefits, policies, culture"
+    },
+    {
+      "id": "c_016",
+      "name": "#hiring",
+      "topic": "Referrals and open roles"
+    },
+    {
+      "id": "c_017",
+      "name": "#launch-v2",
+      "topic": "V2 launch coordination"
+    },
+    {
+      "id": "c_018",
+      "name": "#changelog",
+      "topic": "Recently shipped changes"
+    },
+    {
+      "id": "c_019",
+      "name": "#dev-tools",
+      "topic": "Internal tooling and CI"
+    },
+    {
+      "id": "c_020",
+      "name": "#api-design",
+      "topic": "API proposals and reviews"
+    },
+    {
+      "id": "c_021",
+      "name": "#q3-okrs",
+      "topic": "Quarterly goals tracking"
+    },
+    {
+      "id": "c_022",
+      "name": "#new-joiners",
+      "topic": "Onboarding help"
+    },
+    {
+      "id": "c_023",
+      "name": "#blr-office",
+      "topic": "Office logistics and events"
+    },
+    {
+      "id": "c_024",
+      "name": "#wins",
+      "topic": "Celebrate shipped work"
+    }
+  ]
+}
