@@ -24,7 +24,10 @@ const models = await fetch(`${base}/v1/models`, { headers })
 console.log(`GET /v1/models → ${models.status}`)
 if (models.ok) {
   const ids = (await models.json()).data?.map((m) => m.id) ?? []
-  console.log(`models matching "${model.split("-")[0]}":`, ids.filter((id) => id.includes(model.split("-")[0])))
+  console.log(
+    `models matching "${model.split("-")[0]}":`,
+    ids.filter((id) => id.includes(model.split("-")[0])),
+  )
 }
 
 const t0 = performance.now()
@@ -34,10 +37,17 @@ const res = await fetch(`${base}/v1/chat/completions`, {
   body: JSON.stringify({
     model,
     max_tokens: 60,
-    messages: [{ role: "user", content: "Write 3 short search queries someone might type into Slack. One per line." }],
+    messages: [
+      {
+        role: "user",
+        content: "Write 3 short search queries someone might type into Slack. One per line.",
+      },
+    ],
   }),
 })
-console.log(`POST /v1/chat/completions (${model}) → ${res.status} in ${Math.round(performance.now() - t0)} ms`)
+console.log(
+  `POST /v1/chat/completions (${model}) → ${res.status} in ${Math.round(performance.now() - t0)} ms`,
+)
 const body = await res.json()
 console.log(body.choices?.[0]?.message?.content ?? JSON.stringify(body, null, 2))
 if (body.usage) console.log("usage:", body.usage)
