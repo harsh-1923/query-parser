@@ -202,6 +202,7 @@ export function createParser(config: ParserConfig): Parser {
     const tokens = tokenize(q)
     const tag = tagger.tag(tokens)
     const labels = tokens.map((t, i) => (t.operator ? "O" : (tag.labels[i] ?? "O")))
+    const dropped = unmarkedContainers(tokens, labels, q, opts)
     let spans = decode(tokens, labels, tag.confidence)
     for (const s of spans) s.text = q.slice(s.start, s.end)
     spans.push(...operatorSpans(tokens, schema))
@@ -269,7 +270,7 @@ export function createParser(config: ParserConfig): Parser {
       })
       // Untagged content words are search text too (PLAN §4).
       tokens.forEach((t, i) => {
-        if (labels[i] !== "O" || t.operator) return
+        if (labels[i] !== "O" || t.operator || dropped.has(i)) return
         const w = t.text.toLowerCase()
         if (STOPWORDS.has(w) || PREPOSITIONS.has(w) || !/[a-z0-9]/i.test(w) || w === "'s") return
         if (spans.some((s) => s.cue === w)) return
@@ -295,6 +296,72 @@ export function createParser(config: ParserConfig): Parser {
 
     const resolved = resolveAll(jobs)
     return resolved instanceof Promise ? resolved.then(finish) : finish(resolved)
+  }
+
+  /**
+   * "marketing folder slides": relabels the words before a container noun as CONTAINER when the
+   * source has an exact match. Mutates `labels`; returns the noun tokens to keep out of the text.
+   */
+  function unmarkedContainers(
+    tokens: Token[],
+    labels: string[],
+    q: string,
+    opts: ParseOptions,
+  ): Set<number> {
+    const dropped = new Set<number>()
+    const cfg = config.unmarkedContainers
+    const source = cfg && sources[cfg.source]
+    if (!cfg || !source) return dropped
+    const nouns = new Set(cfg.nouns.map((n) => n.toLowerCase()))
+    const maxWords = cfg.maxWords ?? 3
+    const open = (i: number) => {
+      const t = tokens[i]
+      const l = labels[i] ?? "O"
+      return (
+        !!t && !t.operator && (l === "O" || l.endsWith("-TOPIC")) && /[\p{L}\p{N}]/u.test(t.text)
+      )
+    }
+    let after = 0 // a container's words never overlap the previous one's
+    for (let j = 1; j < tokens.length; j++) {
+      const noun = tokens[j]
+      if (!noun || noun.operator || !nouns.has(noun.text.toLowerCase())) continue
+      // "in the infra channel": the tagger already found the container; the noun isn't text.
+      if (labels[j] === "O" && labels[j - 1]?.endsWith("-CONTAINER")) {
+        dropped.add(j)
+        continue
+      }
+      for (let len = Math.min(maxWords, j - after); len >= 1; len--) {
+        const i = j - len
+        const first = tokens[i]
+        const last = tokens[j - 1]
+        if (!first || !last || STOPWORDS.has(first.text.toLowerCase())) continue
+        if (!Array.from({ length: len }, (_, k) => open(i + k)).every(Boolean)) continue
+        const span: TaggedSpan = {
+          role: "CONTAINER",
+          text: q.slice(first.start, last.end),
+          start: first.start,
+          end: last.end,
+          negated: false,
+          confidence: 1,
+        }
+        const found = source(span, {
+          query: q,
+          role: "CONTAINER",
+          spans: [],
+          ...(opts.self ? { self: opts.self } : {}),
+        })
+        if (found instanceof Promise) return dropped
+        if (!found.some((c) => c.score >= EXACT)) continue
+        for (let k = i; k < j; k++) labels[k] = k === i ? "B-CONTAINER" : "I-CONTAINER"
+        labels[j] = "O"
+        dropped.add(j)
+        const next = labels[j + 1]
+        if (next?.startsWith("I-")) labels[j + 1] = `B-${next.slice(2)}`
+        after = j + 1
+        break
+      }
+    }
+    return dropped
   }
 
   /** PLAN §7.5: leftover words that exactly match a known entity become suggestions. */

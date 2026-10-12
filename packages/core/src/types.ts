@@ -236,6 +236,13 @@ export interface ParserConfig {
    * pdfs" with no cue word). Suggestions go to `issues` only. Async sources are skipped.
    */
   promoteKnownEntities?: { source: string; role: Role; minScore?: number }
+  /**
+   * Containers named without a cue word ("marketing folder slides", "checkout project bugs").
+   * Up to `maxWords` (default 3) untagged or TOPIC words right before one of `nouns` become a
+   * CONTAINER span when `source` knows them exactly; the noun itself is dropped. Otherwise the
+   * tagging is left alone. Async sources are skipped.
+   */
+  unmarkedContainers?: { source: string; nouns: string[]; maxWords?: number }
 }
 
 export interface Parser {

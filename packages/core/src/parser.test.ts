@@ -212,6 +212,46 @@ describe("promoteKnownEntities", () => {
   })
 })
 
+describe("unmarkedContainers", () => {
+  const boards: EntitySource = (span) =>
+    ({
+      marketing: [{ id: "c_mkt", label: "#marketing", score: 1 }],
+      "sync engine": [{ id: "c_sync", label: "Sync engine", score: 1 }],
+    })[span.text.toLowerCase()] ?? []
+  const hints = {
+    "marketing folder pdfs": "marketing/TOPIC folder/KIND pdfs/KIND",
+    "diwali creatives folder pdfs": "diwali/TOPIC creatives/TOPIC folder/KIND pdfs/KIND",
+    "old sync engine project bugs": "old/TOPIC sync/TOPIC engine/TOPIC project/TOPIC bugs/KIND",
+    "from utkarsh folder": "from utkarsh/ACTOR folder/KIND",
+    "in the marketing board": "in the marketing/CONTAINER board",
+  }
+  const p = createParser({
+    schema,
+    tagger: stubTagger(hints),
+    sources: { person, channel: boards },
+    unmarkedContainers: { source: "channel", nouns: ["folder", "project", "board"] },
+  })
+  it("turns words before a container noun into a container the source knows", () => {
+    const r = p.parseSync("marketing folder pdfs", opts)
+    expect(r.filters).toEqual({ in: ["c_mkt"], type: ["pdf"] })
+    expect(r.text).toBe("")
+  })
+  it("takes the longest known run and leaves the rest as text", () => {
+    const r = p.parseSync("old sync engine project bugs", opts)
+    expect(r.filters).toEqual({ in: ["c_sync"], type: ["ticket"] })
+    expect(r.text).toBe("old")
+  })
+  it("keeps the noun after a tagged container out of the text", () => {
+    const r = p.parseSync("in the marketing board", opts)
+    expect(r.filters).toEqual({ in: ["c_mkt"] })
+    expect(r.text).toBe("")
+  })
+  it("leaves unknown names and other roles alone", () => {
+    expect(p.parseSync("diwali creatives folder pdfs", opts).filters).toEqual({ type: ["pdf"] })
+    expect(p.parseSync("from utkarsh folder", opts).filters).toEqual({ from: ["u_utk"] })
+  })
+})
+
 describe("toCanonical", () => {
   it("writes the plan's canonical form", () => {
     expect(toCanonical(parse("pdfs from utkarsh last week about sync engine"))).toBe(

@@ -31,6 +31,10 @@ const parser = createParser({
     }),
   },
   promoteKnownEntities: { source: "person", role: "ACTOR" },
+  unmarkedContainers: {
+    source: "channel",
+    nouns: ["channel", "folder", "project", "board", "space"],
+  },
 })
 
 export interface Settings {
