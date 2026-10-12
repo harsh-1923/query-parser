@@ -6,6 +6,7 @@ coverage/
 .DS_Store
 .env
 .env.*
+!.env.example
 
 # training artifacts (weights are exported into packages/model/weights explicitly)
 training/.venv/
