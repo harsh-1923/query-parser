@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest"
+import { toCanonical } from "./canonical"
 import { createParser } from "./parser"
 import { defineSchema, facet } from "./schema"
 import type { Candidate, EntitySource, Label, Tagger } from "./types"
@@ -208,5 +209,15 @@ describe("promoteKnownEntities", () => {
     expect(r.issues).toMatchObject([
       { kind: "suggestion", span: { text: "utkarsh", start: 0 }, candidates: [{ id: "u_utk" }] },
     ])
+  })
+})
+
+describe("toCanonical", () => {
+  it("writes the plan's canonical form", () => {
+    expect(toCanonical(parse("pdfs from utkarsh last week about sync engine"))).toBe(
+      'type:pdf from:@u_utk date:2026-10-05..2026-10-11 "sync engine"',
+    )
+    expect(toCanonical(parse("not from utkarsh or neha"))).toBe("-from:@u_utk -from:@u_neha")
+    expect(toCanonical(parse("excluding test merchants"))).toBe('-"test merchants"')
   })
 })

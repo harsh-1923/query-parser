@@ -1,4 +1,4 @@
-import type { ParseResult, TimeValue } from "@qp/core"
+import { type ParseResult, type TimeValue, toCanonical } from "@qp/core"
 import { ChevronDown, Info } from "lucide-react"
 import { useState } from "react"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
@@ -177,12 +177,20 @@ export function Result({
       <Collapsible open={open} onOpenChange={setOpen}>
         <CollapsibleTrigger className="flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground">
           <ChevronDown className={cn("size-3.5 transition-transform", open && "rotate-180")} />
-          Xyne Spaces request
+          Details
         </CollapsibleTrigger>
-        <CollapsibleContent>
-          <code className="mt-2 block rounded-md bg-muted px-3 py-2 font-mono text-[11px] leading-relaxed break-all">
-            {requestFor(result)}
-          </code>
+        <CollapsibleContent className="mt-2 space-y-2">
+          {[
+            ["Canonical form", toCanonical(result)],
+            ["Xyne Spaces request", requestFor(result)],
+          ].map(([label, text]) => (
+            <div key={label}>
+              <div className="mb-1 text-[11px] text-muted-foreground">{label}</div>
+              <code className="block rounded-md bg-muted px-3 py-2 font-mono text-[11px] leading-relaxed break-all">
+                {text}
+              </code>
+            </div>
+          ))}
         </CollapsibleContent>
       </Collapsible>
 

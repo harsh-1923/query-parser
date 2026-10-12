@@ -1,5 +1,6 @@
 // @qp/core: Schema, pipeline, entity resolution and the parse result contract. No product knowledge.
 export { type AliasIndex, aliasIndex, normalizeAlias } from "./aliases"
+export { toCanonical } from "./canonical"
 export { ruleTaggerFor } from "./defaults"
 export { type DirectoryEntry, type DirectoryOptions, directorySource } from "./directorySource"
 export { createParser } from "./parser"
