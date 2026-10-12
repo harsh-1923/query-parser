@@ -1,0 +1,95 @@
+# held-out, written by kimi-k3, 2026-10-12; see gen-heldout.mjs
+# product	phrase	query
+email	mar 2024	payslip mar 2024
+email	before 3 pm today	demo deck client call before 3 pm today
+email	after 10 pm	ppt from rahul after 10 pm
+email	before 31 jan	tax proofs 80c before 31 jan
+email	apr 2024	aws bill pdf apr 2024
+email	12/4	interview feedback arjun 12/4
+email	q1 fy24	hike letter from hr q1 fy24
+email	until 15 mar	timesheet reminder until 15 mar
+email	between 1 may and 5 may	leave approval between 1 may and 5 may
+email	until last month	vendor payment meera until last month
+email	ystrday	laptop issue it helpdesk ystrday
+email	before eod	reimbursement claim before eod
+email	before 15/06/2024	exit interview notes before 15/06/2024
+email	2 days ago	escalation from suresh 2 days ago
+email	monday evening	all hands recording monday evening
+email	fy 22-23	pf statement fy 22-23
+email	after diwali	resignation thread deepak after diwali
+tracker	since monday morning	login timeouts since monday morning
+tracker	after last friday's deploy	razorpay webhook failures after last friday's deploy
+tracker	last night	kafka consumer lag last night
+tracker	since 1st jan	salary slip pdf broken since 1st jan
+tracker	between 12/02 and 18/02	api latency spike between 12/02 and 18/02
+tracker	after 6pm	hotfixes after 6pm
+tracker	until last friday	aadhaar ekyc errors until last friday
+tracker	in fy24	sprints completed in fy24
+tracker	since 04/05/2024	redis memory leak since 04/05/2024
+tracker	last 2 sprints	reverts by ankit last 2 sprints
+tracker	in q3	tds miscalc tickets in q3
+tracker	over the weekend	pagerduty alerts over the weekend
+tracker	before 9 am today	500s on checkout before 9 am today
+tracker	after midnight	staging reset after midnight
+tracker	by end of april	appraisal workflow epic due by end of april
+tracker	lst wk	duplicate payout bug lst wk
+tracker	since yday	rbac regression since yday
+tracker	in last 24 hrs	k8s pod restarts in last 24 hrs
+tracker	on 31/03	invoice numbering gap on 31/03
+calendar	last wk	sprint retro with ankit last wk
+calendar	12/03	client demo transcript 12/03
+calendar	august 2023	sneha onboarding call august 2023
+calendar	between 5 jan and 12 jan	budget review between 5 jan and 12 jan
+calendar	saturday night	prod incident call saturday night
+calendar	15 feb	sprint planning 15 feb
+calendar	after 10th oct	finance sync transcript after 10th oct
+calendar	2022	all hands 2022
+calendar	3.4.24	pricing discussion 3.4.24
+calendar	last fridy	hiring sync last fridy
+calendar	till 31 march	vendor renewal call till 31 march
+calendar	fy 23-24	appraisal meetings fy 23-24
+calendar	week before last	release retro week before last
+calendar	around 2 am	outage debrief around 2 am
+calendar	05/11/2023	security audit walkthrough 05/11/2023
+calendar	mon	marketing sync mon
+calendar	since april	compliance training since april
+calendar	until march	hr policy session until march
+calendar	jan to mar 2024	sales pipeline review jan to mar 2024
+calendar	next tue	zepto kickoff next tue
+drive	oct 2023	aws bill oct 2023
+drive	2021	offer letter rahul mehta 2021
+drive	after 15/08	incident rca payments after 15/08
+drive	mar-24	payslip mar-24
+drive	before 01/04/2023	vendor nda signed before 01/04/2023
+drive	since last yr	leave policy since last yr
+drive	sept last yr	onboarding deck sept last yr
+drive	today morning	interview feedback karan today morning
+drive	h2 2023	pen test report h2 2023
+drive	between 5/11 and 12/11	travel reimbursement between 5/11 and 12/11
+drive	tdy	standup notes tdy
+drive	couple days ago	escalation report couple days ago
+drive	mid june	hld payments service mid june
+drive	from april to june	hiring tracker from april to june
+drive	until q2	roadmap deck until q2
+drive	1-15 jan	expense report vikram 1-15 jan
+drive	before 31/03	po from ankit before 31/03
+drive	after apr 2023	salary revision letter after apr 2023
+drive	week ending 12 jan	status report deepak week ending 12 jan
+chat	before 1st june	hike letter format before 1st june
+chat	in january	referral bonus policy in january
+chat	last thursday	sneha farewell message last thursday
+chat	between 12/03 and 18/03	aws bill spike in #devops between 12/03 and 18/03
+chat	fy23	form 16 upload fy23
+chat	till friday	panel availability from kavya till friday
+chat	post lunch	client demo huddle recording post lunch
+chat	around 10:30 pm	hotfix 2.4.1 rollback around 10:30 pm
+chat	this fy	leave balance screenshot this fy
+chat	h2 2024	hackathon shortlist h2 2024
+chat	wknd	team outing photos wknd
+chat	last yr	diwali bonus announcement last yr
+chat	next week	oncall rota next week
+chat	15/08	rollback runbook 15/08
+chat	5/4 to 30/4	expense receipts 5/4 to 30/4
+chat	end of feb	timesheet reminder end of feb
+chat	q2 fy24	townhall recording q2 fy24
+chat	first week of march	onboarding checklist first week of march

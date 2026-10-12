@@ -1,0 +1,6 @@
+# phrase	gold override (json)	reason
+last 24 hours	{"from":"2026-10-11T15:30","to":"2026-10-12T15:30","g":"hour"}	policy clarified (POLICIES §2): hour windows are exact, not snapped; kimi read "hour granularity" as snapping
+past hour	{"from":"2026-10-12T14:30","to":"2026-10-12T15:30","g":"hour"}	same as "last 24 hours"
+past 48 hours	{"from":"2026-10-10T15:30","to":"2026-10-12T15:30","g":"hour"}	same as "last 24 hours"
+earlier this morning	{"from":"2026-10-12T06:00","to":"2026-10-12T12:00","g":"hour"}	"earlier" isn't early/late-of-X; the whole morning is before 15:30. Grammar no longer drops "earlier" (would make "earlier today" a whole day), so this is a coverage miss
+between christmas and new year	{"none":"holidays need an anchor pack (POLICIES anchors)"}	kimi resolved the holidays itself; the policy says events without an anchor are none

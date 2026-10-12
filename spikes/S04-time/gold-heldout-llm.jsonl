@@ -1,0 +1,93 @@
+{"phrase":"mar 2024","from":"2024-03-01T00:00","to":"2024-04-01T00:00","g":"month"}
+{"phrase":"before 3 pm today","from":null,"to":"2026-10-12T15:00","g":"hour"}
+{"phrase":"after 10 pm","from":"2026-10-12T22:00","to":null,"g":"hour"}
+{"phrase":"before 31 jan","from":null,"to":"2026-01-31T00:00","g":"day"}
+{"phrase":"apr 2024","from":"2024-04-01T00:00","to":"2024-05-01T00:00","g":"month"}
+{"phrase":"12/4","from":"2026-04-12T00:00","to":"2026-04-13T00:00","g":"day"}
+{"phrase":"q1 fy24","none":"fiscal calendar unknown"}
+{"phrase":"until 15 mar","from":null,"to":"2026-03-16T00:00","g":"day"}
+{"phrase":"between 1 may and 5 may","from":"2026-05-01T00:00","to":"2026-05-06T00:00","g":"day"}
+{"phrase":"until last month","from":null,"to":"2026-10-01T00:00","g":"month"}
+{"phrase":"ystrday","from":"2026-10-11T00:00","to":"2026-10-12T00:00","g":"day"}
+{"phrase":"before eod","none":"vague (end of day)"}
+{"phrase":"before 15/06/2024","from":null,"to":"2024-06-15T00:00","g":"day"}
+{"phrase":"2 days ago","from":"2026-10-10T00:00","to":"2026-10-11T00:00","g":"day"}
+{"phrase":"monday evening","from":"2026-10-12T17:00","to":"2026-10-12T21:00","g":"hour"}
+{"phrase":"fy 22-23","none":"fiscal calendar unknown"}
+{"phrase":"after diwali","none":"no anchor for diwali"}
+{"phrase":"since monday morning","from":"2026-10-12T06:00","to":null,"g":"hour"}
+{"phrase":"after last friday's deploy","none":"deploy is not an anchor"}
+{"phrase":"last night","from":"2026-10-11T21:00","to":"2026-10-12T06:00","g":"hour"}
+{"phrase":"since 1st jan","from":"2026-01-01T00:00","to":null,"g":"day"}
+{"phrase":"between 12/02 and 18/02","from":"2026-02-12T00:00","to":"2026-02-19T00:00","g":"day"}
+{"phrase":"after 6pm","from":"2026-10-12T18:00","to":null,"g":"hour"}
+{"phrase":"until last friday","from":null,"to":"2026-10-10T00:00","g":"day"}
+{"phrase":"in fy24","none":"fiscal calendar unknown"}
+{"phrase":"since 04/05/2024","from":"2024-05-04T00:00","to":null,"g":"day"}
+{"phrase":"last 2 sprints","none":"no anchor for last 2 sprints"}
+{"phrase":"in q3","from":"2026-07-01T00:00","to":"2026-10-01T00:00","g":"quarter"}
+{"phrase":"over the weekend","from":"2026-10-10T00:00","to":"2026-10-12T00:00","g":"day"}
+{"phrase":"before 9 am today","from":null,"to":"2026-10-12T09:00","g":"hour"}
+{"phrase":"after midnight","from":"2026-10-12T00:00","to":null,"g":"hour"}
+{"phrase":"by end of april","none":"end of month is vague"}
+{"phrase":"lst wk","from":"2026-10-05T00:00","to":"2026-10-12T00:00","g":"week"}
+{"phrase":"since yday","from":"2026-10-11T00:00","to":null,"g":"day"}
+{"phrase":"in last 24 hrs","from":"2026-10-11T15:30","to":"2026-10-12T15:30","g":"hour"}
+{"phrase":"on 31/03","from":"2026-03-31T00:00","to":"2026-04-01T00:00","g":"day"}
+{"phrase":"last wk","from":"2026-10-05T00:00","to":"2026-10-12T00:00","g":"week"}
+{"phrase":"12/03","from":"2026-03-12T00:00","to":"2026-03-13T00:00","g":"day"}
+{"phrase":"august 2023","from":"2023-08-01T00:00","to":"2023-09-01T00:00","g":"month"}
+{"phrase":"between 5 jan and 12 jan","from":"2026-01-05T00:00","to":"2026-01-13T00:00","g":"day"}
+{"phrase":"saturday night","from":"2026-10-10T21:00","to":"2026-10-11T06:00","g":"hour"}
+{"phrase":"15 feb","from":"2026-02-15T00:00","to":"2026-02-16T00:00","g":"day"}
+{"phrase":"after 10th oct","from":"2026-10-11T00:00","to":null,"g":"day"}
+{"phrase":"2022","from":"2022-01-01T00:00","to":"2023-01-01T00:00","g":"year"}
+{"phrase":"3.4.24","from":"2024-04-03T00:00","to":"2024-04-04T00:00","g":"day"}
+{"phrase":"last fridy","from":"2026-10-09T00:00","to":"2026-10-10T00:00","g":"day"}
+{"phrase":"till 31 march","from":null,"to":"2026-04-01T00:00","g":"day"}
+{"phrase":"fy 23-24","none":"fiscal year; fiscal calendar unknown"}
+{"phrase":"week before last","from":"2026-09-28T00:00","to":"2026-10-05T00:00","g":"week"}
+{"phrase":"around 2 am","none":"\"around X\" is approximate; no definite meaning"}
+{"phrase":"05/11/2023","from":"2023-11-05T00:00","to":"2023-11-06T00:00","g":"day"}
+{"phrase":"mon","from":"2026-10-12T00:00","to":"2026-10-13T00:00","g":"day"}
+{"phrase":"since april","from":"2026-04-01T00:00","to":null,"g":"month"}
+{"phrase":"until march","from":null,"to":"2026-04-01T00:00","g":"month"}
+{"phrase":"jan to mar 2024","from":"2024-01-01T00:00","to":"2024-04-01T00:00","g":"month"}
+{"phrase":"next tue","from":"2026-10-13T00:00","to":"2026-10-14T00:00","g":"day"}
+{"phrase":"oct 2023","from":"2023-10-01T00:00","to":"2023-11-01T00:00","g":"month"}
+{"phrase":"2021","from":"2021-01-01T00:00","to":"2022-01-01T00:00","g":"year"}
+{"phrase":"after 15/08","from":"2026-08-16T00:00","to":null,"g":"day"}
+{"phrase":"mar-24","from":"2024-03-01T00:00","to":"2024-04-01T00:00","g":"month"}
+{"phrase":"before 01/04/2023","from":null,"to":"2023-04-01T00:00","g":"day"}
+{"phrase":"since last yr","from":"2025-01-01T00:00","to":null,"g":"year"}
+{"phrase":"sept last yr","from":"2025-09-01T00:00","to":"2025-10-01T00:00","g":"month"}
+{"phrase":"today morning","from":"2026-10-12T06:00","to":"2026-10-12T12:00","g":"hour"}
+{"phrase":"h2 2023","none":"no half-year rule"}
+{"phrase":"between 5/11 and 12/11","from":"2025-11-05T00:00","to":"2025-11-13T00:00","g":"day"}
+{"phrase":"tdy","from":"2026-10-12T00:00","to":"2026-10-13T00:00","g":"day"}
+{"phrase":"couple days ago","from":"2026-10-10T00:00","to":"2026-10-11T00:00","g":"day"}
+{"phrase":"mid june","none":"mid is vague"}
+{"phrase":"from april to june","from":"2026-04-01T00:00","to":"2026-07-01T00:00","g":"month"}
+{"phrase":"until q2","from":null,"to":"2026-07-01T00:00","g":"quarter"}
+{"phrase":"1-15 jan","from":"2026-01-01T00:00","to":"2026-01-16T00:00","g":"day"}
+{"phrase":"before 31/03","from":null,"to":"2026-03-31T00:00","g":"day"}
+{"phrase":"after apr 2023","from":"2023-05-01T00:00","to":null,"g":"month"}
+{"phrase":"week ending 12 jan","from":"2026-01-05T00:00","to":"2026-01-12T00:00","g":"week"}
+{"phrase":"before 1st june","from":null,"to":"2026-06-01T00:00","g":"day"}
+{"phrase":"in january","from":"2026-01-01T00:00","to":"2026-02-01T00:00","g":"month"}
+{"phrase":"last thursday","from":"2026-10-08T00:00","to":"2026-10-09T00:00","g":"day"}
+{"phrase":"between 12/03 and 18/03","from":"2026-03-12T00:00","to":"2026-03-19T00:00","g":"day"}
+{"phrase":"fy23","none":"fiscal year start unknown"}
+{"phrase":"till friday","from":null,"to":"2026-10-10T00:00","g":"day"}
+{"phrase":"post lunch","none":"not a defined part of day (only morning/afternoon/evening/night)"}
+{"phrase":"around 10:30 pm","none":"around X has no definite meaning (and minutes are finer than any granularity)"}
+{"phrase":"this fy","none":"fiscal year: fiscal calendar unknown"}
+{"phrase":"h2 2024","none":"half-years are not defined under these rules"}
+{"phrase":"wknd","from":"2026-10-10T00:00","to":"2026-10-12T00:00","g":"day"}
+{"phrase":"last yr","from":"2025-01-01T00:00","to":"2026-01-01T00:00","g":"year"}
+{"phrase":"next week","from":"2026-10-19T00:00","to":"2026-10-26T00:00","g":"week"}
+{"phrase":"15/08","from":"2026-08-15T00:00","to":"2026-08-16T00:00","g":"day"}
+{"phrase":"5/4 to 30/4","from":"2026-04-05T00:00","to":"2026-05-01T00:00","g":"day"}
+{"phrase":"end of feb","none":"end of X has no definite meaning"}
+{"phrase":"q2 fy24","none":"fiscal quarter: fiscal calendar unknown"}
+{"phrase":"first week of march","none":"no rule defines 'first week of month'"}

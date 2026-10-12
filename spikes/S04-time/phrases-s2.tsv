@@ -1,0 +1,62 @@
+# TIME spans from spikes/S02-role-coverage/annotations.tsv; see extract-s2.mjs
+# source	phrase	query
+s2	last week	rahul pdf from last week about kyc drop-off
+s2	3/10	call transcript from the 3/10 vendor call
+s2	before the offsite	before the offsite what did we decide on pricing
+s2	march	slides from the board prep march
+s2	last quarter	how did we handle chargebacks last quarter
+s2	yesterday 2am	#eng-alerts yesterday 2am outage
+s2	in march	excel with merchant onboarding funnel in march
+s2	last tuesday	escalation for axis bank settlement last tuesday
+s2	this month	messages with idempotency key this month except bot posts
+s2	10/3	merchant ids mentioned in #support 10/3
+s2	last week	docs i commented on last week
+s2	q2	cashback campaign results q2 pdf not the draft
+s2	before diwali	standup notes before diwali
+s2	last quarter	emails i sent to the auditor last quarter
+s2	march	payslip march
+s2	since jan	any attachments from acme corp since jan
+s2	from last week	not newsletters from last week
+s2	on friday	emails to the board on friday
+s2	from last month	reply to recruiter from last month
+s2	this year	sent to tom with attachments this year
+s2	last 2 weeks	unread mails from my team last 2 weeks
+s2	this month	emails from the cfo this month
+s2	last 30 days	not from linkedin or github, last 30 days
+s2	this sprint	bugs rohan filed this sprint
+s2	older than 30 days	my tickets older than 30 days
+s2	last week	tasks done last week
+s2	last month	bugs filed by ananya last month
+s2	this quarter	reopened tickets this quarter
+s2	since 4.2.1	checkout crash on android since 4.2.1
+s2	this sprint	closed this sprint by frontend team
+s2	today	tickets created today in bangalore
+s2	last release	wat did we ship in last release
+s2	from last month	ananya's deck from last month
+s2	from 2024	pdf invoices from 2024
+s2	yesterday	created yesterday
+s2	this week	shared with me this week
+s2	2025	budget 2025 xlsx
+s2	recent	recent video recordings
+s2	last week	files modified last week by priya
+s2	march	meeting notes march
+s2	from 2023	vikram's spreadsheet from 2023
+s2	dec	ppt from the dec offsite
+s2	this year	contracts folder modified this year
+s2	last week	sbi team call recording last week
+s2	from tuesday	notes on onboarding flow from tuesday
+s2	past 2 weeks	calls with the razorpay folks past 2 weeks
+s2	yesterday's	pending action items from yesterday's sync
+s2	between 1st and 15th	summary of the all hands between 1st and 15th
+s2	this morning	which meetings did i miss this morning
+s2	last friday	sprint review notes last friday
+s2	in march	files shared by rahul in march
+s2	from last month	roadmap discussion from last month, not the sales one
+s2	next wed	calendar for next wed
+s2	from this week	notes not from standups from this week
+s2	kal	vendor call transcript kal wala
+s2	last quarter	any mention of churn in calls last quarter
+s2	last sprint	retro from last sprint
+s2	this week	files tagged finance uploaded this week
+s2	tuesday's	tuesday's 1:1 with my manager notes
+s2	last month	payroll sheet shared by hr last month

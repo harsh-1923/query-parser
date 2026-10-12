@@ -1,0 +1,195 @@
+# written by kimi-k3, 2026-10-12; see gen-phrases.mjs
+# family	phrase
+relative	today
+relative	yesterday
+relative	tomorrow
+relative	past week
+relative	past 3 days
+relative	2 weeks ago
+relative	last 24 hours
+relative	this month
+relative	previous quarter
+relative	last year
+relative	6 months ago
+relative	past hour
+relative	last 6 months
+relative	3 days ago
+relative	this week
+relative	past 2 weeks
+relative	a couple days ago
+relative	last friday
+relative	since monday
+relative	last 90 days
+relative	past 48 hours
+relative	15 minutes ago
+relative	previous month
+relative	last quarter
+relative	last october
+recent	recently
+recent	lately
+recent	newest
+recent	latest
+recent	most recent
+recent	the other day
+recent	just now
+recent	last little while
+recent	just recently
+time-of-day	earlier this morning
+time-of-day	late last night
+time-of-day	yesterday late afternoon
+time-of-day	yesterday at 3pm
+time-of-day	today 2am
+time-of-day	tonight after 9
+time-of-day	this afternoon
+time-of-day	tomorrow morning
+time-of-day	yesterday evening
+time-of-day	monday morning
+time-of-day	friday night
+time-of-day	around 11pm last night
+time-of-day	tuesday at noon
+time-of-day	yesterday morning
+time-of-day	this evening
+time-of-day	wednesday night
+weekday	monday
+weekday	last tue
+weekday	this thursday
+weekday	next friday
+weekday	on wednesday
+weekday	fri
+weekday	wed afternoon
+weekday	before thurs
+weekday	saturday
+weekday	last weekend
+weekday	next mon
+weekday	sunday night
+month	january
+month	feb 2025
+month	in april
+month	last month
+month	jun
+month	september 2024
+month	early march
+month	oct
+month	end of november
+month	may '24
+month	last august
+month	december 2023
+quarter	q1
+quarter	q2 2024
+quarter	this quarter
+quarter	Q3 FY24
+quarter	q4 2023
+quarter	next quarter
+quarter	first quarter
+quarter	q1 2026
+quarter	fy25 q2
+quarter	1Q25
+year	2025
+year	in 2024
+year	this year
+year	2023
+year	next year
+year	before 2022
+year	since 2020
+year	'24
+year	2022-2023
+year	ytd
+year	past year
+absolute	15 jan
+absolute	jan 15 2025
+absolute	22/11
+absolute	2025-12-01
+absolute	7th march
+absolute	march 7 2024
+absolute	the 2nd
+absolute	Apr 9
+absolute	12/25/2025
+absolute	30 jun
+absolute	july 30th
+absolute	01/02/26
+absolute	14 feb 2025
+absolute	may 9th
+absolute	2024-11-30
+absolute	5th dec
+absolute	Dec 5th 2023
+absolute	the 21st
+absolute	17 sept
+absolute	9/11/24
+absolute	aug 1st
+absolute	1 august
+absolute	2023-06-15
+absolute	6/15/23
+absolute	31 oct
+operator-single	before jan 1
+operator-single	after 15 feb
+operator-single	until friday
+operator-single	by march 3
+operator-single	on 12 feb
+operator-single	from jan 2025
+operator-single	older than 6 months
+operator-single	newer than 2 weeks
+operator-single	within the last 30 days
+operator-single	before 2025-01-15
+operator-single	after last thursday
+operator-single	since yesterday
+operator-single	until the 10th
+operator-single	by friday 5pm
+operator-single	on tuesday
+operator-single	from oct 1
+operator-single	older than a year
+operator-single	newer than 3 days
+operator-single	within the last week
+operator-single	before 8am
+operator-single	after 6pm yesterday
+operator-single	since dec 2024
+operator-single	until 31/12/2025
+operator-single	by end of month
+operator-range	between jan 6 and jan 20
+operator-range	from mar 1 to mar 31
+operator-range	apr 2 - apr 9
+operator-range	between the 3rd and the 18th
+operator-range	sep 12 through sep 26
+operator-range	from monday to thursday
+operator-range	2024-11-01 to 2025-01-31
+operator-range	between q2 and q4
+operator-range	oct 5 through mid november
+operator-range	from 14 july to 21 july
+operator-range	feb 1 - feb 14
+operator-range	between christmas and new year
+operator-range	01.06 - 14.06
+operator-range	from week 28 to week 31
+operator-range	between aug 2022 and feb 2023
+anchor	this sprint
+anchor	the sprint before last
+anchor	during sprint 14
+anchor	since v2.3 shipped
+anchor	before the board meeting
+anchor	after the data migration
+anchor	since the hackathon
+anchor	during the code freeze
+anchor	before the rebrand
+anchor	after the sev1
+anchor	this billing cycle
+anchor	before the audit
+anchor	after the reorg
+anchor	since the pricing change
+anchor	before the holiday break
+messy	lastweek
+messy	yestrday
+messy	btwn the 1st n 15th
+messy	frm mon 2 fri
+messy	mar1-mar15
+messy	pichle mahine
+messy	aaj kal
+messy	diwali ke baad
+messy	b4 the launch
+messy	this quater
+messy	last weak
+messy	since tues
+messy	aftr offsite
+messy	6mos ago
+messy	jan-feb
+messy	BETWEEN FEB AND APR
+messy	this weeks
+messy	2024-11-01to2025-02-01
+messy	til yday

@@ -10,3 +10,4 @@ decision; write a new one that supersedes it.
 |---|---|---|
 | [0001](0001-roles-not-facets.md) | The model emits roles; products map roles to facets | proposed |
 | [0002](0002-span-cues.md) | Spans carry a cue; facets can bind on role + cue | proposed |
+| [0003](0003-time-grammar-no-chrono.md) | Time normalization is a hand-written grammar, without a chrono-node fallback | proposed |

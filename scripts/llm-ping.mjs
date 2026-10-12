@@ -36,7 +36,7 @@ const res = await fetch(`${base}/v1/chat/completions`, {
   headers,
   body: JSON.stringify({
     model,
-    max_tokens: 60,
+    max_tokens: 1000,
     messages: [
       {
         role: "user",

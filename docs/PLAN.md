@@ -1,6 +1,6 @@
 # Query Parser: Plan
 
-Status: draft v0.2 · Owner: Harsh · Last updated: 2026-10-12 (after [S02](spikes/S02-role-coverage.md))
+Status: draft v0.3 · Owner: Harsh · Last updated: 2026-10-12 (after [S02](spikes/S02-role-coverage.md), [S04](spikes/S04-time-normalization.md))
 
 A small, offline, product-agnostic SDK that turns a plain-English search query into structured
 filters plus residual search text:
@@ -331,6 +331,7 @@ Decisions that reasonable products make differently are explicit settings with d
 | `time.dayFirst` | `true` | 3/10 = 3 October (India) |
 | `time.bias` | `"past"` | "on monday" = most recent past Monday; search is about the past |
 | `time.recentDays` | `7` | what "recent"/"recently" means |
+| `time.fiscalYearStartMonth` | `1` | month the fiscal year starts (India: `4`); used by "fy24", "q2 fy24", "this fy". From S04 |
 | `time.anchors` | none | product-named periods and events ("this sprint", "the offsite", "release 4.2", "diwali"), see §8 |
 | `entity.onAmbiguous` | `"issue"` | or `"top"` to take the best candidate |
 | `entity.onUnresolved` | `"text"` | or `"drop"` / `"keep-literal"` |
@@ -541,8 +542,11 @@ or `unsupported`.
 Coverage for v1:
 
 - Relative: today, yesterday, this/last/past/previous N hour/day/week/month/quarter/year, N days
-  ago, recent(ly).
-- Named: weekdays ("on monday", "last friday"), months ("in march", "march 2025"), quarters ("q3").
+  ago, recent(ly). Rolling hour windows are exact ("last 24 hours" = the 24 hours before the
+  reference, not snapped to the hour).
+- Named: weekdays ("on monday", "last friday"), months ("in march", "march 2025"), quarters ("q3"),
+  half-years ("h2 2024"), fiscal years and quarters ("fy24", "q2 fy24", per `time.fiscalYearStartMonth`).
+- Parts of day and clock times: "this morning", "last night", "yesterday 3pm".
 - Absolute: `3 oct`, `oct 3`, `3/10`, `3/10/26`, `2026-10-03`, with `dayFirst` deciding `3/10`.
 - Operators: before, after, since, until, by, on, between … and …, from … to ….
 
@@ -562,8 +566,14 @@ time: {
 anchor's range. Unknown anchors produce `unsupported`, never a guess. Public holidays could ship as
 an optional anchor pack.
 
-S4 compares a hand-written grammar against `chrono-node` on coverage, bundle size and determinism.
-The default plan is a small hand-written grammar with `chrono-node` as an optional fallback plugin.
+The exact semantics (week starts, past bias, rolling vs calendar periods, operators) are written
+down in [`spikes/S04-time/POLICIES.md`](../spikes/S04-time/POLICIES.md), which becomes the
+package's spec.
+
+**From S04:** a hand-written grammar covered 100% of S02's time spans and 84.9% of a held-out set
+with zero wrong answers, in 5.4 KB gzipped. `chrono-node` got 24% right, so it is not used, not even
+as a fallback ([ADR 0003](decisions/0003-time-grammar-no-chrono.md)). Coverage is tracked on a fresh
+held-out set, with zero wrong answers as the gate.
 
 ---
 
@@ -742,7 +752,7 @@ Dependency rules:
 | Role set too coarse for some product | `facet.custom` + `bind` hook; new roles only with evidence from ≥ 2 products |
 | Name recognition without cue words is weak | S3; `promoteKnownEntities` as a suggestion-only fallback |
 | Model doesn't beat the rule tagger | Then ship the rule tagger; the SDK design still holds |
-| Time normalization becomes a rabbit hole | Narrow v1 coverage, `unsupported` instead of guessing, chrono fallback plugin |
+| Time normalization becomes a rabbit hole | Narrow v1 coverage, `unsupported` instead of guessing; held-out coverage tracked in eval (S04) |
 | Paraphrase alignment loses labels | Drop unalignable examples; report the drop rate |
 
 ---

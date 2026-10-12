@@ -1,0 +1,225 @@
+{"phrase":"last week","from":"2026-10-05T00:00","to":"2026-10-12T00:00","g":"week"}
+{"phrase":"3/10","from":"2026-10-03T00:00","to":"2026-10-04T00:00","g":"day"}
+{"phrase":"before the offsite","from":null,"to":"2026-09-15T00:00","g":"day"}
+{"phrase":"march","from":"2026-03-01T00:00","to":"2026-04-01T00:00","g":"month"}
+{"phrase":"last quarter","from":"2026-07-01T00:00","to":"2026-10-01T00:00","g":"quarter"}
+{"phrase":"yesterday 2am","from":"2026-10-11T02:00","to":"2026-10-11T03:00","g":"hour"}
+{"phrase":"in march","from":"2026-03-01T00:00","to":"2026-04-01T00:00","g":"month"}
+{"phrase":"last tuesday","from":"2026-10-06T00:00","to":"2026-10-07T00:00","g":"day"}
+{"phrase":"this month","from":"2026-10-01T00:00","to":"2026-11-01T00:00","g":"month"}
+{"phrase":"10/3","from":"2026-03-10T00:00","to":"2026-03-11T00:00","g":"day"}
+{"phrase":"q2","from":"2026-04-01T00:00","to":"2026-07-01T00:00","g":"quarter"}
+{"phrase":"before diwali","none":"no anchor"}
+{"phrase":"since jan","from":"2026-01-01T00:00","to":null,"g":"month"}
+{"phrase":"from last week","from":"2026-10-05T00:00","to":"2026-10-12T00:00","g":"week"}
+{"phrase":"on friday","from":"2026-10-09T00:00","to":"2026-10-10T00:00","g":"day"}
+{"phrase":"from last month","from":"2026-09-01T00:00","to":"2026-10-01T00:00","g":"month"}
+{"phrase":"this year","from":"2026-01-01T00:00","to":"2027-01-01T00:00","g":"year"}
+{"phrase":"last 2 weeks","from":"2026-09-29T00:00","to":"2026-10-13T00:00","g":"day"}
+{"phrase":"last 30 days","from":"2026-09-13T00:00","to":"2026-10-13T00:00","g":"day"}
+{"phrase":"this sprint","from":"2026-10-05T00:00","to":"2026-10-19T00:00","g":"day"}
+{"phrase":"older than 30 days","from":null,"to":"2026-09-13T00:00","g":"day"}
+{"phrase":"last month","from":"2026-09-01T00:00","to":"2026-10-01T00:00","g":"month"}
+{"phrase":"this quarter","from":"2026-10-01T00:00","to":"2027-01-01T00:00","g":"quarter"}
+{"phrase":"since 4.2.1","from":"2026-08-20T00:00","to":null,"g":"day"}
+{"phrase":"today","from":"2026-10-12T00:00","to":"2026-10-13T00:00","g":"day"}
+{"phrase":"last release","from":"2026-08-20T00:00","to":"2026-08-21T00:00","g":"day"}
+{"phrase":"from 2024","from":"2024-01-01T00:00","to":"2025-01-01T00:00","g":"year"}
+{"phrase":"yesterday","from":"2026-10-11T00:00","to":"2026-10-12T00:00","g":"day"}
+{"phrase":"this week","from":"2026-10-12T00:00","to":"2026-10-19T00:00","g":"week"}
+{"phrase":"2025","from":"2025-01-01T00:00","to":"2026-01-01T00:00","g":"year"}
+{"phrase":"recent","from":"2026-10-06T00:00","to":"2026-10-13T00:00","g":"day"}
+{"phrase":"from 2023","from":"2023-01-01T00:00","to":"2024-01-01T00:00","g":"year"}
+{"phrase":"dec","from":"2025-12-01T00:00","to":"2026-01-01T00:00","g":"month"}
+{"phrase":"from tuesday","from":"2026-10-06T00:00","to":"2026-10-07T00:00","g":"day"}
+{"phrase":"past 2 weeks","from":"2026-09-29T00:00","to":"2026-10-13T00:00","g":"day"}
+{"phrase":"yesterday's","from":"2026-10-11T00:00","to":"2026-10-12T00:00","g":"day"}
+{"phrase":"between 1st and 15th","from":"2026-09-01T00:00","to":"2026-09-16T00:00","g":"day"}
+{"phrase":"this morning","from":"2026-10-12T06:00","to":"2026-10-12T12:00","g":"hour"}
+{"phrase":"last friday","from":"2026-10-09T00:00","to":"2026-10-10T00:00","g":"day"}
+{"phrase":"next wed","from":"2026-10-14T00:00","to":"2026-10-15T00:00","g":"day"}
+{"phrase":"from this week","from":"2026-10-12T00:00","to":"2026-10-19T00:00","g":"week"}
+{"phrase":"kal","none":"Hinglish not supported; ambiguous (yesterday or tomorrow)"}
+{"phrase":"last sprint","from":"2026-09-21T00:00","to":"2026-10-05T00:00","g":"day"}
+{"phrase":"tuesday's","from":"2026-10-06T00:00","to":"2026-10-07T00:00","g":"day"}
+{"phrase":"tomorrow","from":"2026-10-13T00:00","to":"2026-10-14T00:00","g":"day"}
+{"phrase":"past week","from":"2026-10-06T00:00","to":"2026-10-13T00:00","g":"day"}
+{"phrase":"past 3 days","from":"2026-10-10T00:00","to":"2026-10-13T00:00","g":"day"}
+{"phrase":"2 weeks ago","from":"2026-09-28T00:00","to":"2026-10-05T00:00","g":"week"}
+{"phrase":"last 24 hours","from":"2026-10-11T15:00","to":"2026-10-12T15:00","g":"hour"}
+{"phrase":"previous quarter","from":"2026-07-01T00:00","to":"2026-10-01T00:00","g":"quarter"}
+{"phrase":"last year","from":"2025-01-01T00:00","to":"2026-01-01T00:00","g":"year"}
+{"phrase":"6 months ago","from":"2026-04-01T00:00","to":"2026-05-01T00:00","g":"month"}
+{"phrase":"past hour","from":"2026-10-12T14:00","to":"2026-10-12T15:00","g":"hour"}
+{"phrase":"last 6 months","from":"2026-04-13T00:00","to":"2026-10-13T00:00","g":"day"}
+{"phrase":"3 days ago","from":"2026-10-09T00:00","to":"2026-10-10T00:00","g":"day"}
+{"phrase":"a couple days ago","from":"2026-10-10T00:00","to":"2026-10-11T00:00","g":"day"}
+{"phrase":"since monday","from":"2026-10-12T00:00","to":null,"g":"day"}
+{"phrase":"last 90 days","from":"2026-07-15T00:00","to":"2026-10-13T00:00","g":"day"}
+{"phrase":"past 48 hours","from":"2026-10-10T15:00","to":"2026-10-12T15:00","g":"hour"}
+{"phrase":"15 minutes ago","none":"minutes finer than any supported granularity"}
+{"phrase":"previous month","from":"2026-09-01T00:00","to":"2026-10-01T00:00","g":"month"}
+{"phrase":"last october","from":"2025-10-01T00:00","to":"2025-11-01T00:00","g":"month"}
+{"phrase":"recently","from":"2026-10-06T00:00","to":"2026-10-13T00:00","g":"day"}
+{"phrase":"lately","from":"2026-10-06T00:00","to":"2026-10-13T00:00","g":"day"}
+{"phrase":"newest","none":"order, not time"}
+{"phrase":"latest","none":"order, not time"}
+{"phrase":"most recent","none":"order, not time"}
+{"phrase":"the other day","none":"vague"}
+{"phrase":"just now","none":"vague"}
+{"phrase":"last little while","none":"vague"}
+{"phrase":"just recently","from":"2026-10-06T00:00","to":"2026-10-13T00:00","g":"day"}
+{"phrase":"earlier this morning","none":"vague part of day"}
+{"phrase":"late last night","none":"vague part of day"}
+{"phrase":"yesterday late afternoon","none":"vague part of day"}
+{"phrase":"yesterday at 3pm","from":"2026-10-11T15:00","to":"2026-10-11T16:00","g":"hour"}
+{"phrase":"today 2am","from":"2026-10-12T02:00","to":"2026-10-12T03:00","g":"hour"}
+{"phrase":"tonight after 9","from":"2026-10-12T21:00","to":"2026-10-13T06:00","g":"hour"}
+{"phrase":"this afternoon","from":"2026-10-12T12:00","to":"2026-10-12T17:00","g":"hour"}
+{"phrase":"tomorrow morning","from":"2026-10-13T06:00","to":"2026-10-13T12:00","g":"hour"}
+{"phrase":"yesterday evening","from":"2026-10-11T17:00","to":"2026-10-11T21:00","g":"hour"}
+{"phrase":"monday morning","from":"2026-10-12T06:00","to":"2026-10-12T12:00","g":"hour"}
+{"phrase":"friday night","from":"2026-10-09T21:00","to":"2026-10-10T06:00","g":"hour"}
+{"phrase":"around 11pm last night","none":"around X is vague"}
+{"phrase":"tuesday at noon","from":"2026-10-06T12:00","to":"2026-10-06T13:00","g":"hour"}
+{"phrase":"yesterday morning","from":"2026-10-11T06:00","to":"2026-10-11T12:00","g":"hour"}
+{"phrase":"this evening","from":"2026-10-12T17:00","to":"2026-10-12T21:00","g":"hour"}
+{"phrase":"wednesday night","from":"2026-10-07T21:00","to":"2026-10-08T06:00","g":"hour"}
+{"phrase":"monday","from":"2026-10-12T00:00","to":"2026-10-13T00:00","g":"day"}
+{"phrase":"last tue","from":"2026-10-06T00:00","to":"2026-10-07T00:00","g":"day"}
+{"phrase":"this thursday","from":"2026-10-15T00:00","to":"2026-10-16T00:00","g":"day"}
+{"phrase":"next friday","from":"2026-10-16T00:00","to":"2026-10-17T00:00","g":"day"}
+{"phrase":"on wednesday","from":"2026-10-07T00:00","to":"2026-10-08T00:00","g":"day"}
+{"phrase":"fri","from":"2026-10-09T00:00","to":"2026-10-10T00:00","g":"day"}
+{"phrase":"wed afternoon","from":"2026-10-07T12:00","to":"2026-10-07T17:00","g":"hour"}
+{"phrase":"before thurs","from":null,"to":"2026-10-08T00:00","g":"day"}
+{"phrase":"saturday","from":"2026-10-10T00:00","to":"2026-10-11T00:00","g":"day"}
+{"phrase":"last weekend","from":"2026-10-10T00:00","to":"2026-10-12T00:00","g":"day"}
+{"phrase":"next mon","from":"2026-10-19T00:00","to":"2026-10-20T00:00","g":"day"}
+{"phrase":"sunday night","from":"2026-10-11T21:00","to":"2026-10-12T06:00","g":"hour"}
+{"phrase":"january","from":"2026-01-01T00:00","to":"2026-02-01T00:00","g":"month"}
+{"phrase":"feb 2025","from":"2025-02-01T00:00","to":"2025-03-01T00:00","g":"month"}
+{"phrase":"in april","from":"2026-04-01T00:00","to":"2026-05-01T00:00","g":"month"}
+{"phrase":"jun","from":"2026-06-01T00:00","to":"2026-07-01T00:00","g":"month"}
+{"phrase":"september 2024","from":"2024-09-01T00:00","to":"2024-10-01T00:00","g":"month"}
+{"phrase":"early march","none":"early/mid/late of X has no definite meaning"}
+{"phrase":"oct","from":"2026-10-01T00:00","to":"2026-11-01T00:00","g":"month"}
+{"phrase":"end of november","none":"end of X has no definite meaning"}
+{"phrase":"may '24","from":"2024-05-01T00:00","to":"2024-06-01T00:00","g":"month"}
+{"phrase":"last august","from":"2026-08-01T00:00","to":"2026-09-01T00:00","g":"month"}
+{"phrase":"december 2023","from":"2023-12-01T00:00","to":"2024-01-01T00:00","g":"month"}
+{"phrase":"q1","from":"2026-01-01T00:00","to":"2026-04-01T00:00","g":"quarter"}
+{"phrase":"q2 2024","from":"2024-04-01T00:00","to":"2024-07-01T00:00","g":"quarter"}
+{"phrase":"Q3 FY24","none":"fiscal quarter; fiscal start unknown"}
+{"phrase":"q4 2023","from":"2023-10-01T00:00","to":"2024-01-01T00:00","g":"quarter"}
+{"phrase":"next quarter","from":"2027-01-01T00:00","to":"2027-04-01T00:00","g":"quarter"}
+{"phrase":"first quarter","from":"2026-01-01T00:00","to":"2026-04-01T00:00","g":"quarter"}
+{"phrase":"q1 2026","from":"2026-01-01T00:00","to":"2026-04-01T00:00","g":"quarter"}
+{"phrase":"fy25 q2","none":"fiscal quarter; fiscal start unknown"}
+{"phrase":"1Q25","from":"2025-01-01T00:00","to":"2025-04-01T00:00","g":"quarter"}
+{"phrase":"in 2024","from":"2024-01-01T00:00","to":"2025-01-01T00:00","g":"year"}
+{"phrase":"2023","from":"2023-01-01T00:00","to":"2024-01-01T00:00","g":"year"}
+{"phrase":"next year","from":"2027-01-01T00:00","to":"2028-01-01T00:00","g":"year"}
+{"phrase":"before 2022","from":null,"to":"2022-01-01T00:00","g":"year"}
+{"phrase":"since 2020","from":"2020-01-01T00:00","to":null,"g":"year"}
+{"phrase":"'24","from":"2024-01-01T00:00","to":"2025-01-01T00:00","g":"year"}
+{"phrase":"2022-2023","from":"2022-01-01T00:00","to":"2024-01-01T00:00","g":"year"}
+{"phrase":"ytd","from":"2026-01-01T00:00","to":"2026-10-13T00:00","g":"day"}
+{"phrase":"past year","from":"2025-10-13T00:00","to":"2026-10-13T00:00","g":"day"}
+{"phrase":"15 jan","from":"2026-01-15T00:00","to":"2026-01-16T00:00","g":"day"}
+{"phrase":"jan 15 2025","from":"2025-01-15T00:00","to":"2025-01-16T00:00","g":"day"}
+{"phrase":"22/11","from":"2025-11-22T00:00","to":"2025-11-23T00:00","g":"day"}
+{"phrase":"2025-12-01","from":"2025-12-01T00:00","to":"2025-12-02T00:00","g":"day"}
+{"phrase":"7th march","from":"2026-03-07T00:00","to":"2026-03-08T00:00","g":"day"}
+{"phrase":"march 7 2024","from":"2024-03-07T00:00","to":"2024-03-08T00:00","g":"day"}
+{"phrase":"the 2nd","from":"2026-10-02T00:00","to":"2026-10-03T00:00","g":"day"}
+{"phrase":"Apr 9","from":"2026-04-09T00:00","to":"2026-04-10T00:00","g":"day"}
+{"phrase":"12/25/2025","from":"2025-12-25T00:00","to":"2025-12-26T00:00","g":"day"}
+{"phrase":"30 jun","from":"2026-06-30T00:00","to":"2026-07-01T00:00","g":"day"}
+{"phrase":"july 30th","from":"2026-07-30T00:00","to":"2026-07-31T00:00","g":"day"}
+{"phrase":"01/02/26","from":"2026-02-01T00:00","to":"2026-02-02T00:00","g":"day"}
+{"phrase":"14 feb 2025","from":"2025-02-14T00:00","to":"2025-02-15T00:00","g":"day"}
+{"phrase":"may 9th","from":"2026-05-09T00:00","to":"2026-05-10T00:00","g":"day"}
+{"phrase":"2024-11-30","from":"2024-11-30T00:00","to":"2024-12-01T00:00","g":"day"}
+{"phrase":"5th dec","from":"2025-12-05T00:00","to":"2025-12-06T00:00","g":"day"}
+{"phrase":"Dec 5th 2023","from":"2023-12-05T00:00","to":"2023-12-06T00:00","g":"day"}
+{"phrase":"the 21st","from":"2026-09-21T00:00","to":"2026-09-22T00:00","g":"day"}
+{"phrase":"17 sept","from":"2026-09-17T00:00","to":"2026-09-18T00:00","g":"day"}
+{"phrase":"9/11/24","from":"2024-11-09T00:00","to":"2024-11-10T00:00","g":"day"}
+{"phrase":"aug 1st","from":"2026-08-01T00:00","to":"2026-08-02T00:00","g":"day"}
+{"phrase":"1 august","from":"2026-08-01T00:00","to":"2026-08-02T00:00","g":"day"}
+{"phrase":"2023-06-15","from":"2023-06-15T00:00","to":"2023-06-16T00:00","g":"day"}
+{"phrase":"6/15/23","from":"2023-06-15T00:00","to":"2023-06-16T00:00","g":"day"}
+{"phrase":"31 oct","from":"2025-10-31T00:00","to":"2025-11-01T00:00","g":"day"}
+{"phrase":"before jan 1","from":null,"to":"2026-01-01T00:00","g":"day"}
+{"phrase":"after 15 feb","from":"2026-02-16T00:00","to":null,"g":"day"}
+{"phrase":"until friday","from":null,"to":"2026-10-10T00:00","g":"day"}
+{"phrase":"by march 3","from":null,"to":"2026-03-04T00:00","g":"day"}
+{"phrase":"on 12 feb","from":"2026-02-12T00:00","to":"2026-02-13T00:00","g":"day"}
+{"phrase":"from jan 2025","from":"2025-01-01T00:00","to":"2025-02-01T00:00","g":"month"}
+{"phrase":"older than 6 months","from":null,"to":"2026-04-13T00:00","g":"day"}
+{"phrase":"newer than 2 weeks","from":"2026-09-29T00:00","to":"2026-10-13T00:00","g":"day"}
+{"phrase":"within the last 30 days","from":"2026-09-13T00:00","to":"2026-10-13T00:00","g":"day"}
+{"phrase":"before 2025-01-15","from":null,"to":"2025-01-15T00:00","g":"day"}
+{"phrase":"after last thursday","from":"2026-10-09T00:00","to":null,"g":"day"}
+{"phrase":"since yesterday","from":"2026-10-11T00:00","to":null,"g":"day"}
+{"phrase":"until the 10th","from":null,"to":"2026-10-11T00:00","g":"day"}
+{"phrase":"by friday 5pm","from":null,"to":"2026-10-09T17:00","g":"hour"}
+{"phrase":"on tuesday","from":"2026-10-06T00:00","to":"2026-10-07T00:00","g":"day"}
+{"phrase":"from oct 1","from":"2026-10-01T00:00","to":"2026-10-02T00:00","g":"day"}
+{"phrase":"older than a year","from":null,"to":"2025-10-13T00:00","g":"day"}
+{"phrase":"newer than 3 days","from":"2026-10-10T00:00","to":"2026-10-13T00:00","g":"day"}
+{"phrase":"within the last week","from":"2026-10-06T00:00","to":"2026-10-13T00:00","g":"day"}
+{"phrase":"before 8am","from":null,"to":"2026-10-12T08:00","g":"hour"}
+{"phrase":"after 6pm yesterday","from":"2026-10-11T18:00","to":null,"g":"hour"}
+{"phrase":"since dec 2024","from":"2024-12-01T00:00","to":null,"g":"month"}
+{"phrase":"until 31/12/2025","from":null,"to":"2026-01-01T00:00","g":"day"}
+{"phrase":"by end of month","none":"'end of X' has no definite meaning"}
+{"phrase":"between jan 6 and jan 20","from":"2026-01-06T00:00","to":"2026-01-21T00:00","g":"day"}
+{"phrase":"from mar 1 to mar 31","from":"2026-03-01T00:00","to":"2026-04-01T00:00","g":"day"}
+{"phrase":"apr 2 - apr 9","from":"2026-04-02T00:00","to":"2026-04-10T00:00","g":"day"}
+{"phrase":"between the 3rd and the 18th","from":"2026-09-03T00:00","to":"2026-09-19T00:00","g":"day"}
+{"phrase":"sep 12 through sep 26","from":"2026-09-12T00:00","to":"2026-09-27T00:00","g":"day"}
+{"phrase":"from monday to thursday","from":"2026-10-05T00:00","to":"2026-10-09T00:00","g":"day"}
+{"phrase":"2024-11-01 to 2025-01-31","from":"2024-11-01T00:00","to":"2025-02-01T00:00","g":"day"}
+{"phrase":"between q2 and q4","from":"2026-04-01T00:00","to":"2027-01-01T00:00","g":"quarter"}
+{"phrase":"oct 5 through mid november","none":"\"mid november\" is vague (early/mid/late of X has no definite meaning)"}
+{"phrase":"from 14 july to 21 july","from":"2026-07-14T00:00","to":"2026-07-22T00:00","g":"day"}
+{"phrase":"feb 1 - feb 14","from":"2026-02-01T00:00","to":"2026-02-15T00:00","g":"day"}
+{"phrase":"between christmas and new year","from":"2025-12-25T00:00","to":"2026-01-02T00:00","g":"day"}
+{"phrase":"01.06 - 14.06","from":"2026-06-01T00:00","to":"2026-06-15T00:00","g":"day"}
+{"phrase":"from week 28 to week 31","from":"2026-07-06T00:00","to":"2026-08-03T00:00","g":"week"}
+{"phrase":"between aug 2022 and feb 2023","from":"2022-08-01T00:00","to":"2023-03-01T00:00","g":"month"}
+{"phrase":"the sprint before last","none":"no anchor"}
+{"phrase":"during sprint 14","from":"2026-07-13T00:00","to":"2026-07-27T00:00","g":"day"}
+{"phrase":"since v2.3 shipped","none":"no anchor for v2.3"}
+{"phrase":"before the board meeting","none":"no anchor for the board meeting"}
+{"phrase":"after the data migration","none":"no anchor for the data migration"}
+{"phrase":"since the hackathon","none":"no anchor for the hackathon"}
+{"phrase":"during the code freeze","from":"2026-09-28T00:00","to":"2026-10-02T00:00","g":"day"}
+{"phrase":"before the rebrand","none":"no anchor for the rebrand"}
+{"phrase":"after the sev1","none":"unknown anchor"}
+{"phrase":"this billing cycle","none":"unknown billing cycle"}
+{"phrase":"before the audit","none":"unknown anchor"}
+{"phrase":"after the reorg","none":"unknown anchor"}
+{"phrase":"since the pricing change","none":"unknown anchor"}
+{"phrase":"before the holiday break","none":"unknown anchor"}
+{"phrase":"lastweek","from":"2026-10-05T00:00","to":"2026-10-12T00:00","g":"week"}
+{"phrase":"yestrday","from":"2026-10-11T00:00","to":"2026-10-12T00:00","g":"day"}
+{"phrase":"btwn the 1st n 15th","from":"2026-09-01T00:00","to":"2026-09-16T00:00","g":"day"}
+{"phrase":"frm mon 2 fri","from":"2026-10-05T00:00","to":"2026-10-10T00:00","g":"day"}
+{"phrase":"mar1-mar15","from":"2026-03-01T00:00","to":"2026-03-16T00:00","g":"day"}
+{"phrase":"pichle mahine","from":"2026-09-01T00:00","to":"2026-10-01T00:00","g":"month"}
+{"phrase":"aaj kal","none":"vague"}
+{"phrase":"diwali ke baad","none":"unknown anchor"}
+{"phrase":"b4 the launch","from":null,"to":"2026-09-01T00:00","g":"day"}
+{"phrase":"this quater","from":"2026-10-01T00:00","to":"2027-01-01T00:00","g":"quarter"}
+{"phrase":"last weak","from":"2026-10-05T00:00","to":"2026-10-12T00:00","g":"week"}
+{"phrase":"since tues","from":"2026-10-06T00:00","to":null,"g":"day"}
+{"phrase":"aftr offsite","from":"2026-09-18T00:00","to":null,"g":"day"}
+{"phrase":"6mos ago","from":"2026-04-01T00:00","to":"2026-05-01T00:00","g":"month"}
+{"phrase":"jan-feb","from":"2026-01-01T00:00","to":"2026-03-01T00:00","g":"month"}
+{"phrase":"BETWEEN FEB AND APR","from":"2026-02-01T00:00","to":"2026-05-01T00:00","g":"month"}
+{"phrase":"this weeks","from":"2026-10-12T00:00","to":"2026-10-19T00:00","g":"week"}
+{"phrase":"2024-11-01to2025-02-01","from":"2024-11-01T00:00","to":"2025-02-02T00:00","g":"day"}
+{"phrase":"til yday","from":null,"to":"2026-10-12T00:00","g":"day"}

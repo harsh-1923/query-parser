@@ -1,0 +1,344 @@
+# S04 results · reference 2026-10-12T10:00:00.000Z (Asia/Kolkata) · chrono-node 2.10.1 (en.GB, day-first)
+
+## S2 TIME spans (every occurrence): 60 phrases, 58 with a definite answer, 2 none
+grammar: correct 58/58 (100.0%), unsupported 0, wrong 0 (0 wrong range, 0 answered a none), none handled 2/2
+chrono:  correct 17/58 (29.3%), unsupported 15, wrong 26 (26 wrong range, 0 answered a none), none handled 2/2
+
+## kimi-k3 phrases: 193 phrases, 162 with a definite answer, 31 none
+grammar: correct 158/162 (97.5%), unsupported 4, wrong 0 (0 wrong range, 0 answered a none), none handled 31/31
+chrono:  correct 45/162 (27.8%), unsupported 46, wrong 79 (71 wrong range, 8 answered a none), none handled 23/31
+
+## Held-out kimi-k3 phrases (grammar frozen before they were written): 93 phrases, 73 with a definite answer, 20 none
+grammar: correct 62/73 (84.9%), unsupported 11, wrong 0 (0 wrong range, 0 answered a none), none handled 20/20
+chrono:  correct 12/73 (16.4%), unsupported 13, wrong 54 (48 wrong range, 6 answered a none), none handled 14/20
+
+## All unique phrases: 318 phrases, 265 with a definite answer, 53 none
+grammar: correct 250/265 (94.3%), unsupported 15, wrong 0 (0 wrong range, 0 answered a none), none handled 53/53
+chrono:  correct 63/265 (23.8%), unsupported 71, wrong 145 (131 wrong range, 14 answered a none), none handled 39/53
+
+## By family (unique kimi phrases): grammar correct / answerable, wrong
+relative         grammar 24/24, wrong 0   chrono 9/24, wrong 14
+recent           grammar 3/3, wrong 0     chrono 0/3, wrong 1
+time-of-day      grammar 11/13, wrong 0   chrono 2/13, wrong 14
+weekday          grammar 12/12, wrong 0   chrono 6/12, wrong 6
+month            grammar 10/10, wrong 0   chrono 5/10, wrong 4
+quarter          grammar 8/8, wrong 0     chrono 0/8, wrong 2
+year             grammar 11/11, wrong 0   chrono 2/11, wrong 1
+absolute         grammar 25/25, wrong 0   chrono 17/25, wrong 6
+operator-single  grammar 23/23, wrong 0   chrono 2/23, wrong 16
+operator-range   grammar 12/13, wrong 0   chrono 1/13, wrong 10
+anchor           grammar 3/3, wrong 0     chrono 0/3, wrong 0
+messy            grammar 16/17, wrong 0   chrono 1/17, wrong 5
+
+## Grammar wrong (0)
+
+## Grammar unsupported, gold has an answer (15)
+earlier this morning	gold 2026-10-12T06:00 → 2026-10-12T12:00
+tonight after 9	gold 2026-10-12T21:00 → 2026-10-13T06:00
+from week 28 to week 31	gold 2026-07-06T00:00 → 2026-08-03T00:00
+pichle mahine	gold 2026-09-01T00:00 → 2026-10-01T00:00
+ystrday [held-out]	gold 2026-10-11T00:00 → 2026-10-12T00:00
+over the weekend [held-out]	gold 2026-10-10T00:00 → 2026-10-12T00:00
+lst wk [held-out]	gold 2026-10-05T00:00 → 2026-10-12T00:00
+3.4.24 [held-out]	gold 2024-04-03T00:00 → 2024-04-04T00:00
+week before last [held-out]	gold 2026-09-28T00:00 → 2026-10-05T00:00
+mar-24 [held-out]	gold 2024-03-01T00:00 → 2024-04-01T00:00
+sept last yr [held-out]	gold 2025-09-01T00:00 → 2025-10-01T00:00
+tdy [held-out]	gold 2026-10-12T00:00 → 2026-10-13T00:00
+1-15 jan [held-out]	gold 2026-01-01T00:00 → 2026-01-16T00:00
+week ending 12 jan [held-out]	gold 2026-01-05T00:00 → 2026-01-12T00:00
+wknd [held-out]	gold 2026-10-10T00:00 → 2026-10-12T00:00
+
+## Grammar unsupported, gold none (correct) (53)
+before diwali	no anchor
+kal	Hinglish not supported; ambiguous (yesterday or tomorrow)
+15 minutes ago	minutes finer than any supported granularity
+newest	order, not time
+latest	order, not time
+most recent	order, not time
+the other day	vague
+just now	vague
+last little while	vague
+late last night	vague part of day
+yesterday late afternoon	vague part of day
+around 11pm last night	around X is vague
+early march	early/mid/late of X has no definite meaning
+end of november	end of X has no definite meaning
+Q3 FY24	fiscal quarter; fiscal start unknown
+fy25 q2	fiscal quarter; fiscal start unknown
+by end of month	'end of X' has no definite meaning
+oct 5 through mid november	"mid november" is vague (early/mid/late of X has no definite meaning)
+between christmas and new year	holidays need an anchor pack (POLICIES anchors)
+the sprint before last	no anchor
+since v2.3 shipped	no anchor for v2.3
+before the board meeting	no anchor for the board meeting
+after the data migration	no anchor for the data migration
+since the hackathon	no anchor for the hackathon
+before the rebrand	no anchor for the rebrand
+after the sev1	unknown anchor
+this billing cycle	unknown billing cycle
+before the audit	unknown anchor
+after the reorg	unknown anchor
+since the pricing change	unknown anchor
+before the holiday break	unknown anchor
+aaj kal	vague
+diwali ke baad	unknown anchor
+q1 fy24	fiscal calendar unknown
+before eod	vague (end of day)
+fy 22-23	fiscal calendar unknown
+after diwali	no anchor for diwali
+after last friday's deploy	deploy is not an anchor
+in fy24	fiscal calendar unknown
+last 2 sprints	no anchor for last 2 sprints
+by end of april	end of month is vague
+fy 23-24	fiscal year; fiscal calendar unknown
+around 2 am	"around X" is approximate; no definite meaning
+h2 2023	no half-year rule
+mid june	mid is vague
+fy23	fiscal year start unknown
+post lunch	not a defined part of day (only morning/afternoon/evening/night)
+around 10:30 pm	around X has no definite meaning (and minutes are finer than any granularity)
+this fy	fiscal year: fiscal calendar unknown
+h2 2024	half-years are not defined under these rules
+end of feb	end of X has no definite meaning
+q2 fy24	fiscal quarter: fiscal calendar unknown
+first week of march	no rule defines 'first week of month'
+
+## Grammar ≠ chrono, both answered (125)
+last week	grammar 2026-10-05T00:00 → 2026-10-12T00:00	chrono 2026-10-05T00:00 → 2026-10-06T00:00
+march	grammar 2026-03-01T00:00 → 2026-04-01T00:00	chrono 2027-03-01T00:00 → 2027-04-01T00:00
+last quarter	grammar 2026-07-01T00:00 → 2026-10-01T00:00	chrono 2026-07-12T00:00 → 2026-07-13T00:00
+in march	grammar 2026-03-01T00:00 → 2026-04-01T00:00	chrono 2027-03-01T00:00 → 2027-04-01T00:00
+10/3	grammar 2026-03-10T00:00 → 2026-03-11T00:00	chrono 2027-03-10T00:00 → 2027-03-11T00:00
+from last week	grammar 2026-10-05T00:00 → 2026-10-12T00:00	chrono 2026-10-05T00:00 → 2026-10-06T00:00
+last 2 weeks	grammar 2026-09-29T00:00 → 2026-10-13T00:00	chrono 2026-09-28T00:00 → 2026-09-29T00:00
+last 30 days	grammar 2026-09-13T00:00 → 2026-10-13T00:00	chrono 2026-09-12T00:00 → 2026-09-13T00:00
+this quarter	grammar 2026-10-01T00:00 → 2027-01-01T00:00	chrono 2026-10-12T00:00 → 2026-10-13T00:00
+this week	grammar 2026-10-12T00:00 → 2026-10-19T00:00	chrono 2026-10-11T00:00 → 2026-10-12T00:00
+from tuesday	grammar 2026-10-06T00:00 → 2026-10-07T00:00	chrono 2026-10-13T00:00 → 2026-10-14T00:00
+past 2 weeks	grammar 2026-09-29T00:00 → 2026-10-13T00:00	chrono 2026-09-28T00:00 → 2026-09-29T00:00
+this morning	grammar 2026-10-12T06:00 → 2026-10-12T12:00	chrono 2026-10-12T00:00 → 2026-10-13T00:00
+next wed	grammar 2026-10-14T00:00 → 2026-10-15T00:00	chrono 2026-10-21T00:00 → 2026-10-22T00:00
+from this week	grammar 2026-10-12T00:00 → 2026-10-19T00:00	chrono 2026-10-11T00:00 → 2026-10-12T00:00
+tuesday's	grammar 2026-10-06T00:00 → 2026-10-07T00:00	chrono 2026-10-13T00:00 → 2026-10-14T00:00 (partial)
+past week	grammar 2026-10-06T00:00 → 2026-10-13T00:00	chrono 2026-10-05T00:00 → 2026-10-06T00:00
+past 3 days	grammar 2026-10-10T00:00 → 2026-10-13T00:00	chrono 2026-10-09T00:00 → 2026-10-10T00:00
+2 weeks ago	grammar 2026-09-28T00:00 → 2026-10-05T00:00	chrono 2026-09-28T00:00 → 2026-09-29T00:00
+last 24 hours	grammar 2026-10-11T15:30 → 2026-10-12T15:30	chrono 2026-10-11T15:00 → 2026-10-11T16:00
+past hour	grammar 2026-10-12T14:30 → 2026-10-12T15:30	chrono 2026-10-12T14:00 → 2026-10-12T15:00
+last 6 months	grammar 2026-04-13T00:00 → 2026-10-13T00:00	chrono 2026-04-01T00:00 → 2026-05-01T00:00
+since monday	grammar 2026-10-12T00:00 → –	chrono 2026-10-12T00:00 → 2026-10-13T00:00 (partial)
+last 90 days	grammar 2026-07-15T00:00 → 2026-10-13T00:00	chrono 2026-07-14T00:00 → 2026-07-15T00:00
+past 48 hours	grammar 2026-10-10T15:30 → 2026-10-12T15:30	chrono 2026-10-10T15:00 → 2026-10-10T16:00
+last october	grammar 2025-10-01T00:00 → 2025-11-01T00:00	chrono 2026-10-01T00:00 → 2026-11-01T00:00 (partial)
+this afternoon	grammar 2026-10-12T12:00 → 2026-10-12T17:00	chrono 2026-10-12T00:00 → 2026-10-13T00:00
+tomorrow morning	grammar 2026-10-13T06:00 → 2026-10-13T12:00	chrono 2026-10-13T00:00 → 2026-10-14T00:00
+yesterday evening	grammar 2026-10-11T17:00 → 2026-10-11T21:00	chrono 2026-10-11T00:00 → 2026-10-12T00:00
+monday morning	grammar 2026-10-12T06:00 → 2026-10-12T12:00	chrono 2026-10-12T00:00 → 2026-10-13T00:00
+friday night	grammar 2026-10-09T21:00 → 2026-10-10T06:00	chrono 2026-10-09T00:00 → 2026-10-10T00:00
+tuesday at noon	grammar 2026-10-06T12:00 → 2026-10-06T13:00	chrono 2026-10-13T12:00 → 2026-10-13T13:00
+yesterday morning	grammar 2026-10-11T06:00 → 2026-10-11T12:00	chrono 2026-10-11T00:00 → 2026-10-12T00:00
+this evening	grammar 2026-10-12T17:00 → 2026-10-12T21:00	chrono 2026-10-12T00:00 → 2026-10-13T00:00
+wednesday night	grammar 2026-10-07T21:00 → 2026-10-08T06:00	chrono 2026-10-14T00:00 → 2026-10-15T00:00
+next friday	grammar 2026-10-16T00:00 → 2026-10-17T00:00	chrono 2026-10-23T00:00 → 2026-10-24T00:00
+on wednesday	grammar 2026-10-07T00:00 → 2026-10-08T00:00	chrono 2026-10-14T00:00 → 2026-10-15T00:00
+wed afternoon	grammar 2026-10-07T12:00 → 2026-10-07T17:00	chrono 2026-10-14T00:00 → 2026-10-15T00:00
+before thurs	grammar – → 2026-10-08T00:00	chrono 2026-10-15T00:00 → 2026-10-16T00:00 (partial)
+last weekend	grammar 2026-10-10T00:00 → 2026-10-12T00:00	chrono 2026-10-11T00:00 → 2026-10-12T00:00
+sunday night	grammar 2026-10-11T21:00 → 2026-10-12T06:00	chrono 2026-10-11T00:00 → 2026-10-12T00:00
+january	grammar 2026-01-01T00:00 → 2026-02-01T00:00	chrono 2027-01-01T00:00 → 2027-02-01T00:00
+in april	grammar 2026-04-01T00:00 → 2026-05-01T00:00	chrono 2027-04-01T00:00 → 2027-05-01T00:00
+next quarter	grammar 2027-01-01T00:00 → 2027-04-01T00:00	chrono 2027-01-12T00:00 → 2027-01-13T00:00
+past year	grammar 2025-10-13T00:00 → 2026-10-13T00:00	chrono 2025-01-01T00:00 → 2026-01-01T00:00
+15 jan	grammar 2026-01-15T00:00 → 2026-01-16T00:00	chrono 2027-01-15T00:00 → 2027-01-16T00:00
+22/11	grammar 2025-11-22T00:00 → 2025-11-23T00:00	chrono 2026-11-22T00:00 → 2026-11-23T00:00
+7th march	grammar 2026-03-07T00:00 → 2026-03-08T00:00	chrono 2027-03-07T00:00 → 2027-03-08T00:00
+Apr 9	grammar 2026-04-09T00:00 → 2026-04-10T00:00	chrono 2027-04-09T00:00 → 2027-04-10T00:00
+5th dec	grammar 2025-12-05T00:00 → 2025-12-06T00:00	chrono 2026-12-05T00:00 → 2026-12-06T00:00
+31 oct	grammar 2025-10-31T00:00 → 2025-11-01T00:00	chrono 2026-10-31T00:00 → 2026-11-01T00:00
+before jan 1	grammar – → 2026-01-01T00:00	chrono 2027-01-01T00:00 → 2027-01-02T00:00 (partial)
+after 15 feb	grammar 2026-02-16T00:00 → –	chrono 2027-02-15T00:00 → 2027-02-16T00:00 (partial)
+until friday	grammar – → 2026-10-10T00:00	chrono 2026-10-09T00:00 → 2026-10-10T00:00 (partial)
+by march 3	grammar – → 2026-03-04T00:00	chrono 2027-03-03T00:00 → 2027-03-04T00:00 (partial)
+on 12 feb	grammar 2026-02-12T00:00 → 2026-02-13T00:00	chrono 2027-02-12T00:00 → 2027-02-13T00:00
+within the last 30 days	grammar 2026-09-13T00:00 → 2026-10-13T00:00	chrono 2026-09-12T00:00 → 2026-09-13T00:00 (partial)
+before 2025-01-15	grammar – → 2025-01-15T00:00	chrono 2025-01-15T00:00 → 2025-01-16T00:00 (partial)
+after last thursday	grammar 2026-10-09T00:00 → –	chrono 2026-10-08T00:00 → 2026-10-09T00:00 (partial)
+since yesterday	grammar 2026-10-11T00:00 → –	chrono 2026-10-11T00:00 → 2026-10-12T00:00 (partial)
+by friday 5pm	grammar – → 2026-10-09T17:00	chrono 2026-10-09T17:00 → 2026-10-09T18:00 (partial)
+on tuesday	grammar 2026-10-06T00:00 → 2026-10-07T00:00	chrono 2026-10-13T00:00 → 2026-10-14T00:00
+within the last week	grammar 2026-10-06T00:00 → 2026-10-13T00:00	chrono 2026-10-05T00:00 → 2026-10-06T00:00 (partial)
+before 8am	grammar – → 2026-10-12T08:00	chrono 2026-10-12T08:00 → 2026-10-12T09:00 (partial)
+after 6pm yesterday	grammar 2026-10-11T18:00 → –	chrono 2026-10-11T18:00 → 2026-10-11T19:00 (partial)
+since dec 2024	grammar 2024-12-01T00:00 → –	chrono 2024-12-01T00:00 → 2025-01-01T00:00 (partial)
+until 31/12/2025	grammar – → 2026-01-01T00:00	chrono 2025-12-31T00:00 → 2026-01-01T00:00 (partial)
+between jan 6 and jan 20	grammar 2026-01-06T00:00 → 2026-01-21T00:00	chrono 2027-01-06T00:00 → 2027-01-07T00:00 (partial)
+from mar 1 to mar 31	grammar 2026-03-01T00:00 → 2026-04-01T00:00	chrono 2031-03-01T00:00 → 2031-04-01T00:00
+apr 2 - apr 9	grammar 2026-04-02T00:00 → 2026-04-10T00:00	chrono 2027-04-02T00:00 → 2027-04-10T00:00
+sep 12 through sep 26	grammar 2026-09-12T00:00 → 2026-09-27T00:00	chrono 2012-09-01T00:00 → 2026-10-01T00:00
+from monday to thursday	grammar 2026-10-05T00:00 → 2026-10-09T00:00	chrono 2026-10-12T00:00 → 2026-10-16T00:00
+from 14 july to 21 july	grammar 2026-07-14T00:00 → 2026-07-22T00:00	chrono 2026-07-21T14:00 → 2026-07-22T00:00
+feb 1 - feb 14	grammar 2026-02-01T00:00 → 2026-02-15T00:00	chrono 2014-02-01T00:00 → 2014-03-01T00:00
+01.06 - 14.06	grammar 2026-06-01T00:00 → 2026-06-15T00:00	chrono 2026-10-12T01:00 → 2026-10-12T15:00
+between aug 2022 and feb 2023	grammar 2022-08-01T00:00 → 2023-03-01T00:00	chrono 2022-08-01T00:00 → 2022-09-01T00:00 (partial)
+lastweek	grammar 2026-10-05T00:00 → 2026-10-12T00:00	chrono 2026-10-05T00:00 → 2026-10-06T00:00
+frm mon 2 fri	grammar 2026-10-05T00:00 → 2026-10-10T00:00	chrono 2026-10-12T00:00 → 2026-10-13T00:00 (partial)
+mar1-mar15	grammar 2026-03-01T00:00 → 2026-03-16T00:00	chrono 2015-03-01T00:00 → 2015-04-01T00:00
+this weeks	grammar 2026-10-12T00:00 → 2026-10-19T00:00	chrono 2026-10-11T00:00 → 2026-10-12T00:00
+2024-11-01to2025-02-01	grammar 2024-11-01T00:00 → 2025-02-02T00:00	chrono 2026-10-12T17:00 → 2026-10-12T18:00 (partial)
+before 3 pm today	grammar – → 2026-10-12T15:00	chrono 2026-10-12T15:00 → 2026-10-12T16:00 (partial)
+after 10 pm	grammar 2026-10-12T22:00 → –	chrono 2026-10-12T22:00 → 2026-10-12T23:00 (partial)
+before 31 jan	grammar – → 2026-01-31T00:00	chrono 2027-01-31T00:00 → 2027-02-01T00:00 (partial)
+12/4	grammar 2026-04-12T00:00 → 2026-04-13T00:00	chrono 2027-04-12T00:00 → 2027-04-13T00:00
+until 15 mar	grammar – → 2026-03-16T00:00	chrono 2027-03-15T00:00 → 2027-03-16T00:00 (partial)
+between 1 may and 5 may	grammar 2026-05-01T00:00 → 2026-05-06T00:00	chrono 2026-05-01T00:00 → 2026-05-02T00:00 (partial)
+until last month	grammar – → 2026-10-01T00:00	chrono 2026-09-01T00:00 → 2026-10-01T00:00 (partial)
+before 15/06/2024	grammar – → 2024-06-15T00:00	chrono 2024-06-15T00:00 → 2024-06-16T00:00 (partial)
+monday evening	grammar 2026-10-12T17:00 → 2026-10-12T21:00	chrono 2026-10-12T00:00 → 2026-10-13T00:00
+since monday morning	grammar 2026-10-12T06:00 → –	chrono 2026-10-12T00:00 → 2026-10-13T00:00 (partial)
+last night	grammar 2026-10-11T21:00 → 2026-10-12T06:00	chrono 2026-10-11T00:00 → 2026-10-12T00:00
+since 1st jan	grammar 2026-01-01T00:00 → –	chrono 2027-01-01T00:00 → 2027-01-02T00:00 (partial)
+between 12/02 and 18/02	grammar 2026-02-12T00:00 → 2026-02-19T00:00	chrono 2027-02-12T00:00 → 2027-02-13T00:00 (partial)
+after 6pm	grammar 2026-10-12T18:00 → –	chrono 2026-10-12T18:00 → 2026-10-12T19:00 (partial)
+until last friday	grammar – → 2026-10-10T00:00	chrono 2026-10-09T00:00 → 2026-10-10T00:00 (partial)
+since 04/05/2024	grammar 2024-05-04T00:00 → –	chrono 2024-05-04T00:00 → 2024-05-05T00:00 (partial)
+before 9 am today	grammar – → 2026-10-12T09:00	chrono 2026-10-12T09:00 → 2026-10-12T10:00 (partial)
+after midnight	grammar 2026-10-12T00:00 → –	chrono 2026-10-13T00:00 → 2026-10-13T01:00 (partial)
+in last 24 hrs	grammar 2026-10-11T15:30 → 2026-10-12T15:30	chrono 2026-10-11T15:00 → 2026-10-11T16:00
+on 31/03	grammar 2026-03-31T00:00 → 2026-04-01T00:00	chrono 2027-03-31T00:00 → 2027-04-01T00:00
+12/03	grammar 2026-03-12T00:00 → 2026-03-13T00:00	chrono 2027-03-12T00:00 → 2027-03-13T00:00
+between 5 jan and 12 jan	grammar 2026-01-05T00:00 → 2026-01-13T00:00	chrono 2027-01-05T00:00 → 2027-01-06T00:00 (partial)
+saturday night	grammar 2026-10-10T21:00 → 2026-10-11T06:00	chrono 2026-10-10T00:00 → 2026-10-11T00:00
+15 feb	grammar 2026-02-15T00:00 → 2026-02-16T00:00	chrono 2027-02-15T00:00 → 2027-02-16T00:00
+after 10th oct	grammar 2026-10-11T00:00 → –	chrono 2026-10-10T00:00 → 2026-10-11T00:00 (partial)
+till 31 march	grammar – → 2026-04-01T00:00	chrono 2027-03-31T00:00 → 2027-04-01T00:00 (partial)
+since april	grammar 2026-04-01T00:00 → –	chrono 2027-04-01T00:00 → 2027-05-01T00:00 (partial)
+until march	grammar – → 2026-04-01T00:00	chrono 2027-03-01T00:00 → 2027-04-01T00:00 (partial)
+jan to mar 2024	grammar 2024-01-01T00:00 → 2024-04-01T00:00	chrono 2024-03-01T00:00 → 2024-04-01T00:00 (partial)
+next tue	grammar 2026-10-13T00:00 → 2026-10-14T00:00	chrono 2026-10-20T00:00 → 2026-10-21T00:00
+after 15/08	grammar 2026-08-16T00:00 → –	chrono 2026-08-15T00:00 → 2026-08-16T00:00 (partial)
+before 01/04/2023	grammar – → 2023-04-01T00:00	chrono 2023-04-01T00:00 → 2023-04-02T00:00 (partial)
+since last yr	grammar 2025-01-01T00:00 → –	chrono 2025-01-01T00:00 → 2026-01-01T00:00 (partial)
+today morning	grammar 2026-10-12T06:00 → 2026-10-12T12:00	chrono 2026-10-12T00:00 → 2026-10-13T00:00
+between 5/11 and 12/11	grammar 2025-11-05T00:00 → 2025-11-13T00:00	chrono 2026-11-05T00:00 → 2026-11-06T00:00 (partial)
+from april to june	grammar 2026-04-01T00:00 → 2026-07-01T00:00	chrono 2027-04-01T00:00 → 2027-07-01T00:00
+before 31/03	grammar – → 2026-03-31T00:00	chrono 2027-03-31T00:00 → 2027-04-01T00:00 (partial)
+after apr 2023	grammar 2023-05-01T00:00 → –	chrono 2023-04-01T00:00 → 2023-05-01T00:00 (partial)
+before 1st june	grammar – → 2026-06-01T00:00	chrono 2026-06-01T00:00 → 2026-06-02T00:00 (partial)
+in january	grammar 2026-01-01T00:00 → 2026-02-01T00:00	chrono 2027-01-01T00:00 → 2027-02-01T00:00
+between 12/03 and 18/03	grammar 2026-03-12T00:00 → 2026-03-19T00:00	chrono 2027-03-12T00:00 → 2027-03-13T00:00 (partial)
+till friday	grammar – → 2026-10-10T00:00	chrono 2026-10-09T00:00 → 2026-10-10T00:00 (partial)
+next week	grammar 2026-10-19T00:00 → 2026-10-26T00:00	chrono 2026-10-19T00:00 → 2026-10-20T00:00
+5/4 to 30/4	grammar 2026-04-05T00:00 → 2026-05-01T00:00	chrono 2027-04-05T00:00 → 2027-05-01T00:00
+
+## chrono no parse (110)
+before the offsite
+q2
+before diwali
+since jan
+this sprint
+older than 30 days
+since 4.2.1
+last release
+from 2024
+2025
+recent
+from 2023
+dec
+between 1st and 15th
+kal
+last sprint
+previous quarter
+previous month
+recently
+lately
+newest
+latest
+most recent
+the other day
+last little while
+just recently
+jun
+oct
+may '24
+q1
+q2 2024
+Q3 FY24
+q4 2023
+first quarter
+q1 2026
+fy25 q2
+1Q25
+in 2024
+2023
+before 2022
+since 2020
+'24
+2022-2023
+ytd
+the 2nd
+the 21st
+older than 6 months
+newer than 2 weeks
+until the 10th
+older than a year
+newer than 3 days
+by end of month
+between the 3rd and the 18th
+between q2 and q4
+between christmas and new year
+from week 28 to week 31
+the sprint before last
+during sprint 14
+since v2.3 shipped
+before the board meeting
+after the data migration
+since the hackathon
+during the code freeze
+before the rebrand
+after the sev1
+this billing cycle
+before the audit
+after the reorg
+since the pricing change
+before the holiday break
+yestrday
+btwn the 1st n 15th
+pichle mahine
+aaj kal
+diwali ke baad
+b4 the launch
+this quater
+last weak
+since tues
+aftr offsite
+jan-feb
+BETWEEN FEB AND APR
+til yday
+q1 fy24
+ystrday
+before eod
+fy 22-23
+after diwali
+in fy24
+last 2 sprints
+in q3
+lst wk
+since yday
+last wk
+2022
+3.4.24
+last fridy
+fy 23-24
+week before last
+2021
+h2 2023
+tdy
+until q2
+fy23
+post lunch
+this fy
+h2 2024
+wknd
+end of feb
+q2 fy24

@@ -12,7 +12,7 @@ See PLAN §2 and [ADR 0001](docs/decisions/0001-roles-not-facets.md).
 
 ## Current phase
 
-M1 (spikes). S2 done (see `docs/spikes/`). Packages are stubs. Don't implement M2+ features until the
+M1 (spikes). S2 and S4 done (see `docs/spikes/`). Packages are stubs. Don't implement M2+ features until the
 relevant spikes in [docs/SPIKES.md](docs/SPIKES.md) have results, unless asked.
 
 ## Layout
