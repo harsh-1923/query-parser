@@ -126,7 +126,11 @@ export function describeTime(t: TimeValue, tz: string): string {
   }
   const a = day(t.from)
   const b = day(lastDay(t.to))
-  return a === b ? a : `${a} → ${b}`
+  if (a === b) return a
+  const sameYear =
+    fmt(t.from, tz, { year: "numeric" }) === fmt(lastDay(t.to), tz, { year: "numeric" })
+  const short = (iso: string) => fmt(iso, tz, { weekday: "short", month: "short", day: "numeric" })
+  return sameYear ? `${short(t.from)} → ${b}` : `${a} → ${b}`
 }
 
 export const FACET_LABEL: Record<string, string> = {

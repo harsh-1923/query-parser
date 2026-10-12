@@ -1,97 +1,135 @@
-import type { ParseResult } from "@qp/core"
+import type { ParseResult, TimeValue } from "@qp/core"
 import { ChevronDown, Info } from "lucide-react"
 import { useState } from "react"
-import { Badge } from "@/components/ui/badge"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
 import {
-  CLOCK,
-  chipValue,
-  DAY,
+  channels,
   describeIssue,
-  FACET_LABEL,
-  fmt,
+  describeTime,
+  nameOf,
   people,
   requestFor,
   SELF,
+  type Tone,
 } from "@/lib/parser"
 import { cn } from "@/lib/utils"
 
-const CHIP_TONE: Record<string, string> = {
-  type: "bg-sky-50 border-sky-200",
-  date: "bg-amber-50 border-amber-200",
-  in: "bg-orange-50 border-orange-200",
-  status: "bg-violet-50 border-violet-200",
-  priority: "bg-violet-50 border-violet-200",
-  sort: "bg-pink-50 border-pink-200",
+/** Line tint per role: a light wash plus a left rule, like a diff. */
+const LINE_TONE: Record<Tone, string> = {
+  kind: "bg-sky-50 border-sky-300",
+  person: "bg-emerald-50 border-emerald-300",
+  place: "bg-orange-50 border-orange-300",
+  time: "bg-amber-50 border-amber-300",
+  attr: "bg-violet-50 border-violet-300",
+  order: "bg-pink-50 border-pink-300",
+  neg: "bg-red-50 border-red-300",
+  topic: "bg-neutral-100 border-neutral-300",
 }
-const PERSON_FACETS = new Set(["from", "to", "assignee", "with", "mentions"])
 
-function Chips({
-  bag,
-  tz,
-  negated,
-}: {
-  bag: Record<string, unknown>
-  tz: string
-  negated?: boolean
-}) {
-  return Object.entries(bag).map(([facet, value]) => (
-    <Badge
-      key={`${negated ? "not-" : ""}${facet}`}
-      variant="outline"
-      className={cn(
-        "h-auto max-w-full gap-1.5 rounded-full px-2.5 py-1 text-[13px] font-normal whitespace-normal text-foreground",
-        PERSON_FACETS.has(facet) ? "border-emerald-200 bg-emerald-50" : CHIP_TONE[facet],
-        negated && "border-red-200 bg-red-50",
-      )}
-    >
-      <span className="text-[11px] font-medium tracking-wide text-muted-foreground uppercase">
-        {negated ? "Not " : ""}
-        {FACET_LABEL[facet] ?? facet}
-      </span>
-      <span className="break-words">{chipValue(facet, value, tz)}</span>
-    </Badge>
-  ))
+const FACET_TONE: Record<string, Tone> = {
+  type: "kind",
+  from: "person",
+  to: "person",
+  assignee: "person",
+  with: "person",
+  mentions: "person",
+  in: "place",
+  date: "time",
+  status: "attr",
+  priority: "attr",
+  bots: "attr",
+  sort: "order",
+}
+
+interface Line {
+  text: string
+  tone?: Tone | undefined
+  comment?: string | undefined
+}
+
+const isId = (v: unknown): v is string =>
+  typeof v === "string" && (people.has(v) || channels.has(v))
+const json = (v: unknown) => JSON.stringify(v)
+
+/** One JSON line per key; objects (dates, exclude) open onto their own lines. */
+function linesFor(r: ParseResult, tz: string): Line[] {
+  const entries: [string, unknown, Tone | undefined][] = [
+    ...Object.entries(r.filters).map(([k, v]): [string, unknown, Tone | undefined] => [
+      k,
+      v,
+      FACET_TONE[k],
+    ]),
+  ]
+  if (Object.keys(r.exclude).length) entries.push(["exclude", r.exclude, "neg"])
+  entries.push(["text", r.text, "topic"])
+  if (r.excludeText.length) entries.push(["excludeText", r.excludeText, "neg"])
+
+  const out: Line[] = [{ text: "{" }]
+  entries.forEach(([key, value, tone], i) => {
+    const comma = i < entries.length - 1 ? "," : ""
+    const names = (v: unknown) => (Array.isArray(v) ? v : [v]).filter(isId).map(nameOf).join(", ")
+    if (key === "date") {
+      const t = value as TimeValue
+      const order = ["from", "to", "granularity"]
+      const inner = Object.entries(t).sort(([a], [b]) => order.indexOf(a) - order.indexOf(b))
+      out.push({ text: `  "date": {`, tone, comment: describeTime(t, tz) })
+      inner.forEach(([k, v], j) => {
+        out.push({ text: `    "${k}": ${json(v)}${j < inner.length - 1 ? "," : ""}`, tone })
+      })
+      out.push({ text: `  }${comma}`, tone })
+    } else if (key === "exclude") {
+      const inner = Object.entries(value as Record<string, unknown>)
+      out.push({ text: `  "exclude": {`, tone })
+      inner.forEach(([k, v], j) => {
+        out.push({
+          text: `    "${k}": ${json(v)}${j < inner.length - 1 ? "," : ""}`,
+          tone,
+          comment: names(v),
+        })
+      })
+      out.push({ text: `  }${comma}`, tone })
+    } else {
+      out.push({ text: `  "${key}": ${json(value)}${comma}`, tone, comment: names(value) })
+    }
+  })
+  out.push({ text: "}" })
+  return out
+}
+
+function JsonView({ result, tz }: { result: ParseResult; tz: string }) {
+  return (
+    <pre className="overflow-hidden rounded-lg border bg-white py-2 font-mono text-[11.5px] leading-6 sm:text-[12.5px]">
+      {linesFor(result, tz).flatMap((l, i) => {
+        const indent = l.text.match(/^ */)?.[0] ?? ""
+        const row = (text: string, muted: boolean, key: string) => (
+          <div
+            key={key}
+            className={cn(
+              "border-l-2 border-transparent px-3 whitespace-pre-wrap [overflow-wrap:anywhere]",
+              l.tone && LINE_TONE[l.tone],
+              muted && "text-muted-foreground",
+            )}
+          >
+            {text}
+          </div>
+        )
+        // Comments sit on their own line above the key, so narrow screens wrap them cleanly.
+        return l.comment
+          ? [row(`${indent}// ${l.comment}`, true, `${i}c`), row(l.text, false, `${i}`)]
+          : [row(l.text, false, `${i}`)]
+      })}
+    </pre>
+  )
 }
 
 export function Result({ result, tz }: { result: ParseResult; tz: string }) {
   const [open, setOpen] = useState(false)
-  const hasFilters = Object.keys(result.filters).length + Object.keys(result.exclude).length > 0
-  const ref = result.meta.reference
+  const excludes = Object.keys(result.exclude).length > 0
   return (
     <div className="space-y-3 px-4 pt-3 pb-4">
-      <div className="flex flex-wrap gap-1.5">
-        {hasFilters ? (
-          <>
-            <Chips bag={result.filters as Record<string, unknown>} tz={tz} />
-            <Chips bag={result.exclude as Record<string, unknown>} tz={tz} negated />
-          </>
-        ) : (
-          <span className="text-sm text-muted-foreground">
-            No filters. Everything is search text.
-          </span>
-        )}
-      </div>
+      <JsonView result={result} tz={tz} />
 
-      <div className="flex items-baseline gap-3 text-sm">
-        <span className="shrink-0 text-[11px] font-medium tracking-wide text-muted-foreground uppercase">
-          Search text
-        </span>
-        <span className="min-w-0 break-words">
-          {result.text ? <mark className="rounded bg-neutral-100 px-0.5">{result.text}</mark> : "—"}
-          {result.excludeText.length > 0 && (
-            <>
-              {" "}
-              <span className="text-muted-foreground">minus</span>{" "}
-              <mark className="rounded bg-red-50 px-0.5 line-through">
-                {result.excludeText.join(", ")}
-              </mark>
-            </>
-          )}
-        </span>
-      </div>
-
-      {(result.issues.length > 0 || Object.keys(result.exclude).length > 0) && (
+      {(result.issues.length > 0 || excludes) && (
         <ul className="space-y-1.5 text-[13px] text-muted-foreground">
           {result.issues.map((i) => (
             <li key={describeIssue(i)} className="flex gap-2">
@@ -99,7 +137,7 @@ export function Result({ result, tz }: { result: ParseResult; tz: string }) {
               <span className="min-w-0 break-words">{describeIssue(i)}</span>
             </li>
           ))}
-          {Object.keys(result.exclude).length > 0 && (
+          {excludes && (
             <li className="flex gap-2">
               <Info className="mt-0.5 size-3.5 shrink-0" />
               <span>
@@ -123,10 +161,7 @@ export function Result({ result, tz }: { result: ParseResult; tz: string }) {
         </CollapsibleContent>
       </Collapsible>
 
-      <p className="text-[11px] leading-relaxed text-muted-foreground">
-        Relative to {fmt(ref, tz, DAY)}, {fmt(ref, tz, CLOCK)} · {tz} · signed in as{" "}
-        {people.get(SELF)?.name} · {result.meta.tookMs.toFixed(2)} ms
-      </p>
+      <p className="text-[11px] text-muted-foreground">Signed in as {people.get(SELF)?.name}</p>
     </div>
   )
 }
