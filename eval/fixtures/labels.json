@@ -1,0 +1,29 @@
+{
+  "irVersion": 1,
+  "note": "Label ids for BIO tagging. Order is fixed: TS (@qp/core ROLES) and Python (training/) must both read this file.",
+  "labels": [
+    "O",
+    "B-KIND",
+    "I-KIND",
+    "B-ACTOR",
+    "I-ACTOR",
+    "B-RECIPIENT",
+    "I-RECIPIENT",
+    "B-PARTICIPANT",
+    "I-PARTICIPANT",
+    "B-MENTION",
+    "I-MENTION",
+    "B-CONTAINER",
+    "I-CONTAINER",
+    "B-TIME",
+    "I-TIME",
+    "B-ATTR",
+    "I-ATTR",
+    "B-ORDER",
+    "I-ORDER",
+    "B-TOPIC",
+    "I-TOPIC",
+    "B-NEG",
+    "I-NEG"
+  ]
+}

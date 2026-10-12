@@ -37,12 +37,14 @@ export interface Settings {
   timeZone: string
   dayFirst: boolean
   weekStartsOn: number
+  fiscalYearStartMonth: number
 }
 
 export function parse(query: string, s: Settings): ParseResult {
   // Time policies live on the schema; the demo flips them per parse.
   schema.policies.time.dayFirst = s.dayFirst
   schema.policies.time.weekStartsOn = s.weekStartsOn
+  schema.policies.time.fiscalYearStartMonth = s.fiscalYearStartMonth
   return parser.parseSync(query, {
     reference: (s.reference ?? new Date()).toISOString(),
     timeZone: s.timeZone,

@@ -39,17 +39,12 @@ describe("normalizeTime", () => {
     expect(local(text)).toBe(expected)
   })
 
-  it.each([
-    "latest",
-    "early march",
-    "kal",
-    "q2 fy24",
-    "around 2 am",
-    "before diwali",
-    "15 minutes ago",
-  ])("%s is unsupported, not guessed", (text) => {
-    expect(local(text)).toBe("unsupported")
-  })
+  it.each(["latest", "early march", "kal", "around 2 am", "before diwali", "15 minutes ago"])(
+    "%s is unsupported, not guessed",
+    (text) => {
+      expect(local(text)).toBe("unsupported")
+    },
+  )
 
   it("respects dayFirst", () => {
     expect(local("3/10", { policies: { dayFirst: false } })).toBe(
@@ -67,5 +62,43 @@ describe("normalizeTime", () => {
   it("returns instants in the zone", () => {
     const r = normalizeTime("today", opts)
     expect(r.ok && r.from).toBe("2026-10-11T18:30:00.000Z")
+  })
+})
+
+describe("S4 follow-ups", () => {
+  it.each([
+    ["tdy", "2026-10-12T00:00 2026-10-13T00:00 day"],
+    ["ystrday", "2026-10-11T00:00 2026-10-12T00:00 day"],
+    ["lst wk", "2026-10-05T00:00 2026-10-12T00:00 week"],
+    ["wknd", "2026-10-10T00:00 2026-10-12T00:00 day"],
+    ["over the weekend", "2026-10-10T00:00 2026-10-12T00:00 day"],
+    ["week before last", "2026-09-28T00:00 2026-10-05T00:00 week"],
+    ["sept last yr", "2025-09-01T00:00 2025-10-01T00:00 month"],
+    ["1-15 jan", "2026-01-01T00:00 2026-01-16T00:00 day"],
+    ["1st-15th march 2025", "2025-03-01T00:00 2025-03-16T00:00 day"],
+    ["h2 2024", "2024-07-01T00:00 2025-01-01T00:00 half"],
+    ["h2", "2026-07-01T00:00 2027-01-01T00:00 half"],
+    ["fy24", "2024-01-01T00:00 2025-01-01T00:00 year"],
+  ])("%s", (text, expected) => {
+    expect(local(text)).toBe(expected)
+  })
+
+  const india = { policies: { fiscalYearStartMonth: 4 } }
+  it.each([
+    ["fy24", "2023-04-01T00:00 2024-04-01T00:00 year"],
+    ["fiscal year 2025", "2024-04-01T00:00 2025-04-01T00:00 year"],
+    ["fy 22-23", "2022-04-01T00:00 2023-04-01T00:00 year"],
+    ["this fy", "2026-04-01T00:00 2027-04-01T00:00 year"],
+    ["last fy", "2025-04-01T00:00 2026-04-01T00:00 year"],
+    ["q2 fy24", "2023-07-01T00:00 2023-10-01T00:00 quarter"],
+    ["fy25 q2", "2024-07-01T00:00 2024-10-01T00:00 quarter"],
+    ["h1 fy25", "2024-04-01T00:00 2024-10-01T00:00 half"],
+    ["since fy24", "2023-04-01T00:00 – year"],
+  ])("fiscal year from April: %s", (text, expected) => {
+    expect(local(text, india)).toBe(expected)
+  })
+
+  it.each(["fy 22-24", "q5 fy24", "h3 2024"])("%s is unsupported", (text) => {
+    expect(local(text, india)).toBe("unsupported")
   })
 })

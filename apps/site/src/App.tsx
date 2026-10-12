@@ -52,6 +52,7 @@ export function App() {
     timeZone: ZONES[0] ?? "UTC",
     dayFirst: true,
     weekStartsOn: 1,
+    fiscalYearStartMonth: 4,
   })
   const cardRef = useRef<HTMLDivElement>(null)
   const result = useMemo(() => parse(query, settings), [query, settings])

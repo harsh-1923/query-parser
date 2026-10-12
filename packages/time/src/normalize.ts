@@ -7,7 +7,12 @@
 
 import type { Anchors, Granularity, Options, Policies, TimeResult, Which } from "./types"
 
-const DEFAULTS: Policies = { weekStartsOn: 1, dayFirst: true, recentDays: 7 }
+const DEFAULTS: Policies = {
+  weekStartsOn: 1,
+  dayFirst: true,
+  recentDays: 7,
+  fiscalYearStartMonth: 1,
+}
 
 // ---------------------------------------------------------------------------------------------
 // Civil time helpers. A Day is an integer count of days since 1970-01-01; L is local civil ms.
@@ -88,6 +93,16 @@ const TOKEN_RE =
 
 const SYNONYMS: Record<string, string> = {
   yday: "yesterday",
+  ystrday: "yesterday",
+  yestrday: "yesterday",
+  ysterday: "yesterday",
+  yestday: "yesterday",
+  tdy: "today",
+  tday: "today",
+  wknd: "weekend",
+  wkend: "weekend",
+  lst: "last",
+  over: "during",
   yest: "yesterday",
   tmrw: "tomorrow",
   tmr: "tomorrow",
@@ -210,6 +225,8 @@ const PARTS: Record<string, [number, number]> = {
 const FILLERS = new Set(["the", "of", "at", "just"])
 
 const KEYWORDS = [
+  "fy",
+  "half",
   "today",
   "yesterday",
   "tomorrow",
@@ -301,6 +318,10 @@ function tokenize(text: string): Tok[] {
     .replace(/[‘’]/g, "'")
     .replace(/(\w)'s\b/g, "$1")
     .replace(/\bb4\b/g, "before")
+    // "fy24", "fiscal year 2025", "h2" become separate words the parser knows.
+    .replace(/\bfiscal\s+year\b/g, "fy")
+    .replace(/\bfy\s?(\d{2}|\d{4})\b/g, "fy $1")
+    .replace(/\bh([12])\b/g, "half $1")
     .trim()
   const out: Tok[] = []
   TOKEN_RE.lastIndex = 0
@@ -483,7 +504,7 @@ class Parser {
       for (const [d, k] of this.dayPoint(j)) out.push([combine(d, tod), k])
       out.push([combine((ctx) => dayIv(ctx.today), tod), j])
     }
-    out.push(...this.relative(i), ...this.monthLike(i), ...this.yearLike(i))
+    out.push(...this.relative(i), ...this.monthLike(i), ...this.fiscalLike(i), ...this.yearLike(i))
     return out
   }
 
@@ -648,6 +669,10 @@ class Parser {
       }
     }
 
+    // "(the) week before last"
+    if (w === "week" && this.word(i + 1, "before") && this.word(i + 2, "last"))
+      out.push([(c) => unitPeriod("week", c.today - 14, c), i + 3])
+
     // weekends
     const wi = wh ? wh[1] : i
     if (this.word(wi, "weekend")) {
@@ -675,6 +700,12 @@ class Parser {
     if (mo) {
       const yr = this.year(j + 1)
       if (yr && !wh) out.push([() => monthIv(yr[0], mo), yr[1]])
+      // "sept last year", "march this year"
+      const rel = !wh ? this.which(j + 1) : null
+      if (rel && this.word(rel[1], "year")) {
+        const dy = rel[0] === "last" ? -1 : rel[0] === "next" ? 1 : 0
+        out.push([(c) => monthIv(ymd(c.today).y + dy, mo), rel[1] + 1])
+      }
       out.push([(c, na) => pickPeriod(c, na, wh?.[0], (y) => dayOf(y, mo, 1), 1), j + 1])
     }
     // quarters: "q3", "q2 2025", "1q25", "first quarter", "last q2"
@@ -700,6 +731,67 @@ class Parser {
       if (y0 !== undefined && !wh) out.push([() => quarterIv(y0, qq), yr ? yr[1] : k])
       if (qy === undefined)
         out.push([(c, na) => pickPeriod(c, na, wh?.[0], (y) => dayOf(y, qq * 3 - 2, 1), 3), k])
+    }
+    return out
+  }
+
+  /** Fiscal years, quarters and halves: "fy24", "fy 22-23", "this fy", "q2 fy24", "h2 2024". */
+  fiscalLike(i: number): Match<Point>[] {
+    const out: Match<Point>[] = []
+    const fyName = (n: number) => (n < 100 ? 2000 + n : n)
+    // "fy" N ["-" M] → [end year, next index]
+    const fyAt = (j: number): [number, number] | null => {
+      if (!this.word(j, "fy")) return null
+      const a = this.number(j + 1)
+      if (!a) return null
+      if (this.t[a[1]]?.k === "dash") {
+        const b = this.number(a[1] + 1)
+        if (!b || fyName(b[0]) !== fyName(a[0]) + 1) return null
+        return [fyName(b[0]), b[1]]
+      }
+      return [fyName(a[0]), a[1]]
+    }
+
+    // "this fy", "last fy", "fy24", "fy 22-23"
+    const wh = this.which(i)
+    if (wh && this.word(wh[1], "fy")) {
+      const dy = wh[0] === "last" ? -1 : wh[0] === "next" ? 1 : 0
+      out.push([(c) => fiscalIv(c, fyContaining(c.today, c.p) + dy, 12, 1), wh[1] + 1])
+    }
+    const fy = fyAt(i)
+    if (fy) out.push([(c) => fiscalIv(c, fy[0], 12, 1), fy[1]])
+
+    // "q2 fy24", "fy25 q2"
+    const tok = this.t[i]
+    if (tok?.k === "quarter" && tok.y === undefined) {
+      const f = fyAt(i + 1)
+      if (f) out.push([(c) => fiscalIv(c, f[0], 3, tok.q), f[1]])
+    }
+    if (fy) {
+      const q = this.t[fy[1]]
+      if (q?.k === "quarter" && q.y === undefined)
+        out.push([(c) => fiscalIv(c, fy[0], 3, q.q), fy[1] + 1])
+    }
+
+    // "h2 2024" (calendar), "h1 fy25" (fiscal), "h2" (most recent)
+    if (this.word(i, "half")) {
+      const h = this.number(i + 1)
+      if (h && (h[0] === 1 || h[0] === 2)) {
+        const half = h[0]
+        const f = fyAt(h[1])
+        const yr = this.year(h[1])
+        if (f) out.push([(c) => fiscalIv(c, f[0], 6, half), f[1]])
+        else if (yr) out.push([() => halfIv(yr[0], half), yr[1]])
+        else
+          out.push([
+            (_, na) => {
+              const y = ymd(na).y
+              const start = dayOf(y, half === 1 ? 1 : 7, 1)
+              return halfIv(start <= na ? y : y - 1, half)
+            },
+            h[1],
+          ])
+      }
     }
     return out
   }
@@ -749,6 +841,26 @@ const quarterIv = (y: number, q: number): Interval => ({
   to: dayOf(y, q * 3 + 1, 1) * DAY,
   g: "quarter",
 })
+const halfIv = (y: number, h: number): Interval => ({
+  from: dayOf(y, h === 1 ? 1 : 7, 1) * DAY,
+  to: dayOf(h === 1 ? y : y + 1, h === 1 ? 7 : 1, 1) * DAY,
+  g: "half",
+})
+/** First day of the fiscal year named `end` (the year it ends in). */
+const fyStart = (end: number, p: Policies): Day =>
+  p.fiscalYearStartMonth === 1 ? dayOf(end, 1, 1) : dayOf(end - 1, p.fiscalYearStartMonth, 1)
+const fyContaining = (day: Day, p: Policies): number => {
+  const { y, m } = ymd(day)
+  return p.fiscalYearStartMonth === 1 || m < p.fiscalYearStartMonth ? y : y + 1
+}
+/** Part `n` (1-based) of `months` months within fiscal year `end`; months = 12 is the whole year. */
+function fiscalIv(c: Ctx, end: number, months: number, n: number): Interval | null {
+  if (n < 1 || n * months > 12) return null
+  const from = addMonths(fyStart(end, c.p), months * (n - 1))
+  const g: Granularity = months === 12 ? "year" : months === 6 ? "half" : "quarter"
+  return { from: from * DAY, to: addMonths(from, months) * DAY, g }
+}
+
 /** Months and quarters: bare = most recent started ≤ notAfter; last/this/next per POLICIES §7–8. */
 function pickPeriod(
   c: Ctx,
@@ -797,7 +909,7 @@ function applyOp(op: Op | undefined, iv: Interval): Interval {
   }
 }
 
-const FINER: Granularity[] = ["hour", "day", "week", "month", "quarter", "year"]
+const FINER: Granularity[] = ["hour", "day", "week", "month", "quarter", "half", "year"]
 
 function parseTokens(tokens: Tok[], ctx: Ctx): Interval | null {
   const P = new Parser(tokens)
@@ -805,6 +917,24 @@ function parseTokens(tokens: Tok[], ctx: Ctx): Interval | null {
   const full = (ms: Match<Point>[], from: number) => ms.filter(([, j]) => j === n && from <= n)
   const results: Interval[] = []
   const resolve = (pt: Point, na = ctx.today) => pt(ctx, na)
+
+  // "1-15 jan", "1st-15th march 2025": a day range inside one month
+  {
+    const a = P.dayNum(0)
+    const b = a && tokens[a[1]]?.k === "dash" ? P.dayNum(a[1] + 1) : null
+    const mo = b ? MONTHS[P.wordAt(b[1]) ?? ""] : undefined
+    if (a && b && mo) {
+      const yr = P.year(b[1] + 1)
+      const end = yr ? yr[1] : b[1] + 1
+      if (end === n) {
+        const B = dateDay(b[0], mo, yr?.[0], ctx.today)
+        const A =
+          B?.from !== undefined ? dateDay(a[0], mo, ymd(B.from / DAY).y, B.from / DAY) : null
+        if (A?.from !== undefined && B?.to !== undefined && A.from < B.to)
+          return { from: A.from, to: B.to, g: "day" }
+      }
+    }
+  }
 
   // ranges: [between|from] A (and|to|through|-|2) B
   const r0 = P.word(0, "between", "from") ? 1 : 0

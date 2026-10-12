@@ -110,6 +110,20 @@ export function SettingsPanel({
               </SelectContent>
             </Select>
           </Field>
+          <Field label="Fiscal year starts in">
+            <Select
+              value={String(settings.fiscalYearStartMonth)}
+              onValueChange={(v) => set({ fiscalYearStartMonth: Number(v) })}
+            >
+              <SelectTrigger className="w-full">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="4">April (fy24 = Apr 2023 – Mar 2024)</SelectItem>
+                <SelectItem value="1">January (fy24 = 2024)</SelectItem>
+              </SelectContent>
+            </Select>
+          </Field>
           <Button
             variant="ghost"
             size="sm"
