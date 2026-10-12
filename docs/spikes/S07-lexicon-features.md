@@ -1,7 +1,6 @@
 # S7: lexicon and rule features as tagger inputs
 
-**Status:** interim. These checkpoints stopped early, at a 2-hour time limit (baseline: epoch 11,
-feature model: epoch 9). Fully trained runs are pending; this page will be updated with them.
+**Status:** done. Inputs help; whether the model beats the rules depends on when training stops.
 Branch: `spike/lexicon-features`.
 
 ## Hypothesis
@@ -33,44 +32,55 @@ Today the model reads only bytes (PLAN §6.2), and the directory is consulted on
 - **Scoring.** Span F1 with exact role and boundaries, using `qp_train.evaluate`.
 - **Reproduce:** `spikes/S07-lexicon-features/run.sh`.
 
-## Numbers (interim, single seed)
+## Numbers (single seed)
 
-Span F1. Results: [eval/results/s7/](../../eval/results/s7/).
+Span F1. Results: [eval/results/s7/](../../eval/results/s7/). The "epoch 9" and "epoch 11" runs were
+cut off by a 2-hour time limit. "Full" runs trained up to 30 epochs with early stopping (patience 5)
+on generated val data; the feature model's best epoch was 23.
 
 | System | S02 (204) | GLM (300) |
 |---|---|---|
 | Rules (`pnpm eval`) | 0.727 | 0.726 |
 | Baseline medium, epoch 11 | 0.717 | 0.669 |
-| Feature model, no features given | 0.615 | 0.592 |
-| + rule labels | 0.765 | 0.745 |
-| + kind/attr aliases | 0.762 | 0.748 |
-| + directory (name pool) | **0.778** | **0.752** |
-| + directory (oracle) | 0.779 | 0.751 |
+| Baseline medium, full | 0.748 | 0.671 |
+| Feature model, epoch 9, all inputs | 0.778 | **0.752** |
+| Feature model, full: no inputs given | 0.681 | 0.645 |
+| … + rule labels | 0.773 | 0.690 |
+| … + kind/attr aliases | 0.773 | 0.694 |
+| … + directory (name pool) | 0.784 | 0.698 |
+| … + directory (oracle) | **0.792** | 0.701 |
 
-For reference, S1 round 2's fully trained medium scored 0.744 / 0.636.
+Latency of the feature model: forward + Viterbi p50 1.2–1.3 ms (batch 1, 1 thread, PyTorch,
+`qp_train.evaluate`). The rule tagger, which now has to run first, hasn't been timed.
 
 ## Reading
 
-- **The model now beats the rules on both sets: +5.1 F1 on S02, +2.6 on GLM.** Before, it beat
-  them only on S02.
-- **Almost all of the gain comes from the rule labels.** The model learns where to trust the rules
-  and where to override them.
-  - Aliases add about nothing on top: the rules already use the same lists.
-  - Names add +1.6 on S02 and +0.4 on GLM.
-  - The oracle directory adds nothing over the name pool. These test sets have few cue-less
-    names, so the directory has little to fix here.
-- **Without features the model is worse than the plain baseline** (0.615 vs 0.717). In this
-  design the features are part of the model, not an optional extra. That's fine: the rules and
-  aliases are always available at runtime.
-- **Still well short of the 0.85 bar.**
-- **Noise.** On 204 to 300 queries, a difference of about 3 F1 is within noise (one seed). The GLM
-  gain is at that edge; the S02 gain is not.
+- **The inputs help the model reliably.** Fully trained, the feature model beats the fully
+  trained baseline by +3.6 on S02 and +2.7 on GLM.
+- **Almost all of the gain comes from the rule labels.**
+  - Names add about +1 on S02 and +0.4 on GLM.
+  - The oracle directory adds about +0.8 more on S02 and +0.3 on GLM. These sets have few
+    cue-less names, so there's little for a directory to fix.
+- **Whether the model beats the rules depends on when training stops.**
+  - On S02 it beats the rules at every checkpoint (+5 to +6).
+  - On GLM it beats the rules at epoch 9 (+2.6) but loses to them after full training (−2.8).
+  - Validation F1 on generated data keeps rising (0.972 → 0.983) while GLM falls. With more
+    epochs, the model learns to override the rules in ways that only pay off on generated
+    queries.
+- **We are selecting checkpoints on the wrong data.** Generated val measures fit to the
+  templates, not to queries written by others. This probably affected S1 too.
+- **Still far from the 0.85 bar.** A single seed and 204–300 queries give about ±3 F1 of noise;
+  the GLM swing (5.4) is bigger than that.
 
-## Decision (pending full runs)
+## Decision
 
-- If the fully trained runs hold:
-  - write ADR 0004 "runtime rule and lexicon features as tagger input";
-  - update PLAN §6.2;
-  - pin the featurizer with a TS ↔ Python fixture (AGENTS rule 6).
-- Cost at runtime: the rule tagger has to run before the model. It hasn't been timed yet;
-  measure it with the S06 harness before writing the ADR.
+1. **Don't write the ADR yet.** The features are worth keeping on the spike branch, but the
+   evidence for "the model beats the rules" isn't stable.
+2. **Add an LLM-written dev set** for checkpoint selection and early stopping:
+   - a third model family, a few hundred queries, never used for training or as a test set;
+   - this needs the LLM gateway, so it runs on the laptop.
+
+   Then rerun S7 with selection on that set, ideally with 3 seeds.
+3. **If it holds,** write ADR 0004 "runtime rule and lexicon features as tagger input", update
+   PLAN §6.2, and pin the featurizer with a TS ↔ Python fixture (AGENTS rule 6).
+4. **The real test is the Xyne Spaces data.** Both LLM-written sets are stand-ins.
