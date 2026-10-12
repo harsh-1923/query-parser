@@ -88,7 +88,14 @@ importers:
         specifier: workspace:*
         version: link:../time
 
-  packages/datagen: {}
+  packages/datagen:
+    dependencies:
+      '@qp/core':
+        specifier: workspace:*
+        version: link:../core
+      '@qp/time':
+        specifier: workspace:*
+        version: link:../time
 
   packages/model: {}
 

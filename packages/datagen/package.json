@@ -8,6 +8,11 @@
     ".": "./src/index.ts"
   },
   "scripts": {
-    "typecheck": "tsc --noEmit -p ."
+    "typecheck": "tsc --noEmit -p .",
+    "generate": "node src/cli.ts"
+  },
+  "dependencies": {
+    "@qp/core": "workspace:*",
+    "@qp/time": "workspace:*"
   }
 }

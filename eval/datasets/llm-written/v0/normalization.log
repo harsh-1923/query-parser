@@ -1,0 +1,28 @@
+rahul pdf from last week about kyc drop-off	last week → from last week	time-operator
+anything from jake about the bbps integration not from dms	!CONTAINER:dms → NEG:not	neg-tag
+dispute tat sla figures excluding test merchants	!TOPIC:test merchants → NEG:excluding	neg-tag
+messages with idempotency key this month except bot posts	!ATTR:bot posts → NEG:except	neg-tag
+cashback campaign results q2 pdf not the draft	!ATTR:draft → NEG:not	neg-tag
+not newsletters from last week	!KIND:newsletters → NEG:not	neg-tag
+except from hr, unread	!ACTOR:hr → NEG:except	neg-tag
+not from linkedin or github, last 30 days	!ACTOR:linkedin → NEG:not	neg-tag
+karan's tickets in payments board	payments board → payments	container-noun
+p0 bugs not closed	!ATTR:closed → NEG:not	neg-tag
+checkout project blocked tickets	checkout project → checkout	container-noun
+unassigned bugs in berlin team	berlin team → berlin	container-noun
+sort by most recent comments	ORDER:most recent comments → ORDER:most recent + KIND:comments	order-kind-split
+not done high priority mobile	!ATTR:done → NEG:not	neg-tag
+todo in platform board assigned to nobody	platform board → platform	container-noun
+whats in the backlog for search board	search board → search	container-noun
+shared by vikram not in trash	!ATTR:in trash → NEG:not	neg-tag
+marketing folder slides	marketing folder → marketing	container-noun
+not pdfs	!KIND:pdfs → NEG:not	neg-tag
+excluding drafts budget	!ATTR:drafts → NEG:excluding	neg-tag
+exclude archived folder	archived folder → archived	container-noun
+exclude archived folder	!CONTAINER:archived → NEG:exclude	neg-tag
+product spec not owned by me	!ACTOR:me → NEG:not	neg-tag
+contracts folder modified this year	contracts folder → contracts	container-noun
+pending action items from yesterday's sync	yesterday's → from yesterday's	time-operator
+roadmap discussion from last month, not the sales one	!TOPIC:sales → NEG:not	neg-tag
+notes not from standups from this week	!CONTAINER:standups → NEG:not	neg-tag
+ops review summary, exclude draft	!ATTR:draft → NEG:exclude	neg-tag

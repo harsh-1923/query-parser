@@ -1,0 +1,71 @@
+{
+  "source": "spikes/S05-vocab/aliases-v1.mjs",
+  "note": "Curated v1 vocabulary (ATTR_ALIASES). v1, not v2: S05 found the extra v2 genre nouns (report, spec, invoice, interview) are topics more often than kinds, and eval/ANNOTATION.md labels them TOPIC.",
+  "aliases": {
+    "status:open": [
+      "open",
+      "active",
+      "unresolved",
+      "unfinished",
+      "not done",
+      "not closed",
+      "outstanding",
+      "pending"
+    ],
+    "status:todo": ["todo", "to do", "to-do", "not started", "new"],
+    "status:in_progress": ["in progress", "wip", "ongoing", "in flight", "started", "doing"],
+    "status:in_review": ["in review", "review", "under review", "in qa", "qa", "testing"],
+    "status:blocked": ["blocked", "stuck", "on hold"],
+    "status:done": [
+      "done",
+      "completed",
+      "complete",
+      "closed",
+      "resolved",
+      "finished",
+      "fixed",
+      "shipped"
+    ],
+    "status:backlog": ["backlog", "in backlog", "icebox"],
+    "status:reopened": ["reopened", "re-opened"],
+    "status:cancelled": ["cancelled", "canceled", "wont fix", "won't fix", "wontfix", "rejected"],
+    "status:pending_approval": [
+      "pending approval",
+      "awaiting approval",
+      "needs approval",
+      "waiting for approval"
+    ],
+    "priority:critical": [
+      "p0",
+      "critical",
+      "urgent",
+      "blocker",
+      "sev0",
+      "sev1",
+      "highest priority"
+    ],
+    "priority:high": ["p1", "high priority", "high pri", "high", "important"],
+    "priority:medium": ["p2", "medium priority", "medium", "normal priority"],
+    "priority:low": ["p3", "p4", "low priority", "low", "minor"],
+    "priority:none": ["without priority", "no priority", "unprioritized", "unprioritised"],
+    "assignee:none": [
+      "unassigned",
+      "without assignee",
+      "no assignee",
+      "assigned to nobody",
+      "assigned to no one",
+      "nobody assigned"
+    ],
+    "is:unread": ["unread", "not read", "unopened", "unseen"],
+    "is:starred": ["starred", "saved", "bookmarked", "favorite", "favourite"],
+    "is:pinned": ["pinned"],
+    "is:flagged": ["flagged", "marked important"],
+    "is:draft": ["draft", "unsent"],
+    "is:trashed": ["trashed", "in trash", "deleted", "in the bin", "binned"],
+    "is:unsigned": ["unsigned", "not signed", "pending signature"],
+    "is:archived": ["archived", "in archive"],
+    "has:attachment": ["with attachment", "has attachment", "with file", "attached"],
+    "has:link": ["with link", "has link", "with url", "containing link"],
+    "from:bot": ["bot post", "bot message", "from bot", "by bot", "automated"]
+  }
+}
