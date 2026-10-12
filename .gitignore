@@ -18,3 +18,6 @@ training/__pycache__/
 
 # generated data (regenerated deterministically from seeds)
 eval/datasets/generated/
+
+# vercel cli link
+.vercel/

@@ -1,3 +1,3 @@
 // @qp/time: Deterministic normalization of time phrases into ranges, with explicit policies.
-// Placeholder. See docs/PLAN.md for the design this package implements.
-export {}
+export { normalizeTime } from "./normalize"
+export type { Anchors, Granularity, Options, Policies, TimeResult, Which } from "./types"

@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>query-parser — Plain English to Search Filters</title>
+    <meta name="description" content="A small, offline query parser. Try the time normalizer in your browser." />
+    <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <main>
+      <header class="brand">
+        <img src="/icon.svg" alt="" width="30" height="30" />
+        <span>query-parser</span>
+      </header>
+
+      <h1>Plain English to Search Filters</h1>
+      <p class="lede">Deterministic, offline, running locally in your browser</p>
+
+      <section class="card" aria-label="Try it out">
+        <div class="card-head">
+          <span class="eyebrow">Try it out</span>
+          <span class="stage">Time only · roles coming next</span>
+        </div>
+        <div class="field">
+          <div class="mirror" id="mirror" aria-hidden="true"></div>
+          <input
+            id="query"
+            type="text"
+            spellcheck="false"
+            autocomplete="off"
+            autocapitalize="off"
+            aria-label="Search query"
+            placeholder="pdfs from utkarsh last week"
+          />
+        </div>
+        <div class="out" id="out" aria-live="polite"></div>
+      </section>
+
+      <ul class="legend">
+        <li><i class="sw date"></i>Day or Date</li>
+        <li><i class="sw clock"></i>Clock Time</li>
+        <li><i class="sw open"></i>Open-Ended</li>
+        <li><i class="sw text"></i>Search Text</li>
+      </ul>
+
+      <details class="settings">
+        <summary>Reference and policies</summary>
+        <div class="grid">
+          <label>Now <input id="ref" type="datetime-local" /></label>
+          <label>Time zone <select id="tz"></select></label>
+          <label>
+            Dates
+            <select id="dayFirst">
+              <option value="1">3/10 = 3 Oct</option>
+              <option value="0">3/10 = 10 Mar</option>
+            </select>
+          </label>
+          <label>
+            Week starts
+            <select id="weekStart">
+              <option value="1">Monday</option>
+              <option value="0">Sunday</option>
+            </select>
+          </label>
+        </div>
+        <button type="button" id="resetRef" class="link">Use the current time</button>
+      </details>
+
+      <section class="examples">
+        <h2>Tap One, See the Range</h2>
+        <p class="sub">Each of these runs in the box above</p>
+        <div class="tiles" id="tiles"></div>
+      </section>
+
+      <section class="code">
+        <h2>Use It in Your Code</h2>
+        <p class="sub">
+          Pass the time phrase, your reference instant and your time zone. You get back a half-open
+          range, or <code>unsupported</code>, never a guess
+        </p>
+        <pre><code><span class="k">import</span> { normalizeTime } <span class="k">from</span> <span class="s">"@qp/time"</span>
+
+<span class="k">const</span> r = normalizeTime(<span class="s">"last week"</span>, {
+  reference: <span class="s">"2026-10-12T10:00:00Z"</span>, <span class="c">// your "now"</span>
+  timeZone: <span class="s">"Asia/Kolkata"</span>,        <span class="c">// your zone</span>
+})
+
+<span class="c">// r → { ok: true, granularity: "week",</span>
+<span class="c">//       from: "2026-10-04T18:30:00.000Z",   // Mon 5 Oct, 00:00 IST</span>
+<span class="c">//       to:   "2026-10-11T18:30:00.000Z" }  // Mon 12 Oct, exclusive</span></code></pre>
+      </section>
+
+      <section class="about">
+        <h2>A Small Experiment. Still Growing</h2>
+        <p>
+          The SDK will tag every part of a query (who, where, what kind, when) with a tiny model and map
+          it to your product's filters. Today only the time normalizer exists. The highlighting above
+          is a demo stand-in for the tagger.
+        </p>
+        <p>
+          In spike S4 it covered every time phrase in our test queries and 84.9% of a held-out set, with
+          zero wrong answers. Unfamiliar wording comes back as unsupported.
+          <a href="https://github.com/harsh-1923/query-parser/blob/main/docs/spikes/S04-time-normalization.md">Read the results ↗</a>
+        </p>
+      </section>
+
+      <footer>
+        <span>query-parser</span>
+        <span id="build"></span>
+      </footer>
+    </main>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

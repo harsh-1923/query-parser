@@ -1,0 +1,7 @@
+# CLI deploys upload the working tree; keep secrets and heavy local folders out.
+.env*
+!.env.example
+.claude/
+spikes/
+training/
+**/node_modules

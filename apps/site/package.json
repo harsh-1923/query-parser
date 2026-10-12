@@ -1,0 +1,17 @@
+{
+  "name": "site",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit -p ."
+  },
+  "dependencies": {
+    "@qp/time": "workspace:*"
+  },
+  "devDependencies": {
+    "vite": "8.3.1"
+  }
+}
