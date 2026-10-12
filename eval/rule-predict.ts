@@ -31,11 +31,17 @@ const [input, output] = process.argv.slice(2)
 if (!input || !output) throw new Error("usage: node eval/rule-predict.ts <in.jsonl> <out.jsonl>")
 const lines = readFileSync(input, "utf8").split("\n").filter(Boolean)
 const out = lines.map((l) => {
-  const ex = JSON.parse(l) as { tokens: string[]; offsets: [number, number][] }
+  const ex = JSON.parse(l) as {
+    tokens: string[]
+    offsets: [number, number][]
+    operators?: boolean[]
+  }
+  // Operator tokens carry `operator`, as tokenize() would set it, so the tagger skips them.
   const tokens = ex.tokens.map((text, i) => ({
     text,
     start: ex.offsets[i]?.[0] ?? 0,
     end: ex.offsets[i]?.[1] ?? 0,
+    ...(ex.operators?.[i] ? { operator: { key: "", value: "" } } : {}),
   }))
   return JSON.stringify({ ...ex, tags: tagger.tag(tokens).labels })
 })

@@ -7,14 +7,14 @@ import { TEMPLATES } from "./templates"
 import { REFERENCE, TIME_ZONE } from "./time"
 import type { Example } from "./types"
 
-const options = { seed: 7, train: 350, val: 75, test: 75 }
+const options = { seed: 7, train: 350, val: 75, test: 75, testSeen: 60 }
 const run = generate(options)
 const all: Example[] = Object.values(run.splits).flat()
 
 describe("determinism", () => {
   it("same seed gives byte-identical output", () => {
     const again = generate(options)
-    for (const split of ["train", "val", "test-generated"] as const) {
+    for (const split of Object.keys(run.splits) as (keyof typeof run.splits)[]) {
       expect(serialize(again.splits[split])).toBe(serialize(run.splits[split]))
     }
     expect(JSON.stringify(again.stats)).toBe(JSON.stringify(run.stats))
@@ -31,6 +31,7 @@ describe("examples", () => {
     expect(run.splits.train).toHaveLength(options.train)
     expect(run.splits.val).toHaveLength(options.val)
     expect(run.splits["test-generated"]).toHaveLength(options.test)
+    expect(run.splits["test-seen-templates-unseen-names"]).toHaveLength(options.testSeen)
   })
 
   it("keeps tokens, offsets and tags the same length and offsets inside the text", () => {
@@ -76,8 +77,18 @@ describe("examples", () => {
   it("test-generated uses only held-out templates, train and val none", () => {
     const held = new Set(TEMPLATES.filter((t) => t.heldOut).map((t) => `template:${t.id}`))
     const isNone = (e: Example): boolean => e.source.startsWith("template:none_")
-    expect(run.splits["test-generated"].every((e) => held.has(e.source) || isNone(e))).toBe(true)
-    expect([...run.splits.train, ...run.splits.val].some((e) => held.has(e.source))).toBe(false)
+    const heldBag = "template:bag-held-out"
+    expect(
+      run.splits["test-generated"].every(
+        (e) => held.has(e.source) || e.source === heldBag || isNone(e),
+      ),
+    ).toBe(true)
+    const seenSplits = [
+      ...run.splits.train,
+      ...run.splits.val,
+      ...run.splits["test-seen-templates-unseen-names"],
+    ]
+    expect(seenSplits.some((e) => held.has(e.source) || e.source === heldBag)).toBe(false)
   })
 
   it("test-generated names come only from the test pools", () => {
@@ -99,6 +110,54 @@ describe("examples", () => {
       })
     }
     expect(seenTest).toBeGreaterThan(10)
+  })
+
+  it("test-seen-templates-unseen-names uses train templates with test-pool names only", () => {
+    const origins = Object.values(loadLexicons().names)
+    const pool = (side: "train" | "test"): Set<string> =>
+      new Set(origins.flatMap((o) => [...o[side].first, ...o[side].last]))
+    const train = pool("train")
+    const test = pool("test")
+    const person = new Set(["ACTOR", "RECIPIENT", "PARTICIPANT", "MENTION"])
+    let seenTest = 0
+    for (const e of run.splits["test-seen-templates-unseen-names"]) {
+      e.tokens.forEach((tok, i) => {
+        const word = tok.toLowerCase()
+        if (!person.has(e.tags[i]?.slice(2) ?? "")) return
+        if (test.has(word)) seenTest++
+        expect(train.has(word) && !test.has(word), word).toBe(false)
+      })
+    }
+    expect(seenTest).toBeGreaterThan(5)
+  })
+
+  it("never pairs a negation with a verb-like attr alias", () => {
+    const bad = /^(with|has|without|in|assigned)\b/
+    for (const e of all) {
+      e.tags.forEach((tag, i) => {
+        if (tag !== "B-NEG") return
+        const rest: string[] = []
+        for (let j = i + 1; j < e.tags.length && e.tags[j]?.endsWith("ATTR"); j++) {
+          rest.push(e.tokens[j] as string)
+        }
+        expect(bad.test(rest.join(" ").toLowerCase()), e.text).toBe(false)
+      })
+    }
+  })
+
+  it("covers roles at the start and the end of queries", () => {
+    const first = new Set<string>()
+    const last = new Set<string>()
+    for (const e of run.splits.train) {
+      const f = e.tags[0]
+      const l = e.tags[e.tags.length - 1]
+      if (f?.startsWith("B-")) first.add(f.slice(2))
+      if (l && l !== "O") last.add(l.slice(2))
+    }
+    for (const r of ["KIND", "TOPIC", "TIME", "ATTR", "ACTOR"]) {
+      expect(first.has(r), `${r} first`).toBe(true)
+      expect(last.has(r), `${r} last`).toBe(true)
+    }
   })
 
   it("drops anything on the blocklist", () => {

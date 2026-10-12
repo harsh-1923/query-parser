@@ -1,0 +1,98 @@
+- from:priya in:#upi-switch has:file
+    gold 
+    pred CONTAINER[in:#upi-switch]
+- refund pending more than 7 days
+    gold TOPIC[refund] ATTR[pending]
+    pred TOPIC[refund] ATTR[pending more] TIME[than 7 days]
+- settelment delay axis bank
+    gold TOPIC[settelment delay axis bank]
+    pred TOPIC[settelment delay]
+- in:#customer-escalations sort:latest
+    gold 
+    pred CONTAINER[in:#customer-escalations]
+- from:meera is:pinned kyc
+    gold TOPIC[kyc]
+    pred 
+- e-mandate prd draft v2
+    gold TOPIC[e-mandate prd] ATTR[draft] TOPIC[v2]
+    pred TOPIC[e-mandate prd draft v2]
+- from:arjun has:link jira
+    gold TOPIC[jira]
+    pred KIND[jira]
+- in:#incident-sev1 unread
+    gold ATTR[unread]
+    pred CONTAINER[in:#incident-sev1] ATTR[unread]
+- txn failed but money debited
+    gold TOPIC[txn failed but money debited]
+    pred ACTOR[txn failed] TOPIC[money debited]
+- lender partnership deck pptx
+    gold TOPIC[lender partnership] KIND[deck pptx]
+    pred ACTOR[lender partnership] KIND[deck] KIND[pptx]
+- town hall call transcript
+    gold TOPIC[town hall] KIND[call transcript]
+    pred ACTOR[town] TOPIC[hall] KIND[call transcript]
+- from:rahul in:#payments-ops has:file xlsx
+    gold KIND[xlsx]
+    pred CONTAINER[in:#payments-ops] KIND[xlsx]
+- wfh policy
+    gold TOPIC[wfh policy]
+    pred TOPIC[wfh] TOPIC[policy]
+- figma link new dashboard
+    gold TOPIC[figma link new dashboard]
+    pred ATTR[figma link] TOPIC[new dashboard]
+- in:#product roadmap before:march
+    gold TOPIC[roadmap]
+    pred CONTAINER[in:#product]
+- from:ananya yesterday
+    gold TIME[yesterday]
+    pred ACTOR[from:ananya] TIME[yesterday]
+- secret santa
+    gold TOPIC[secret santa]
+    pred ACTOR[secret] ACTOR[santa]
+- grafana payment success rate
+    gold TOPIC[grafana payment success rate]
+    pred ACTOR[grafana] TOPIC[payment success rate]
+- what was the root cause of the settlement delay
+    gold TOPIC[root cause of the settlement delay]
+    pred ATTR[root] TOPIC[cause] TOPIC[settlement delay]
+- release notes v2.14
+    gold TOPIC[release] KIND[notes] TOPIC[v2.14]
+    pred CONTAINER[release] KIND[notes] TOPIC[v2.14]
+- did anyone save the compliance call recording
+    gold TOPIC[compliance] KIND[call recording]
+    pred ACTOR[anyone] TOPIC[save] TOPIC[compliance] KIND[call recording]
+- any update on the nodal audit
+    gold TOPIC[nodal audit]
+    pred TOPIC[update] TOPIC[nodal audit]
+
+error types:
+    56  missed TOPIC
+    50  spurious KIND
+    44  spurious TOPIC
+    40  boundary TOPIC
+    31  spurious ACTOR
+    12  spurious CONTAINER
+    12  missed KIND
+     8  role TOPIC→KIND
+     7  missed ATTR
+     7  spurious ATTR
+     6  spurious TIME
+     6  missed TIME
+     5  role TOPIC→CONTAINER
+     5  missed ACTOR
+     4  missed PARTICIPANT
+     4  spurious PARTICIPANT
+     3  role ACTOR→TOPIC
+     3  role TOPIC→ACTOR (+boundary)
+     2  role TOPIC→ACTOR
+     2  role TOPIC→TIME
+     2  role ATTR→TOPIC
+     2  role TOPIC→ATTR
+     2  role ATTR→ACTOR
+     2  spurious RECIPIENT
+     1  role ATTR→TOPIC (+boundary)
+     1  spurious MENTION
+     1  role TOPIC→KIND (+boundary)
+     1  missed ORDER
+     1  missed CONTAINER
+     1  role TOPIC→CONTAINER (+boundary)

@@ -28,6 +28,23 @@ def predict_all(model, examples: list[Example], labels: Labels) -> list[list[str
     out: list[list[str]] = []
     for _, batch in iter_batches(examples, 256):
         out += [[labels.names[i] for i in ids] for ids in model.predict(batch)]
+    return [mask_operators(ex, tags) for ex, tags in zip(examples, out, strict=True)]
+
+
+def mask_operators(ex: Example, tags: list[str]) -> list[str]:
+    """Typed operators are bound before the tagger runs (PLAN §5.8), so they are always O.
+
+    A span that touched an operator token is cut there; a following I- tag becomes B-.
+    """
+    if not ex.operators:
+        return tags
+    out = list(tags)
+    for i, is_op in enumerate(ex.operators):
+        if is_op and i < len(out):
+            out[i] = "O"
+    for i in range(1, len(out)):
+        if out[i].startswith("I-") and out[i - 1] == "O":
+            out[i] = "B-" + out[i][2:]
     return out
 
 

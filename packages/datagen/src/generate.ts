@@ -1,15 +1,40 @@
 // Template expansion, label alignment and split generation (PLAN §9.2, §9.3).
 import { type Label, type Role, tokenize } from "@qp/core"
+import { drawPlan, fillPlan, isHeldOutSignature } from "./bag"
 import { type Lexicons, loadLexicons } from "./lexicons"
+import { alignParaphrase, alignSpans, makeAlignContext, type ParaphraseRecord } from "./paraphrase"
 import { chance, hashString, int, mulberry32, pick, type Rng, shuffle } from "./rng"
 import { type Ctx, fillSlot, type Piece, preparePools, type Side } from "./slots"
 import { MACROS, TEMPLATES, type Template } from "./templates"
 import { createTimeGen, isTime, REFERENCE, TIME_ZONE } from "./time"
-import type { Example, GenerateOptions, GenerateResult, Split, SplitStats, Stats } from "./types"
+import type {
+  Example,
+  GenerateOptions,
+  GenerateResult,
+  ParaphraseStats,
+  Split,
+  SplitStats,
+  Stats,
+} from "./types"
 
 export { REFERENCE, TIME_ZONE }
 
-const SPLITS: Split[] = ["train", "val", "test-generated"]
+const SPLITS: Split[] = ["train", "val", "test-generated", "test-seen-templates-unseen-names"]
+const NEG_SHARE = 0.1
+
+interface SplitSpec {
+  /** Which name pools fill person slots. */
+  names: Side
+  /** Which template shapes: those used in training, or the held-out ones. */
+  shapes: "train" | "held-out"
+  bagShare: number
+}
+const SPEC: Record<Split, SplitSpec> = {
+  train: { names: "train", shapes: "train", bagShare: 0.7 },
+  val: { names: "train", shapes: "train", bagShare: 0.7 },
+  "test-generated": { names: "test", shapes: "held-out", bagShare: 0.45 },
+  "test-seen-templates-unseen-names": { names: "test", shapes: "train", bagShare: 0.7 },
+}
 const FILLER_PREFIX = [
   "show me",
   "find",
@@ -20,8 +45,23 @@ const FILLER_PREFIX = [
   "look for",
   "list",
   "can you find",
+  "where is",
+  "where are",
+  "that",
+  "which",
+  "the one where",
+  "do we have",
+  "got any",
+  "i need",
+  "looking for",
+  "the",
+  "all",
+  "all the",
+  "some",
+  "pls find",
+  "hey find",
 ]
-const FILLER_SUFFIX = ["pls", "please", "thanks"]
+const FILLER_SUFFIX = ["pls", "please", "thanks", "asap", "if any", "pls?"]
 const SLOT = /\{([A-Z]+)((?:\|[a-z]+)*)\}/g
 
 export const normalizeText = (s: string): string => s.toLowerCase().replace(/\s+/g, " ").trim()
@@ -67,7 +107,7 @@ function expand(ctx: Ctx, tpl: Template, side: Side): Piece[] | undefined {
   return pieces
 }
 
-function decorate(ctx: Ctx, tpl: Template, pieces: Piece[]): Piece[] {
+function decorate(ctx: Ctx, tpl: Pick<Template, "id" | "negative">, pieces: Piece[]): Piece[] {
   const { rng } = ctx
   const out = pieces.map((p) => {
     if (!p.typo) return p
@@ -78,8 +118,9 @@ function decorate(ctx: Ctx, tpl: Template, pieces: Piece[]): Piece[] {
     if (chance(rng, 0.5)) out.push({ text: "?", role: null, glue: true })
   }
   if (tpl.negative) return out
-  if (chance(rng, 0.1)) out.unshift({ text: pick(rng, FILLER_PREFIX), role: null })
-  if (chance(rng, 0.03)) out.push({ text: pick(rng, FILLER_SUFFIX), role: null })
+  if (chance(rng, 0.2)) out.unshift({ text: pick(rng, FILLER_PREFIX), role: null })
+  if (chance(rng, 0.05)) out.push({ text: pick(rng, FILLER_SUFFIX), role: null })
+  if (chance(rng, 0.07)) out.push({ text: "?", role: null, glue: true })
   return out
 }
 
@@ -92,6 +133,13 @@ export function labelPieces(pieces: Piece[]): Omit<Example, "source" | "seed"> |
     spans.push({ start: text.length, end: text.length + p.text.length, role: p.role })
     text += p.text
   })
+  for (let i = 1; i < pieces.length; i++) {
+    const a = pieces[i - 1] as Piece
+    const b = pieces[i] as Piece
+    if (!b.glue && a.role && a.role === b.role && a.role !== "KIND" && a.role !== "ATTR") {
+      return "adjacent-same-role"
+    }
+  }
   const tokens = tokenize(text)
   const tags: Label[] = []
   const started = new Set<number>()
@@ -120,17 +168,10 @@ export function labelPieces(pieces: Piece[]): Omit<Example, "source" | "seed"> |
   }
 }
 
-/** Weighted schedule: normal templates weight 10; negative templates share ~10% of the total. */
+/** Round-robin schedule over templates, reshuffled per lap by construction (one shuffled list). */
 function buildSchedule(rng: Rng, templates: Template[]): Template[] {
-  const normal = templates.filter((t) => !t.negative)
-  const negative = templates.filter((t) => t.negative)
-  // negatives get ~10% of the schedule
-  const negWeight = negative.length
-    ? Math.max(1, Math.round((normal.length * 10) / 9 / negative.length))
-    : 0
   const list: Template[] = []
-  for (const t of normal) for (let k = 0; k < 10; k++) list.push(t)
-  for (const t of negative) for (let k = 0; k < negWeight; k++) list.push(t)
+  for (const t of templates) for (let k = 0; k < 4; k++) list.push(t)
   return shuffle(rng, list)
 }
 
@@ -145,6 +186,30 @@ interface SplitRun {
   namesFiltered: number
 }
 
+function timeSpansParse(labelled: Omit<Example, "source" | "seed">): boolean {
+  return !labelled.tags.some((t, i) => {
+    if (t !== "B-TIME") return false
+    let j = i + 1
+    while (labelled.tags[j] === "I-TIME") j++
+    const start = labelled.offsets[i]?.[0] ?? 0
+    const end = labelled.offsets[j - 1]?.[1] ?? 0
+    return !isTime(labelled.text.slice(start, end))
+  })
+}
+
+export function queryRates(examples: Example[]): Record<string, number> {
+  const counts: Record<string, number> = {}
+  for (const e of examples) {
+    const roles = new Set(e.tags.filter((t) => t.startsWith("B-")).map((t) => t.slice(2)))
+    for (const r of roles) counts[r] = (counts[r] ?? 0) + 1
+  }
+  const out: Record<string, number> = {}
+  for (const [r, n] of Object.entries(counts).sort(([a], [b]) => (a < b ? -1 : 1))) {
+    out[r] = Math.round((n / Math.max(1, examples.length)) * 1000) / 1000
+  }
+  return out
+}
+
 function generateSplit(
   split: Split,
   count: number,
@@ -153,16 +218,23 @@ function generateSplit(
   seen: Set<string>,
   contamination: { dropped: number },
 ): SplitRun {
-  const side: Side = split === "test-generated" ? "test" : "train"
+  const spec = SPEC[split]
+  const side = spec.names
+  const negSide: Side = spec.shapes === "held-out" ? "test" : "train"
   const rng = mulberry32(hashString(`${opts.seed}:${split}`))
   const { pools, filtered } = preparePools(lex, side)
   const time = createTimeGen(rng)
   const ctx: Ctx = { rng, pools, time, cyclers: new Map(), usedNames: new Set() }
-  const templates = TEMPLATES.filter((t) =>
-    t.negative ? true : split === "test-generated" ? t.heldOut : !t.heldOut,
+  const wantHeld = spec.shapes === "held-out"
+  const handPositive = shuffle(
+    rng,
+    TEMPLATES.filter((t) => !t.negative && !!t.heldOut === wantHeld),
   )
-  const schedule = buildSchedule(rng, templates)
+  const handSchedule = buildSchedule(rng, handPositive)
+  const negatives = TEMPLATES.filter((t) => t.negative)
+  const negSchedule = buildSchedule(rng, negatives)
   const examples: Example[] = []
+  const signatures = new Set<string>()
   const stats: SplitStats = {
     examples: 0,
     perTemplate: {},
@@ -170,14 +242,38 @@ function generateSplit(
     uniqueNames: 0,
     namePoolSize: pools.origins.reduce((n, o) => n + o.pool.first.length, 0),
     drops: {},
+    queryRates: {},
+    negativeRate: 0,
+    bagSignatures: 0,
   }
   const drop = (reason: string): void => {
     stats.drops[reason] = (stats.drops[reason] ?? 0) + 1
   }
-  let cursor = 0
+  let handCursor = 0
+  let negCursor = 0
   for (let attempts = 0; examples.length < count && attempts < count * 40 + 1000; attempts++) {
-    const tpl = schedule[cursor++ % schedule.length] as Template
-    const raw = expand(ctx, tpl, side)
+    const u = rng()
+    let tpl: Pick<Template, "id" | "negative">
+    let raw: Piece[] | undefined
+    let signature: string | undefined
+    if (u < NEG_SHARE) {
+      const t = negSchedule[negCursor++ % negSchedule.length] as Template
+      tpl = t
+      raw = expand(ctx, t, negSide)
+    } else if (u < NEG_SHARE + spec.bagShare) {
+      tpl = { id: wantHeld ? "bag-held-out" : "bag" }
+      const plan = drawPlan(rng, wantHeld)
+      if (!plan) {
+        drop("no-plan")
+        continue
+      }
+      signature = plan.signature
+      raw = fillPlan(ctx, plan)
+    } else {
+      const t = handSchedule[handCursor++ % handSchedule.length] as Template
+      tpl = t
+      raw = expand(ctx, t, negSide)
+    }
     if (!raw) {
       drop("slot-unfilled")
       continue
@@ -187,15 +283,7 @@ function generateSplit(
       drop(labelled)
       continue
     }
-    const timeBad = labelled.tags.some((t, i) => {
-      if (t !== "B-TIME") return false
-      let j = i + 1
-      while (labelled.tags[j] === "I-TIME") j++
-      const start = labelled.offsets[i]?.[0] ?? 0
-      const end = labelled.offsets[j - 1]?.[1] ?? 0
-      return !isTime(labelled.text.slice(start, end))
-    })
-    if (timeBad) {
+    if (!timeSpansParse(labelled)) {
       drop("time-unparseable")
       continue
     }
@@ -213,6 +301,7 @@ function generateSplit(
       }
       seen.add(key)
     }
+    if (signature) signatures.add(signature)
     examples.push({ ...labelled, source: `template:${tpl.id}`, seed: opts.seed })
     stats.perTemplate[tpl.id] = (stats.perTemplate[tpl.id] ?? 0) + 1
     for (const tag of labelled.tags) {
@@ -221,11 +310,83 @@ function generateSplit(
   }
   stats.examples = examples.length
   stats.uniqueNames = ctx.usedNames.size
+  stats.queryRates = queryRates(examples)
+  stats.negativeRate =
+    Math.round(
+      (examples.filter((e) => e.source.startsWith("template:none_")).length /
+        Math.max(1, examples.length)) *
+        1000,
+    ) / 1000
+  stats.bagSignatures = signatures.size
   return { examples, stats, timeRejected: time.rejected, namesFiltered: filtered }
 }
 
 const sortKeys = <T extends Record<string, number>>(o: T): T =>
   Object.fromEntries(Object.entries(o).sort(([a], [b]) => (a < b ? -1 : 1))) as T
+
+/** Align paraphrase records (plus their canonical echo) and append them to train. */
+function addParaphrases(
+  records: ParaphraseRecord[],
+  opts: GenerateOptions,
+  lex: Lexicons,
+  train: Example[],
+  seen: Set<string>,
+  contamination: { dropped: number },
+): ParaphraseStats {
+  const ctx = makeAlignContext(lex)
+  const stats: ParaphraseStats = {
+    records: records.length,
+    kept: 0,
+    echoed: 0,
+    dropped: {},
+    trainQueryRatesWithParaphrases: {},
+  }
+  const dropIt = (reason: string): void => {
+    stats.dropped[reason] = (stats.dropped[reason] ?? 0) + 1
+  }
+  const added: Example[] = []
+  for (const rec of records) {
+    const id = rec.source.replace(/^template:/, "")
+    const out = alignParaphrase(rec, ctx)
+    if ("reason" in out) {
+      dropIt(out.reason)
+      continue
+    }
+    if (!timeSpansParse(out.example)) {
+      dropIt("time-unparseable")
+      continue
+    }
+    const key = normalizeText(out.example.text)
+    if (opts.blocklist?.has(key)) {
+      contamination.dropped++
+      dropIt("contamination")
+      continue
+    }
+    if (seen.has(key)) {
+      dropIt("duplicate")
+      continue
+    }
+    seen.add(key)
+    added.push({ ...out.example, source: `paraphrase:${id}`, seed: opts.seed })
+    stats.kept++
+    // canonical echo: the original template sentence stays in train (PLAN §9.2 step 5)
+    const echo = alignSpans(rec.text, rec.spans)
+    const echoKey = normalizeText(rec.text)
+    if (
+      !("reason" in echo) &&
+      !seen.has(echoKey) &&
+      !opts.blocklist?.has(echoKey) &&
+      timeSpansParse(echo.example)
+    ) {
+      seen.add(echoKey)
+      added.push({ ...echo.example, source: `template:${id}`, seed: opts.seed })
+      stats.echoed++
+    }
+  }
+  train.push(...added)
+  stats.dropped = sortKeys(stats.dropped)
+  return stats
+}
 
 export function generate(
   opts: GenerateOptions,
@@ -235,6 +396,7 @@ export function generate(
     train: opts.train,
     val: opts.val,
     "test-generated": opts.test,
+    "test-seen-templates-unseen-names": opts.testSeen ?? 0,
   }
   const seen = new Set<string>()
   const contamination = { dropped: 0 }
@@ -252,13 +414,30 @@ export function generate(
     timeRejected += run.timeRejected
     namesFiltered += run.namesFiltered
   }
+  const paraphrases = addParaphrases(
+    opts.paraphrases ?? [],
+    opts,
+    lexicons,
+    splits.train,
+    seen,
+    contamination,
+  )
+  // interleave paraphrases and echoes with generated examples, deterministically
+  splits.train = shuffle(mulberry32(hashString(`${opts.seed}:train-order`)), splits.train)
+  paraphrases.trainQueryRatesWithParaphrases = queryRates(splits.train)
   const held = heldOutTemplateIds()
   const stats: Stats = {
     seed: opts.seed,
     reference: REFERENCE,
     timeZone: TIME_ZONE,
     splits: splitStats,
-    templates: { total: TEMPLATES.length, heldOut: held.length, heldOutIds: held },
+    templates: {
+      total: TEMPLATES.length,
+      heldOut: held.length,
+      heldOutIds: held,
+      bagSignatureHeldOutRule: "fnv1a(signature) % 5 === 0 is held out (test-generated only)",
+    },
+    paraphrases,
     contaminationDropped: contamination.dropped,
     timeRejected,
     namesFiltered,
@@ -269,3 +448,5 @@ export function generate(
 export function serialize(examples: Example[]): string {
   return examples.length ? `${examples.map((e) => JSON.stringify(e)).join("\n")}\n` : ""
 }
+
+export { isHeldOutSignature }

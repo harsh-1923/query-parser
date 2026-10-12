@@ -48,6 +48,9 @@ class Example:
     source: str
     bytes_ids: np.ndarray  # (n, MAX_BYTES) int64, values in 0..256
     tag_ids: np.ndarray  # (n,) int64
+    # True for typed-operator tokens (from:priya). The runtime binds them before the tagger runs,
+    # so their predicted labels are discarded; scoring does the same.
+    operators: list[bool] | None = None
 
     def __len__(self) -> int:
         return len(self.tokens)
@@ -74,6 +77,7 @@ def make_example(row: dict, labels: Labels) -> Example:
         source=row.get("source", ""),
         bytes_ids=np.stack([encode_token(t) for t in tokens]),
         tag_ids=np.array([labels.id_of[t] for t in tags], dtype=np.int64),
+        operators=list(row["operators"])[:MAX_TOKENS] if "operators" in row else None,
     )
 
 

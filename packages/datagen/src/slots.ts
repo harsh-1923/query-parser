@@ -3,6 +3,7 @@ import type { Role } from "@qp/core"
 import type { Lexicons, NamePool } from "./lexicons"
 import { Cycler, chance, int, pick, type Rng, weighted } from "./rng"
 import type { TimeGen } from "./time"
+import { LOOKALIKE_EXTRA, messyTopic } from "./topics"
 
 /** A run of text with one label. `role: null` means O. `glue` attaches it to the previous piece. */
 export interface Piece {
@@ -20,6 +21,15 @@ export interface Pools {
   kindVerbs: string[]
   attrs: string[]
   topics: string[]
+  /** Lexicon topics with no kind/state/time words: safe to label as plain TOPIC. */
+  cleanTopics: string[]
+  /** Topics that contain a kind or state word before their last word ("call routing"). */
+  lookalikeTopics: string[]
+  /** Single content words and short phrases for composing messy topics. */
+  topicWords: string[]
+  shortTopics: string[]
+  /** Attr aliases that read naturally after not/except/excluding. */
+  negAttrs: string[]
   hardTopics: string[]
   tagContainers: string[]
   namedContainers: string[]
@@ -92,6 +102,62 @@ const HARD_TOPICS = [
   "next steps",
   "last mile",
 ]
+const TIMEISH = [
+  "today",
+  "yesterday",
+  "tomorrow",
+  "tonight",
+  "week",
+  "month",
+  "year",
+  "quarter",
+  "weekend",
+  "monday",
+  "tuesday",
+  "wednesday",
+  "thursday",
+  "friday",
+  "saturday",
+  "sunday",
+  "january",
+  "february",
+  "march",
+  "april",
+  "may",
+  "june",
+  "july",
+  "august",
+  "september",
+  "october",
+  "november",
+  "december",
+  "jan",
+  "feb",
+  "mar",
+  "apr",
+  "jun",
+  "jul",
+  "aug",
+  "sep",
+  "sept",
+  "oct",
+  "nov",
+  "dec",
+  "mon",
+  "tue",
+  "wed",
+  "thu",
+  "fri",
+  "sat",
+  "sun",
+  "recently",
+  "latest",
+  "newest",
+  "oldest",
+  "earliest",
+  "recent",
+]
+const SPLIT_KINDS = /^(pitch|tracker) (decks?|sheets?)$/
 const FROM_TIMES = [
   "today",
   "yesterday",
@@ -219,6 +285,38 @@ export function preparePools(lex: Lexicons, side: Side): { pools: Pools; filtere
     })
   }
   const ATTR_SKIP = /^(not|no|without)\b|^(from|by) bot$/
+  const singles = (xs: string[]): Set<string> => {
+    const out = new Set<string>()
+    for (const x of xs) if (!x.includes(" ")) out.add(x.toLowerCase()).add(`${x.toLowerCase()}s`)
+    return out
+  }
+  const kindWords = singles(allKinds)
+  const attrWords = singles(Object.values(lex.attrs).flat())
+  const timeWords = new Set([...TIMEISH])
+  const cleanTopics: string[] = []
+  const lookalikeTopics: string[] = [...LOOKALIKE_EXTRA]
+  for (const t of lex.topics) {
+    const ws = t.toLowerCase().split(/\s+/)
+    if (ws.some((w) => timeWords.has(w) || /^(q\d|\d{4}|\d+(am|pm))$/.test(w))) continue
+    if (kindWords.has(ws[ws.length - 1] as string)) continue
+    const hasKind = ws.some((w) => kindWords.has(w))
+    const hasAttr = ws.some((w) => attrWords.has(w))
+    if (hasKind || hasAttr) lookalikeTopics.push(t)
+    else cleanTopics.push(t)
+  }
+  const topicWords = [
+    ...new Set(
+      cleanTopics
+        .flatMap((t) => t.split(/\s+/))
+        .filter((w) => /^[a-z]{4,}$/.test(w) && !reserved.has(w)),
+    ),
+  ].sort()
+  const shortTopics = cleanTopics.filter((t) => t.split(/\s+/).length <= 2)
+  const NEG_ATTR_BAD =
+    /^(with|has|without|in|assigned|no|not|nobody|under|on|needs|awaiting|waiting|containing|marked|to|from|by|un|bot)|\bbot\b|^automated$/
+  const negAttrs = Object.values(lex.attrs)
+    .flat()
+    .filter((a) => a.split(" ").length <= 2 && !NEG_ATTR_BAD.test(a) && !/^p\d$/.test(a))
   const nounKinds = allKinds.filter((k) => !NOT_NOUN_KINDS.has(k))
   const tags = lex.containers.filter((c) => c.startsWith("#"))
   const named = lex.containers.filter((c) => !c.startsWith("#"))
@@ -235,6 +333,11 @@ export function preparePools(lex: Lexicons, side: Side): { pools: Pools; filtere
         .flat()
         .filter((a) => !ATTR_SKIP.test(a)),
       topics: lex.topics,
+      cleanTopics,
+      lookalikeTopics,
+      topicWords,
+      shortTopics,
+      negAttrs,
       hardTopics: HARD_TOPICS,
       tagContainers: tags,
       namedContainers: named,
@@ -246,7 +349,7 @@ export function preparePools(lex: Lexicons, side: Side): { pools: Pools; filtere
   }
 }
 
-const next = (ctx: Ctx, key: string, items: string[]): string => {
+export const cycled = (ctx: Ctx, key: string, items: string[]): string => {
   let c = ctx.cyclers.get(key)
   if (!c) {
     c = new Cycler(ctx.rng, items)
@@ -272,7 +375,7 @@ function pluralize(word: string): string {
 }
 
 function firstName(ctx: Ctx, origin: Pools["origins"][number]): string {
-  const name = next(ctx, `first:${origin.origin}`, origin.pool.first)
+  const name = cycled(ctx, `first:${origin.origin}`, origin.pool.first)
   ctx.usedNames.add(name)
   return name
 }
@@ -284,7 +387,7 @@ function nameValue(ctx: Ctx, forceFull = false): { text: string; first: string; 
     ctx.pools.origins.map((o) => [o, o.weight] as const),
   )
   const first = firstName(ctx, origin)
-  const last = next(ctx, `last:${origin.origin}`, origin.pool.last)
+  const last = cycled(ctx, `last:${origin.origin}`, origin.pool.last)
   let text = forceFull || chance(rng, 0.35) ? `${first} ${last}` : first
   if (chance(rng, 0.15)) text = titleCase(text)
   return { text, first, last }
@@ -325,9 +428,9 @@ function personPieces(ctx: Ctx, role: Role, mods: string[]): Piece[] {
       case "email":
         return [piece(emailValue(ctx))]
       case "grp":
-        return [piece(next(ctx, "groups", ctx.pools.groups))]
+        return [piece(cycled(ctx, "groups", ctx.pools.groups))]
       case "rel":
-        return [piece(next(ctx, "relational", ctx.pools.relational))]
+        return [piece(cycled(ctx, "relational", ctx.pools.relational))]
       default:
         return [piece(nameValue(ctx).text)]
     }
@@ -393,19 +496,19 @@ function containerPieces(ctx: Ctx, mods: string[]): Piece[] {
     ["dynamic", 15],
   ] as const)
   if (mods.includes("multi")) {
-    const a = next(ctx, "ctag", pools.tagContainers)
-    const b = next(ctx, "ctag", pools.tagContainers)
+    const a = cycled(ctx, "ctag", pools.tagContainers)
+    const b = cycled(ctx, "ctag", pools.tagContainers)
     return [o("in"), c(a), o(pick(rng, ["or", "or", "and"])), c(b)]
   }
   if (kind === "tag") {
-    const t = c(next(ctx, "ctag", pools.tagContainers))
+    const t = c(cycled(ctx, "ctag", pools.tagContainers))
     return bare ? [t] : [o(pick(rng, ["in", "in", "on"])), t]
   }
   if (kind === "dynamic") {
-    const d = c(next(ctx, "cdyn", pools.dynamicContainers))
+    const d = c(cycled(ctx, "cdyn", pools.dynamicContainers))
     return bare ? [d] : [o(pick(rng, ["in", "in", "for"])), d]
   }
-  const name = c(next(ctx, "cname", pools.namedContainers), true)
+  const name = c(cycled(ctx, "cname", pools.namedContainers), true)
   const noun = o(pick(rng, CONTAINER_NOUNS))
   if (bare) return [name, noun]
   const prep = noun.text === "board" && chance(rng, 0.4) ? "on" : "in"
@@ -424,25 +527,41 @@ export function fillSlot(ctx: Ctx, name: string, mods: string[]): Piece[] {
   const has = (m: string): boolean => mods.includes(m)
   switch (name) {
     case "KIND": {
-      if (has("v")) return [{ text: next(ctx, "kindv", pools.kindVerbs), role: "KIND", typo: true }]
+      if (has("v"))
+        return [{ text: cycled(ctx, "kindv", pools.kindVerbs), role: "KIND", typo: true }]
       if (has("vp"))
-        return [{ text: next(ctx, "kindvp", KIND_VERBS_PAST), role: "KIND", typo: true }]
-      const base = next(ctx, "kind", pools.kinds)
+        return [{ text: cycled(ctx, "kindvp", KIND_VERBS_PAST), role: "KIND", typo: true }]
+      const base = cycled(ctx, "kind", pools.kinds)
       const text = chance(rng, 0.55) ? pluralize(base) : base
+      // "pitch deck" is TOPIC + KIND under eval/ANNOTATION.md ("pitch [deck]")
+      if (SPLIT_KINDS.test(text)) {
+        const [modifier, head] = text.split(" ") as [string, string]
+        return [
+          { text: modifier, role: "TOPIC" },
+          { text: head, role: "KIND", typo: true },
+        ]
+      }
       return [{ text, role: "KIND", typo: true }]
     }
-    case "ATTR":
-      return [{ text: next(ctx, "attr", pools.attrs), role: "ATTR", typo: true }]
+    case "ATTR": {
+      if (has("neg")) {
+        let text = cycled(ctx, "negattr", pools.negAttrs)
+        if ((text === "draft" || text === "blocker") && chance(rng, 0.4)) text += "s"
+        return [{ text, role: "ATTR", typo: true }]
+      }
+      return [{ text: cycled(ctx, "attr", pools.attrs), role: "ATTR", typo: true }]
+    }
     case "ORDER": {
+      if (has("ver")) return [{ text: "latest version", role: "ORDER" }]
       const text = has("post")
-        ? next(ctx, "order-post", POST_ORDER)
-        : next(ctx, "order-pre", PRE_ORDER)
+        ? cycled(ctx, "order-post", POST_ORDER)
+        : cycled(ctx, "order-pre", PRE_ORDER)
       return [{ text, role: "ORDER", typo: true }]
     }
     case "TOPIC": {
       const text = has("hard")
-        ? next(ctx, "topic-hard", pools.hardTopics)
-        : next(ctx, "topic", pools.topics)
+        ? cycled(ctx, "topic-hard", pools.hardTopics)
+        : messyTopic(ctx, has("short"))
       return [{ text, role: "TOPIC", typo: true }]
     }
     case "CONTAINER":
@@ -453,6 +572,31 @@ export function fillSlot(ctx: Ctx, name: string, mods: string[]): Piece[] {
       return [{ text, role: "TIME" }]
     }
     case "NEG": {
+      if (has("attr"))
+        return [
+          {
+            text: weighted(rng, [
+              ["not", 60],
+              ["except", 15],
+              ["excluding", 15],
+              ["exclude", 10],
+            ] as const),
+            role: "NEG",
+          },
+        ]
+      if (has("topic"))
+        return [
+          {
+            text: weighted(rng, [
+              ["not", 40],
+              ["except", 15],
+              ["excluding", 15],
+              ["exclude", 8],
+              ["without", 22],
+            ] as const),
+            role: "NEG",
+          },
+        ]
       const text = has("from")
         ? pick(rng, NEG_FROM)
         : weighted(
@@ -463,7 +607,7 @@ export function fillSlot(ctx: Ctx, name: string, mods: string[]): Piece[] {
     }
     case "OP": {
       const text = has("tag")
-        ? next(ctx, "ctag", pools.tagContainers).replace(/^#/, "")
+        ? cycled(ctx, "ctag", pools.tagContainers).replace(/^#/, "")
         : ascii(nameValue(ctx).first)
       return [{ text: text || "sam", role: null }]
     }

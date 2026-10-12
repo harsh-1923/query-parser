@@ -4,7 +4,7 @@
 // re-derives labels by aligning the kept phrases, and drops anything that doesn't align.
 // kimi-k3 is a different family from the test-set writers (Claude Haiku for v0, GLM for v1).
 // Usage: node scripts/gen-paraphrases.mjs <train.jsonl> <n> <out.jsonl>
-import { readFileSync, writeFileSync } from "node:fs"
+import { appendFileSync, existsSync, readFileSync, writeFileSync } from "node:fs"
 import { chat, model } from "../spikes/S04-time/llm.mjs"
 
 const [input, nArg, output] = process.argv.slice(2)
@@ -44,8 +44,19 @@ for (let i = pool.length - 1; i > 0; i--) {
 }
 const sample = pool.slice(0, n)
 
+// Resume: keep paraphrases already written to `output` and only ask for the rest.
+const previous = existsSync(output)
+  ? readFileSync(output, "utf8")
+      .split("\n")
+      .filter(Boolean)
+      .map((l) => JSON.parse(l))
+  : []
+const done = new Set(previous.map((r) => r.line))
+const todo = sample.filter((r) => !done.has(r.line))
+console.error(`${previous.length} already done, ${todo.length} to go`)
+
 const batches = []
-for (let i = 0; i < sample.length; i += 25) batches.push(sample.slice(i, i + 25))
+for (let i = 0; i < todo.length; i += 25) batches.push(todo.slice(i, i + 25))
 
 async function run(batch) {
   const lines = batch.map((r, k) => {
@@ -64,7 +75,8 @@ Rules:
 Output one JSON object per line: {"i": <index>, "text": "<rewrite>"}. Nothing else.
 
 ${lines.join("\n")}`
-  for (let attempt = 0; attempt < 3; attempt++) {
+  // The gateway allows 5 parallel requests per key; back off on 429 instead of giving up.
+  for (let attempt = 0; attempt < 6; attempt++) {
     try {
       const out = await chat(prompt, { temperature: 1, maxTokens: 24000 })
       return out
@@ -72,26 +84,26 @@ ${lines.join("\n")}`
         .filter((l) => l.trim().startsWith("{"))
         .map((l) => JSON.parse(l))
     } catch (e) {
-      if (attempt === 2) {
-        console.error(String(e).slice(0, 200))
-        return []
-      }
+      console.error(String(e).slice(0, 160))
+      if (attempt === 5) return []
+      await new Promise((r) => setTimeout(r, 2000 * 2 ** attempt))
     }
   }
 }
 
-const results = []
-const CONCURRENCY = 8
+const results = [...previous]
+const CONCURRENCY = 4
 let next = 0
 await Promise.all(
   Array.from({ length: CONCURRENCY }, async () => {
     while (next < batches.length) {
       const b = batches[next++]
       const got = await run(b)
+      const fresh = []
       for (const g of got) {
         const r = b[g.i]
         if (r && typeof g.text === "string")
-          results.push({
+          fresh.push({
             line: r.line,
             source: r.source,
             seed: r.seed,
@@ -100,10 +112,15 @@ await Promise.all(
             paraphrase: g.text,
           })
       }
-      if (results.length % 500 < 25) console.error(`${results.length} paraphrases`)
+      // Append as we go, so stopping the script keeps everything finished so far.
+      if (fresh.length)
+        appendFileSync(output, `${fresh.map((x) => JSON.stringify(x)).join("\n")}\n`)
+      results.push(...fresh)
+      console.error(`${results.length} paraphrases`)
     }
   }),
 )
+// Rewrite once at the end, sorted by source line, so the file is deterministic for @qp/datagen.
 results.sort((a, b) => a.line - b.line)
 writeFileSync(output, `${results.map((r) => JSON.stringify(r)).join("\n")}\n`)
 console.log(`${model}: ${results.length} paraphrases of ${sample.length} sampled queries`)

@@ -236,6 +236,7 @@ interface Example {
   tokens: string[]
   offsets: [number, number][]
   tags: string[]
+  operators?: boolean[]
   source: string
   product?: string
 }
@@ -306,6 +307,8 @@ for (const line of readFileSync(ANNOTATIONS, "utf8").split("\n")) {
     tags,
     source: SOURCE,
   }
+  // Typed operators (from:priya) are bound before the model runs; scorers force them to O.
+  if (tokens.some((t) => t.operator)) ex.operators = tokens.map((t) => t.operator !== undefined)
   const product = products.get(query.trim())
   if (product) ex.product = product
   examples.push(ex)

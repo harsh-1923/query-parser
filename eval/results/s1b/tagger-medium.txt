@@ -1,0 +1,83 @@
+tagger/medium: 77,623 params
+
+== ../eval/datasets/llm-written/v0/bio.jsonl  (n=204) ==
+span P 0.7153  R 0.7756  F1 0.7442  | exact match 0.4951  | token acc 0.8028
+role                 P       R      F1  support
+ACTOR            0.635   0.885   0.740       61
+ATTR             0.865   0.849   0.857       53
+CONTAINER        0.682   0.714   0.698       21
+KIND             0.748   0.943   0.835      123
+MENTION          0.000   0.000   0.000        0
+NEG              0.944   1.000   0.971       17
+ORDER            1.000   1.000   1.000       12
+PARTICIPANT      0.600   0.857   0.706        7
+RECIPIENT        0.750   0.500   0.600       12
+TIME             0.750   0.750   0.750       60
+TOPIC            0.607   0.534   0.568      133
+names with cue   0.717   0.844   0.776       45
+names no cue     0.538   0.800   0.644       35
+source               P       R      F1    exact  support
+s02              0.715   0.776   0.744    0.495      499
+
+== ../eval/datasets/llm-written/v1/bio.jsonl  (n=300) ==
+span P 0.5756  R 0.6505  F1 0.6108  | exact match 0.3933  | token acc 0.7006
+role                 P       R      F1  support
+ACTOR            0.417   0.750   0.536       40
+ATTR             0.732   0.682   0.706       44
+CONTAINER        0.438   0.875   0.583       16
+KIND             0.610   0.882   0.721      110
+MENTION          0.000   0.000   0.000        1
+NEG              0.833   1.000   0.909       10
+ORDER            0.900   0.692   0.783       13
+PARTICIPANT      0.167   0.167   0.167        6
+RECIPIENT        0.600   0.750   0.667        4
+TIME             0.767   0.805   0.786       41
+TOPIC            0.537   0.470   0.501      230
+names with cue   0.600   0.857   0.706       28
+names no cue     0.227   0.435   0.299       23
+source               P       R      F1    exact  support
+glm-v1           0.576   0.650   0.611    0.393      515
+
+== ../eval/datasets/generated/v1/test-generated.jsonl  (n=3000) ==
+span P 0.9499  R 0.9715  F1 0.9606  | exact match 0.8830  | token acc 0.9722
+role                 P       R      F1  support
+ACTOR            0.922   0.949   0.935     1230
+ATTR             0.984   0.978   0.981      683
+CONTAINER        0.962   0.998   0.979      426
+KIND             0.965   0.967   0.966     1944
+MENTION          0.938   0.955   0.946      110
+NEG              0.982   1.000   0.991      280
+ORDER            0.997   1.000   0.998      305
+PARTICIPANT      0.981   0.990   0.986      104
+RECIPIENT        0.970   0.954   0.962      302
+TIME             0.986   0.999   0.992     1157
+TOPIC            0.902   0.959   0.930     1872
+names with cue   0.980   0.978   0.979     1032
+names no cue     0.872   0.916   0.893      714
+source               P       R      F1    exact  support
+template         0.950   0.971   0.961    0.883     8413
+
+== ../eval/datasets/generated/v1/test-seen-templates-unseen-names.jsonl  (n=2000) ==
+span P 0.9650  R 0.9625  F1 0.9637  | exact match 0.9260  | token acc 0.9829
+role                 P       R      F1  support
+ACTOR            0.957   0.913   0.935      739
+ATTR             0.986   0.982   0.984      489
+CONTAINER        0.980   0.995   0.987      193
+KIND             0.982   0.981   0.981     1209
+MENTION          0.950   0.950   0.950       60
+NEG              1.000   1.000   1.000      164
+ORDER            1.000   0.993   0.996      141
+PARTICIPANT      0.968   0.968   0.968       63
+RECIPIENT        0.945   0.928   0.936      111
+TIME             0.988   0.995   0.992      594
+TOPIC            0.929   0.943   0.936     1358
+names with cue   0.975   0.973   0.974      554
+names no cue     0.930   0.852   0.889      419
+source               P       R      F1    exact  support
+template         0.965   0.963   0.964    0.926     5121
+
+latency (batch 1, 1 thread, 10 tokens, p50/p95 ms):
+  forward: {'p50_ms': 0.13241649139672518, 'p95_ms': 0.13575626362580806}
+  forward_plus_viterbi: {'p50_ms': 0.2126045001205057, 'p95_ms': 0.22176040074555203}
+
+wrote runs/s1b/tagger-medium/eval.json

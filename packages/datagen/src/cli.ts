@@ -1,5 +1,5 @@
-// Usage: node packages/datagen/src/cli.ts --seed 42 --train 50000 --val 2000 --test 3000 \
-//          --out eval/datasets/generated/v0
+// Usage: node packages/datagen/src/cli.ts --seed 42 --train 60000 --val 2000 --test 3000 \
+//          --out eval/datasets/generated/v1
 // Registers a resolve hook so Node can load the extensionless relative imports used in packages/.
 import { registerHooks } from "node:module"
 

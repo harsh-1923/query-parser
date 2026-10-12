@@ -1,8 +1,8 @@
 # S01: Tagger vs seq2seq, and model size — result
 
-Date: 2026-10-12 · Status: **fail on accuracy, pass on architecture** · Decision: the BIO tagger
-(medium, ~78k params) is the model; template-only data is the bottleneck, so the next work is data
-(M3), gated on this same evaluation
+Date: 2026-10-12 · Status: **fail on accuracy, pass on architecture**; round 2 closes most of the gap
+(see [Round 2](#round-2-generator-v1--paraphrases)) · Decision: the BIO tagger (medium, ~78k params)
+is the model; data is the bottleneck
 
 ## Question
 
@@ -108,3 +108,52 @@ context is the gap, as above. S3 stays open until the data is fixed.
 - The rules' kind/state lists were written from S02's spans (S05 v1). That gives the rule baseline a
   home advantage on KIND and ATTR, but the generator used the same lists.
 - Latency here is PyTorch on CPU; S06 measures the TypeScript runtime that will ship.
+
+## Round 2: generator v1 + paraphrases
+
+Same model (tagger medium, 77,623 params) and training settings, retrained on `@qp/datagen` v1.
+- **Training data:** 71,154 lines.
+- **Word orders:** a bag-of-slots family that moves every role to the start, middle and end.
+- **Role rates:** per-role query rates matched to real queries (ATTR 20–25%, up from 7%).
+- **Topics and negation:** messier topics and natural negation.
+- **Paraphrases:** 5,616 kimi-k3 paraphrases aligned back to labels, with the canonical echoes kept.
+
+A second test set now exists: 300 queries written by **GLM** (`eval/datasets/llm-written/v1/`), a
+different model family from S02's Claude Haiku. It was labeled by an agent that saw no model output.
+The generator changes were designed from S02's *error categories*. GLM was never looked at, which
+makes it the cleaner number.
+
+**Scoring fix.** Typed operators (`from:priya`, `in:#x`) are bound before the tagger runs (PLAN
+§5.8), so their predicted labels are thrown away at runtime. The scorers now do the same for both
+the models and the rules: the `operators` field in the fixture format, and `mask_operators` in
+`evaluate.py`. This mostly affects GLM, where 55 of 300 queries contain operators. All numbers
+below use it.
+
+| | Rules | Tagger medium, v0 data | **Tagger medium, v1 data** |
+|---|---|---|---|
+| S02 (204) | 0.727 | 0.580 | **0.744** |
+| GLM v1 (300) | 0.726 | 0.542 | **0.636** |
+| `test-generated` v1 (held-out shapes, unseen names) | – | – | 0.961 |
+| `test-seen-templates-unseen-names` (S3) | – | – | 0.964 |
+
+From [`eval/results/s1b/`](../../eval/results/s1b/).
+
+- **Data was the bottleneck, as diagnosed.**
+  - Same model, better data: +16 points on S02 and +9 on GLM.
+  - On S02 the model now edges past the rules (+1.7).
+  - On GLM it is still 9 points behind. Its weakest spots there are names with no cue word (F1
+    0.31, precision 0.24, so it calls ordinary words people) and TOPIC (≈0.50).
+- **The 0.85 bar is still not met** on either LLM-written set.
+- **S3 on generated data now passes its bar.**
+  - With unseen test-pool names in familiar templates, recall is 0.973 with a cue word (bar 0.95)
+    and 0.852 without (bar 0.85).
+  - On S02 no-cue recall is 0.80; on GLM it is 0.44.
+  - Name recognition generalizes to new names but not yet to GLM's phrasing.
+
+**Next:**
+1. Error analysis on GLM's no-cue names and topics: the GLM numbers are measured, not tuned to.
+2. More paraphrase variety. A second paraphrasing family isn't possible with this gateway key
+   (Gemini isn't enabled), so use a different prompt or style per batch.
+3. A real-query set from Xyne Spaces' search logs, if one can be had, is still the strongest test
+   (PLAN §16 Q1).
+4. The rules stay the default until the model clearly beats them on both sets.

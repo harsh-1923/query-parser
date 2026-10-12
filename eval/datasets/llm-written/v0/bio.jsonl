@@ -92,7 +92,7 @@
 {"text":"anyone blocked on the vespa reindex","tokens":["anyone","blocked","on","the","vespa","reindex"],"offsets":[[0,6],[7,14],[15,17],[18,21],[22,27],[28,35]],"tags":["O","B-ATTR","O","O","B-TOPIC","I-TOPIC"],"source":"s02","product":"tracker"}
 {"text":"sort by most recent comments","tokens":["sort","by","most","recent","comments"],"offsets":[[0,4],[5,7],[8,12],[13,19],[20,28]],"tags":["O","O","B-ORDER","I-ORDER","B-KIND"],"source":"s02","product":"tracker"}
 {"text":"oldest open bugs","tokens":["oldest","open","bugs"],"offsets":[[0,6],[7,11],[12,16]],"tags":["B-ORDER","B-ATTR","B-KIND"],"source":"s02","product":"tracker"}
-{"text":"reporter:priya type:bug","tokens":["reporter:priya","type:bug"],"offsets":[[0,14],[15,23]],"tags":["B-ACTOR","B-KIND"],"source":"s02","product":"tracker"}
+{"text":"reporter:priya type:bug","tokens":["reporter:priya","type:bug"],"offsets":[[0,14],[15,23]],"tags":["B-ACTOR","B-KIND"],"source":"s02","operators":[true,true],"product":"tracker"}
 {"text":"things i reported that are still in review","tokens":["things","i","reported","that","are","still","in","review"],"offsets":[[0,6],[7,8],[9,17],[18,22],[23,26],[27,32],[33,35],[36,42]],"tags":["O","B-ACTOR","O","O","O","O","B-ATTR","I-ATTR"],"source":"s02","product":"tracker"}
 {"text":"sprint 42 unfinished stories","tokens":["sprint","42","unfinished","stories"],"offsets":[[0,6],[7,9],[10,20],[21,28]],"tags":["B-CONTAINER","I-CONTAINER","B-ATTR","B-KIND"],"source":"s02","product":"tracker"}
 {"text":"search latency regression","tokens":["search","latency","regression"],"offsets":[[0,6],[7,14],[15,25]],"tags":["B-TOPIC","I-TOPIC","I-TOPIC"],"source":"s02","product":"tracker"}
@@ -103,7 +103,7 @@
 {"text":"ios push notifications bug","tokens":["ios","push","notifications","bug"],"offsets":[[0,3],[4,8],[9,22],[23,26]],"tags":["B-TOPIC","I-TOPIC","I-TOPIC","B-KIND"],"source":"s02","product":"tracker"}
 {"text":"todo in platform board assigned to nobody","tokens":["todo","in","platform","board","assigned","to","nobody"],"offsets":[[0,4],[5,7],[8,16],[17,22],[23,31],[32,34],[35,41]],"tags":["B-ATTR","O","B-CONTAINER","O","B-ATTR","I-ATTR","I-ATTR"],"source":"s02","product":"tracker"}
 {"text":"reopened tickets this quarter","tokens":["reopened","tickets","this","quarter"],"offsets":[[0,8],[9,16],[17,21],[22,29]],"tags":["B-ATTR","B-KIND","B-TIME","I-TIME"],"source":"s02","product":"tracker"}
-{"text":"label:flaky-test open","tokens":["label:flaky-test","open"],"offsets":[[0,16],[17,21]],"tags":["B-ATTR","B-ATTR"],"source":"s02","product":"tracker"}
+{"text":"label:flaky-test open","tokens":["label:flaky-test","open"],"offsets":[[0,16],[17,21]],"tags":["B-ATTR","B-ATTR"],"source":"s02","operators":[true,false],"product":"tracker"}
 {"text":"stuck in qa more than a week","tokens":["stuck","in","qa","more","than","a","week"],"offsets":[[0,5],[6,8],[9,11],[12,16],[17,21],[22,23],[24,28]],"tags":["O","B-ATTR","I-ATTR","O","O","O","O"],"source":"s02","product":"tracker"}
 {"text":"mine that are p0 or p1","tokens":["mine","that","are","p0","or","p1"],"offsets":[[0,4],[5,9],[10,13],[14,16],[17,19],[20,22]],"tags":["B-ACTOR","O","O","B-ATTR","O","B-ATTR"],"source":"s02","product":"tracker"}
 {"text":"checkout crash on android since 4.2.1","tokens":["checkout","crash","on","android","since","4.2.1"],"offsets":[[0,8],[9,14],[15,17],[18,25],[26,31],[32,37]],"tags":["B-TOPIC","I-TOPIC","O","B-ATTR","B-TIME","I-TIME"],"source":"s02","product":"tracker"}

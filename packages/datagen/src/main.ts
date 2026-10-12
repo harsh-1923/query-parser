@@ -1,7 +1,8 @@
-import { mkdirSync, readdirSync, readFileSync, statSync, writeFileSync } from "node:fs"
+import { existsSync, mkdirSync, readdirSync, readFileSync, statSync, writeFileSync } from "node:fs"
 import { join, resolve } from "node:path"
 import { fileURLToPath } from "node:url"
 import { generate, normalizeText, serialize } from "./generate"
+import { loadParaphrases } from "./paraphrase"
 
 const repoRoot = fileURLToPath(new URL("../../../", import.meta.url))
 
@@ -46,13 +47,20 @@ function buildBlocklist(): { set: Set<string>; files: number } {
 }
 
 const seed = Number(arg("seed", "42"))
-const out = resolve(arg("out", join(repoRoot, "eval/datasets/generated/v0")))
+const out = resolve(arg("out", join(repoRoot, "eval/datasets/generated/v1")))
+const defaultParaphrases = fileURLToPath(
+  new URL("../paraphrases/kimi-k3-v0.jsonl", import.meta.url),
+)
+const paraphrasePath = arg("paraphrases", existsSync(defaultParaphrases) ? defaultParaphrases : "")
+const paraphrases = paraphrasePath ? loadParaphrases(paraphrasePath) : []
 const blocklist = buildBlocklist()
 const result = generate({
   seed,
   train: Number(arg("train", "50000")),
   val: Number(arg("val", "2000")),
   test: Number(arg("test", "3000")),
+  testSeen: Number(arg("test-seen", "2000")),
+  paraphrases,
   blocklist: blocklist.set,
 })
 
@@ -61,6 +69,7 @@ for (const [split, examples] of Object.entries(result.splits)) {
   writeFileSync(join(out, `${split}.jsonl`), serialize(examples))
 }
 writeFileSync(join(out, "stats.json"), `${JSON.stringify(result.stats, null, 2)}\n`)
+console.log(`paraphrases: ${paraphrases.length} records from ${paraphrasePath || "(none)"}`)
 console.log(`blocklist: ${blocklist.set.size} texts from ${blocklist.files} files`)
 for (const [split, s] of Object.entries(result.stats.splits)) {
   console.log(`${split}: ${s.examples} examples, drops ${JSON.stringify(s.drops)}`)
