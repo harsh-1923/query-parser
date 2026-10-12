@@ -30,6 +30,7 @@ const parser = createParser({
       fields: (c) => ({ id: c.id, label: c.name, aliases: [c.name.slice(1)] }),
     }),
   },
+  promoteKnownEntities: { source: "person", role: "ACTOR" },
 })
 
 export interface Settings {
@@ -179,6 +180,8 @@ export function describeIssue(i: Issue): string {
       return `“${i.span.text}” isn't a time the normalizer understands, so it's searched as text.`
     case "low-confidence":
       return "Low confidence: returning the query as plain text."
+    case "suggestion":
+      return `“${i.span.text}” might be ${i.candidates.map((c) => c.label).join(" or ")}. It's searched as text; tap to filter by them.`
   }
 }
 

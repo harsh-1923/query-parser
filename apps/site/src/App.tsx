@@ -20,6 +20,7 @@ const EXAMPLES: [string, string][] = [
   ["Sorting", "latest transcripts with priya iyer"],
   ["Typed operators", "type:bug from:sneha flaky checkout"],
   ["Clock time", "#eng-alerts since yesterday 2am"],
+  ["A name with no cue word", "meera canvas api rate limits"],
   ["Nothing to extract", "how do refunds work"],
 ]
 
@@ -97,7 +98,7 @@ export function App() {
           </div>
           <div className="border-t">
             {query.trim() ? (
-              <Result result={result} tz={settings.timeZone} />
+              <Result result={result} tz={settings.timeZone} onRewrite={setQuery} />
             ) : (
               <p className="px-4 py-4 text-sm text-muted-foreground">Type a search query.</p>
             )}

@@ -193,3 +193,20 @@ describe("unknownKind hook", () => {
     expect(miss.text).toBe("okrs")
   })
 })
+
+describe("promoteKnownEntities", () => {
+  it("suggests names left in the text, without applying them", () => {
+    const p = createParser({
+      schema,
+      tagger: stubTagger({ "utkarsh budget pdfs": "utkarsh/TOPIC budget/TOPIC pdfs/KIND" }),
+      sources: { person, channel },
+      promoteKnownEntities: { source: "person", role: "ACTOR" },
+    })
+    const r = p.parseSync("utkarsh budget pdfs", opts)
+    expect(r.filters).toEqual({ type: ["pdf"] })
+    expect(r.text).toBe("utkarsh budget")
+    expect(r.issues).toMatchObject([
+      { kind: "suggestion", span: { text: "utkarsh", start: 0 }, candidates: [{ id: "u_utk" }] },
+    ])
+  })
+})

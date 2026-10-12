@@ -165,6 +165,8 @@ export type Issue =
   | { kind: "unbound"; span: TaggedSpan }
   | { kind: "unsupported"; span: TaggedSpan; reason: string }
   | { kind: "low-confidence" }
+  /** A word left in the text that matches a known entity (PLAN §7.5). Never applied as a filter. */
+  | { kind: "suggestion"; span: TaggedSpan; candidates: Candidate[] }
 
 export interface TimeValue {
   from?: string
@@ -229,6 +231,11 @@ export interface ParserConfig {
   schema: Schema
   tagger: Tagger
   sources?: Record<string, EntitySource>
+  /**
+   * Check words left in the search text against a source and suggest them as `role` ("utkarsh
+   * pdfs" with no cue word). Suggestions go to `issues` only. Async sources are skipped.
+   */
+  promoteKnownEntities?: { source: string; role: Role; minScore?: number }
 }
 
 export interface Parser {

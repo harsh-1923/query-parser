@@ -264,6 +264,7 @@ export function createParser(config: ParserConfig): Parser {
         .join(" ")
         .replace(/\s+/g, " ")
         .trim()
+      suggest(textParts, result, q, opts)
       if (result.confidence < schema.policies.minConfidence) {
         result.filters = {}
         result.exclude = {}
@@ -277,6 +278,43 @@ export function createParser(config: ParserConfig): Parser {
 
     const resolved = resolveAll(jobs)
     return resolved instanceof Promise ? resolved.then(finish) : finish(resolved)
+  }
+
+  /** PLAN §7.5: leftover words that exactly match a known entity become suggestions. */
+  function suggest(
+    parts: { at: number; text: string }[],
+    result: ParseResult,
+    q: string,
+    opts: ParseOptions,
+  ) {
+    const promote = config.promoteKnownEntities
+    const source = promote && sources[promote.source]
+    if (!promote || !source) return
+    const min = promote.minScore ?? EXACT
+    for (const p of parts) {
+      for (const m of p.text.matchAll(/[^\s]+/g)) {
+        const word = m[0]
+        if (STOPWORDS.has(word.toLowerCase()) || word.length < 3) continue
+        const start = p.at + m.index
+        const span: TaggedSpan = {
+          role: promote.role,
+          text: q.slice(start, start + word.length),
+          start,
+          end: start + word.length,
+          negated: false,
+          confidence: 1,
+        }
+        const found = source(span, {
+          query: q,
+          role: promote.role,
+          spans: result.spans,
+          ...(opts.self ? { self: opts.self } : {}),
+        })
+        if (found instanceof Promise) return
+        const close = found.filter((c) => c.score >= min).slice(0, 3)
+        if (close.length) result.issues.push({ kind: "suggestion", span, candidates: close })
+      }
+    }
   }
 
   function bindSpan(

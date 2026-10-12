@@ -122,7 +122,15 @@ function JsonView({ result, tz }: { result: ParseResult; tz: string }) {
   )
 }
 
-export function Result({ result, tz }: { result: ParseResult; tz: string }) {
+export function Result({
+  result,
+  tz,
+  onRewrite,
+}: {
+  result: ParseResult
+  tz: string
+  onRewrite: (query: string) => void
+}) {
   const [open, setOpen] = useState(false)
   const excludes = Object.keys(result.exclude).length > 0
   return (
@@ -131,12 +139,29 @@ export function Result({ result, tz }: { result: ParseResult; tz: string }) {
 
       {(result.issues.length > 0 || excludes) && (
         <ul className="space-y-1.5 text-[13px] text-muted-foreground">
-          {result.issues.map((i) => (
-            <li key={describeIssue(i)} className="flex gap-2">
-              <Info className="mt-0.5 size-3.5 shrink-0" />
-              <span className="min-w-0 break-words">{describeIssue(i)}</span>
-            </li>
-          ))}
+          {result.issues.map((i) =>
+            i.kind === "suggestion" ? (
+              <li key={describeIssue(i)}>
+                <button
+                  type="button"
+                  className="flex gap-2 text-left text-foreground underline-offset-4 hover:underline"
+                  onClick={() =>
+                    onRewrite(
+                      `${result.query.slice(0, i.span.start)}from:${i.span.text}${result.query.slice(i.span.end)}`,
+                    )
+                  }
+                >
+                  <Info className="mt-0.5 size-3.5 shrink-0 text-emerald-600" />
+                  <span className="min-w-0 break-words">{describeIssue(i)}</span>
+                </button>
+              </li>
+            ) : (
+              <li key={describeIssue(i)} className="flex gap-2">
+                <Info className="mt-0.5 size-3.5 shrink-0" />
+                <span className="min-w-0 break-words">{describeIssue(i)}</span>
+              </li>
+            ),
+          )}
           {excludes && (
             <li className="flex gap-2">
               <Info className="mt-0.5 size-3.5 shrink-0" />
