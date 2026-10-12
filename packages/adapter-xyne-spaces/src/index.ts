@@ -3,7 +3,11 @@
 // services/vespaSearch/index.ts (see docs/spikes/S05-kind-attr-vocab.md).
 import { defineSchema, facet, type ParseResult, type TimeValue } from "@qp/core"
 
-/** Kinds Xyne can filter on directly, plus finer kinds that fall back to a parent type. */
+/**
+ * Kinds Xyne can filter on directly, plus finer kinds that fall back to a parent type. Genre nouns
+ * ("report", "spec", "invoice") are deliberately not aliases: S05 found they are usually topics,
+ * and as kinds they would restrict results to files.
+ */
 const KINDS = {
   message: {
     aliases: [
@@ -34,7 +38,23 @@ const KINDS = {
   epic: { aliases: ["epic"], parent: "ticket" },
   story: { aliases: ["story", "user story"], parent: "ticket" },
   task: { aliases: ["task", "todo item", "subtask", "action item"], parent: "ticket" },
-  file: { aliases: ["file", "upload", "shared file"] },
+  file: {
+    aliases: [
+      "file",
+      "upload",
+      "shared file",
+      "zip",
+      "tar",
+      "gz",
+      "yaml",
+      "yml",
+      "json",
+      "xml",
+      "exe",
+      "apk",
+      "dmg",
+    ],
+  },
   pdf: { aliases: ["pdf", "pdf file"], parent: "file" },
   document: {
     aliases: [
@@ -48,6 +68,10 @@ const KINDS = {
       "write-up",
       "memo",
       "txt",
+
+      "md",
+      "rtf",
+      "odt",
     ],
     parent: "file",
   },
@@ -83,10 +107,13 @@ const KINDS = {
       "svg",
       "diagram",
       "mockup",
+
+      "webp",
+      "heic",
     ],
     parent: "file",
   },
-  video: { aliases: ["video", "mp4", "mov", "clip", "loom"], parent: "file" },
+  video: { aliases: ["video", "mp4", "mov", "clip", "loom", "mkv", "webm", "avi"], parent: "file" },
   canvas: {
     aliases: [
       "canvas",
@@ -101,15 +128,39 @@ const KINDS = {
       "recap",
     ],
   },
-  transcript: { aliases: ["transcript", "transcription", "call transcript", "meeting transcript"] },
-  recording: { aliases: ["recording", "call recording", "meeting recording", "video recording"] },
+  transcript: {
+    aliases: [
+      "transcript",
+      "transcription",
+      "call transcript",
+      "meeting transcript",
+      "vtt",
+      "srt",
+      "captions",
+      "subtitles",
+    ],
+  },
+  recording: {
+    aliases: [
+      "recording",
+      "call recording",
+      "meeting recording",
+      "video recording",
+      "mp3",
+      "wav",
+      "m4a",
+      "voice memo",
+      "voice note",
+      "voicemail",
+    ],
+  },
   call: {
     aliases: [
       "meeting",
       "call",
       "huddle",
       "standup",
-      "sync",
+
       "1:1",
       "one on one",
       "zoom",
@@ -173,6 +224,10 @@ export const schema = defineSchema({
         "in review",
         "under review",
         "in qa",
+
+        "needs review",
+        "awaiting review",
+        "in code review",
       ],
       set: { facet: "status", value: "STARTED" },
     },
@@ -190,6 +245,8 @@ export const schema = defineSchema({
         "finished",
         "fixed",
         "shipped",
+
+        "merged",
       ],
       set: { facet: "status", value: "COMPLETED" },
     },

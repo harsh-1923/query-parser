@@ -1,7 +1,15 @@
 {
   "$schema": "https://biomejs.dev/schemas/2.5.15/schema.json",
   "files": {
-    "includes": ["**", "!**/dist", "!**/node_modules", "!training", "!eval/datasets", "!spikes"]
+    "includes": [
+      "**",
+      "!**/dist",
+      "!**/node_modules",
+      "!training",
+      "!eval/datasets",
+      "!spikes",
+      "!apps/site/src/components/ui"
+    ]
   },
   "formatter": {
     "enabled": true,
@@ -10,10 +18,20 @@
     "lineWidth": 100
   },
   "javascript": {
-    "formatter": { "quoteStyle": "double", "semicolons": "asNeeded" }
+    "formatter": {
+      "quoteStyle": "double",
+      "semicolons": "asNeeded"
+    }
   },
   "linter": {
     "enabled": true,
-    "rules": { "preset": "recommended" }
+    "rules": {
+      "preset": "recommended"
+    }
+  },
+  "css": {
+    "parser": {
+      "tailwindDirectives": true
+    }
   }
 }

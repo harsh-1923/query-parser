@@ -1,5 +1,5 @@
 // Alias matching for KIND and ATTR spans (PLAN §5.3–5.4, spike S05): normalization and plural
-// folding, then exact match, then a small typo allowance, then (kinds only) the head word.
+// folding, then exact match, then an adjacent-swap typo, then (kinds only) the head word.
 
 const SINGULAR_EXCEPTIONS = new Set([
   "notes",
@@ -37,27 +37,14 @@ export function normalizeAlias(s: string): string {
     .join(" ")
 }
 
-/** Optimal string alignment distance; returns cap + 1 once it is exceeded. */
-function osa(a: string, b: string, cap: number): number {
-  if (Math.abs(a.length - b.length) > cap) return cap + 1
-  let prev2: number[] = []
-  let prev = Array.from({ length: b.length + 1 }, (_, j) => j)
-  for (let i = 1; i <= a.length; i++) {
-    const cur = [i]
-    for (let j = 1; j <= b.length; j++) {
-      const cost = a[i - 1] === b[j - 1] ? 0 : 1
-      let v = Math.min((prev[j] ?? 0) + 1, (cur[j - 1] ?? 0) + 1, (prev[j - 1] ?? 0) + cost)
-      if (i > 1 && j > 1 && a[i - 1] === b[j - 2] && a[i - 2] === b[j - 1])
-        v = Math.min(v, (prev2[j - 2] ?? 0) + 1)
-      cur.push(v)
-    }
-    prev2 = prev
-    prev = cur
-  }
-  return prev[b.length] ?? cap + 1
+/** True when b is a with exactly one pair of adjacent letters swapped ("taks" / "task"). */
+function swapped(a: string, b: string): boolean {
+  if (a.length !== b.length || a === b) return false
+  const d: number[] = []
+  for (let i = 0; i < a.length; i++) if (a[i] !== b[i]) d.push(i)
+  const [x, y] = d
+  return d.length === 2 && x !== undefined && y === x + 1 && a[x] === b[y] && a[y] === b[x]
 }
-
-const allowance = (s: string) => (s.length >= 8 ? 2 : s.length >= 4 ? 1 : 0)
 
 export type AliasStage = "exact" | "typo" | "head"
 
@@ -82,21 +69,14 @@ export function aliasIndex(
       const n = normalizeAlias(text)
       const hit = exact.get(n)
       if (hit) return { key: hit, stage: "exact" }
-      const cap = allowance(n)
-      if (cap) {
-        let best: { d: number; key: string } | undefined
-        let tie = false
-        for (const [alias, key] of exact) {
-          if (alias.length < 4) continue
-          const d = osa(n, alias, cap)
-          if (d > cap) continue
-          if (!best || d < best.d) {
-            best = { d, key }
-            tie = false
-          } else if (d === best.d && key !== best.key) tie = true
-        }
-        if (best && !tie) return { key: best.key, stage: "typo" }
-      }
+      // Typos: only an adjacent swap. S05 showed that general edit distance turns real words
+      // into wrong aliases ("contract" → contact, "meme" → memo, "locked" → blocked).
+      const raw = text.toLowerCase().trim()
+      const hits = new Set<string>()
+      for (const [alias, key] of exact)
+        if (alias.length >= 4 && (swapped(n, alias) || swapped(raw, alias))) hits.add(key)
+      const [only] = hits
+      if (hits.size === 1 && only) return { key: only, stage: "typo" }
       if (opts.headFallback && n.includes(" ")) {
         const head = exact.get(n.slice(n.lastIndexOf(" ") + 1))
         if (head) return { key: head, stage: "head" }
