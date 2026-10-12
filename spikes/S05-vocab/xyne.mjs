@@ -1,0 +1,62 @@
+// How each reference key maps onto Xyne Spaces' search API today (GET /api/vespaSearch; see the
+// S05 write-up for the source files). "parent": no exact filter, but a broader one exists, and the
+// span stays in the search text so ranking can use it.
+
+const f = (param) => ({ how: "filter", param })
+const p = (param) => ({ how: "parent", param })
+const u = { how: "unbound" }
+
+export const XYNE = {
+  message: f("type=messages"),
+  comment: p("type=messages"),
+  email: f("type=emails"),
+  event: u,
+  file: f("type=files"),
+  attachment: f("type=attachments"),
+  pdf: p("type=files"),
+  document: p("type=files"),
+  spreadsheet: p("type=files"),
+  presentation: p("type=files"),
+  image: p("type=files"),
+  video: p("type=files"),
+  folder: u,
+  ticket: f("type=tickets"),
+  bug: p("type=tickets"),
+  epic: p("type=tickets"),
+  story: p("type=tickets"),
+  task: p("type=tickets"),
+  meeting: f("type=calls"),
+  transcript: f("type=transcript"),
+  recording: f("subApp=recording"),
+  notes: f("type=canvas"),
+  channel: f("type=channels"),
+  person: f("type=people"),
+
+  "status:open": f("status=TODO,STARTED,PAUSED"),
+  "status:todo": f("status=TODO"),
+  "status:in_progress": f("status=STARTED"),
+  "status:in_review": p("status=STARTED"),
+  "status:blocked": p("status=PAUSED"),
+  "status:done": f("status=COMPLETED"),
+  "status:backlog": p("status=TODO"),
+  "status:reopened": u,
+  "status:cancelled": f("status=CANCELLED"),
+  "status:pending_approval": u,
+  "priority:critical": f("priority=CRITICAL"),
+  "priority:high": f("priority=HIGH"),
+  "priority:medium": f("priority=MEDIUM"),
+  "priority:low": f("priority=LOW"),
+  "priority:none": u,
+  "assignee:none": u,
+  "is:unread": u,
+  "is:starred": u,
+  "is:pinned": u,
+  "is:flagged": u,
+  "is:draft": u,
+  "is:trashed": u,
+  "is:unsigned": u,
+  "is:archived": f("excludeArchived=false"),
+  "has:attachment": u,
+  "has:link": u,
+  "from:bot": f("includeBotMessages=true"),
+}

@@ -335,7 +335,8 @@ export function createParser(config: ParserConfig): Parser {
 
     switch (f.type) {
       case "kind": {
-        const key = ctx.kinds.match(s.text)?.key
+        const key =
+          ctx.kinds.match(s.text)?.key ?? schema.hooks.unknownKind?.(s, bindCtx) ?? undefined
         if (!key || !schema.kinds[key]) {
           s.resolution = { status: "unresolved" }
           result.issues.push({ kind: "unresolved", span: s, fallback: "text" })

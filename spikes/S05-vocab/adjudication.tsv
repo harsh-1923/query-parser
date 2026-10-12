@@ -1,0 +1,18 @@
+# role	span	gold (| = any of)	reason. Only spans where the matcher answered and kimi's gold disagreed were reviewed; misses keep kimi's gold.
+KIND	invoice	file|document|none	an invoice is a file or document; kimi left it unlabeled because no key named invoices
+KIND	invoices	file|document|none	same as invoice; kimi labeled it document in one query, file in another, none in a third
+KIND	logs	file|none	log files are files; kimi wrote it as a kind in the query
+KIND	memo	document	a memo is a document; kimi's "none" contradicts its own {memo} kind marking
+KIND	runbook	document	a runbook is a document
+KIND	postmortem	document	a postmortem is a document
+KIND	contracts	document|file	both keys fit; kimi labeled contracts document in heldout-1 and file here
+KIND	expense report	document|file	a report is a document; kimi marked it as the kind in the query
+KIND	incidents	ticket|none	incidents are tracker items; reasonable either way
+KIND	reciepts	file|document	typo of receipts; both keys fit
+KIND	agenda	document|notes	an agenda is a doc or meeting notes; kimi used notes in heldout-1 and none elsewhere
+ATTR	approved	status:done|none	"approved" is a terminal state in an approval flow; reasonable either way
+ATTR	important	priority:high|is:flagged	both readings are common; gold picked flagged, the alias list picks high priority
+ATTR	sev1	priority:critical|none	severity 1 is the highest-severity signal; products may keep it separate from priority
+KIND	figma	none	kept wrong: a Figma file is not an image
+KIND	crash reports	none|bug	kept wrong: crash reports are bugs or logs, not documents
+ATTR	new	none	kept wrong: "msgs new" means unread or recent, not a to-do status

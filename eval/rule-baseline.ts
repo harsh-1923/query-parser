@@ -21,7 +21,7 @@ registerHooks({
 const { ruleTagger } = await import("../packages/core/src/ruleTagger.ts")
 const { tokenize } = await import("../packages/core/src/tokenize.ts")
 const { normalizeTime } = await import("../packages/time/src/index.ts")
-const { ATTR_ALIASES, KIND_ALIASES } = await import("../spikes/S05-vocab/aliases.mjs")
+const { ATTR_ALIASES, KIND_ALIASES } = await import("../spikes/S05-vocab/aliases-v1.mjs")
 
 const REFERENCE = "2026-10-12T10:00:00Z"
 const TIME_ZONE = "Asia/Kolkata"

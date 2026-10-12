@@ -220,6 +220,8 @@ export interface Hooks {
   normalize?: (query: string) => string
   afterTag?: (spans: TaggedSpan[], ctx: { query: string }) => TaggedSpan[]
   bind?: (span: TaggedSpan, ctx: BindContext) => { facet: string; value: unknown } | undefined
+  /** A KIND span no alias matched: return a kind key, or undefined to keep it as text (§5.3). */
+  unknownKind?: (span: TaggedSpan, ctx: BindContext) => string | undefined
   afterParse?: (result: ParseResult, ctx: { schema: Schema }) => ParseResult
 }
 

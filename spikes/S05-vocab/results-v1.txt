@@ -1,0 +1,152 @@
+# S05 alias matcher, aliases v1 (141 kind, 119 attr aliases)
+
+## s2: 173 spans (2 key:value operators excluded, PLAN §5.8)
+KIND  resolved 121/121 (100.0%), wrong 0, misses 0, dynamic/none kept as text 0/0
+ATTR  resolved 48/48 (100.0%), wrong 0, misses 0, dynamic/none kept as text 4/4
+all   resolved 169/169 (100.0%), wrong 0, misses 0, dynamic/none kept as text 4/4
+correct by stage: {"exact":168,"head":1}
+
+wrong (unique):
+misses (unique):
+
+## heldout-1 (v2 vocabulary was built from its misses): 294 spans (0 key:value operators excluded, PLAN §5.8)
+KIND  resolved 78/130 (60.0%), wrong 3, misses 49, dynamic/none kept as text 20/20
+ATTR  resolved 69/76 (90.8%), wrong 4, misses 6, dynamic/none kept as text 65/68
+all   resolved 147/206 (71.4%), wrong 7, misses 55, dynamic/none kept as text 85/88
+correct by stage: {"exact":136,"typo":1,"head":3}
+
+wrong (unique):
+  ATTR	new	got status:todo (exact)	gold none	| highlight on churn risk new
+  KIND	recordings	got recording (exact)	gold video	| recordings from user testing archived
+  KIND	voice memos	got document (head)	gold file	| voice memos not synced
+  ATTR	pending	got status:open (exact)	gold none	| rsvp for partner workshop pending
+  KIND	mp4	got video (exact)	gold recording	| mp4 of launch dryrun processing
+misses (unique):
+  ATTR	attachments	gold has:attachment	| logs from deploy-bot attachments
+  KIND	zip	gold file	| brand assets zip in trash
+  ATTR	paid	gold status:done	| invoice paid from acme
+  KIND	runbook	gold document	| runbook outdated for pager
+  KIND	meme	gold image	| meme nsfw in random
+  KIND	yaml	gold file	| staging yaml locked
+  KIND	exe	gold file	| exe quarantined from it
+  KIND	reciepts	gold file|document	| reciepts for expensify unfiled
+  KIND	spec	gold document	| flagged spec from spencer
+  KIND	invoces	gold file	| overdue invoces from aws
+  KIND	contract	gold document	| signed contract from acme
+  KIND	offer letter	gold document	| encrypted offer letter for the sre candidate
+  KIND	resumes	gold document	| starred resumes from referrals
+  KIND	mocks	gold image	| mocks from diego pinned
+  KIND	status report	gold document	| unread status report from analytics
+  ATTR	merged	gold status:done	| merged prs in the api repo
+  KIND	agena	gold notes	| agena for tmrw standup
+  KIND	nda	gold document	| nda from globex countersigned
+  KIND	specs	gold document	| api specs in review
+  KIND	rfcs	gold document	| rfcs needs review
+  ATTR	needs review	gold status:in_review	| rfcs needs review
+  KIND	postmortums	gold document	| postmortums from last week
+  KIND	regressions	gold bug	| regressions blocking release
+  KIND	crash logs	gold file	| new crash logs from android
+  KIND	feature requests	gold ticket	| customer feature requests top voted
+  KIND	chores	gold task	| chores in backlog
+  KIND	spikes	gold task	| spikes in review
+  KIND	escalations	gold ticket	| escalations urgent from enterprise
+  KIND	screnshots	gold image	| design screnshots i flagged
+  KIND	contracts	gold document|file	| unsigned contracts
+  ATTR	favorited	gold is:starred	| all-hands notes favorited
+  KIND	wireframes	gold image	| checkout wireframes approved
+  ATTR	read later	gold is:starred	| docs marked read later
+  KIND	rfps	gold document	| rfps pending legal signoff
+  KIND	roadmap	gold document	| h2 roadmap confidential
+  KIND	postmortems	gold document	| postmortems tagged sev1
+  KIND	one-pager	gold document	| pricing one-pager wip
+  KIND	runbooks	gold document	| oncall runbooks stale
+  KIND	agenda	gold document|notes	| agenda for qbr draft
+  KIND	todos	gold task	| todos from eng allhands unassigned
+  KIND	vtt	gold transcript	| vtt for webinar replay broken
+  KIND	srt	gold transcript	| srt from customer interview unread
+  KIND	mp3	gold recording	| mp3 from sales discovery starred
+  KIND	wav	gold file	| wav for legal hold encrypted
+  KIND	m4a	gold recording	| m4a of founder ama noisy
+  KIND	highlight	gold video	| highlight on churn risk new
+  KIND	whiteboard	gold notes	| whiteboard from api workshop private
+  KIND	poll	gold message	| poll in townhall closed
+  KIND	breakout	gold meeting	| breakout from offsite unrecorded
+  KIND	voicemail	gold recording	| voicemail from unknown caller blocked
+  KIND	ics	gold event	| ics for interview panel duplicate
+
+## heldout-2 (fresh, never used for aliases): 292 spans (0 key:value operators excluded, PLAN §5.8)
+KIND  resolved 75/136 (55.1%), wrong 0, misses 61, dynamic/none kept as text 14/14
+ATTR  resolved 78/90 (86.7%), wrong 1, misses 12, dynamic/none kept as text 51/52
+all   resolved 153/226 (67.7%), wrong 1, misses 73, dynamic/none kept as text 65/66
+correct by stage: {"exact":143,"head":1}
+
+wrong (unique):
+  ATTR	new	got status:todo (exact)	gold none	| msgs new in #eng
+misses (unique):
+  ATTR	attachments	gold has:attachment	| docs with attachments from the offsite
+  KIND	runbook	gold document	| runbook outdated failover
+  KIND	.tf	gold file	| .tf unreviewed in infra
+  KIND	contract	gold document	| contract signed vendor x
+  KIND	postmortem	gold document	| sre postmortem from friday starred
+  KIND	invocies	gold file	| invocies from vendors with attachments
+  KIND	prs	gold ticket	| prs im tagged in unread
+  KIND	zip	gold file	| zip of design assets large
+  KIND	contracts	gold document|file	| contracts legal sent back flagged
+  KIND	reciepts	gold file|document	| my reciepts unsubmitted
+  KIND	rfcs	gold document	| archived rfcs about the cache rewrite
+  KIND	resumes	gold document	| flagged resumes from referrals
+  KIND	offer letter	gold document	| my offer letter from hr
+  KIND	changelog	gold document	| changelog for 2.4
+  KIND	itinerary	gold document	| itinerary for sf onsite unread
+  KIND	password reset	gold email	| okta password reset spam
+  KIND	ndas	gold document	| unsigned ndas from vendors
+  ATTR	in drafts	gold is:draft	| ben dashboard reply in drafts
+  KIND	expense report	gold document|file	| approval for my expense report
+  KIND	wireframes	gold image	| wireframes from the 2023 redesign
+  KIND	specs	gold document	| unstarred specs to clean up
+  KIND	regressions	gold bug	| regressions reopened this week
+  KIND	postmortems	gold document	| postmortems tagged sev1
+  KIND	escalations	gold ticket	| high-pri escalations from enterprise
+  ATTR	high-pri	gold priority:high	| high-pri escalations from enterprise
+  KIND	vulns	gold ticket	| critical vulns still untriaged
+  KIND	hotfixes	gold ticket	| hotfixes pending approval
+  KIND	dupes	gold ticket	| dupes closed yesterday
+  KIND	cves	gold ticket	| cves still open in deps
+  KIND	runbooks	gold document	| runbooks for oncall outdated
+  KIND	expense reports	gold document	| my expense reports still draft
+  KIND	roadmap	gold document	| latest roadmap shared with me
+  ATTR	unresolved comments	gold status:open	| mockups with unresolved comments
+  KIND	prds	gold document	| prds needs review in eng
+  ATTR	needs review	gold status:in_review	| prds needs review in eng
+  KIND	one-pagers	gold document	| one-pagers approved by marketing
+  KIND	proposal	gold document	| final proposal for acme
+  KIND	sow	gold document	| signed sow from globex
+  KIND	templates	gold document	| templates marked official
+  KIND	checklist	gold document	| checklist for launch day
+  KIND	apks	gold file	| dogfood apks beta
+  KIND	logos	gold image	| current logos for the rebrand
+  KIND	okrs	gold document	| okrs locked fy25
+  KIND	mtg	gold meeting	| mtg with ana unread
+  KIND	agenda	gold document|notes	| agenda for monday staff draft
+  ATTR	attachment	gold has:attachment	| invite for vendor security attachment
+  ATTR	auto-generated	gold from:bot	| summary from privacy team auto-generated
+  KIND	followups	gold task	| followups owed to sales open
+  KIND	highlights	gold notes	| highlights from qbr saved
+  KIND	voicemail	gold recording	| voicemail about downtime unplayed
+  ATTR	unplayed	gold is:unread	| voicemail about downtime unplayed
+  KIND	poll	gold message	| poll for offsite dates closed
+  KIND	whiteboard	gold notes	| whiteboard from pricing jam locked
+  KIND	screenshare	gold recording	| screenshare during failover archived
+  KIND	wav	gold recording	| wav left by recruiter untranscribed
+  KIND	debrief	gold meeting	| debrief after beta slip confidential
+  ATTR	skipped	gold status:cancelled	| standup for payments skipped
+  KIND	allhands	gold meeting	| declined allhands for q3
+  ATTR	declined	gold status:cancelled	| declined allhands for q3
+  KIND	interview	gold meeting	| interview loop for nadia incomplete
+  ATTR	incomplete	gold status:in_progress	| interview loop for nadia incomplete
+  KIND	webinar	gold meeting	| webinar with partners public
+  KIND	brainstorm	gold meeting	| pinned brainstorm for growth ideas
+
+## Xyne Spaces coverage of resolved S02 spans
+exact filter 79, broader parent filter 64, unbound (falls back to text) 26 of 169
+unbound keys: {"is:unread":4,"is:pinned":1,"is:draft":4,"is:flagged":1,"is:starred":2,"has:attachment":1,"status:pending_approval":1,"event":2,"assignee:none":3,"status:reopened":1,"priority:none":1,"is:trashed":2,"folder":2,"is:unsigned":1}

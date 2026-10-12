@@ -16,7 +16,7 @@ Suggested order: S2 → S4 → S1 → S3 → S6, with S5, S7, S8 alongside M3–
 | S2 | Does the role set cover real queries? **Done: pass with ADR 0002** ([result](spikes/S02-role-coverage.md)) | M2 | ½ day |
 | S3 | Can it spot names without cue words, including unseen Indian names? | M4 | 1 day |
 | S4 | Hand-written time grammar or chrono-node? **Done: pass, grammar only ([ADR 0003](decisions/0003-time-grammar-no-chrono.md))** ([result](spikes/S04-time-normalization.md)) | M2 | 1 day |
-| S5 | Do alias lists cover kinds and attributes, or do we need embeddings? | M2 | ½ day |
+| S5 | Do alias lists cover kinds and attributes, or do we need embeddings? **Done: fails the bar (85.4% on fresh data); aliases stay, no embeddings in core, `unknownKind` hook** ([result](spikes/S05-kind-attr-vocab.md)) | M2 | ½ day |
 | S6 | Is plain-JS CPU inference fast enough on a mid-range phone? | M4 | ½ day |
 | S7 | How big is the synthetic-to-handwritten gap? | M4 | runs with M3/M4 |
 | S8 | Can confidence be calibrated, and do negatives teach "nothing to extract"? | M4 | runs with M4 |

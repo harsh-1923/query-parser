@@ -177,3 +177,19 @@ describe("createParser", () => {
     expect(() => p.parseSync("bugs from utkarsh", opts)).toThrow(/promise/)
   })
 })
+
+describe("unknownKind hook", () => {
+  it("lets a product resolve kinds its aliases miss", () => {
+    const withHook = defineSchema({
+      kinds: { file: { aliases: ["file"] }, document: { aliases: ["doc"], parent: "file" } },
+      facets: { type: facet.kind() },
+      hooks: { unknownKind: (span) => (span.text === "runbooks" ? "document" : undefined) },
+    })
+    const tagger = stubTagger({ runbooks: "runbooks/KIND", okrs: "okrs/KIND" })
+    const p = createParser({ schema: withHook, tagger })
+    expect(p.parseSync("runbooks", opts).filters).toEqual({ type: ["document"] })
+    const miss = p.parseSync("okrs", opts)
+    expect(miss.filters).toEqual({})
+    expect(miss.text).toBe("okrs")
+  })
+})

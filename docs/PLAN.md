@@ -286,12 +286,18 @@ kinds: {
 }
 ```
 
-- Aliases are matched after normalization (case, plural, punctuation) with a small edit-distance
-  allowance for typos.
+- Aliases are matched after normalization (case, plural, punctuation). Typos are matched only as
+  one adjacent swap ("taks" → task): in S05, general edit distance turned real words into wrong
+  kinds ("contract" → contact, "meme" → memo).
+- Keep genre nouns ("report", "spec", "invoice") out of kind aliases unless the product can filter
+  on them. In S05 they were topics more often than kinds, and broad alias lists cost the rule tagger
+  4.7 points of span F1. As text, they still reach the search engine.
 - `parent` lets a consumer ask for "pdf" and still filter correctly in a system that only knows
   "file + mime".
 - A `KIND` span that matches no alias goes through the optional `unknownKind` hook (a product could
-  plug in an embedding lookup here). If that returns nothing, the span falls back to `text`.
+  plug in an embedding lookup here). If that returns nothing, the span falls back to `text`. S05
+  found alias lists resolve ~85% of unseen kind/state words with 1–2 wrong in 226; the misses are a
+  long tail of jargon, so core ships no embedding table ([S05](spikes/S05-kind-attr-vocab.md)).
 
 ### 5.4 Attributes
 

@@ -1,0 +1,292 @@
+{"role":"KIND","text":"pdfs","query":"pdfs from priya unread","product":"chat","gold":"pdf"}
+{"role":"ATTR","text":"unread","query":"pdfs from priya unread","product":"chat","gold":"is:unread"}
+{"role":"KIND","text":"bugs","query":"p1 bugs in payments","product":"chat","gold":"bug"}
+{"role":"ATTR","text":"p1","query":"p1 bugs in payments","product":"chat","gold":"priority:high"}
+{"role":"KIND","text":"screenshots","query":"screenshots starred ios crash","product":"chat","gold":"image"}
+{"role":"ATTR","text":"starred","query":"screenshots starred ios crash","product":"chat","gold":"is:starred"}
+{"role":"KIND","text":"invoice","query":"invoice with attachments from acme","product":"chat","gold":"none"}
+{"role":"ATTR","text":"attachments","query":"invoice with attachments from acme","product":"chat","gold":"has:attachment"}
+{"role":"KIND","text":"deck","query":"deck draft for qbr","product":"chat","gold":"presentation"}
+{"role":"ATTR","text":"draft","query":"deck draft for qbr","product":"chat","gold":"is:draft"}
+{"role":"KIND","text":"logs","query":"logs error after deploy","product":"chat","gold":"none"}
+{"role":"ATTR","text":"error","query":"logs error after deploy","product":"chat","gold":"none"}
+{"role":"KIND","text":"thread","query":"thread muted about okrs","product":"chat","gold":"message"}
+{"role":"ATTR","text":"muted","query":"thread muted about okrs","product":"chat","gold":"none"}
+{"role":"KIND","text":"msgs","query":"msgs new in #eng","product":"chat","gold":"message"}
+{"role":"ATTR","text":"new","query":"msgs new in #eng","product":"chat","gold":"none"}
+{"role":"KIND","text":"doc","query":"doc shared with legal","product":"chat","gold":"document"}
+{"role":"ATTR","text":"shared","query":"doc shared with legal","product":"chat","gold":"none"}
+{"role":"KIND","text":"spreadsheet","query":"spreadsheet stale vendor costs","product":"chat","gold":"spreadsheet"}
+{"role":"ATTR","text":"stale","query":"spreadsheet stale vendor costs","product":"chat","gold":"none"}
+{"role":"KIND","text":"figma","query":"figma commented onboarding flow","product":"chat","gold":"none"}
+{"role":"ATTR","text":"commented","query":"figma commented onboarding flow","product":"chat","gold":"none"}
+{"role":"KIND","text":"pr","query":"pr blocked by auth","product":"chat","gold":"none"}
+{"role":"ATTR","text":"blocked","query":"pr blocked by auth","product":"chat","gold":"status:blocked"}
+{"role":"KIND","text":"ticket","query":"ticket unassigned sso login","product":"chat","gold":"ticket"}
+{"role":"ATTR","text":"unassigned","query":"ticket unassigned sso login","product":"chat","gold":"assignee:none"}
+{"role":"KIND","text":"recording","query":"recording transcribed all hands","product":"chat","gold":"recording"}
+{"role":"ATTR","text":"transcribed","query":"recording transcribed all hands","product":"chat","gold":"none"}
+{"role":"KIND","text":"link","query":"link broken status page","product":"chat","gold":"none"}
+{"role":"ATTR","text":"broken","query":"link broken status page","product":"chat","gold":"none"}
+{"role":"KIND","text":"memo","query":"memo confidential comp bands","product":"chat","gold":"none"}
+{"role":"ATTR","text":"confidential","query":"memo confidential comp bands","product":"chat","gold":"none"}
+{"role":"KIND","text":"csv","query":"csv attached usage dump","product":"chat","gold":"spreadsheet"}
+{"role":"ATTR","text":"attached","query":"csv attached usage dump","product":"chat","gold":"has:attachment"}
+{"role":"KIND","text":"image","query":"image flagged customer data","product":"chat","gold":"image"}
+{"role":"ATTR","text":"flagged","query":"image flagged customer data","product":"chat","gold":"is:flagged"}
+{"role":"KIND","text":"runbook","query":"runbook outdated failover","product":"chat","gold":"none"}
+{"role":"ATTR","text":"outdated","query":"runbook outdated failover","product":"chat","gold":"none"}
+{"role":"KIND","text":"alert","query":"alert firing eu west","product":"chat","gold":"none"}
+{"role":"ATTR","text":"firing","query":"alert firing eu west","product":"chat","gold":"none"}
+{"role":"KIND","text":"dm","query":"dm unread from nadia","product":"chat","gold":"message"}
+{"role":"ATTR","text":"unread","query":"dm unread from nadia","product":"chat","gold":"is:unread"}
+{"role":"KIND","text":".tf","query":".tf unreviewed in infra","product":"chat","gold":"file"}
+{"role":"ATTR","text":"unreviewed","query":".tf unreviewed in infra","product":"chat","gold":"none"}
+{"role":"KIND","text":"slides","query":"slides approved launch","product":"chat","gold":"presentation"}
+{"role":"ATTR","text":"approved","query":"slides approved launch","product":"chat","gold":"none"}
+{"role":"KIND","text":"contract","query":"contract signed vendor x","product":"chat","gold":"document"}
+{"role":"ATTR","text":"signed","query":"contract signed vendor x","product":"chat","gold":"none"}
+{"role":"KIND","text":"transcript","query":"transcript editable customer call","product":"chat","gold":"transcript"}
+{"role":"ATTR","text":"editable","query":"transcript editable customer call","product":"chat","gold":"none"}
+{"role":"KIND","text":"zoom","query":"zoom unlisted design crit","product":"chat","gold":"meeting"}
+{"role":"ATTR","text":"unlisted","query":"zoom unlisted design crit","product":"chat","gold":"none"}
+{"role":"KIND","text":"email","query":"email drafts to finance","product":"chat","gold":"email"}
+{"role":"ATTR","text":"drafts","query":"email drafts to finance","product":"chat","gold":"is:draft"}
+{"role":"KIND","text":"dataset","query":"dataset internal churn q4","product":"chat","gold":"none"}
+{"role":"ATTR","text":"internal","query":"dataset internal churn q4","product":"chat","gold":"none"}
+{"role":"KIND","text":"postmortem","query":"postmortem open db outage","product":"chat","gold":"none"}
+{"role":"ATTR","text":"open","query":"postmortem open db outage","product":"chat","gold":"status:open"}
+{"role":"KIND","text":"snippet","query":"snippet pinned snowflake regex","product":"chat","gold":"none"}
+{"role":"ATTR","text":"pinned","query":"snippet pinned snowflake regex","product":"chat","gold":"is:pinned"}
+{"role":"KIND","text":"pdfs","query":"pdfs from priya unread","product":"email","gold":"pdf"}
+{"role":"ATTR","text":"unread","query":"pdfs from priya unread","product":"email","gold":"is:unread"}
+{"role":"KIND","text":"bugs","query":"p1 bugs in payments","product":"email","gold":"bug"}
+{"role":"ATTR","text":"p1","query":"p1 bugs in payments","product":"email","gold":"priority:high"}
+{"role":"KIND","text":"invocies","query":"invocies from vendors with attachments","product":"email","gold":"file"}
+{"role":"ATTR","text":"with attachments","query":"invocies from vendors with attachments","product":"email","gold":"has:attachment"}
+{"role":"KIND","text":"prs","query":"prs im tagged in unread","product":"email","gold":"ticket"}
+{"role":"ATTR","text":"unread","query":"prs im tagged in unread","product":"email","gold":"is:unread"}
+{"role":"KIND","text":"meeting notes","query":"meeting notes from all hands starred","product":"email","gold":"notes"}
+{"role":"ATTR","text":"starred","query":"meeting notes from all hands starred","product":"email","gold":"is:starred"}
+{"role":"KIND","text":"calendar invites","query":"recruiter calendar invites unanswered","product":"email","gold":"event"}
+{"role":"ATTR","text":"unanswered","query":"recruiter calendar invites unanswered","product":"email","gold":"none"}
+{"role":"KIND","text":"deck","query":"deck from the qbr","product":"email","gold":"presentation"}
+{"role":"KIND","text":"xlsx","query":"latest xlsx from finance unread","product":"email","gold":"spreadsheet"}
+{"role":"ATTR","text":"unread","query":"latest xlsx from finance unread","product":"email","gold":"is:unread"}
+{"role":"KIND","text":"zip","query":"zip of design assets large","product":"email","gold":"file"}
+{"role":"ATTR","text":"large","query":"zip of design assets large","product":"email","gold":"none"}
+{"role":"KIND","text":"screenshots","query":"screenshots of the crash","product":"email","gold":"image"}
+{"role":"KIND","text":"contracts","query":"contracts legal sent back flagged","product":"email","gold":"file"}
+{"role":"ATTR","text":"flagged","query":"contracts legal sent back flagged","product":"email","gold":"is:flagged"}
+{"role":"KIND","text":"reciepts","query":"reciepts i deleted by accident","product":"email","gold":"file"}
+{"role":"ATTR","text":"deleted","query":"reciepts i deleted by accident","product":"email","gold":"is:trashed"}
+{"role":"KIND","text":"postmortem","query":"sre postmortem from friday starred","product":"email","gold":"document"}
+{"role":"ATTR","text":"starred","query":"sre postmortem from friday starred","product":"email","gold":"is:starred"}
+{"role":"KIND","text":"rfcs","query":"rfcs on the new api unread","product":"email","gold":"document"}
+{"role":"ATTR","text":"unread","query":"rfcs on the new api unread","product":"email","gold":"is:unread"}
+{"role":"KIND","text":"tickets","query":"tickets escalated to us no reply","product":"email","gold":"ticket"}
+{"role":"ATTR","text":"no reply","query":"tickets escalated to us no reply","product":"email","gold":"none"}
+{"role":"KIND","text":"recordings","query":"workshop recordings snoozed","product":"email","gold":"recording"}
+{"role":"ATTR","text":"snoozed","query":"workshop recordings snoozed","product":"email","gold":"none"}
+{"role":"KIND","text":"resumes","query":"resumes the recruiter fwd'd unread","product":"email","gold":"document"}
+{"role":"ATTR","text":"unread","query":"resumes the recruiter fwd'd unread","product":"email","gold":"is:unread"}
+{"role":"KIND","text":"offer letter","query":"my offer letter from hr","product":"email","gold":"document"}
+{"role":"KIND","text":"changelog","query":"changelog for 2.4","product":"email","gold":"document"}
+{"role":"KIND","text":"memo","query":"memo from the exec team important","product":"email","gold":"document"}
+{"role":"ATTR","text":"important","query":"memo from the exec team important","product":"email","gold":"is:flagged"}
+{"role":"KIND","text":"itinerary","query":"itinerary for sf onsite unread","product":"email","gold":"document"}
+{"role":"ATTR","text":"unread","query":"itinerary for sf onsite unread","product":"email","gold":"is:unread"}
+{"role":"KIND","text":"newsletters","query":"months of unread newsletters","product":"email","gold":"email"}
+{"role":"ATTR","text":"unread","query":"months of unread newsletters","product":"email","gold":"is:unread"}
+{"role":"KIND","text":"alerts","query":"datadog alerts muted","product":"email","gold":"none"}
+{"role":"ATTR","text":"muted","query":"datadog alerts muted","product":"email","gold":"none"}
+{"role":"KIND","text":"survey","query":"survey results from hr has attachment","product":"email","gold":"none"}
+{"role":"ATTR","text":"has attachment","query":"survey results from hr has attachment","product":"email","gold":"has:attachment"}
+{"role":"KIND","text":"docs","query":"docs for new hires starred","product":"email","gold":"document"}
+{"role":"ATTR","text":"starred","query":"docs for new hires starred","product":"email","gold":"is:starred"}
+{"role":"KIND","text":"password reset","query":"okta password reset spam","product":"email","gold":"email"}
+{"role":"ATTR","text":"spam","query":"okta password reset spam","product":"email","gold":"none"}
+{"role":"KIND","text":"ndas","query":"ndas from acme archived","product":"email","gold":"document"}
+{"role":"ATTR","text":"archived","query":"ndas from acme archived","product":"email","gold":"is:archived"}
+{"role":"KIND","text":"dashboard","query":"ben dashboard reply in drafts","product":"email","gold":"none"}
+{"role":"ATTR","text":"in drafts","query":"ben dashboard reply in drafts","product":"email","gold":"is:draft"}
+{"role":"KIND","text":"expense report","query":"approval for my expense report","product":"email","gold":"none"}
+{"role":"KIND","text":"wireframes","query":"wireframes from design flagged","product":"email","gold":"image"}
+{"role":"ATTR","text":"flagged","query":"wireframes from design flagged","product":"email","gold":"is:flagged"}
+{"role":"KIND","text":"tickets","query":"my unread tickets","product":"tracker","gold":"ticket"}
+{"role":"ATTR","text":"unread","query":"my unread tickets","product":"tracker","gold":"is:unread"}
+{"role":"KIND","text":"bugs","query":"p1 bugs in payments","product":"tracker","gold":"bug"}
+{"role":"ATTR","text":"p1","query":"p1 bugs in payments","product":"tracker","gold":"priority:high"}
+{"role":"KIND","text":"specs","query":"my draft specs","product":"tracker","gold":"document"}
+{"role":"ATTR","text":"draft","query":"my draft specs","product":"tracker","gold":"is:draft"}
+{"role":"KIND","text":"prs","query":"prs stuck in review","product":"tracker","gold":"none"}
+{"role":"ATTR","text":"in review","query":"prs stuck in review","product":"tracker","gold":"status:in_review"}
+{"role":"KIND","text":"screenshots","query":"flagged screenshots from the bug bash","product":"tracker","gold":"image"}
+{"role":"ATTR","text":"flagged","query":"flagged screenshots from the bug bash","product":"tracker","gold":"is:flagged"}
+{"role":"KIND","text":"incidents","query":"starred incidents from last quarter","product":"tracker","gold":"none"}
+{"role":"ATTR","text":"starred","query":"starred incidents from last quarter","product":"tracker","gold":"is:starred"}
+{"role":"KIND","text":"regressions","query":"regressions reopened this week","product":"tracker","gold":"bug"}
+{"role":"ATTR","text":"reopened","query":"regressions reopened this week","product":"tracker","gold":"status:reopened"}
+{"role":"KIND","text":"pdfs","query":"unread pdfs from sam","product":"tracker","gold":"pdf"}
+{"role":"ATTR","text":"unread","query":"unread pdfs from sam","product":"tracker","gold":"is:unread"}
+{"role":"KIND","text":"stories","query":"blocked stories in onboarding","product":"tracker","gold":"story"}
+{"role":"ATTR","text":"blocked","query":"blocked stories in onboarding","product":"tracker","gold":"status:blocked"}
+{"role":"KIND","text":"crash reports","query":"p0 crash reports since friday","product":"tracker","gold":"none"}
+{"role":"ATTR","text":"p0","query":"p0 crash reports since friday","product":"tracker","gold":"priority:critical"}
+{"role":"KIND","text":"defects","query":"unassigned defects in the android repo","product":"tracker","gold":"bug"}
+{"role":"ATTR","text":"unassigned","query":"unassigned defects in the android repo","product":"tracker","gold":"assignee:none"}
+{"role":"KIND","text":"desgin docs","query":"desgin docs for the dashboard with attachments","product":"tracker","gold":"document"}
+{"role":"ATTR","text":"with attachments","query":"desgin docs for the dashboard with attachments","product":"tracker","gold":"has:attachment"}
+{"role":"KIND","text":"tasks","query":"overdue tasks on my plate","product":"tracker","gold":"task"}
+{"role":"ATTR","text":"overdue","query":"overdue tasks on my plate","product":"tracker","gold":"none"}
+{"role":"KIND","text":"frs","query":"frs in growth still backlog","product":"tracker","gold":"none"}
+{"role":"ATTR","text":"backlog","query":"frs in growth still backlog","product":"tracker","gold":"status:backlog"}
+{"role":"KIND","text":"alerts","query":"sev2 alerts overnight","product":"tracker","gold":"none"}
+{"role":"ATTR","text":"sev2","query":"sev2 alerts overnight","product":"tracker","gold":"none"}
+{"role":"KIND","text":"logs","query":"logs attached to the outage","product":"tracker","gold":"file"}
+{"role":"ATTR","text":"attached","query":"logs attached to the outage","product":"tracker","gold":"has:attachment"}
+{"role":"KIND","text":"postmortems","query":"my postmortems in progress","product":"tracker","gold":"document"}
+{"role":"ATTR","text":"in progress","query":"my postmortems in progress","product":"tracker","gold":"status:in_progress"}
+{"role":"KIND","text":"tests","query":"tests marked flaky in ci","product":"tracker","gold":"none"}
+{"role":"ATTR","text":"flaky","query":"tests marked flaky in ci","product":"tracker","gold":"none"}
+{"role":"KIND","text":"escalations","query":"high-pri escalations from enterprise","product":"tracker","gold":"ticket"}
+{"role":"ATTR","text":"high-pri","query":"high-pri escalations from enterprise","product":"tracker","gold":"priority:high"}
+{"role":"KIND","text":"jiras","query":"jiras i'm watching","product":"tracker","gold":"ticket"}
+{"role":"ATTR","text":"watching","query":"jiras i'm watching","product":"tracker","gold":"none"}
+{"role":"KIND","text":"vulns","query":"critical vulns still untriaged","product":"tracker","gold":"ticket"}
+{"role":"ATTR","text":"critical","query":"critical vulns still untriaged","product":"tracker","gold":"priority:critical"}
+{"role":"ATTR","text":"untriaged","query":"critical vulns still untriaged","product":"tracker","gold":"none"}
+{"role":"KIND","text":"cards","query":"cards in the icebox going stale","product":"tracker","gold":"ticket"}
+{"role":"ATTR","text":"stale","query":"cards in the icebox going stale","product":"tracker","gold":"none"}
+{"role":"KIND","text":"rfcs","query":"archived rfcs about the cache rewrite","product":"tracker","gold":"document"}
+{"role":"ATTR","text":"archived","query":"archived rfcs about the cache rewrite","product":"tracker","gold":"is:archived"}
+{"role":"KIND","text":"hotfixes","query":"hotfixes pending approval","product":"tracker","gold":"ticket"}
+{"role":"ATTR","text":"pending approval","query":"hotfixes pending approval","product":"tracker","gold":"status:pending_approval"}
+{"role":"KIND","text":"subtasks","query":"subtasks done this sprint","product":"tracker","gold":"task"}
+{"role":"ATTR","text":"done","query":"subtasks done this sprint","product":"tracker","gold":"status:done"}
+{"role":"KIND","text":"dupes","query":"dupes closed yesterday","product":"tracker","gold":"ticket"}
+{"role":"ATTR","text":"closed","query":"dupes closed yesterday","product":"tracker","gold":"status:done"}
+{"role":"KIND","text":"mentions","query":"mentions of me unread","product":"tracker","gold":"message"}
+{"role":"ATTR","text":"unread","query":"mentions of me unread","product":"tracker","gold":"is:unread"}
+{"role":"KIND","text":"benchmarks","query":"benchmarks still wip","product":"tracker","gold":"none"}
+{"role":"ATTR","text":"wip","query":"benchmarks still wip","product":"tracker","gold":"status:in_progress"}
+{"role":"KIND","text":"cves","query":"cves still open in deps","product":"tracker","gold":"ticket"}
+{"role":"ATTR","text":"open","query":"cves still open in deps","product":"tracker","gold":"status:open"}
+{"role":"KIND","text":"runbooks","query":"runbooks that look outdated","product":"tracker","gold":"document"}
+{"role":"ATTR","text":"outdated","query":"runbooks that look outdated","product":"tracker","gold":"none"}
+{"role":"KIND","text":"bugs","query":"p1 bugs in payments","product":"drive","gold":"bug"}
+{"role":"ATTR","text":"p1","query":"p1 bugs in payments","product":"drive","gold":"priority:high"}
+{"role":"KIND","text":"pdfs","query":"pdfs from legal unread","product":"drive","gold":"pdf"}
+{"role":"ATTR","text":"unread","query":"pdfs from legal unread","product":"drive","gold":"is:unread"}
+{"role":"KIND","text":"expense reports","query":"my expense reports still draft","product":"drive","gold":"document"}
+{"role":"ATTR","text":"draft","query":"my expense reports still draft","product":"drive","gold":"is:draft"}
+{"role":"KIND","text":"invoices","query":"invoices overdue from q2","product":"drive","gold":"document"}
+{"role":"ATTR","text":"overdue","query":"invoices overdue from q2","product":"drive","gold":"none"}
+{"role":"KIND","text":"deck","query":"all hands deck wip","product":"drive","gold":"presentation"}
+{"role":"ATTR","text":"wip","query":"all hands deck wip","product":"drive","gold":"status:in_progress"}
+{"role":"KIND","text":"roadmap","query":"latest roadmap shared with me","product":"drive","gold":"document"}
+{"role":"ATTR","text":"shared with me","query":"latest roadmap shared with me","product":"drive","gold":"none"}
+{"role":"KIND","text":"mockups","query":"mockups with unresolved comments","product":"drive","gold":"image"}
+{"role":"ATTR","text":"unresolved comments","query":"mockups with unresolved comments","product":"drive","gold":"status:open"}
+{"role":"KIND","text":"ndas","query":"unsigned ndas from vendors","product":"drive","gold":"document"}
+{"role":"ATTR","text":"unsigned","query":"unsigned ndas from vendors","product":"drive","gold":"is:unsigned"}
+{"role":"KIND","text":"screenshots","query":"screenshots archived ages ago","product":"drive","gold":"image"}
+{"role":"ATTR","text":"archived","query":"screenshots archived ages ago","product":"drive","gold":"is:archived"}
+{"role":"KIND","text":"postmortems","query":"postmortems tagged sev1","product":"drive","gold":"document"}
+{"role":"ATTR","text":"sev1","query":"postmortems tagged sev1","product":"drive","gold":"none"}
+{"role":"KIND","text":"xlsx","query":"xlsx on headcount","product":"drive","gold":"spreadsheet"}
+{"role":"KIND","text":"runbooks","query":"runbooks for oncall outdated","product":"drive","gold":"document"}
+{"role":"ATTR","text":"outdated","query":"runbooks for oncall outdated","product":"drive","gold":"none"}
+{"role":"KIND","text":"prds","query":"prds needs review in eng","product":"drive","gold":"document"}
+{"role":"ATTR","text":"needs review","query":"prds needs review in eng","product":"drive","gold":"status:in_review"}
+{"role":"KIND","text":"recordings","query":"recordings from uxr starred","product":"drive","gold":"recording"}
+{"role":"ATTR","text":"starred","query":"recordings from uxr starred","product":"drive","gold":"is:starred"}
+{"role":"KIND","text":"wireframes","query":"wireframes from the 2023 redesign","product":"drive","gold":"image"}
+{"role":"KIND","text":"tickets","query":"high priority tickets assigned to me","product":"drive","gold":"ticket"}
+{"role":"ATTR","text":"high priority","query":"high priority tickets assigned to me","product":"drive","gold":"priority:high"}
+{"role":"KIND","text":"one-pagers","query":"one-pagers approved by marketing","product":"drive","gold":"document"}
+{"role":"ATTR","text":"approved","query":"one-pagers approved by marketing","product":"drive","gold":"none"}
+{"role":"KIND","text":"proposal","query":"final proposal for acme","product":"drive","gold":"document"}
+{"role":"ATTR","text":"final","query":"final proposal for acme","product":"drive","gold":"none"}
+{"role":"KIND","text":"resumes","query":"flagged resumes from referrals","product":"drive","gold":"document"}
+{"role":"ATTR","text":"flagged","query":"flagged resumes from referrals","product":"drive","gold":"is:flagged"}
+{"role":"KIND","text":"transcripts","query":"transcripts from cust calls","product":"drive","gold":"transcript"}
+{"role":"KIND","text":"gifs","query":"gifs for the launch post done","product":"drive","gold":"image"}
+{"role":"ATTR","text":"done","query":"gifs for the launch post done","product":"drive","gold":"status:done"}
+{"role":"KIND","text":"docs","query":"docs with attachments from the offsite","product":"drive","gold":"document"}
+{"role":"ATTR","text":"attachments","query":"docs with attachments from the offsite","product":"drive","gold":"has:attachment"}
+{"role":"KIND","text":"sow","query":"signed sow from globex","product":"drive","gold":"document"}
+{"role":"ATTR","text":"signed","query":"signed sow from globex","product":"drive","gold":"none"}
+{"role":"KIND","text":"reciepts","query":"my reciepts unsubmitted","product":"drive","gold":"document"}
+{"role":"ATTR","text":"unsubmitted","query":"my reciepts unsubmitted","product":"drive","gold":"none"}
+{"role":"KIND","text":"templates","query":"templates marked official","product":"drive","gold":"document"}
+{"role":"ATTR","text":"official","query":"templates marked official","product":"drive","gold":"none"}
+{"role":"KIND","text":"checklist","query":"checklist for launch day","product":"drive","gold":"document"}
+{"role":"KIND","text":"apks","query":"dogfood apks beta","product":"drive","gold":"file"}
+{"role":"ATTR","text":"beta","query":"dogfood apks beta","product":"drive","gold":"none"}
+{"role":"KIND","text":"specs","query":"unstarred specs to clean up","product":"drive","gold":"document"}
+{"role":"ATTR","text":"unstarred","query":"unstarred specs to clean up","product":"drive","gold":"none"}
+{"role":"KIND","text":"logos","query":"current logos for the rebrand","product":"drive","gold":"image"}
+{"role":"ATTR","text":"current","query":"current logos for the rebrand","product":"drive","gold":"none"}
+{"role":"KIND","text":"okrs","query":"okrs locked fy25","product":"drive","gold":"document"}
+{"role":"ATTR","text":"locked","query":"okrs locked fy25","product":"drive","gold":"none"}
+{"role":"KIND","text":"mtg","query":"mtg with ana unread","product":"meetings","gold":"meeting"}
+{"role":"ATTR","text":"unread","query":"mtg with ana unread","product":"meetings","gold":"is:unread"}
+{"role":"KIND","text":"call","query":"call from vendor missed","product":"meetings","gold":"meeting"}
+{"role":"ATTR","text":"missed","query":"call from vendor missed","product":"meetings","gold":"none"}
+{"role":"KIND","text":"recording","query":"recording from infra starred","product":"meetings","gold":"recording"}
+{"role":"ATTR","text":"starred","query":"recording from infra starred","product":"meetings","gold":"is:starred"}
+{"role":"KIND","text":"transcript","query":"transcript for customer onboarding final","product":"meetings","gold":"transcript"}
+{"role":"ATTR","text":"final","query":"transcript for customer onboarding final","product":"meetings","gold":"none"}
+{"role":"KIND","text":"minutes","query":"minutes from legal approved","product":"meetings","gold":"notes"}
+{"role":"ATTR","text":"approved","query":"minutes from legal approved","product":"meetings","gold":"none"}
+{"role":"KIND","text":"agenda","query":"agenda for monday staff draft","product":"meetings","gold":"notes"}
+{"role":"ATTR","text":"draft","query":"agenda for monday staff draft","product":"meetings","gold":"is:draft"}
+{"role":"KIND","text":"invite","query":"invite for vendor security attachment","product":"meetings","gold":"event"}
+{"role":"ATTR","text":"attachment","query":"invite for vendor security attachment","product":"meetings","gold":"has:attachment"}
+{"role":"KIND","text":"recap","query":"recap of acme renewal shared","product":"meetings","gold":"notes"}
+{"role":"ATTR","text":"shared","query":"recap of acme renewal shared","product":"meetings","gold":"none"}
+{"role":"KIND","text":"summary","query":"summary from privacy team auto-generated","product":"meetings","gold":"notes"}
+{"role":"ATTR","text":"auto-generated","query":"summary from privacy team auto-generated","product":"meetings","gold":"from:bot"}
+{"role":"KIND","text":"followups","query":"followups owed to sales open","product":"meetings","gold":"task"}
+{"role":"ATTR","text":"open","query":"followups owed to sales open","product":"meetings","gold":"status:open"}
+{"role":"KIND","text":"highlights","query":"highlights from qbr saved","product":"meetings","gold":"notes"}
+{"role":"ATTR","text":"saved","query":"highlights from qbr saved","product":"meetings","gold":"is:starred"}
+{"role":"KIND","text":"clip","query":"clip where mira objects flagged","product":"meetings","gold":"video"}
+{"role":"ATTR","text":"flagged","query":"clip where mira objects flagged","product":"meetings","gold":"is:flagged"}
+{"role":"KIND","text":"voicemail","query":"voicemail about downtime unplayed","product":"meetings","gold":"recording"}
+{"role":"ATTR","text":"unplayed","query":"voicemail about downtime unplayed","product":"meetings","gold":"is:unread"}
+{"role":"KIND","text":"thread","query":"thread on launch blockers muted","product":"meetings","gold":"message"}
+{"role":"ATTR","text":"muted","query":"thread on launch blockers muted","product":"meetings","gold":"none"}
+{"role":"KIND","text":"mentions","query":"read mentions in design crit","product":"meetings","gold":"message"}
+{"role":"ATTR","text":"read","query":"read mentions in design crit","product":"meetings","gold":"none"}
+{"role":"KIND","text":"poll","query":"poll for offsite dates closed","product":"meetings","gold":"message"}
+{"role":"ATTR","text":"closed","query":"poll for offsite dates closed","product":"meetings","gold":"status:done"}
+{"role":"KIND","text":"whiteboard","query":"whiteboard from pricing jam locked","product":"meetings","gold":"notes"}
+{"role":"ATTR","text":"locked","query":"whiteboard from pricing jam locked","product":"meetings","gold":"none"}
+{"role":"KIND","text":"screenshare","query":"screenshare during failover archived","product":"meetings","gold":"recording"}
+{"role":"ATTR","text":"archived","query":"screenshare during failover archived","product":"meetings","gold":"is:archived"}
+{"role":"KIND","text":"mp4","query":"mp4 from town hall downloaded","product":"meetings","gold":"video"}
+{"role":"ATTR","text":"downloaded","query":"mp4 from town hall downloaded","product":"meetings","gold":"none"}
+{"role":"KIND","text":"wav","query":"wav left by recruiter untranscribed","product":"meetings","gold":"recording"}
+{"role":"ATTR","text":"untranscribed","query":"wav left by recruiter untranscribed","product":"meetings","gold":"none"}
+{"role":"KIND","text":"debrief","query":"debrief after beta slip confidential","product":"meetings","gold":"meeting"}
+{"role":"ATTR","text":"confidential","query":"debrief after beta slip confidential","product":"meetings","gold":"none"}
+{"role":"KIND","text":"standup","query":"standup for payments skipped","product":"meetings","gold":"meeting"}
+{"role":"ATTR","text":"skipped","query":"standup for payments skipped","product":"meetings","gold":"status:cancelled"}
+{"role":"KIND","text":"retro","query":"retro on checkout latency completed","product":"meetings","gold":"meeting"}
+{"role":"ATTR","text":"completed","query":"retro on checkout latency completed","product":"meetings","gold":"status:done"}
+{"role":"KIND","text":"allhands","query":"declined allhands for q3","product":"meetings","gold":"meeting"}
+{"role":"ATTR","text":"declined","query":"declined allhands for q3","product":"meetings","gold":"status:cancelled"}
+{"role":"KIND","text":"interview","query":"interview loop for nadia incomplete","product":"meetings","gold":"meeting"}
+{"role":"ATTR","text":"incomplete","query":"interview loop for nadia incomplete","product":"meetings","gold":"status:in_progress"}
+{"role":"KIND","text":"webinar","query":"webinar with partners public","product":"meetings","gold":"meeting"}
+{"role":"ATTR","text":"public","query":"webinar with partners public","product":"meetings","gold":"none"}
+{"role":"KIND","text":"huddle","query":"p0 huddle about login outage","product":"meetings","gold":"meeting"}
+{"role":"ATTR","text":"p0","query":"p0 huddle about login outage","product":"meetings","gold":"priority:critical"}
+{"role":"KIND","text":"sync","query":"sync with finance recurring","product":"meetings","gold":"meeting"}
+{"role":"ATTR","text":"recurring","query":"sync with finance recurring","product":"meetings","gold":"none"}
+{"role":"KIND","text":"1:1","query":"1:1 with skip level private","product":"meetings","gold":"meeting"}
+{"role":"ATTR","text":"private","query":"1:1 with skip level private","product":"meetings","gold":"none"}
+{"role":"KIND","text":"brainstorm","query":"pinned brainstorm for growth ideas","product":"meetings","gold":"meeting"}
+{"role":"ATTR","text":"pinned","query":"pinned brainstorm for growth ideas","product":"meetings","gold":"is:pinned"}

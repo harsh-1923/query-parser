@@ -1,0 +1,176 @@
+# role	span	gold (| = any of; none = no alias should match; operator = key:value syntax, handled before the model)	query
+KIND	sheet	spreadsheet	priya's sheet on q3 collections
+KIND	pdf	pdf	rahul pdf from last week about kyc drop-off
+KIND	deck	presentation	latest version of the pitch deck
+ATTR	unread	is:unread	unread mentions from @sneha
+KIND	mentions	message	unread mentions from @sneha
+ATTR	pinned	is:pinned	pinned stuff in #risk-review
+KIND	messages	message	oldest messages in the lending channel
+KIND	call transcript	transcript	call transcript from the 3/10 vendor call
+KIND	canvas	notes	meera canvas api rate limits
+KIND	slides	presentation	slides from the board prep march
+KIND	notes	notes	my notes on fraud rules
+KIND	screenshot	image	screenshot of the upi failure dashboard vikram sent
+KIND	thread	message	tom's thread about refund retries
+KIND	excel	spreadsheet	excel with merchant onboarding funnel in march
+KIND	doc	document	ananya the rbi audit checklist doc
+KIND	recording	recording	aditya recording from the design review call
+KIND	files	file	files shared by lauren in #growth
+KIND	sheet	spreadsheet	kavya budget sheet v3 final final
+KIND	comment	comment	nikhil's comment on the vpa validation pr
+KIND	messages	message	messages with idempotency key this month except bot posts
+ATTR	bot posts	from:bot	messages with idempotency key this month except bot posts
+KIND	canvas	notes	canvas about onboarding v2 owned by arjun
+KIND	transcript	transcript	transcript where we discussed the nach mandate timeline
+KIND	pinged	message	rohan pinged me abt the loan emi sheet
+KIND	sheet	spreadsheet	rohan pinged me abt the loan emi sheet
+KIND	docs	document|file	docs i commented on last week
+KIND	pdf	pdf	tokenization pdf ppt
+KIND	ppt	presentation	tokenization pdf ppt
+KIND	pdf	pdf	cashback campaign results q2 pdf not the draft
+ATTR	draft	is:draft	cashback campaign results q2 pdf not the draft
+KIND	image	image	image of the error screen from sarah's phone
+KIND	notes	notes	standup notes before diwali
+KIND	pdf	pdf	from razorpay invoice pdf
+ATTR	unread	is:unread	unread from priya
+KIND	emails	email	emails i sent to the auditor last quarter
+KIND	attachments	attachment	any attachments from acme corp since jan
+ATTR	flagged	is:flagged	flagged emails from legal
+KIND	emails	email	flagged emails from legal
+KIND	newsletters	email	not newsletters from last week
+ATTR	unread	is:unread	except from hr, unread
+KIND	docx	document	contract signed docx
+KIND	emails	email	emails to the board on friday
+ATTR	starred	is:starred	starred from finance
+KIND	spreadsheet	spreadsheet	Q3 forecast spreadsheet
+KIND	reply	message	reply to recruiter from last month
+KIND	mails	email	mails with pdf attachments over 5mb
+KIND	pdf attachments	pdf|attachment	mails with pdf attachments over 5mb
+ATTR	over 5mb	none	mails with pdf attachments over 5mb
+ATTR	with attachments	has:attachment	sent to tom with attachments this year
+KIND	emails	email	which emails mention the migration cutover
+ATTR	unread	is:unread	unread mails from my team last 2 weeks
+KIND	mails	email	unread mails from my team last 2 weeks
+ATTR	pending approval	status:pending_approval	expense report pending approval
+KIND	meeting notes	notes	meeting notes from the design review
+KIND	deck	presentation	kickoff deck pptx
+KIND	pptx	presentation	kickoff deck pptx
+KIND	emails	email	emails from the cfo this month
+KIND	doc	document	roadmap doc shared with me
+KIND	calendar invite	event	calendar invite from marta
+KIND	emails	email	emails about the hiring freeze
+ATTR	open	status:open	assigned to me open
+KIND	bugs	bug	bugs rohan filed this sprint
+KIND	tickets	ticket	karan's tickets in payments board
+ATTR	p0	priority:critical	p0 bugs not closed
+KIND	bugs	bug	p0 bugs not closed
+ATTR	closed	status:done	p0 bugs not closed
+ATTR	blocked	status:blocked	checkout project blocked tickets
+KIND	tickets	ticket	checkout project blocked tickets
+ATTR	open	status:open	what is still open from release 4.2
+ATTR	unassigned	assignee:none	unassigned bugs in berlin team
+KIND	bugs	bug	unassigned bugs in berlin team
+KIND	tickets	ticket	my tickets older than 30 days
+KIND	epics	epic	epics without assignee
+ATTR	without assignee	assignee:none	epics without assignee
+KIND	tasks	task	tasks done last week
+ATTR	done	status:done	tasks done last week
+ATTR	p1	priority:high	login crash p1
+ATTR	blocked	status:blocked	anyone blocked on the vespa reindex
+ATTR	open	status:open	oldest open bugs
+KIND	bugs	bug	oldest open bugs
+KIND	type:bug	operator	reporter:priya type:bug
+ATTR	in review	status:in_review	things i reported that are still in review
+ATTR	unfinished	status:open	sprint 42 unfinished stories
+KIND	stories	story	sprint 42 unfinished stories
+ATTR	open	status:open	payment webhook timeouts open
+KIND	epic	epic	who is working on the auth epic
+KIND	bugs	bug	bugs filed by ananya last month
+ATTR	done	status:done	not done high priority mobile
+ATTR	high priority	priority:high	not done high priority mobile
+KIND	bug	bug	ios push notifications bug
+ATTR	todo	status:todo	todo in platform board assigned to nobody
+ATTR	assigned to nobody	assignee:none	todo in platform board assigned to nobody
+ATTR	reopened	status:reopened	reopened tickets this quarter
+KIND	tickets	ticket	reopened tickets this quarter
+ATTR	label:flaky-test	operator	label:flaky-test open
+ATTR	open	status:open	label:flaky-test open
+ATTR	in qa	status:in_review	stuck in qa more than a week
+ATTR	p0	priority:critical	mine that are p0 or p1
+ATTR	p1	priority:high	mine that are p0 or p1
+ATTR	android	none	checkout crash on android since 4.2.1
+ATTR	backlog	status:backlog	whats in the backlog for search board
+KIND	bugs	bug	bugs without priority
+ATTR	without priority	priority:none	bugs without priority
+ATTR	closed	status:done	closed this sprint by frontend team
+KIND	epic	epic	epic billing v2 children
+ATTR	blocked	status:blocked	blocked by infra
+KIND	comments	comment	comments mentioning rollback
+KIND	tickets	ticket	tickets created today in bangalore
+ATTR	bangalore	none	tickets created today in bangalore
+ATTR	in progress	status:in_progress	hans's in progress items
+KIND	bugs	bug	security bugs open
+ATTR	open	status:open	security bugs open
+KIND	deck	presentation	ananya's deck from last month
+KIND	files	file	files i own
+ATTR	in trash	is:trashed	shared by vikram not in trash
+KIND	folder	folder	q3 board pack folder
+KIND	sheet	spreadsheet	latest version of the pricing sheet
+KIND	pdf	pdf	pdf invoices from 2024
+KIND	screenshots	image	screenshots from the offsite
+KIND	slides	presentation	marketing folder slides
+KIND	pdfs	pdf	not pdfs
+ATTR	drafts	is:draft	excluding drafts budget
+ATTR	starred	is:starred	starred spreadsheets
+KIND	spreadsheets	spreadsheet	starred spreadsheets
+ATTR	trashed	is:trashed	trashed files from ops
+KIND	files	file	trashed files from ops
+KIND	png	image	design team mockups png
+KIND	xlsx	spreadsheet	budget 2025 xlsx
+KIND	video recordings	recording	recent video recordings
+KIND	deck	presentation	pitch deck v3 final
+KIND	docs	document|file	hr policy docs
+KIND	files	file	files modified last week by priya
+KIND	sheet	spreadsheet	q2 sales forecast sheet
+KIND	meeting notes	notes	meeting notes march
+KIND	docs	document|file	shared drive finance docs
+KIND	svg	image	logo final svg
+KIND	doc	document	onboarding checklist doc
+KIND	spreadsheet	spreadsheet	vikram's spreadsheet from 2023
+ATTR	unsigned	is:unsigned	unsigned nda
+ATTR	draft	is:draft	term sheet draft
+KIND	folders	folder	folders shared with ops team
+KIND	slides	presentation	investor update slides latest
+KIND	excel	spreadsheet	bugs list excel
+KIND	ppt	presentation	ppt from the dec offsite
+KIND	standup	meeting	standup with arjun
+KIND	call recording	recording	sbi team call recording last week
+KIND	transcript	transcript	transcript from the board meeting
+KIND	notes	notes	notes on onboarding flow from tuesday
+KIND	say	message	what did priya say about the q3 numbers
+KIND	calls	meeting	calls with the razorpay folks past 2 weeks
+ATTR	pending	status:open|status:todo	pending action items from yesterday's sync
+KIND	action items	notes|task	pending action items from yesterday's sync
+KIND	summary	notes	summary of the all hands between 1st and 15th
+KIND	meeting	meeting	meeting with kiran re: hiring
+KIND	meetings	meeting	which meetings did i miss this morning
+KIND	notes	notes	sprint review notes last friday
+KIND	files	file	files shared by rahul in march
+KIND	doc	document	who owns the migration doc
+KIND	calendar	event	calendar for next wed
+KIND	chat	message	chat about the paytm integration
+KIND	recording	recording	recording of the customer demo
+KIND	notes	notes	notes not from standups from this week
+KIND	deck	presentation	latest version of the pitch deck
+KIND	transcript	transcript	vendor call transcript kal wala
+KIND	calls	meeting	any mention of churn in calls last quarter
+KIND	notes	notes	hiring panel notes, sorted newest first
+KIND	thread	message	budget approval thread
+KIND	chat	message	feedback from the beta users in chat
+KIND	summary	notes	ops review summary, exclude draft
+ATTR	draft	is:draft	ops review summary, exclude draft
+KIND	files	file	files tagged finance uploaded this week
+ATTR	tagged finance	none	files tagged finance uploaded this week
+KIND	notes	notes	tuesday's 1:1 with my manager notes
+KIND	meeting	meeting	meeting where we talked about the kubernetes cluster costs
+KIND	sheet	spreadsheet	payroll sheet shared by hr last month
