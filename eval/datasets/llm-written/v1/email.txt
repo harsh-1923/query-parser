@@ -1,0 +1,60 @@
+from:priya invoice
+gst invoice march
+wire confirmation citibank
+onboarding checklist
+is:draft client proposal
+w9 from contractor
+where did i put the signed sow
+gdpr data request
+has:attachment purchase order
+to:dylan 1:1 notes
+label:expenses reimbursement november
+attatchment missing from anand
+term sheet redline
+visa sponsorship uk
+q4 expense report -from:no-reply
+quote for nova mart renewal
+discount approval swiftcart deal
+interview feedback senior backend
+larger:10m filename:pdf audit
+from:ramesh captable
+headcount planning 2025
+maternity leave policy
+label:receipts uber
+investor update october
+renewal quote cascade health
+contract renewal hoffmann
+payroll error duplicate payment
+esop grant letters
+from:carlos procurement
+security questionnaire
+vat return q3
+who approved the san jose lease
+mou with northpeak ventures
+is:starred deals q1
+sepa payment failed
+leave aplicaton
+from:me -is:draft pricing revision
+competitor pricing sheet
+expenses poland trip
+pf withdrawal form
+invioce from vantage labs
+signed sha from krishnam law
+demo recordings newest first
+after:2025/01/01 from:nordbank
+relieving letter kumar
+performance review template
+intercompany invoice -from:internal-news
+what did we agree on the liquidation preference
+background verification report
+skip level meeting summary
+recieve payment reminder
+offer rollback brightline media
+attrition report q3
+did maria forward the signed msa
+appraisal forms deadline
+older_than:6m invoices
+resigntaion letter
+from:hugo working hours
+label:taxes-fy24 from:zenpay
+invoices sorted by date

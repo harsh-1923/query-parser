@@ -1,0 +1,60 @@
+my open bugs
+assigned:me status:in progress
+login timeout
+sprint 42 bugs
+priya's tickets
+is:bug is:open priority:P1
+payment gateway
+everything assigned to rohit on the mobile board
+csv export crash
+bugs reported by meera last week
+sort by priority desc
+websocket disconnect
+anything about vat
+epics in the q3 release
+assignee:stefan in review
+webhook retry fails
+whats blocked in sprint 41
+reopened bugs
+umlauts
+due this week
+how many open p0s do we have
+dashboard latency
+unassigned and not done
+fixed in 2.14
+flaky tests
+created:last week reporter:lena
+memory leak
+jonas in progress
+sso broken
+status:wontfix
+crash on android 12
+assingnee:arjun updated last 3 days
+who is working on the migration epic
+sort by created asc oldest first
+inr formatting wrong
+open bugs on payments board
+notification emails not sending
+statu:closed pri 2
+api rate limit
+infra board sorted by priority
+oauth token expired
+reopened by support
+dark mode
+whats left in sprnit 43
+refnunds
+sprint 40 carryover
+is:bug assignee:me
+timezone off by 30 min ist
+epic:checkout open subtasks
+created before june
+katrin's qa tickets
+p0 or p1 not done
+seach autocomplete slow
+webhook
+bugs with no assignee
+moved to blocked this week
+updateed today
+assigned to kavya ios
+escalated tickets from support this month
+closed this sprint order by priority

@@ -1,0 +1,60 @@
+upi switch incident
+from:priya in:#upi-switch has:file
+refund pending more than 7 days
+rbi circular pdf
+settelment delay axis bank
+prd recurring payments
+in:#customer-escalations sort:latest
+from:meera is:pinned kyc
+e-mandate prd draft v2
+metabase settlement dashboard
+who owns the icici integration now?
+from:arjun has:link jira
+in:#incident-sev1 unread
+app icon png variants
+on-call runbook canvas
+txn failed but money debited
+lender partnership deck pptx
+dm with vikram pricing
+town hall call transcript
+from:rahul in:#payments-ops has:file xlsx
+wfh policy
+figma link new dashboard
+postmortem INC-2841 pdf
+in:#product roadmap before:march
+pa license renewal deadline
+chargeback rate sql
+from:ananya yesterday
+deploy checklist docx
+anyone have the latest npci circular?
+in:#design-crit has:link
+secret santa
+product roadmap canvas
+grafana payment success rate
+what was the root cause of the settlement delay?
+from:nisha in:#hr-helpdesk
+release notes v2.14
+thread from karthik tps threshold
+did anyone save the compliance call recording?
+oldest kyc messages
+leave tracker
+from:arjun is:unread
+any update on the nodal audit?
+standup notes yesterday
+gst invoice copy
+refunds -chargebacks
+from:sneha -in:#random
+settlement has:file -pdf
+settlement -upi
+in:#payments-ops -from:karthik
+from:priya sort:newest
+in:#incident-sev1 sort by replies
+onboarding flow v3
+after:2025-06-01 chargeback
+messages from meera this week
+what's the metabase staging password?
+pinned in #announcements
+is:saved town hall
+diwali bonus announcement
+complience audit queries
+chargebak representment flow
