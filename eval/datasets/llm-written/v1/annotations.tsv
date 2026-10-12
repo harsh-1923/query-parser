@@ -1,0 +1,301 @@
+# query	spans (ROLE:text, "!" = negated, "|" separated)	flags
+upi switch incident	TOPIC:upi switch incident	
+from:priya in:#upi-switch has:file		operator
+refund pending more than 7 days	TOPIC:refund|ATTR:pending	gap:duration-in-state
+rbi circular pdf	TOPIC:rbi circular|KIND:pdf	
+settelment delay axis bank	TOPIC:settelment delay axis bank	typo
+prd recurring payments	TOPIC:prd recurring payments	
+in:#customer-escalations sort:latest		operator
+from:meera is:pinned kyc	TOPIC:kyc	operator
+e-mandate prd draft v2	TOPIC:e-mandate prd|ATTR:draft|TOPIC:v2	
+metabase settlement dashboard	TOPIC:metabase settlement dashboard	
+who owns the icici integration now?	TOPIC:icici integration	question
+from:arjun has:link jira	TOPIC:jira	operator
+in:#incident-sev1 unread	ATTR:unread	operator
+app icon png variants	TOPIC:app icon|KIND:png|TOPIC:variants	
+on-call runbook canvas	TOPIC:on-call runbook|KIND:canvas	
+txn failed but money debited	TOPIC:txn failed but money debited	
+lender partnership deck pptx	TOPIC:lender partnership|KIND:deck pptx	
+dm with vikram pricing	KIND:dm|PARTICIPANT:vikram|TOPIC:pricing	
+town hall call transcript	TOPIC:town hall|KIND:call transcript	
+from:rahul in:#payments-ops has:file xlsx	KIND:xlsx	operator
+wfh policy	TOPIC:wfh policy	
+figma link new dashboard	TOPIC:figma link new dashboard	
+postmortem INC-2841 pdf	TOPIC:postmortem INC-2841|KIND:pdf	
+in:#product roadmap before:march	TOPIC:roadmap	operator
+pa license renewal deadline	TOPIC:pa license renewal deadline	
+chargeback rate sql	TOPIC:chargeback rate sql	
+from:ananya yesterday	TIME:yesterday	operator
+deploy checklist docx	TOPIC:deploy checklist|KIND:docx	
+anyone have the latest npci circular?	ORDER:latest|TOPIC:npci circular	question
+in:#design-crit has:link		operator
+secret santa	TOPIC:secret santa	
+product roadmap canvas	TOPIC:product roadmap|KIND:canvas	
+grafana payment success rate	TOPIC:grafana payment success rate	
+what was the root cause of the settlement delay?	TOPIC:root cause of the settlement delay	question
+from:nisha in:#hr-helpdesk		operator
+release notes v2.14	TOPIC:release|KIND:notes|TOPIC:v2.14	
+thread from karthik tps threshold	KIND:thread|ACTOR:karthik|TOPIC:tps threshold	
+did anyone save the compliance call recording?	TOPIC:compliance|KIND:call recording	question
+oldest kyc messages	ORDER:oldest|TOPIC:kyc|KIND:messages	
+leave tracker	TOPIC:leave tracker	
+from:arjun is:unread		operator
+any update on the nodal audit?	TOPIC:nodal audit	question
+standup notes yesterday	TOPIC:standup|KIND:notes|TIME:yesterday	
+gst invoice copy	TOPIC:gst invoice copy	
+refunds -chargebacks	TOPIC:refunds|!TOPIC:chargebacks	minus-neg
+from:sneha -in:#random		operator
+settlement has:file -pdf	TOPIC:settlement|!KIND:pdf	operator,minus-neg
+settlement -upi	TOPIC:settlement|!TOPIC:upi	minus-neg
+in:#payments-ops -from:karthik		operator
+from:priya sort:newest		operator
+in:#incident-sev1 sort by replies		operator,gap:sort-field
+onboarding flow v3	TOPIC:onboarding flow v3	
+after:2025-06-01 chargeback	TOPIC:chargeback	operator
+messages from meera this week	KIND:messages|ACTOR:meera|TIME:this week	
+what's the metabase staging password?	TOPIC:metabase staging password	question
+pinned in #announcements	ATTR:pinned|CONTAINER:#announcements	
+is:saved town hall	TOPIC:town hall	operator
+diwali bonus announcement	TOPIC:diwali bonus announcement	
+complience audit queries	TOPIC:complience audit queries	typo
+chargebak representment flow	TOPIC:chargebak representment flow	typo
+from:priya invoice	TOPIC:invoice	operator
+gst invoice march	TOPIC:gst invoice|TIME:march	
+wire confirmation citibank	TOPIC:wire confirmation citibank	
+onboarding checklist	TOPIC:onboarding checklist	
+is:draft client proposal	TOPIC:client proposal	operator
+w9 from contractor	TOPIC:w9|ACTOR:contractor	
+where did i put the signed sow	ACTOR:i|TOPIC:signed sow	question
+gdpr data request	TOPIC:gdpr data request	
+has:attachment purchase order	TOPIC:purchase order	operator
+to:dylan 1:1 notes	KIND:1:1 notes	operator
+label:expenses reimbursement november	TOPIC:reimbursement|TIME:november	operator
+attatchment missing from anand	ATTR:attatchment missing|ACTOR:anand	typo
+term sheet redline	TOPIC:term sheet redline	
+visa sponsorship uk	TOPIC:visa sponsorship uk	
+q4 expense report -from:no-reply	TIME:q4|TOPIC:expense report	operator
+quote for nova mart renewal	TOPIC:quote for nova mart renewal	
+discount approval swiftcart deal	TOPIC:discount approval swiftcart deal	
+interview feedback senior backend	TOPIC:interview feedback senior backend	
+larger:10m filename:pdf audit	TOPIC:audit	operator
+from:ramesh captable	TOPIC:captable	operator
+headcount planning 2025	TOPIC:headcount planning|TIME:2025	
+maternity leave policy	TOPIC:maternity leave policy	
+label:receipts uber	TOPIC:uber	operator
+investor update october	TOPIC:investor update|TIME:october	
+renewal quote cascade health	TOPIC:renewal quote cascade health	
+contract renewal hoffmann	TOPIC:contract renewal hoffmann	
+payroll error duplicate payment	TOPIC:payroll error duplicate payment	
+esop grant letters	TOPIC:esop grant letters	
+from:carlos procurement	TOPIC:procurement	operator
+security questionnaire	TOPIC:security questionnaire	
+vat return q3	TOPIC:vat return|TIME:q3	
+who approved the san jose lease	TOPIC:san jose lease	question
+mou with northpeak ventures	TOPIC:mou|PARTICIPANT:northpeak ventures	
+is:starred deals q1	TOPIC:deals|TIME:q1	operator
+sepa payment failed	TOPIC:sepa payment failed	
+leave aplicaton	TOPIC:leave aplicaton	typo
+from:me -is:draft pricing revision	TOPIC:pricing revision	operator
+competitor pricing sheet	TOPIC:competitor pricing|KIND:sheet	
+expenses poland trip	TOPIC:expenses poland trip	
+pf withdrawal form	TOPIC:pf withdrawal form	
+invioce from vantage labs	TOPIC:invioce|ACTOR:vantage labs	typo
+signed sha from krishnam law	TOPIC:signed sha|ACTOR:krishnam law	
+demo recordings newest first	TOPIC:demo|KIND:recordings|ORDER:newest first	
+after:2025/01/01 from:nordbank		operator
+relieving letter kumar	TOPIC:relieving letter kumar	nocue
+performance review template	TOPIC:performance review template	
+intercompany invoice -from:internal-news	TOPIC:intercompany invoice	operator
+what did we agree on the liquidation preference	TOPIC:agree on the liquidation preference	question
+background verification report	TOPIC:background verification report	
+skip level meeting summary	TOPIC:skip level|KIND:meeting summary	
+recieve payment reminder	TOPIC:recieve payment reminder	typo
+offer rollback brightline media	TOPIC:offer rollback brightline media	
+attrition report q3	TOPIC:attrition report|TIME:q3	
+did maria forward the signed msa	ACTOR:maria|TOPIC:signed msa	question
+appraisal forms deadline	TOPIC:appraisal forms deadline	
+older_than:6m invoices	TOPIC:invoices	operator
+resigntaion letter	TOPIC:resigntaion letter	typo
+from:hugo working hours	TOPIC:working hours	operator
+label:taxes-fy24 from:zenpay		operator
+invoices sorted by date	TOPIC:invoices	gap:sort-field
+my open bugs	ACTOR:my|ATTR:open|KIND:bugs	
+assigned:me status:in progress		operator
+login timeout	TOPIC:login timeout	
+sprint 42 bugs	CONTAINER:sprint 42|KIND:bugs	
+priya's tickets	ACTOR:priya|KIND:tickets	
+is:bug is:open priority:P1		operator
+payment gateway	TOPIC:payment gateway	
+everything assigned to rohit on the mobile board	RECIPIENT:rohit|CONTAINER:mobile	
+csv export crash	TOPIC:csv export crash	
+bugs reported by meera last week	KIND:bugs|ACTOR:meera|TIME:last week	
+sort by priority desc	ORDER:desc	gap:sort-field
+websocket disconnect	TOPIC:websocket disconnect	
+anything about vat	TOPIC:vat	
+epics in the q3 release	KIND:epics|CONTAINER:q3 release	
+assignee:stefan in review	ATTR:in review	operator
+webhook retry fails	TOPIC:webhook retry fails	
+whats blocked in sprint 41	ATTR:blocked|CONTAINER:sprint 41	question
+reopened bugs	ATTR:reopened|KIND:bugs	
+umlauts	TOPIC:umlauts	
+due this week	TIME:this week	
+how many open p0s do we have	ATTR:open|ATTR:p0s	question
+dashboard latency	TOPIC:dashboard latency	
+unassigned and not done	ATTR:unassigned|!ATTR:done	
+fixed in 2.14	ATTR:fixed|CONTAINER:2.14	
+flaky tests	TOPIC:flaky tests	
+created:last week reporter:lena		operator
+memory leak	TOPIC:memory leak	
+jonas in progress	ACTOR:jonas|ATTR:in progress	nocue
+sso broken	TOPIC:sso broken	
+status:wontfix		operator
+crash on android 12	TOPIC:crash on android 12	
+assingnee:arjun updated last 3 days	TIME:last 3 days	operator,typo
+who is working on the migration epic	TOPIC:migration|KIND:epic	question
+sort by created asc oldest first	ORDER:asc oldest first	gap:sort-field
+inr formatting wrong	TOPIC:inr formatting wrong	
+open bugs on payments board	ATTR:open|KIND:bugs|CONTAINER:payments	
+notification emails not sending	TOPIC:notification emails not sending	
+statu:closed pri 2	ATTR:pri 2	operator,typo
+api rate limit	TOPIC:api rate limit	
+infra board sorted by priority	CONTAINER:infra	gap:sort-field
+oauth token expired	TOPIC:oauth token expired	
+reopened by support	ATTR:reopened|ACTOR:support	
+dark mode	TOPIC:dark mode	
+whats left in sprnit 43	ATTR:left|CONTAINER:sprnit 43	question,typo
+refnunds	TOPIC:refnunds	typo
+sprint 40 carryover	CONTAINER:sprint 40|ATTR:carryover	
+is:bug assignee:me		operator
+timezone off by 30 min ist	TOPIC:timezone off by 30 min ist	
+epic:checkout open subtasks	ATTR:open|KIND:subtasks	operator
+created before june	TIME:before june	
+katrin's qa tickets	ACTOR:katrin|TOPIC:qa|KIND:tickets	
+p0 or p1 not done	ATTR:p0|ATTR:p1|!ATTR:done	
+seach autocomplete slow	TOPIC:seach autocomplete slow	typo
+webhook	TOPIC:webhook	
+bugs with no assignee	KIND:bugs|ATTR:with no assignee	
+moved to blocked this week	ATTR:blocked|TIME:this week	gap:state-transition
+updateed today	TIME:today	typo
+assigned to kavya ios	RECIPIENT:kavya|TOPIC:ios	
+escalated tickets from support this month	ATTR:escalated|KIND:tickets|ACTOR:support|TIME:this month	
+closed this sprint order by priority	ATTR:closed|TIME:this sprint	gap:sort-field
+diwali campaign deck	TOPIC:diwali campaign|KIND:deck	
+owner:meera contract pdf	TOPIC:contract|KIND:pdf	operator
+where did brand guidelines v3 go?	TOPIC:brand guidelines v3	question
+revenue model sheet	TOPIC:revenue model|KIND:sheet	
+nda zentech final version	TOPIC:nda zentech final version	
+png backgrounds for festival posters	KIND:png|TOPIC:backgrounds for festival posters	
+starred files from last week	ATTR:starred|KIND:files|TIME:from last week	
+who edited the pricing sheet last?	TOPIC:pricing|KIND:sheet|ORDER:last	question
+churn dashboard	TOPIC:churn dashboard	
+api spec latest	TOPIC:api spec|ORDER:latest	
+diwali creatives folder	TOPIC:diwali creatives|KIND:folder	
+shared by ananya this month	ACTOR:ananya|TIME:this month	
+term sheet sundara retail	TOPIC:term sheet sundara retail	
+onboarding flow mockups	TOPIC:onboarding flow|KIND:mockups	
+budget tracker not mine	TOPIC:budget tracker|!ACTOR:mine	
+quaterly review deck	TOPIC:quaterly review|KIND:deck	typo
+logo files in trash	TOPIC:logo|KIND:files|ATTR:in trash	
+sprint retro notes	TOPIC:sprint retro|KIND:notes	
+incident postmortem pdf	TOPIC:incident postmortem|KIND:pdf	
+social calendar feb	TOPIC:social|KIND:calendar|TIME:feb	
+type:spreadsheet modified:this week		operator
+old pitch deck not pdf	ATTR:old|TOPIC:pitch|KIND:deck|!KIND:pdf	
+gst invoices 2023-24	TOPIC:gst invoices|TIME:2023-24	
+packaging dieline	TOPIC:packaging dieline	
+shared with me yesterday	RECIPIENT:me|TIME:yesterday	
+employment agreement template	TOPIC:employment agreement template	
+what's the latest msa version?	ORDER:latest|TOPIC:msa version	question
+cohort analysis sheet rohan	TOPIC:cohort analysis|KIND:sheet|ACTOR:rohan	nocue
+diwalii poster jpgs	TOPIC:diwalii poster|KIND:jpgs	typo
+architecture doc v2 karthik	TOPIC:architecture|KIND:doc|TOPIC:v2|ACTOR:karthik	nocue
+exclude archived folders	!ATTR:archived|KIND:folders	
+decks i edited before diwali	KIND:decks|ACTOR:i|TIME:before diwali	
+media kit zip	TOPIC:media kit zip	
+onboarding checklist	TOPIC:onboarding checklist	
+client logos folder	TOPIC:client logos|KIND:folder	
+contracts modified after march 15	TOPIC:contracts|TIME:after march 15	
+release notes 4.2	TOPIC:release|KIND:notes|TOPIC:4.2	
+influencer list sheet	TOPIC:influencer list|KIND:sheet	
+test plan booking flow	TOPIC:test plan booking flow	
+sort my docs by date modified	ACTOR:my|KIND:docs	gap:sort-field
+dark mode mockups	TOPIC:dark mode|KIND:mockups	
+owner:vikram pdfs this month	KIND:pdfs|TIME:this month	operator
+photos from pune offsite	KIND:photos|TOPIC:pune offsite	
+confidential salary bands sheet	ATTR:confidential|TOPIC:salary bands|KIND:sheet	
+campain results deck	TOPIC:campain results|KIND:deck	typo
+everything in diwali 2024 folder except videos	CONTAINER:diwali 2024|!KIND:videos	
+runbook payments service	TOPIC:runbook payments service	
+mokup final_final	KIND:mokup|TOPIC:final_final	typo
+sheets edited by rohan last 30 days	KIND:sheets|ACTOR:rohan|TIME:last 30 days	
+mou draft with meera's comments	TOPIC:mou|ATTR:draft|ACTOR:meera|KIND:comments	
+screenshots from yesterday's bug bash	KIND:screenshots|TIME:from yesterday|TOPIC:bug bash	
+a/b test results presentation	TOPIC:a/b test results|KIND:presentation	
+starred pdfs newest first	ATTR:starred|KIND:pdfs|ORDER:newest first	
+agreements from last year	TOPIC:agreements|TIME:from last year	
+icon set svg	TOPIC:icon set|KIND:svg	
+dashboards newest first	TOPIC:dashboards|ORDER:newest first	
+retention model v5	TOPIC:retention model v5	
+who moved the NDA folder?	TOPIC:NDA|KIND:folder	question
+buget vs actual sheet	TOPIC:buget vs actual|KIND:sheet	typo
+decks owned by arjun not in trash	KIND:decks|ACTOR:arjun|!ATTR:in trash	
+onboarding flow redesign	TOPIC:onboarding flow redesign	
+from:priya last week	TIME:last week	operator
+where is the term sheet pdf	TOPIC:term sheet|KIND:pdf	question
+investor call transcript tuesday	TOPIC:investor|KIND:call transcript|TIME:tuesday	
+my notes from board meeting sort by date	ACTOR:my|KIND:notes|TOPIC:board meeting	gap:sort-field
+what did we decide on pricing finally	TOPIC:decide on pricing	question
+files from rohan not pdf	KIND:files|ACTOR:rohan|!KIND:pdf	
+upi integration	TOPIC:upi integration	
+rohan ke messages about payment gateway	ACTOR:rohan|KIND:messages|TOPIC:payment gateway	lang:hinglish
+channel:eng deploys last week	TOPIC:deploys|TIME:last week	operator
+otp bug meetng notes	TOPIC:otp bug|KIND:meetng notes	typo
+transcript where someone said cache invalidation	KIND:transcript|TOPIC:cache invalidation	
+tasks assigned to me status:todo	KIND:tasks|RECIPIENT:me	operator
+sneha ka figma link for dashboard	ACTOR:sneha|TOPIC:figma link for dashboard	lang:hinglish
+design review notes shared by sneha	TOPIC:design review|KIND:notes|ACTOR:sneha	
+when is the diwali office party	TOPIC:diwali office party	question
+from:meera landing page copy v2	TOPIC:landing page copy v2	operator
+blog drafts by meera edited last month	TOPIC:blog|ATTR:drafts|ACTOR:meera|TIME:last month	
+vendor invoice gst	TOPIC:vendor invoice gst	
+from:vikram files last month sort by recent	KIND:files|TIME:last month|ORDER:recent	operator
+fusion labs client call transcript	TOPIC:fusion labs client|KIND:call transcript	
+sales deck october -old	TOPIC:sales|KIND:deck|TIME:october|!ATTR:old	minus-neg
+notes office move gurgaon	KIND:notes|TOPIC:office move gurgaon	
+all messages from divya about payroll	KIND:messages|ACTOR:divya|TOPIC:payroll	
+leave policy note	TOPIC:leave policy|KIND:note	
+onboarding docs for new joinees by divya	TOPIC:onboarding|KIND:docs|TOPIC:new joinees|ACTOR:divya	
+who all are on the hiring panel	TOPIC:hiring panel	question,gap:person-lookup
+churn analysis	TOPIC:churn analysis	
+from:kabir charts last quarter	TOPIC:charts|TIME:last quarter	operator
+kabir ka churn report kahan hai	ACTOR:kabir|TOPIC:churn report	question,lang:hinglish
+meeting where kabir walked through churn numbers	KIND:meeting|PARTICIPANT:kabir|TOPIC:churn numbers	
+active users sql query note	TOPIC:active users sql query|KIND:note	
+analytics review action items	TOPIC:analytics review|KIND:action items	
+tasks done in #data	KIND:tasks|ATTR:done|CONTAINER:#data	
+demo day meeting transcript decmeber	TOPIC:demo day|KIND:meeting transcript|TIME:decmeber	typo
+sprint retro action items pending	TOPIC:sprint retro|KIND:action items|ATTR:pending	
+my shared files not opened	ACTOR:my|KIND:files|!ATTR:opened	
+pinned messages in #general	ATTR:pinned|KIND:messages|CONTAINER:#general	
+office shift bengaluru kab se	TOPIC:office shift bengaluru	question,lang:hinglish
+chai order list #fun	TOPIC:chai order list|CONTAINER:#fun	
+invocie from courier vendor	TOPIC:invocie|ACTOR:courier vendor	typo
+standup notes -channel:random	TOPIC:standup|KIND:notes	operator
+messages between me and priya roadmap	KIND:messages|PARTICIPANT:me|PARTICIPANT:priya|TOPIC:roadmap	
+notes tagged pricing	KIND:notes|ATTR:tagged pricing	
+my calendar next week	ACTOR:my|KIND:calendar|TIME:next week	
+march gst returns files	TIME:march|TOPIC:gst returns|KIND:files	
+when did rohan join	MENTION:rohan	question,gap:person-attribute
+call transcript where sunil from client got angry	KIND:call transcript|PARTICIPANT:sunil|TOPIC:client got angry	
+what time is standup	KIND:standup	question
+from:divya sort oldest first	ORDER:oldest first	operator
+expense reports pending approval	TOPIC:expense reports|ATTR:pending approval	
+docs recieve from vendors not invoices	KIND:docs|ACTOR:vendors|!TOPIC:invoices	typo
+all hands meetng notes summary	TOPIC:all hands|KIND:meetng notes summary	typo
+series a discussion in #founders after october	TOPIC:series a discussion|CONTAINER:#founders|TIME:after october	
+todo list meera shared in #marketing	TOPIC:todo list|ACTOR:meera|CONTAINER:#marketing	
+design workshop notes by sneha	TOPIC:design workshop|KIND:notes|ACTOR:sneha	
+client feedback spreadsheet latest version	TOPIC:client feedback|KIND:spreadsheet|ORDER:latest version	
+q&a from investor call	TOPIC:q&a from investor call	
+pr links from rohan	TOPIC:pr links|ACTOR:rohan	
+diwali celebration photos	TOPIC:diwali celebration|KIND:photos	

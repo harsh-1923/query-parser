@@ -1,0 +1,10 @@
+unassigned and not done	!ATTR:done → NEG:not	neg-tag
+p0 or p1 not done	!ATTR:done → NEG:not	neg-tag
+budget tracker not mine	!ACTOR:mine → NEG:not	neg-tag
+old pitch deck not pdf	!KIND:pdf → NEG:not	neg-tag
+exclude archived folders	!ATTR:archived → NEG:exclude	neg-tag
+everything in diwali 2024 folder except videos	!KIND:videos → NEG:except	neg-tag
+decks owned by arjun not in trash	!ATTR:in trash → NEG:not	neg-tag
+files from rohan not pdf	!KIND:pdf → NEG:not	neg-tag
+my shared files not opened	!ATTR:opened → NEG:not	neg-tag
+docs recieve from vendors not invoices	!TOPIC:invoices → NEG:not	neg-tag

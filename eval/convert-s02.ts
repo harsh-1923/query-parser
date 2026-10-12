@@ -1,9 +1,14 @@
-// Converts the S02 gold spans (spikes/S02-role-coverage/annotations.tsv) into BIO JSONL in the
-// fixture format, applying eval/ANNOTATION.md as normalization. annotations.tsv is not modified.
-// Run: node eval/convert-s02.ts
-// Writes eval/datasets/llm-written/v0/bio.jsonl and normalization.log.
+// Converts gold spans (annotations.tsv) into BIO JSONL in the fixture format, applying
+// eval/ANNOTATION.md as normalization. The annotations file is not modified.
+// Run: node eval/convert-s02.ts [--in <annotations.tsv>] [--txt-dir <dir>] [--out <bio.jsonl>]
+//                               [--log <normalization.log>] [--source <name>]
+// Defaults reproduce S02 -> eval/datasets/llm-written/v0/{bio.jsonl,normalization.log}.
+// --txt-dir holds the per-product query files (<product>.txt) used to look up each query's product.
 import { readdirSync, readFileSync, writeFileSync } from "node:fs"
 import { registerHooks } from "node:module"
+import { resolve } from "node:path"
+import { pathToFileURL } from "node:url"
+import { parseArgs } from "node:util"
 
 // packages/ use extensionless relative imports; let Node resolve them to .ts for this script.
 registerHooks({
@@ -24,9 +29,29 @@ const { normalizeTime } = await import("../packages/time/src/index.ts")
 
 const REFERENCE = "2026-10-12T10:00:00Z"
 const TIME_ZONE = "Asia/Kolkata"
-const ANNOTATIONS = new URL("../spikes/S02-role-coverage/annotations.tsv", import.meta.url)
 const KINDS = new URL("../packages/datagen/lexicons/kinds.json", import.meta.url)
 const V0 = new URL("./datasets/llm-written/v0/", import.meta.url)
+
+const { values: args } = parseArgs({
+  options: {
+    in: { type: "string" },
+    "txt-dir": { type: "string" },
+    out: { type: "string" },
+    log: { type: "string" },
+    source: { type: "string", default: "s02" },
+  },
+})
+const toUrl = (path: string | undefined, fallback: URL): URL =>
+  path === undefined ? fallback : pathToFileURL(resolve(path))
+const ANNOTATIONS = toUrl(
+  args.in,
+  new URL("../spikes/S02-role-coverage/annotations.tsv", import.meta.url),
+)
+const TXT_DIR = toUrl(args["txt-dir"], V0)
+const TXT_BASE = TXT_DIR.href.endsWith("/") ? TXT_DIR : new URL(`${TXT_DIR.href}/`)
+const OUT = toUrl(args.out, new URL("bio.jsonl", V0))
+const LOG = toUrl(args.log, new URL("normalization.log", V0))
+const SOURCE = args.source ?? "s02"
 
 const CONTAINER_NOUNS = new Set(["channel", "board", "project", "folder", "repo", "space", "team"])
 const DETERMINERS = new Set(["the", "a", "an", "our", "this"])
@@ -69,9 +94,9 @@ function log(query: string, before: string, after: string, rule: string): void {
 
 // product file per query
 const products = new Map<string, string>()
-for (const f of readdirSync(V0)) {
-  if (!f.endsWith(".txt") || f === "PROMPTS.md") continue
-  for (const line of readFileSync(new URL(f, V0), "utf8").split("\n")) {
+for (const f of readdirSync(TXT_BASE)) {
+  if (!f.endsWith(".txt")) continue
+  for (const line of readFileSync(new URL(f, TXT_BASE), "utf8").split("\n")) {
     const q = line.trim()
     if (q && !products.has(q)) products.set(q, f.replace(/\.txt$/, ""))
   }
@@ -279,7 +304,7 @@ for (const line of readFileSync(ANNOTATIONS, "utf8").split("\n")) {
     tokens: tokens.map((t) => t.text),
     offsets: tokens.map((t) => [t.start, t.end]),
     tags,
-    source: "s02",
+    source: SOURCE,
   }
   const product = products.get(query.trim())
   if (product) ex.product = product
@@ -287,8 +312,8 @@ for (const line of readFileSync(ANNOTATIONS, "utf8").split("\n")) {
   stats.written++
 }
 
-writeFileSync(new URL("bio.jsonl", V0), `${examples.map((e) => JSON.stringify(e)).join("\n")}\n`)
-writeFileSync(new URL("normalization.log", V0), `${logLines.join("\n")}\n`)
+writeFileSync(OUT, `${examples.map((e) => JSON.stringify(e)).join("\n")}\n`)
+writeFileSync(LOG, `${logLines.join("\n")}\n`)
 console.log(stats)
 console.log(Object.fromEntries(ruleCounts))
 console.log(`with product: ${examples.filter((e) => e.product).length}`)

@@ -1,0 +1,26 @@
+tagger/large: 139,399 params
+
+== ../eval/datasets/llm-written/v1/bio.jsonl  (n=300) ==
+span P 0.4928  R 0.5301  F1 0.5108  | exact match 0.3367  | token acc 0.6527
+role                 P       R      F1  support
+ACTOR            0.342   0.625   0.442       40
+ATTR             0.375   0.273   0.316       44
+CONTAINER        0.412   0.875   0.560       16
+KIND             0.450   0.773   0.569      110
+MENTION          0.000   0.000   0.000        1
+NEG              0.889   0.800   0.842       10
+ORDER            0.600   0.462   0.522       13
+PARTICIPANT      0.333   0.333   0.333        6
+RECIPIENT        0.200   0.250   0.222        4
+TIME             0.681   0.780   0.727       41
+TOPIC            0.591   0.383   0.464      230
+names with cue   0.525   0.750   0.618       28
+names no cue     0.159   0.304   0.209       23
+source               P       R      F1    exact  support
+glm-v1           0.493   0.530   0.511    0.337      515
+
+latency (batch 1, 1 thread, 10 tokens, p50/p95 ms):
+  forward: {'p50_ms': 0.20158300321782008, 'p95_ms': 0.21715415859944184}
+  forward_plus_viterbi: {'p50_ms': 0.2765829922282137, 'p95_ms': 0.3350964470882899}
+
+wrote runs/s1/tagger-large/eval.json
