@@ -1,0 +1,13 @@
+{
+  "name": "@qp/core",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Schema, pipeline, entity resolution and the parse result contract. No product knowledge.",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit -p ."
+  }
+}

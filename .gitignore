@@ -1,0 +1,19 @@
+node_modules/
+dist/
+coverage/
+.turbo/
+*.tsbuildinfo
+.DS_Store
+.env
+.env.*
+
+# training artifacts (weights are exported into packages/model/weights explicitly)
+training/.venv/
+training/runs/
+training/__pycache__/
+**/__pycache__/
+*.pt
+*.ckpt
+
+# generated data (regenerated deterministically from seeds)
+eval/datasets/generated/

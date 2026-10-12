@@ -1,0 +1,13 @@
+{
+  "name": "@qp/model",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Inference runtime for the tagger model: weights, tokenizer, constrained decoding.",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit -p ."
+  }
+}

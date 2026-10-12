@@ -1,0 +1,13 @@
+{
+  "name": "@qp/time",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Deterministic normalization of time phrases into ranges, with explicit policies.",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit -p ."
+  }
+}

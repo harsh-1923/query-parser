@@ -1,0 +1,13 @@
+{
+  "name": "@qp/datagen",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Synthetic, role-annotated training and evaluation data generator.",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit -p ."
+  }
+}
