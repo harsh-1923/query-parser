@@ -1,0 +1,54 @@
+CPU throttling rate: 6x, iters=500
+UA: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36
+crossOriginIsolated=true hardwareConcurrency=18
+directory index build (1000 people): 42.315 ms (one-off, excluded below)
+queries: 50; token counts min 1 max 16
+small  f32  params=47895  mixed(50q) p50/p95/p99=1.730/4.395/5.310 ms
+     5 tokens: p50/p95/p99=1.495/2.260/2.605 ms
+    10 tokens: p50/p95/p99=3.020/3.955/4.235 ms
+    20 tokens: p50/p95/p99=6.515/7.470/7.695 ms
+    30 tokens: p50/p95/p99=10.100/11.660/16.900 ms
+    e2e (tokenize+model+resolve, ~10-token queries w/ names): p50/p95/p99=4.335/5.685/7.175 ms; resolve only p50/p95/p99=1.220/2.615/4.160 ms; resolve over all name queries p95=2.400 ms
+small  int8 params=47895  mixed(50q) p50/p95/p99=1.945/4.955/5.920 ms
+     5 tokens: p50/p95/p99=1.635/2.675/2.965 ms
+    10 tokens: p50/p95/p99=3.555/4.435/4.835 ms
+    20 tokens: p50/p95/p99=7.375/8.250/8.955 ms
+    30 tokens: p50/p95/p99=11.525/12.695/13.055 ms
+    e2e (tokenize+model+resolve, ~10-token queries w/ names): p50/p95/p99=4.810/6.035/6.540 ms; resolve only p50/p95/p99=1.215/2.325/2.945 ms; resolve over all name queries p95=2.315 ms
+medium f32  params=78871  mixed(50q) p50/p95/p99=2.930/7.360/8.660 ms
+     5 tokens: p50/p95/p99=2.565/3.445/3.720 ms
+    10 tokens: p50/p95/p99=5.410/6.320/6.745 ms
+    20 tokens: p50/p95/p99=11.010/12.105/12.580 ms
+    30 tokens: p50/p95/p99=17.265/18.470/18.955 ms
+    e2e (tokenize+model+resolve, ~10-token queries w/ names): p50/p95/p99=6.610/7.960/8.430 ms; resolve only p50/p95/p99=1.240/2.370/2.935 ms; resolve over all name queries p95=2.325 ms
+medium int8 params=78871  mixed(50q) p50/p95/p99=3.085/7.665/9.180 ms
+     5 tokens: p50/p95/p99=2.645/3.495/3.875 ms
+    10 tokens: p50/p95/p99=5.510/6.330/6.690 ms
+    20 tokens: p50/p95/p99=11.365/12.385/12.780 ms
+    30 tokens: p50/p95/p99=17.865/19.065/19.530 ms
+    e2e (tokenize+model+resolve, ~10-token queries w/ names): p50/p95/p99=6.890/8.185/9.220 ms; resolve only p50/p95/p99=1.290/2.435/3.050 ms; resolve over all name queries p95=2.145 ms
+large  f32  params=161879  mixed(50q) p50/p95/p99=5.880/14.320/17.465 ms
+     5 tokens: p50/p95/p99=5.240/6.250/6.620 ms
+    10 tokens: p50/p95/p99=10.805/11.740/12.010 ms
+    20 tokens: p50/p95/p99=21.855/23.210/23.815 ms
+    30 tokens: p50/p95/p99=33.065/34.745/35.280 ms
+    e2e (tokenize+model+resolve, ~10-token queries w/ names): p50/p95/p99=11.695/13.510/16.085 ms; resolve only p50/p95/p99=1.385/2.560/3.110 ms; resolve over all name queries p95=2.390 ms
+large  int8 params=161879  mixed(50q) p50/p95/p99=5.980/14.655/17.325 ms
+     5 tokens: p50/p95/p99=5.265/6.130/6.475 ms
+    10 tokens: p50/p95/p99=10.725/11.650/12.110 ms
+    20 tokens: p50/p95/p99=22.065/23.250/23.735 ms
+    30 tokens: p50/p95/p99=33.720/35.030/35.760 ms
+    e2e (tokenize+model+resolve, ~10-token queries w/ names): p50/p95/p99=11.950/13.180/14.145 ms; resolve only p50/p95/p99=1.255/2.340/3.035 ms; resolve over all name queries p95=2.440 ms
+large-fit f32  params=126031  mixed(50q) p50/p95/p99=4.615/11.140/13.710 ms
+     5 tokens: p50/p95/p99=3.990/4.870/5.125 ms
+    10 tokens: p50/p95/p99=8.190/9.090/9.555 ms
+    20 tokens: p50/p95/p99=17.035/19.940/27.080 ms
+    30 tokens: p50/p95/p99=26.395/27.505/27.995 ms
+    e2e (tokenize+model+resolve, ~10-token queries w/ names): p50/p95/p99=9.385/10.755/11.480 ms; resolve only p50/p95/p99=1.200/2.265/3.250 ms; resolve over all name queries p95=2.405 ms
+large-fit int8 params=126031  mixed(50q) p50/p95/p99=4.675/11.560/14.265 ms
+     5 tokens: p50/p95/p99=4.125/4.925/5.215 ms
+    10 tokens: p50/p95/p99=8.440/9.425/9.755 ms
+    20 tokens: p50/p95/p99=17.460/18.435/18.905 ms
+    30 tokens: p50/p95/p99=27.205/28.270/28.610 ms
+    e2e (tokenize+model+resolve, ~10-token queries w/ names): p50/p95/p99=9.695/10.960/11.565 ms; resolve only p50/p95/p99=1.230/2.385/2.975 ms; resolve over all name queries p95=2.370 ms
+done in 345.7 s

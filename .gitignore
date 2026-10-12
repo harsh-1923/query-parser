@@ -21,3 +21,6 @@ eval/datasets/generated/
 
 # vercel cli link
 .vercel/
+
+# built spike bundle
+spikes/S06-runtime/bundle.js

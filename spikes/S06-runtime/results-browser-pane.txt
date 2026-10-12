@@ -1,0 +1,12 @@
+Built-in browser pane (Chromium 152 inside the Claude desktop app), no CPU throttling, 2000 iterations. Copied from the DOM output of bench.html.
+UA: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Claude/2.26454.2 Chrome/152.0.7977.130 Safari/537.36
+crossOriginIsolated=true hardwareConcurrency=18
+small  f32  params=47895   10 tokens p50/p95/p99=0.490/0.505/0.515 ms ; e2e p95=0.760
+small  int8 params=47895   10 tokens p50/p95/p99=0.560/0.585/0.600 ms ; e2e p95=0.830
+medium f32  params=78871   10 tokens p50/p95/p99=0.855/0.890/0.905 ms ; e2e p95=1.140
+medium int8 params=78871   10 tokens p50/p95/p99=0.890/0.925/0.940 ms ; e2e p95=1.165
+large  f32  params=161879  10 tokens p50/p95/p99=1.690/1.725/1.740 ms ; e2e p95=1.980
+large  int8 params=161879  10 tokens p50/p95/p99=1.730/1.775/1.795 ms ; e2e p95=2.015
+large-fit f32  params=126031  10 tokens p50/p95/p99=1.345/1.420/1.435 ms ; e2e p95=1.630
+large-fit int8 params=126031  10 tokens p50/p95/p99=1.375/1.410/1.420 ms ; e2e p95=1.660
+(30 tokens large-fit f32 p95=4.505 ms; total run 171.6 s; remaining rows omitted here, same pattern as Node)
