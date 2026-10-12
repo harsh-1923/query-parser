@@ -51,6 +51,8 @@ class Example:
     # True for typed-operator tokens (from:priya). The runtime binds them before the tagger runs,
     # so their predicted labels are discarded; scoring does the same.
     operators: list[bool] | None = None
+    # S7 spike: per-token runtime features [ruleLabelId, kindAlias, attrAlias, directoryName].
+    feats: np.ndarray | None = None  # (n, 4) int64
 
     def __len__(self) -> int:
         return len(self.tokens)
@@ -78,6 +80,9 @@ def make_example(row: dict, labels: Labels) -> Example:
         bytes_ids=np.stack([encode_token(t) for t in tokens]),
         tag_ids=np.array([labels.id_of[t] for t in tags], dtype=np.int64),
         operators=list(row["operators"])[:MAX_TOKENS] if "operators" in row else None,
+        feats=np.array(row["feats"][:MAX_TOKENS], dtype=np.int64).reshape(-1, 4)
+        if "feats" in row
+        else None,
     )
 
 
@@ -100,6 +105,7 @@ class Batch:
     mask: torch.Tensor  # (B, T) bool, True on real tokens
     tags: torch.Tensor  # (B, T) long, 0 (= "O") on padding
     lengths: torch.Tensor  # (B,) long
+    feats: torch.Tensor | None = None  # (B, T, 4) long, S7 spike
 
 
 def collate(examples: Sequence[Example]) -> Batch:
@@ -108,16 +114,21 @@ def collate(examples: Sequence[Example]) -> Batch:
     bytes_ids = np.zeros((b, t, MAX_BYTES), dtype=np.int64)
     tags = np.zeros((b, t), dtype=np.int64)
     mask = np.zeros((b, t), dtype=bool)
+    has_feats = all(e.feats is not None for e in examples)
+    feats = np.zeros((b, t, 4), dtype=np.int64)
     for i, e in enumerate(examples):
         n = len(e)
         bytes_ids[i, :n] = e.bytes_ids
         tags[i, :n] = e.tag_ids
         mask[i, :n] = True
+        if has_feats and e.feats is not None:
+            feats[i, :n] = e.feats
     return Batch(
         bytes_ids=torch.from_numpy(bytes_ids),
         mask=torch.from_numpy(mask),
         tags=torch.from_numpy(tags),
         lengths=torch.tensor([len(e) for e in examples]),
+        feats=torch.from_numpy(feats) if has_feats else None,
     )
 
 

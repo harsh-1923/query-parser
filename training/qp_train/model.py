@@ -28,6 +28,8 @@ class TaggerConfig:
     heads: int
     ffn: int  # FFN hidden = ffn * d
     dropout: float = 0.1
+    feats: bool = False  # S7 spike: add runtime lexicon/rule features to each token
+    feat_drop: float = 0.3  # chance, per example and feature group, of zeroing it in training
 
 
 @dataclass(frozen=True)
@@ -45,6 +47,7 @@ TAGGER_CONFIGS = {
     "small": TaggerConfig(d=38, d_b=12, layers=2, heads=2, ffn=2),
     "medium": TaggerConfig(d=64, d_b=16, layers=2, heads=4, ffn=2),
     "large": TaggerConfig(d=64, d_b=24, layers=3, heads=4, ffn=3),
+    "medium-feat": TaggerConfig(d=64, d_b=16, layers=2, heads=4, ffn=2, feats=True),
 }
 DECODER_CONFIGS = {
     "base": DecoderConfig(d=56, d_b=16, enc_layers=1, dec_layers=1, heads=2, ffn=2),
@@ -94,9 +97,23 @@ class EncoderBlock(nn.Module):
 
 
 class Encoder(nn.Module):
-    def __init__(self, d: int, d_b: int, layers: int, heads: int, ffn: int, dropout: float):
+    def __init__(
+        self,
+        d: int,
+        d_b: int,
+        layers: int,
+        heads: int,
+        ffn: int,
+        dropout: float,
+        n_rule_labels: int = 0,
+        feat_drop: float = 0.0,
+    ):
         super().__init__()
         self.bytes = ByteEncoder(d_b, d)
+        # S7 spike: the rule tagger's label + 1 (0 = missing; embedding) and three lexicon bits.
+        self.rule = nn.Embedding(n_rule_labels, d, padding_idx=0) if n_rule_labels else None
+        self.lex = nn.Linear(3, d, bias=False) if n_rule_labels else None
+        self.feat_drop = feat_drop
         self.pos = nn.Embedding(MAX_TOKENS, d)
         self.drop = nn.Dropout(dropout)
         self.blocks = nn.ModuleList(EncoderBlock(d, heads, ffn, dropout) for _ in range(layers))
@@ -105,6 +122,21 @@ class Encoder(nn.Module):
     def forward(self, batch: Batch) -> torch.Tensor:
         t = batch.bytes_ids.shape[1]
         x = self.bytes(batch.bytes_ids) + self.pos(torch.arange(t))
+        if self.rule is not None and self.lex is not None and batch.feats is not None:
+            f = batch.feats
+            if self.training and self.feat_drop > 0:
+                # Zero each group (rules, kind/attr aliases, names) per example, so the model
+                # can't lean on any one of them (Snips: a CRF over-trusts its gazetteer).
+                keep = (torch.rand(f.shape[0], 1, 3) >= self.feat_drop).long()
+                f = torch.cat(
+                    [
+                        f[..., :1] * keep[..., :1],
+                        f[..., 1:3] * keep[..., 1:2],
+                        f[..., 3:] * keep[..., 2:],
+                    ],
+                    dim=-1,
+                )
+            x = x + self.rule(f[..., 0]) + self.lex(f[..., 1:].float())
         x = self.drop(x)
         for block in self.blocks:
             x = block(x, batch.mask)
@@ -118,7 +150,14 @@ class Tagger(nn.Module):
         super().__init__()
         self.config, self.labels, self.label_smoothing = config, labels, label_smoothing
         self.encoder = Encoder(
-            config.d, config.d_b, config.layers, config.heads, config.ffn, config.dropout
+            config.d,
+            config.d_b,
+            config.layers,
+            config.heads,
+            config.ffn,
+            config.dropout,
+            n_rule_labels=len(labels) + 1 if config.feats else 0,
+            feat_drop=config.feat_drop,
         )
         self.head = nn.Linear(config.d, len(labels))
         trans, start = transition_masks(labels)
