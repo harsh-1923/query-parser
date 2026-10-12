@@ -72,5 +72,5 @@ For reference, S1 round 2's fully trained medium scored 0.744 / 0.636.
   - write ADR 0004 "runtime rule and lexicon features as tagger input";
   - update PLAN §6.2;
   - pin the featurizer with a TS ↔ Python fixture (AGENTS rule 6).
-- Cost at runtime: the rule tagger runs before the model, which takes well under a millisecond
-  (S06).
+- Cost at runtime: the rule tagger has to run before the model. It hasn't been timed yet;
+  measure it with the S06 harness before writing the ADR.
