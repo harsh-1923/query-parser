@@ -191,3 +191,47 @@ describe("ruleTagger", () => {
     }
   })
 })
+
+describe("ruleTagger quick fixes", () => {
+  const t = ruleTagger({
+    ...lexicon,
+    kinds: [...lexicon.kinds, "channel", "email"],
+    isTime: (text) => TIMES.has(text.toLowerCase()) || text.toLowerCase() === "may",
+  })
+  const view = (q: string) => {
+    const tokens = tokenize(q)
+    const { labels } = t.tag(tokens)
+    checkBio(labels)
+    return labels
+      .map((l, i) => (l === "O" ? "" : `${l}:${tokens[i]?.text}`))
+      .filter(Boolean)
+      .join(" ")
+  }
+
+  it("reads 'may i …' as a polite frame, not a time or an author", () => {
+    expect(view("may i see the deck")).toBe("B-KIND:deck")
+    expect(view("pdfs from may")).toContain("TIME:may")
+  })
+
+  it("drops a container noun after a container name", () => {
+    expect(view("messages in payments-ops channel")).toBe(
+      "B-KIND:messages B-CONTAINER:payments-ops",
+    )
+  })
+
+  it("treats cc as a recipient cue", () => {
+    expect(view("emails cc'd to finance")).toBe("B-KIND:emails B-RECIPIENT:finance")
+    expect(view("emails cc priya")).toBe("B-KIND:emails B-RECIPIENT:priya")
+  })
+
+  it("never reads nobody / no one as a name", () => {
+    expect(view("bugs assigned to nobody")).toBe("B-KIND:bugs")
+    expect(view("bugs assigned to no one")).toBe("B-KIND:bugs")
+  })
+
+  it("keeps 'my manager' together as one relational name", () => {
+    expect(view("my manager's latest doc")).toContain("B-ACTOR:my I-ACTOR:manager")
+    expect(view("decks sent to my team")).toContain("B-RECIPIENT:my I-RECIPIENT:team")
+    expect(view("my notes")).toBe("B-ACTOR:my B-KIND:notes")
+  })
+})

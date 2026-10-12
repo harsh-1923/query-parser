@@ -93,6 +93,8 @@ const TOKEN_RE =
 
 const SYNONYMS: Record<string, string> = {
   yday: "yesterday",
+  weak: "week",
+  quater: "quarter",
   ystrday: "yesterday",
   yestrday: "yesterday",
   ysterday: "yesterday",
@@ -277,23 +279,20 @@ const LEXICON = new Set([
   ...Object.values(SYNONYMS),
 ])
 
-function osa1(a: string, b: string): boolean {
-  // Optimal string alignment distance ≤ 1 (one insert, delete, substitute or adjacent swap).
-  if (a === b) return true
-  if (Math.abs(a.length - b.length) > 1) return false
-  if (a.length === b.length) {
-    const diff: number[] = []
-    for (let i = 0; i < a.length; i++) if (a[i] !== b[i]) diff.push(i)
-    if (diff.length === 1) return true
-    return (
-      diff.length === 2 &&
-      diff[1] === diff[0]! + 1 &&
-      a[diff[0]!] === b[diff[1]!] &&
-      a[diff[1]!] === b[diff[0]!]
-    )
+/**
+ * A safe typo of a time word: one adjacent swap ("decmeber"), or one dropped letter in a word of 5+
+ * letters ("fridy", "agust"). Substitutions and extra letters are not accepted: they turn real
+ * words into dates ("sent" → sept, "match" → march, "soon" → noon, "jane" → june).
+ */
+function isTypoOf(w: string, x: string): boolean {
+  if (w.length === x.length) {
+    const d: number[] = []
+    for (let i = 0; i < w.length; i++) if (w[i] !== x[i]) d.push(i)
+    const [a, b] = d
+    return d.length === 2 && a !== undefined && b === a + 1 && w[a] === x[b] && w[b] === x[a]
   }
-  const [s, t] = a.length < b.length ? [a, b] : [b, a]
-  for (let i = 0; i < t.length; i++) if (t.slice(0, i) + t.slice(i + 1) === s) return true
+  if (w.length < 5 || x.length !== w.length + 1) return false
+  for (let i = 0; i < x.length; i++) if (x.slice(0, i) + x.slice(i + 1) === w) return true
   return false
 }
 
@@ -301,7 +300,7 @@ function fixWord(w: string): string[] {
   if (SYNONYMS[w]) return [SYNONYMS[w]!]
   if (LEXICON.has(w)) return [w]
   if (w.length >= 4) {
-    const hits = [...LEXICON].filter((x) => x.length >= 4 && osa1(w, x))
+    const hits = [...LEXICON].filter((x) => x.length >= 4 && isTypoOf(w, x))
     if (hits.length === 1) return [hits[0]!]
   }
   for (let i = 2; i < w.length - 1; i++) {

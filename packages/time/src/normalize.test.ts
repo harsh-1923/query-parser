@@ -102,3 +102,29 @@ describe("S4 follow-ups", () => {
     expect(local(text, india)).toBe("unsupported")
   })
 })
+
+describe("typo tolerance never turns real words into dates", () => {
+  it.each([
+    "sent",
+    "kept",
+    "slept",
+    "match",
+    "soon",
+    "jane",
+    "pune",
+    "decent",
+    "duly",
+    "your",
+    "regent",
+  ])("%s is unsupported", (text) => {
+    expect(local(text)).toBe("unsupported")
+  })
+  it.each([
+    ["last weak", "2026-10-05T00:00 2026-10-12T00:00 week"],
+    ["last fridy", "2026-10-09T00:00 2026-10-10T00:00 day"],
+    ["agust", "2026-08-01T00:00 2026-09-01T00:00 month"],
+    ["decmeber 2025", "2025-12-01T00:00 2026-01-01T00:00 month"],
+  ])("still reads %s", (text, expected) => {
+    expect(local(text)).toBe(expected)
+  })
+})

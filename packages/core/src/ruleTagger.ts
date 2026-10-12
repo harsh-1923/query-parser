@@ -79,9 +79,18 @@ const CUE_TABLE: Record<CueRole, string[]> = {
     "messaged",
     "assignee",
     "recipient",
+    "cc",
+    "cc'd",
+    "ccd",
+    "cced",
+    "bcc",
+    "cc'd to",
+    "cc to",
+    "copied",
+    "copied to",
   ],
   PARTICIPANT: ["with", "between", "among", "involving", "including", "attended by", "joined by"],
-  MENTION: ["mentioning", "mentions", "mentioned", "tagged", "tagging", "tags", "cc", "cc'd"],
+  MENTION: ["mentioning", "mentions", "mentioned", "tagged", "tagging", "tags"],
   CONTAINER: ["in", "inside", "on"],
   TOPIC: ["about", "regarding", "re", "abt", "concerning", "related to"],
 }
@@ -92,6 +101,42 @@ for (const [role, phrases] of Object.entries(CUE_TABLE)) {
 }
 
 const SELF = new Set(["i", "me", "my", "mine", "myself"])
+/** "my manager", "my team": a relational name, not the user themselves. */
+const RELATIONAL = new Set([
+  "manager",
+  "boss",
+  "lead",
+  "skip",
+  "mentor",
+  "team",
+  "teammate",
+  "teammates",
+  "colleague",
+  "colleagues",
+  "reports",
+  "directs",
+  "assistant",
+  "cofounder",
+  "cofounders",
+  "peers",
+  "squad",
+  "pod",
+  "department",
+  "org",
+])
+/** "may i see …", "can we find …": a polite frame, not a time or an author. */
+const MODALS = new Set(["may", "can", "could", "should", "would", "will", "shall"])
+/** Words that look like names after a cue but never are ("assigned to nobody"). */
+const NOBODY = new Set([
+  "nobody",
+  "noone",
+  "anyone",
+  "anybody",
+  "someone",
+  "somebody",
+  "everyone",
+  "everybody",
+])
 const IMPERATIVE = new Set([
   "show",
   "find",
@@ -199,6 +244,7 @@ const ACTOR_VERBS = new Set([
 const STOPWORDS = new Set([
   ...DETERMINERS,
   ...SELF,
+  ...NOBODY,
   ...ACTOR_VERBS,
   ...NEG,
   "of",
@@ -394,7 +440,7 @@ function tagTokens(
   function isPlainName(i: number): boolean {
     if (!free(i)) return false
     const w = word(i)
-    if (STOPWORDS.has(w) || SELF.has(w)) return false
+    if (STOPWORDS.has(w) || SELF.has(w) || NOBODY.has(w)) return false
     if (!PLAIN_WORD.test(tokens[i]?.text ?? "")) return false
     return matchCue(i) === undefined
   }
@@ -417,6 +463,19 @@ function tagTokens(
       if (role) return { role, len, text }
     }
     return undefined
+  }
+
+  // 1b. Frames that would otherwise be misread: "may i …", "no one" -----------------------
+
+  if (MODALS.has(word(0)) && (word(1) === "i" || word(1) === "we" || word(1) === "you")) {
+    taken[0] = true
+    taken[1] = true
+  }
+  for (let i = 0; i + 1 < n; i++) {
+    if (word(i) === "no" && word(i + 1) === "one") {
+      taken[i] = true
+      taken[i + 1] = true
+    }
   }
 
   // 2. TIME ---------------------------------------------------------------------------------
@@ -555,6 +614,10 @@ function tagTokens(
     }
     if (!free(s)) return -1
     const w = word(s)
+    if (w === "my" && free(s + 1) && RELATIONAL.has(word(s + 1))) {
+      claim(s, s + 2, role)
+      return s + 2
+    }
     if (SELF.has(w)) {
       claim(s, s + 1, role)
       return s + 1
@@ -653,6 +716,11 @@ function tagTokens(
       i++
       continue
     }
+    if (text === "my" && free(i + 1) && RELATIONAL.has(word(i + 1))) {
+      claim(i, i + 2, "ACTOR")
+      i += 2
+      continue
+    }
     if (SELF.has(text)) {
       const role = selfRole(i)
       if (role) claim(i, i + 1, role)
@@ -671,6 +739,14 @@ function tagTokens(
       continue
     }
     i++
+  }
+
+  // 5b. A container noun right after a container name is filler ("#infra channel") ---------
+
+  for (let i = 1; i < n; i++) {
+    const prev = labels[i - 1] ?? "O"
+    const single = labels[i] === "B-KIND" && labels[i + 1] !== "I-KIND"
+    if (prev.endsWith("-CONTAINER") && single && CONTAINER_NOUNS.has(word(i))) labels[i] = "O"
   }
 
   // 6. Leftover content words become TOPIC --------------------------------------------------
