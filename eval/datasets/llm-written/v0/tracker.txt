@@ -1,0 +1,40 @@
+assigned to me open
+bugs rohan filed this sprint
+karan's tickets in payments board
+p0 bugs not closed
+checkout project blocked tickets
+what is still open from release 4.2
+unassigned bugs in berlin team
+my tickets older than 30 days
+epics without assignee
+tasks done last week
+login crash p1
+anyone blocked on the vespa reindex
+sort by most recent comments
+oldest open bugs
+reporter:priya type:bug
+things i reported that are still in review
+sprint 42 unfinished stories
+search latency regression
+payment webhook timeouts open
+who is working on the auth epic
+bugs filed by ananya last month
+not done high priority mobile
+ios push notifications bug
+todo in platform board assigned to nobody
+reopened tickets this quarter
+label:flaky-test open
+stuck in qa more than a week
+mine that are p0 or p1
+checkout crash on android since 4.2.1
+whats in the backlog for search board
+bugs without priority
+dupes of the invoice pdf issue
+closed this sprint by frontend team
+epic billing v2 children
+blocked by infra
+comments mentioning rollback
+tickets created today in bangalore
+hans's in progress items
+security bugs open
+wat did we ship in last release

@@ -1,0 +1,206 @@
+# query	spans (ROLE:text, "!" = negated, "|" separated)	flags
+priya's sheet on q3 collections	ACTOR:priya|KIND:sheet|TOPIC:q3 collections	
+rahul pdf from last week about kyc drop-off	ACTOR:rahul|KIND:pdf|TIME:last week|TOPIC:kyc drop-off	nocue
+reconciliation mismatch in #payments-ops	TOPIC:reconciliation mismatch|CONTAINER:#payments-ops	
+latest version of the pitch deck	ORDER:latest version|TOPIC:pitch|KIND:deck	
+who said the settlement cutoff is 6pm	TOPIC:settlement cutoff is 6pm	question
+unread mentions from @sneha	ATTR:unread|KIND:mentions|ACTOR:@sneha	
+pinned stuff in #risk-review	ATTR:pinned|CONTAINER:#risk-review	
+oldest messages in the lending channel	ORDER:oldest|KIND:messages|CONTAINER:lending	
+anything from jake about the bbps integration not from dms	ACTOR:jake|TOPIC:bbps integration|!CONTAINER:dms	
+call transcript from the 3/10 vendor call	KIND:call transcript|TIME:3/10|TOPIC:vendor call	
+meera canvas api rate limits	ACTOR:meera|KIND:canvas|TOPIC:api rate limits	nocue
+before the offsite what did we decide on pricing	TIME:before the offsite|TOPIC:decide on pricing	question,res:event
+slides from the board prep march	KIND:slides|TOPIC:board prep|TIME:march	
+my notes on fraud rules	ACTOR:my|KIND:notes|TOPIC:fraud rules	
+screenshot of the upi failure dashboard vikram sent	KIND:screenshot|TOPIC:upi failure dashboard|ACTOR:vikram	
+dispute tat sla figures excluding test merchants	TOPIC:dispute tat sla figures|!TOPIC:test merchants	neg-topic
+tom's thread about refund retries	ACTOR:tom|KIND:thread|TOPIC:refund retries	
+how did we handle chargebacks last quarter	TOPIC:handle chargebacks|TIME:last quarter	question
+#eng-alerts yesterday 2am outage	CONTAINER:#eng-alerts|TIME:yesterday 2am|TOPIC:outage	
+excel with merchant onboarding funnel in march	KIND:excel|TOPIC:merchant onboarding funnel|TIME:in march	
+ananya the rbi audit checklist doc	ACTOR:ananya|TOPIC:rbi audit checklist|KIND:doc	nocue
+hhmm what was the decision on penny drop vendor	TOPIC:decision on penny drop vendor	question
+aditya recording from the design review call	ACTOR:aditya|KIND:recording|TOPIC:design review call	nocue
+files shared by lauren in #growth	KIND:files|ACTOR:lauren|CONTAINER:#growth	
+kavya budget sheet v3 final final	ACTOR:kavya|TOPIC:budget|KIND:sheet|TOPIC:v3 final final	nocue
+nikhil's comment on the vpa validation pr	ACTOR:nikhil|KIND:comment|TOPIC:vpa validation pr	
+escalation for axis bank settlement last tuesday	TOPIC:escalation for axis bank settlement|TIME:last tuesday	
+messages with idempotency key this month except bot posts	KIND:messages|TOPIC:idempotency key|TIME:this month|!ATTR:bot posts	
+sort by date newest first refund flow	ORDER:newest first|TOPIC:refund flow	
+canvas about onboarding v2 owned by arjun	KIND:canvas|TOPIC:onboarding v2|ACTOR:arjun	
+merchant ids mentioned in #support 10/3	TOPIC:merchant ids|CONTAINER:#support|TIME:10/3	
+transcript where we discussed the nach mandate timeline	KIND:transcript|TOPIC:nach mandate timeline	
+rohan pinged me abt the loan emi sheet	ACTOR:rohan|KIND:pinged|RECIPIENT:me|TOPIC:loan emi|KIND:sheet	multi-kind
+things about kyc video verification in dms with divya	TOPIC:kyc video verification|CONTAINER:dms|PARTICIPANT:divya	
+docs i commented on last week	KIND:docs|ACTOR:i|TIME:last week	cue:commented
+tokenization pdf ppt	TOPIC:tokenization|KIND:pdf|KIND:ppt	
+cashback campaign results q2 pdf not the draft	TOPIC:cashback campaign results|TIME:q2|KIND:pdf|!ATTR:draft	
+who owns the reporting pipeline	TOPIC:reporting pipeline	question
+image of the error screen from sarah's phone	KIND:image|TOPIC:error screen|ACTOR:sarah	
+standup notes before diwali	TOPIC:standup|KIND:notes|TIME:before diwali	res:event
+from razorpay invoice pdf	ACTOR:razorpay|TOPIC:invoice|KIND:pdf	res:org
+unread from priya	ATTR:unread|ACTOR:priya	
+emails i sent to the auditor last quarter	KIND:emails|ACTOR:i|RECIPIENT:the auditor|TIME:last quarter	res:relational
+q2 budget	TOPIC:q2 budget	
+payslip march	TOPIC:payslip|TIME:march	
+any attachments from acme corp since jan	KIND:attachments|ACTOR:acme corp|TIME:since jan	res:org
+flagged emails from legal	ATTR:flagged|KIND:emails|ACTOR:legal	res:group
+hr policy update	TOPIC:hr policy update	
+not newsletters from last week	!KIND:newsletters|TIME:from last week	
+except from hr, unread	!ACTOR:hr|ATTR:unread	res:group
+latest from john@brightpath.io	ORDER:latest|ACTOR:john@brightpath.io	
+invoice overdue	TOPIC:invoice overdue	
+contract signed docx	TOPIC:contract signed|KIND:docx	
+emails to the board on friday	KIND:emails|RECIPIENT:the board|TIME:on friday	res:group
+sort oldest first to dana	ORDER:oldest first|RECIPIENT:dana	
+starred from finance	ATTR:starred|ACTOR:finance	res:group
+Q3 forecast spreadsheet	TOPIC:Q3 forecast|KIND:spreadsheet	
+that thing dmitri sent about the vendor contract	ACTOR:dmitri|TOPIC:vendor contract	
+reply to recruiter from last month	KIND:reply|RECIPIENT:recruiter|TIME:from last month	res:relational
+offer letter	TOPIC:offer letter	
+offsite agenda	TOPIC:offsite agenda	
+mails with pdf attachments over 5mb	KIND:mails|KIND:pdf attachments|ATTR:over 5mb	gap:numeric-comparison
+from stripe receipts	ACTOR:stripe|TOPIC:receipts	res:org
+sent to tom with attachments this year	RECIPIENT:tom|ATTR:with attachments|TIME:this year	
+travel reimbursement approval	TOPIC:travel reimbursement approval	
+which emails mention the migration cutover	KIND:emails|TOPIC:migration cutover	question
+rent receipt	TOPIC:rent receipt	
+unread mails from my team last 2 weeks	ATTR:unread|KIND:mails|ACTOR:my team|TIME:last 2 weeks	res:group
+expense report pending approval	TOPIC:expense report|ATTR:pending approval	
+meeting notes from the design review	KIND:meeting notes|TOPIC:design review	
+vendor quote from siemens	TOPIC:vendor quote|ACTOR:siemens	res:org
+from:ana@lumen.de subject invoice	ACTOR:ana@lumen.de|TOPIC:invoice	operator,gap:field-scoped-text
+gdpr data request	TOPIC:gdpr data request	
+kickoff deck pptx	TOPIC:kickoff|KIND:deck|KIND:pptx	
+emails from the cfo this month	KIND:emails|ACTOR:the cfo|TIME:this month	res:relational
+roadmap doc shared with me	TOPIC:roadmap|KIND:doc|RECIPIENT:me	
+calendar invite from marta	KIND:calendar invite|ACTOR:marta	
+renewal notice from aws	TOPIC:renewal notice|ACTOR:aws	res:org
+not from linkedin or github, last 30 days	!ACTOR:linkedin|!ACTOR:github|TIME:last 30 days	neg-scope,res:org
+onboarding checklist from hr	TOPIC:onboarding checklist|ACTOR:hr	res:group
+emails about the hiring freeze	KIND:emails|TOPIC:hiring freeze	
+assigned to me open	RECIPIENT:me|ATTR:open	
+bugs rohan filed this sprint	KIND:bugs|ACTOR:rohan|TIME:this sprint	res:period
+karan's tickets in payments board	ACTOR:karan|KIND:tickets|CONTAINER:payments board	
+p0 bugs not closed	ATTR:p0|KIND:bugs|!ATTR:closed	
+checkout project blocked tickets	CONTAINER:checkout project|ATTR:blocked|KIND:tickets	
+what is still open from release 4.2	ATTR:open|CONTAINER:release 4.2	question,res:dynamic-value
+unassigned bugs in berlin team	ATTR:unassigned|KIND:bugs|CONTAINER:berlin team	res:group
+my tickets older than 30 days	ACTOR:my|KIND:tickets|TIME:older than 30 days	
+epics without assignee	KIND:epics|ATTR:without assignee	
+tasks done last week	KIND:tasks|ATTR:done|TIME:last week	
+login crash p1	TOPIC:login crash|ATTR:p1	
+anyone blocked on the vespa reindex	ATTR:blocked|TOPIC:vespa reindex	question
+sort by most recent comments	ORDER:most recent comments	
+oldest open bugs	ORDER:oldest|ATTR:open|KIND:bugs	
+reporter:priya type:bug	ACTOR:reporter:priya|KIND:type:bug	operator
+things i reported that are still in review	ACTOR:i|ATTR:in review	
+sprint 42 unfinished stories	CONTAINER:sprint 42|ATTR:unfinished|KIND:stories	res:dynamic-value
+search latency regression	TOPIC:search latency regression	
+payment webhook timeouts open	TOPIC:payment webhook timeouts|ATTR:open	
+who is working on the auth epic	TOPIC:auth|KIND:epic	question
+bugs filed by ananya last month	KIND:bugs|ACTOR:ananya|TIME:last month	
+not done high priority mobile	!ATTR:done|ATTR:high priority|TOPIC:mobile	
+ios push notifications bug	TOPIC:ios push notifications|KIND:bug	
+todo in platform board assigned to nobody	ATTR:todo|CONTAINER:platform board|ATTR:assigned to nobody	
+reopened tickets this quarter	ATTR:reopened|KIND:tickets|TIME:this quarter	
+label:flaky-test open	ATTR:label:flaky-test|ATTR:open	operator,res:dynamic-value
+stuck in qa more than a week	ATTR:in qa	gap:duration-in-state
+mine that are p0 or p1	ACTOR:mine|ATTR:p0|ATTR:p1	
+checkout crash on android since 4.2.1	TOPIC:checkout crash|ATTR:android|TIME:since 4.2.1	res:event
+whats in the backlog for search board	ATTR:backlog|CONTAINER:search board	question
+bugs without priority	KIND:bugs|ATTR:without priority	
+dupes of the invoice pdf issue	TOPIC:invoice pdf issue	gap:item-relation
+closed this sprint by frontend team	ATTR:closed|TIME:this sprint|ACTOR:frontend team	res:period,res:group,cue:closed
+epic billing v2 children	KIND:epic|TOPIC:billing v2	gap:item-relation
+blocked by infra	ATTR:blocked	gap:item-relation
+comments mentioning rollback	KIND:comments|TOPIC:rollback	
+tickets created today in bangalore	KIND:tickets|TIME:today|ATTR:bangalore	
+hans's in progress items	ACTOR:hans|ATTR:in progress	
+security bugs open	TOPIC:security|KIND:bugs|ATTR:open	
+wat did we ship in last release	TOPIC:ship|TIME:last release	question,res:event
+ananya's deck from last month	ACTOR:ananya|KIND:deck|TIME:from last month	
+files i own	KIND:files|ACTOR:i	
+shared by vikram not in trash	ACTOR:vikram|!ATTR:in trash	
+q3 board pack folder	TOPIC:q3 board pack|KIND:folder	
+legal team edited these	ACTOR:legal team	cue:edited,res:group
+latest version of the pricing sheet	ORDER:latest version|TOPIC:pricing|KIND:sheet	
+pdf invoices from 2024	KIND:pdf|TOPIC:invoices|TIME:from 2024	
+screenshots from the offsite	KIND:screenshots|TOPIC:offsite	
+marketing folder slides	CONTAINER:marketing folder|KIND:slides	
+not pdfs	!KIND:pdfs	
+excluding drafts budget	!ATTR:drafts|TOPIC:budget	
+oldest version of the vendor contract	ORDER:oldest version|TOPIC:vendor contract	
+created yesterday	TIME:yesterday	cue:created
+starred spreadsheets	ATTR:starred|KIND:spreadsheets	
+shared with me this week	RECIPIENT:me|TIME:this week	
+trashed files from ops	ATTR:trashed|KIND:files|ACTOR:ops	res:group
+ananya edited the roadmap	ACTOR:ananya|TOPIC:roadmap	cue:edited
+design team mockups png	ACTOR:design team|TOPIC:mockups|KIND:png	nocue,res:group
+budget 2025 xlsx	TOPIC:budget|TIME:2025|KIND:xlsx	
+what did rohan share with me	ACTOR:rohan|RECIPIENT:me	question
+recent video recordings	TIME:recent|KIND:video recordings	
+pitch deck v3 final	TOPIC:pitch|KIND:deck|TOPIC:v3 final	
+hr policy docs	TOPIC:hr policy|KIND:docs	
+files modified last week by priya	KIND:files|TIME:last week|ACTOR:priya	cue:modified
+q2 sales forecast sheet	TOPIC:q2 sales forecast|KIND:sheet	
+meeting notes march	KIND:meeting notes|TIME:march	
+exclude archived folder	!CONTAINER:archived folder	
+shared drive finance docs	CONTAINER:shared drive finance|KIND:docs	
+logo final svg	TOPIC:logo final|KIND:svg	
+onboarding checklist doc	TOPIC:onboarding checklist|KIND:doc	
+vikram's spreadsheet from 2023	ACTOR:vikram|KIND:spreadsheet|TIME:from 2023	
+unsigned nda	ATTR:unsigned|TOPIC:nda	
+term sheet draft	TOPIC:term sheet|ATTR:draft	
+folders shared with ops team	KIND:folders|RECIPIENT:ops team	res:group
+investor update slides latest	TOPIC:investor update|KIND:slides|ORDER:latest	
+expense report template	TOPIC:expense report template	
+bugs list excel	TOPIC:bugs list|KIND:excel	
+anything in engineering shared drive	CONTAINER:engineering shared drive	
+product spec not owned by me	TOPIC:product spec|!ACTOR:me	
+ppt from the dec offsite	KIND:ppt|TIME:dec|TOPIC:offsite	
+contracts folder modified this year	CONTAINER:contracts folder|TIME:this year	cue:modified
+who edited the hiring plan	TOPIC:hiring plan	question,cue:edited
+standup with arjun	KIND:standup|PARTICIPANT:arjun	
+sbi team call recording last week	PARTICIPANT:sbi team|KIND:call recording|TIME:last week	nocue,res:org
+when did we decide on the vespa reranker	TOPIC:decide on the vespa reranker	question
+transcript from the board meeting	KIND:transcript|TOPIC:board meeting	
+notes on onboarding flow from tuesday	KIND:notes|TOPIC:onboarding flow|TIME:from tuesday	
+what did priya say about the q3 numbers	ACTOR:priya|KIND:say|TOPIC:q3 numbers	question
+that pricing thing we discussed	TOPIC:pricing	vague
+calls with the razorpay folks past 2 weeks	KIND:calls|PARTICIPANT:razorpay folks|TIME:past 2 weeks	res:org
+kya decide hua tha for the release date	TOPIC:release date	question,lang:hinglish
+pending action items from yesterday's sync	ATTR:pending|KIND:action items|TIME:yesterday's|TOPIC:sync	
+summary of the all hands between 1st and 15th	KIND:summary|TOPIC:all hands|TIME:between 1st and 15th	
+gst invoice shared by finance	TOPIC:gst invoice|ACTOR:finance	res:group
+meeting with kiran re: hiring	KIND:meeting|PARTICIPANT:kiran|TOPIC:hiring	
+which meetings did i miss this morning	KIND:meetings|TIME:this morning	question,gap:attendance
+sprint review notes last friday	TOPIC:sprint review|KIND:notes|TIME:last friday	
+files shared by rahul in march	KIND:files|ACTOR:rahul|TIME:in march	
+who owns the migration doc	TOPIC:migration|KIND:doc	question
+roadmap discussion from last month, not the sales one	TOPIC:roadmap discussion|TIME:from last month|!TOPIC:sales	neg-topic
+calendar for next wed	KIND:calendar|TIME:next wed	future-time
+chat about the paytm integration	KIND:chat|TOPIC:paytm integration	
+recording of the customer demo	KIND:recording|TOPIC:customer demo	
+notes not from standups from this week	KIND:notes|!CONTAINER:standups|TIME:from this week	
+latest version of the pitch deck	ORDER:latest version|TOPIC:pitch|KIND:deck	
+what did we promise hdfc about sla	RECIPIENT:hdfc|TOPIC:sla	question,res:org
+vendor call transcript kal wala	TOPIC:vendor call|KIND:transcript|TIME:kal	lang:hinglish,res:time-hinglish
+design review with meera	TOPIC:design review|PARTICIPANT:meera	
+any mention of churn in calls last quarter	TOPIC:churn|KIND:calls|TIME:last quarter	
+hiring panel notes, sorted newest first	TOPIC:hiring panel|KIND:notes|ORDER:newest first	
+budget approval thread	TOPIC:budget approval|KIND:thread	
+kab tak deadline hai invoice ka	TOPIC:deadline|TOPIC:invoice	question,lang:hinglish
+retro from last sprint	TOPIC:retro|TIME:last sprint	res:period
+whats the status on the ios app store submission	TOPIC:ios app store submission	question
+feedback from the beta users in chat	TOPIC:feedback|ACTOR:the beta users|KIND:chat	res:group
+the thing ravi sent about the api rate limits	ACTOR:ravi|TOPIC:api rate limits	
+ops review summary, exclude draft	TOPIC:ops review|KIND:summary|!ATTR:draft	
+files tagged finance uploaded this week	KIND:files|ATTR:tagged finance|TIME:this week	res:dynamic-value
+tuesday's 1:1 with my manager notes	TIME:tuesday's|TOPIC:1:1|PARTICIPANT:my manager|KIND:notes	res:relational
+key risks mentioned in the investor update call	TOPIC:key risks|TOPIC:investor update call	
+search for refund policy wording	TOPIC:refund policy wording	
+meeting where we talked about the kubernetes cluster costs	KIND:meeting|TOPIC:kubernetes cluster costs	
+payroll sheet shared by hr last month	TOPIC:payroll|KIND:sheet|ACTOR:hr|TIME:last month	res:group
+who said we should drop the legacy login	TOPIC:drop the legacy login	question

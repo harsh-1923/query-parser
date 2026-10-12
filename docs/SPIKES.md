@@ -13,7 +13,7 @@ Suggested order: S2 → S4 → S1 → S3 → S6, with S5, S7, S8 alongside M3–
 | # | Question | Blocks | Time box |
 |---|---|---|---|
 | S1 | Tagger or seq2seq? How small can it be? | M4 | 2 days |
-| S2 | Does the role set cover real queries? | M2 | ½ day |
+| S2 | Does the role set cover real queries? **Done: pass with ADR 0002** ([result](spikes/S02-role-coverage.md)) | M2 | ½ day |
 | S3 | Can it spot names without cue words, including unseen Indian names? | M4 | 1 day |
 | S4 | Hand-written time grammar or chrono-node? | M2 | 1 day |
 | S5 | Do alias lists cover kinds and attributes, or do we need embeddings? | M2 | ½ day |
@@ -32,9 +32,10 @@ decoding on accuracy and latency.
 **Method.**
 - Generate ~50k examples with a minimal template generator (no paraphrases yet).
 - Train three taggers (~30k, ~80k, ~150k params) and one gpu-cron-style decoder (~80k) on CPU.
-- Evaluate on a 100-query handwritten set and a held-out-name set.
+- Evaluate on `test-llm-written` (S02's 205 queries, re-tagged in BIO) and a held-out-name set
+  built from the test name pool in `spikes/names/`.
 
-**Pass.** Some tagger size reaches ≥ 0.85 span F1 on handwritten queries from template-only data
+**Pass.** Some tagger size reaches ≥ 0.85 span F1 on `test-llm-written` from template-only data
 (paraphrases in M3 should add the rest), and its single forward pass beats the decoder on latency.
 
 **If it fails.** Try the decoder with a substring-copy constraint; if both fail, revisit the role
@@ -45,9 +46,8 @@ set (S2) or increase size.
 **Hypothesis.** ≥ 95% of real search queries can be fully expressed with the 11 roles.
 
 **Method.**
-- Collect ~200 queries: Xyne Spaces search logs if available, otherwise queries written by 3–5
-  colleagues asked to "search for something you looked for last week", plus Slack/Gmail/Linear
-  search operator docs as a checklist.
+- Collect ~200 queries. No real logs were available, so cheap LLM subagents (Claude Haiku) wrote
+  them per product persona (chat, email, tracker, drive, workspace), without being told about roles.
 - Hand-tag each with roles. Record every query that needs something the roles can't express.
 
 **Pass.** ≥ 95% fully expressible, and the misses don't cluster into one missing role.
@@ -60,7 +60,7 @@ set (S2) or increase size.
 "rahul's deck" style queries, including name origins and spellings not seen in training, at ≥ 0.85
 recall.
 
-**Method.** Train the S1 tagger on one name pool, test on a disjoint pool (Indian first names,
+**Method.** Train the S1 tagger on the train name pool from `spikes/names/`, test on its disjoint test pool (Indian first names,
 transliteration variants, handles, lowercase, typos). Slice by cue/no-cue.
 
 **Pass.** ≥ 0.95 recall with cue words, ≥ 0.85 without.

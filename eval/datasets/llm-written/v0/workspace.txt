@@ -1,0 +1,42 @@
+standup with arjun
+sbi team call recording last week
+when did we decide on the vespa reranker
+transcript from the board meeting
+notes on onboarding flow from tuesday
+what did priya say about the q3 numbers
+that pricing thing we discussed
+calls with the razorpay folks past 2 weeks
+kya decide hua tha for the release date
+pending action items from yesterday's sync
+summary of the all hands between 1st and 15th
+gst invoice shared by finance
+meeting with kiran re: hiring
+which meetings did i miss this morning
+sprint review notes last friday
+files shared by rahul in march
+who owns the migration doc
+roadmap discussion from last month, not the sales one
+calendar for next wed
+chat about the paytm integration
+recording of the customer demo
+notes not from standups from this week
+latest version of the pitch deck
+what did we promise hdfc about sla
+vendor call transcript kal wala
+design review with meera
+any mention of churn in calls last quarter
+hiring panel notes, sorted newest first
+budget approval thread
+kab tak deadline hai invoice ka
+retro from last sprint
+whats the status on the ios app store submission
+feedback from the beta users in chat
+the thing ravi sent about the api rate limits
+ops review summary, exclude draft
+files tagged finance uploaded this week
+tuesday's 1:1 with my manager notes
+key risks mentioned in the investor update call
+search for refund policy wording
+meeting where we talked about the kubernetes cluster costs
+payroll sheet shared by hr last month
+who said we should drop the legacy login

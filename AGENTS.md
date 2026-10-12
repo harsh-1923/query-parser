@@ -12,7 +12,7 @@ See PLAN §2 and [ADR 0001](docs/decisions/0001-roles-not-facets.md).
 
 ## Current phase
 
-M0 → M1: plan written, spikes next. Packages are stubs. Don't implement M2+ features until the
+M1 (spikes). S2 done (see `docs/spikes/`). Packages are stubs. Don't implement M2+ features until the
 relevant spikes in [docs/SPIKES.md](docs/SPIKES.md) have results, unless asked.
 
 ## Layout
@@ -27,7 +27,7 @@ relevant spikes in [docs/SPIKES.md](docs/SPIKES.md) have results, unless asked.
 | `apps/site` | Demo website |
 | `training/` | Python training/export (uv, not pnpm) |
 | `eval/` | Datasets and harness |
-| `spikes/` | Throwaway spike code; never imported by `packages/` |
+| `spikes/` | Throwaway spike code; never imported by `packages/`. `spikes/names/` builds the name pools |
 | `docs/` | Plan, spikes, decision records |
 
 ## Commands

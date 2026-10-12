@@ -1,6 +1,6 @@
 # Query Parser: Plan
 
-Status: draft v0.1 · Owner: Harsh · Last updated: 2026-10-12
+Status: draft v0.2 · Owner: Harsh · Last updated: 2026-10-12 (after [S02](spikes/S02-role-coverage.md))
 
 A small, offline, product-agnostic SDK that turns a plain-English search query into structured
 filters plus residual search text:
@@ -40,7 +40,11 @@ The parser does not search anything. It sits in front of whatever search a produ
   does not answer them.
 - Languages other than English. Hinglish is a candidate for v2 (see Open questions).
 - Arbitrary boolean logic (nested AND/OR/NOT with parentheses). v1 supports simple OR inside one
-  facet ("from ankit or neha") and negation of one span ("except images").
+  facet ("from ankit or neha") and negation of one span or one or-list ("not from linkedin or
+  github").
+- From S02, these fall back to text in v1: relations between items ("children of epic X",
+  "blocked by infra"), numeric comparisons ("over 5mb"), duration in a state ("stuck in qa more
+  than a week"), attendance ("meetings I missed"), field-scoped text ("subject invoice").
 
 ---
 
@@ -86,7 +90,7 @@ general.
 | `ATTR` | A state or property | [unread] · [starred] · [open] tickets · [with attachments] · [high priority] |
 | `ORDER` | Sort or recency intent | [latest] pdfs · [oldest] messages · [most recent] call |
 | `TOPIC` | What it's about: residual search text | about [sync engine] · [payment retries] |
-| `NEG` | Negates the next role span | [except] images · [not] from rahul · [without] attachments |
+| `NEG` | Negates the next role span, or an or-list of the same role | [except] images · [not] from rahul · [not] from linkedin or github |
 | `O` | Filler | `from`, `about`, `the`, `in`, `that` |
 
 Design notes:
@@ -102,6 +106,9 @@ Design notes:
 - **Trigger words for `KIND`.** Verbs can imply a kind ("what did X *say*" → messages, "who
   *shared*" → files). The model tags the trigger as `KIND`; the product's kind aliases decide what
   it means. A product that doesn't map "say" simply ignores it.
+- **Cues.** Each span also records the verb or preposition that governs it ("edited", "created",
+  "by"), so products can tell an editor from an author or created-at from modified-at without new
+  roles. See [ADR 0002](decisions/0002-span-cues.md).
 - **Multi-value.** Two spans with the same role and an "or"/"and" between them become a multi-value
   facet. Whether multiple values mean OR or AND is a per-facet schema setting (§5.2).
 
@@ -118,6 +125,7 @@ interface ParseResult<F> {
   query: string                     // the original input
   filters: Partial<F>               // facet id → typed value (see §5.2)
   text: string                      // residual search text (TOPIC spans + untagged content words)
+  excludeText: string[]             // negated TOPIC spans ("excluding test merchants")
   order?: OrderSpec                 // from ORDER spans, if the schema maps it
   spans: TaggedSpan[]               // every non-O span: role, char offsets, binding, resolution
   issues: Issue[]                   // ambiguous / unresolved / unsupported / low-confidence
@@ -137,6 +145,8 @@ interface TaggedSpan {
   text: string
   start: number; end: number        // offsets into `query`, for highlighting and chips
   negated: boolean
+  cue?: string                      // governing verb/preposition, e.g. "edited" (ADR 0002)
+  source?: "model" | "operator"     // "operator" for typed key:value syntax (§5.8)
   confidence: number
   facet?: string                    // where it was bound, if anywhere
   resolution?: Resolution           // resolved | ambiguous | unresolved | literal
@@ -225,7 +235,7 @@ Facet kinds:
 
 | Facet | Value type | Fed by |
 |---|---|---|
-| `facet.entity` | `string[]` of product IDs (or `T[]` of the source's payload) | a role + an entity source |
+| `facet.entity` | `string[]` of product IDs (or `T[]` of the source's payload) | any role + one or more entity sources (people, groups, orgs, labels, releases…) |
 | `facet.kind` | one or more kind keys | `KIND` spans via `kinds` aliases |
 | `facet.time` | `{ from?: Instant; to?: Instant; granularity }` | `TIME` spans via `@qp/time` |
 | `facet.enum` | one or more of the declared values | `ATTR` spans via `attrs` aliases |
@@ -244,6 +254,24 @@ facets: {
 ```
 
 When no kind is present, the first facet without a `when` wins; ties are a schema validation error.
+
+**Cue binding.** Facets can also condition on the span's cue ([ADR 0002](decisions/0002-span-cues.md)):
+
+```ts
+facets: {
+  owner:      facet.entity({ role: "ACTOR", source: ["person", "group"] }),
+  editedBy:   facet.entity({ role: "ACTOR", source: "person", cue: ["edited", "modified", "updated"] }),
+  createdAt:  facet.time({ role: "TIME", cue: ["created", "uploaded", "made"] }),
+  modifiedAt: facet.time({ role: "TIME" }),
+}
+```
+
+A facet whose `cue` matches beats one without `cue`; among facets without a matching cue, `when`
+and declaration order decide.
+
+**Entity values beyond people.** `ATTR` and `CONTAINER` spans can carry dynamic values ("release
+4.2", "sprint 42", "tagged finance"). Binding them to `facet.entity` with a product source (labels,
+releases, sprints) works exactly like people.
 
 ### 5.3 Kinds
 
@@ -303,6 +331,7 @@ Decisions that reasonable products make differently are explicit settings with d
 | `time.dayFirst` | `true` | 3/10 = 3 October (India) |
 | `time.bias` | `"past"` | "on monday" = most recent past Monday; search is about the past |
 | `time.recentDays` | `7` | what "recent"/"recently" means |
+| `time.anchors` | none | product-named periods and events ("this sprint", "the offsite", "release 4.2", "diwali"), see §8 |
 | `entity.onAmbiguous` | `"issue"` | or `"top"` to take the best candidate |
 | `entity.onUnresolved` | `"text"` | or `"drop"` / `"keep-literal"` |
 | `unbound` | `"text"` | what to do with roles the schema doesn't map |
@@ -330,7 +359,18 @@ backend already accepts:
 `reporter`, `RECIPIENT` → `assignee`, `CONTAINER` → `project`, `ATTR` → `status`/`priority`,
 `KIND` → `bug|feature|epic`. No retraining; only a schema and two entity sources.
 
-### 5.8 Serializers
+### 5.8 Typed operators
+
+Power users type filter syntax directly ("reporter:priya type:bug", "from:ana@lumen.de",
+"label:flaky-test"). The pre-tokenizer recognizes `key:value` (and `key:"quoted value"`) before the
+model runs. Keys are matched against `schema.operators` aliases; matched spans skip the model and
+bind directly, with `source: "operator"`. Unknown keys are left as text.
+
+```ts
+operators: { from: "from", reporter: "from", type: "type", label: "labels", in: "in" }
+```
+
+### 5.9 Serializers
 
 The core produces `ParseResult`. Turning it into a product query is a serializer the adapter ships:
 
@@ -460,6 +500,14 @@ directory is indexed once and kept in memory; at 1,000 entries this is microseco
 `ambiguous` and both come back in `issues`. The `boost` hook is how a product breaks ties with its
 own signals (Xyne Spaces already has an affinity service).
 
+#### Groups, orgs and relational names
+
+S02 found groups and organizations in ~12% of queries ("my team", "frontend team", "razorpay folks",
+"acme corp") and relational names in ~2% ("my manager", "the cfo", "the auditor"). Facets can list
+several sources (`source: ["person", "group", "org"]`); each is tried and candidates are merged by
+score. Relational names reach sources unchanged, with `self` in context; whether "my manager"
+resolves is the product's call (it may have an org chart; the SDK doesn't).
+
 ### 7.3 Self
 
 `I`, `me`, `my`, `mine`, `myself` resolve to `self` before any source runs. "My files" → `ACTOR:
@@ -500,6 +548,20 @@ Coverage for v1:
 
 Ranges are half-open `[from, to)` in the product's timezone and returned as ISO instants.
 
+**Anchors.** Some time phrases refer to the product's own periods and events: "this sprint",
+"last release", "since 4.2.1", "before the offsite". The product passes named anchors:
+
+```ts
+time: {
+  anchors: (name, ctx) => sprints.find(name) ?? releases.find(name) ?? calendar.find(name),
+  // returns { from?: Instant; to?: Instant } or undefined
+}
+```
+
+`@qp/time` parses the operator ("before", "since", "this", "last") and asks the product for the
+anchor's range. Unknown anchors produce `unsupported`, never a guess. Public holidays could ship as
+an optional anchor pack.
+
 S4 compares a hand-written grammar against `chrono-node` on coverage, bundle size and determinism.
 The default plan is a small hand-written grammar with `chrono-node` as an optional fallback plugin.
 
@@ -509,6 +571,21 @@ The default plan is a small hand-written grammar with `chrono-node` as an option
 
 There is no labelled corpus, so data is generated. The generator is TypeScript so it shares the
 tokenizer, role set and lexicons with the runtime.
+
+### 9.0 Data sources
+
+No product search logs are available, so every dataset is generated or written by models, with
+safeguards:
+
+| Need | Source | Notes |
+|---|---|---|
+| Person names | [ByteBaker/indian-names](https://github.com/ByteBaker/indian-names) (BSD-3) for modern Indian names; `@faker-js/faker` (MIT) locales for en_IN and Latin-script names | `spikes/names/`: seeded, deterministic, disjoint 80/20 train/test pools per origin. `philipperemy/name-dataset` rejected: derived from the 2021 Facebook leak |
+| Test queries | Cheap LLM (Claude Haiku) writing queries per product persona, without being told about roles | `eval/datasets/llm-written/`. Never used for training |
+| Training paraphrases | A cheap LLM from a **different** model family than the one that wrote test queries | So the eval doesn't reward imitating one model's phrasing |
+| Topics, channels, kinds | Lexicons in `@qp/datagen`, plus LLM-written lists per product domain | |
+
+Contamination rules: test queries are de-duplicated against training data (exact and near-duplicate
+after normalization) on every generator run, and test names come only from the test name pools.
 
 ### 9.1 Generic first, product-flavored second
 
@@ -549,7 +626,9 @@ Everything is seeded; the same seed regenerates the same bytes.
 
 - `train` / `val`: generated.
 - `test-generated`: generated with held-out **templates** and held-out **names**.
-- `test-handwritten`: written by people who haven't seen the templates. The number that matters.
+- `test-llm-written`: written by a cheap LLM per product persona (S02's 205 queries are v0). The
+  default headline number until handwritten or real queries exist.
+- `test-handwritten`: written by people who haven't seen the templates.
 - `test-real`: anonymized real queries from a product's search logs, if we can get them (see Open
   questions). The number that matters most.
 
@@ -647,9 +726,9 @@ Dependency rules:
 |---|---|---|
 | **M0** | Plan and scaffold | This doc reviewed; workspace builds; agent guides in place |
 | **M1** | Spikes | Each spike in [SPIKES.md](SPIKES.md) has a written result and a decision |
-| **M2** | Core SDK + rule tagger | `defineSchema`, `createParser`, directory source, `@qp/time` v1, Xyne adapter; unit tests; rule baseline numbers on a first handwritten set |
-| **M3** | Data + eval harness | `datagen` v1, handwritten set ≥ 300 queries, eval report generated by one command |
-| **M4** | Model | Trained tagger in `@qp/model`, TS/Python conformance passing, beats rule baseline on handwritten set |
+| **M2** | Core SDK + rule tagger | `defineSchema`, `createParser`, directory source, `@qp/time` v1, Xyne adapter; unit tests; rule baseline numbers on `test-llm-written` |
+| **M3** | Data + eval harness | `datagen` v1, `test-llm-written` ≥ 500 queries across ≥ 2 model families, eval report generated by one command |
+| **M4** | Model | Trained tagger in `@qp/model`, TS/Python conformance passing, beats rule baseline on `test-llm-written` |
 | **M5** | Website | gpu-time-style demo: live parse, chips, resolved ranges, eval table, model vs rules toggle |
 | **M6** | Integration demo | Parser in front of a Vespa index with the Xyne Spaces schema (separate project) |
 
@@ -670,8 +749,8 @@ Dependency rules:
 
 ## 16. Open questions
 
-1. **Real queries.** Can we get anonymized Xyne Spaces search logs? Even 500 real queries would
-   make the eval far more convincing.
+1. **Real queries.** Not available for now; we use LLM-written queries (§9.0). If anonymized logs
+   become available later, rerun S02 and add a `test-real` split.
 2. **Hinglish.** "utkarsh ke pdfs pichle hafte ke" is plausible in an Indian team. In scope for v1,
    v2, or never?
 3. **Multi-value semantics.** "from ankit and neha": OR (either sent it) or AND (a thread with both)?

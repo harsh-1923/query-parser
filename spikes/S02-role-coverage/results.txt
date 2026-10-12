@@ -1,0 +1,68 @@
+queries: 205
+fully expressible with roles as specified: 190 (92.7%)
+  + with a span "cue" (governing verb) recorded:  198 (96.6%)
+not expressible: 7 (3.4%)
+
+gap categories:
+  gap:item-relation            3
+  gap:numeric-comparison       1
+  gap:field-scoped-text        1
+  gap:duration-in-state        1
+  gap:attendance               1
+
+cue words needed:
+  cue:edited                   3
+  cue:modified                 2
+  cue:commented                1
+  cue:created                  1
+  cue:closed                   1
+
+role frequency (queries containing role):
+  KIND         118 57.6%
+  ACTOR         61 29.8%
+  RECIPIENT     12 5.9%
+  PARTICIPANT    7 3.4%
+  MENTION        0 0.0%
+  CONTAINER     21 10.2%
+  TIME          60 29.3%
+  ATTR          48 23.4%
+  ORDER         12 5.9%
+  TOPIC        128 62.4%
+  NEG           17 8.3%
+  topic-only    24 11.7% (no filters to extract)
+
+resolution needs (role fits, but a source must handle it):
+  res:group                    15
+  res:org                      9
+  res:event                    4
+  res:relational               4
+  res:dynamic-value            4
+  res:period                   3
+  res:time-hinglish            1
+
+other flags:
+  question                     22
+  nocue                        7
+  operator                     3
+  lang:hinglish                3
+  neg-topic                    2
+  multi-kind                   1
+  neg-scope                    1
+  vague                        1
+  future-time                  1
+
+per product (expressible incl. cue):
+  chat       40/40
+  drive      42/42
+  email      39/41
+  tracker    36/40
+  workspace  41/42
+
+not expressible:
+  [email] mails with pdf attachments over 5mb  →  gap:numeric-comparison
+  [email] from:ana@lumen.de subject invoice  →  gap:field-scoped-text
+  [tracker] stuck in qa more than a week  →  gap:duration-in-state
+  [tracker] dupes of the invoice pdf issue  →  gap:item-relation
+  [tracker] epic billing v2 children  →  gap:item-relation
+  [tracker] blocked by infra  →  gap:item-relation
+  [workspace] which meetings did i miss this morning  →  gap:attendance

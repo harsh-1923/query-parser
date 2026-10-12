@@ -1,0 +1,40 @@
+priya's sheet on q3 collections
+rahul pdf from last week about kyc drop-off
+reconciliation mismatch in #payments-ops
+latest version of the pitch deck
+who said the settlement cutoff is 6pm
+unread mentions from @sneha
+pinned stuff in #risk-review
+oldest messages in the lending channel
+anything from jake about the bbps integration not from dms
+call transcript from the 3/10 vendor call
+meera canvas api rate limits
+before the offsite what did we decide on pricing
+slides from the board prep march
+my notes on fraud rules
+screenshot of the upi failure dashboard vikram sent
+dispute tat sla figures excluding test merchants
+tom's thread about refund retries
+how did we handle chargebacks last quarter
+#eng-alerts yesterday 2am outage
+excel with merchant onboarding funnel in march
+ananya the rbi audit checklist doc
+hhmm what was the decision on penny drop vendor
+aditya recording from the design review call
+files shared by lauren in #growth
+kavya budget sheet v3 final final
+nikhil's comment on the vpa validation pr
+escalation for axis bank settlement last tuesday
+messages with idempotency key this month except bot posts
+sort by date newest first refund flow
+canvas about onboarding v2 owned by arjun
+merchant ids mentioned in #support 10/3
+transcript where we discussed the nach mandate timeline
+rohan pinged me abt the loan emi sheet
+things about kyc video verification in dms with divya
+docs i commented on last week
+tokenization pdf ppt
+cashback campaign results q2 pdf not the draft
+who owns the reporting pipeline
+image of the error screen from sarah's phone
+standup notes before diwali
