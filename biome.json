@@ -7,6 +7,8 @@
       "!**/node_modules",
       "!training",
       "!eval/datasets",
+      "!eval/fixtures/model-parity",
+      "!packages/model/weights",
       "!spikes",
       "!apps/site/src/components/ui"
     ]

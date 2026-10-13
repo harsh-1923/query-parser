@@ -154,3 +154,39 @@ the summary is in [summary.json](../../eval/results/s7-dev/summary.json). Rules 
    - Training for a fixed number of epochs instead of early stopping, since dev F1 is flat.
 
    None of these has been tried.
+
+## In the browser
+
+**Branch:** `spike/model-on-site`. The demo has a Rules / Model / Model + rules switch.
+
+- **Export:** [export.py](../../training/qp_train/export.py) writes float32 weights and a manifest to
+  `packages/model/weights/`, about 310 KB per model. It also writes a parity fixture to
+  `eval/fixtures/model-parity/`.
+- **Runtime:** [@qp/model](../../packages/model/src/) has the forward pass, constrained Viterbi and
+  forward-backward confidence in TypeScript.
+  - It reproduces PyTorch on 80 parity cases: same tags, logits within 1e-3
+    ([tagger.test.ts](../../packages/model/src/tagger.test.ts)).
+  - On the full test sets it gives the same span F1, within the rounding of a slightly different
+    scorer. Script: [eval-ts.ts](../../spikes/S07-lexicon-features/eval-ts.ts); results:
+    [ts-runtime.json](../../eval/results/s7-dev/ts-runtime.json).
+- **Models shipped:** the seed with the best dev F1 for each model: `s7-base-43` and `s7-feat-42`.
+
+**The feature model is tied to the alias lists it was trained with.** Span F1 of `s7-feat-42` in the TS
+runtime, with features built from different sources:
+
+| Feature sources | S02 | GLM |
+|---|---|---|
+| S05 lists + name pool (as trained) | 0.775 | 0.754 |
+| S05 lists + demo directory names | 0.770 | 0.758 |
+| Xyne schema rules, S05 kind/attr bits | 0.771 | 0.738 |
+| S05 rules, Xyne schema kind/attr bits | 0.778 | 0.749 |
+| Xyne schema lists for both | 0.734 | 0.708 |
+
+- The directory doesn't matter much.
+- Swapping in the product's own alias lists for both inputs costs about 4.5 points, down to the
+  rules' level. Swapping either input alone costs much less.
+- So the demo builds the model's inputs from the S05 lists, kept in `apps/site/src/model/`. The Xyne
+  schema still binds the spans.
+- **If this goes to an ADR:** a product can't be required to use our alias lists. Training would need
+  to vary the lexicon behind the features (different and partial alias lists), so the model learns
+  to use any product's lists.

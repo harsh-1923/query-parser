@@ -1,11 +1,13 @@
 import { ArrowUpRight } from "lucide-react"
-import { useMemo, useRef, useState } from "react"
+import { useEffect, useMemo, useRef, useState } from "react"
 import { Directory } from "@/components/Directory"
 import { Highlighted, QueryBox } from "@/components/QueryBox"
 import { Result } from "@/components/Result"
 import { SettingsPanel } from "@/components/SettingsPanel"
 import { Card } from "@/components/ui/card"
-import { LEGEND, parse, type Settings, TONE_CLASS, ZONES } from "@/lib/parser"
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { loadModel, MODELS, type TaggerChoice } from "@/lib/models"
+import { LEGEND, parse, rules, type Settings, TONE_CLASS, ZONES } from "@/lib/parser"
 import { cn } from "@/lib/utils"
 
 declare const __COMMIT__: string
@@ -56,11 +58,31 @@ export function App() {
     fiscalYearStartMonth: 4,
   })
   const cardRef = useRef<HTMLDivElement>(null)
-  const result = useMemo(() => parse(query, settings), [query, settings])
+  const [choice, setChoice] = useState<TaggerChoice>("rules")
+  const [tagger, setTagger] = useState(rules)
+  const [loadError, setLoadError] = useState<string | null>(null)
+  useEffect(() => {
+    if (choice === "rules") {
+      setTagger(rules)
+      return
+    }
+    let live = true
+    setLoadError(null)
+    loadModel(choice).then(
+      (t) => live && setTagger(t),
+      (e: unknown) => live && setLoadError(String(e)),
+    )
+    return () => {
+      live = false
+    }
+  }, [choice])
+  const loading = choice !== "rules" && tagger === rules && !loadError
+  const result = useMemo(() => parse(query, settings, tagger), [query, settings, tagger])
   const tiles = useMemo(
-    () => EXAMPLES.map(([label, q]) => ({ label, q, spans: parse(q, settings).spans })),
-    [settings],
+    () => EXAMPLES.map(([label, q]) => ({ label, q, spans: parse(q, settings, tagger).spans })),
+    [settings, tagger],
   )
+  const info = choice === "rules" ? null : MODELS[choice]
 
   const pick = (q: string) => {
     setQuery(q)
@@ -92,6 +114,31 @@ export function App() {
             <SettingsPanel settings={settings} onChange={setSettings} />
           </div>
         </div>
+        <Tabs value={choice} onValueChange={(v) => setChoice(v as TaggerChoice)} className="mb-2">
+          <TabsList className="w-full">
+            <TabsTrigger value="rules">Rules</TabsTrigger>
+            <TabsTrigger value="model">{MODELS.model.label}</TabsTrigger>
+            <TabsTrigger value="model-feat">{MODELS["model-feat"].label}</TabsTrigger>
+          </TabsList>
+        </Tabs>
+        <p className="mb-3 min-h-8 text-center text-xs text-pretty text-muted-foreground">
+          {loadError ? (
+            <span className="text-red-600">Couldn't load the model: {loadError}</span>
+          ) : loading ? (
+            "Loading the model (about 300 KB)…"
+          ) : (
+            <>
+              {info ? info.blurb : "Hand-written rules"}. Span F1 {info ? info.scores.s02 : 0.727}{" "}
+              on S02 and {info ? info.scores.glm : 0.726} on GLM{" "}
+              <a
+                className="text-foreground underline-offset-4 hover:underline"
+                href={info ? info.results : `${REPO}/blob/main/eval/results/report.md`}
+              >
+                (results)
+              </a>
+            </>
+          )}
+        </p>
         <Card className="gap-0 overflow-hidden py-0 shadow-xs">
           <div className="bg-muted/50 focus-within:bg-muted/30">
             <QueryBox value={query} spans={result.spans} onChange={setQuery} />
@@ -161,7 +208,7 @@ toSearchParams(r)  // type=files&from=u_001&after=…&before=…&q=pdfs`}</code>
 
       <Section
         title="A Small Experiment. Still Growing"
-        sub="What runs here is the rule baseline. A tiny trained model replaces the rules later"
+        sub="Switch between the rule baseline and two tiny trained models at the top. Both models run in your browser"
       >
         <div className="space-y-3 text-center text-sm leading-relaxed text-pretty text-muted-foreground">
           <p>

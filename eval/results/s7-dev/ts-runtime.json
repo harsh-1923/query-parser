@@ -1,0 +1,22 @@
+{
+  "S02": {
+    "s7-base-43": 0.7463556851311953,
+    "s7-feat-42, training features": 0.7747035573122529,
+    "s7-feat-42, site features": 0.7292707292707292,
+    "S05 lists + pool (live)": 0.7747035573122529,
+    "S05 lists + demo names": 0.7702970297029704,
+    "site rules, S05 lex + pool": 0.7706057596822244,
+    "S05 rules, site lex + pool": 0.7782178217821781,
+    "site lists + pool": 0.7337986041874377
+  },
+  "GLM": {
+    "s7-base-43": 0.6996268656716419,
+    "s7-feat-42, training features": 0.7540360873694207,
+    "s7-feat-42, site features": 0.7109826589595376,
+    "S05 lists + pool (live)": 0.7540360873694207,
+    "S05 lists + demo names": 0.7576335877862594,
+    "site rules, S05 lex + pool": 0.7380497131931167,
+    "S05 rules, site lex + pool": 0.7490494296577948,
+    "site lists + pool": 0.7075743048897412
+  }
+}

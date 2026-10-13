@@ -29,6 +29,9 @@ importers:
       '@qp/core':
         specifier: workspace:*
         version: link:../../packages/core
+      '@qp/model':
+        specifier: workspace:*
+        version: link:../../packages/model
       '@qp/time':
         specifier: workspace:*
         version: link:../../packages/time
@@ -97,7 +100,11 @@ importers:
         specifier: workspace:*
         version: link:../time
 
-  packages/model: {}
+  packages/model:
+    dependencies:
+      '@qp/core':
+        specifier: workspace:*
+        version: link:../core
 
   packages/time: {}
 

@@ -1,0 +1,328 @@
+{
+  "name": "s7-feat-42",
+  "format": "qp-tagger-f32-v1",
+  "config": {
+    "model": "tagger",
+    "config": "medium-feat",
+    "epochs": 30,
+    "batch": 128,
+    "lr": 0.003,
+    "weight_decay": 0.01,
+    "warmup_frac": 0.05,
+    "clip": 1.0,
+    "label_smoothing": 0.0,
+    "patience": 5,
+    "seed": 42,
+    "threads": 4,
+    "d": 64,
+    "d_b": 16,
+    "layers": 2,
+    "heads": 4,
+    "ffn": 2,
+    "dropout": 0.1,
+    "feats": true,
+    "feat_drop": 0.3,
+    "config_name": "medium-feat"
+  },
+  "maxTokens": 48,
+  "maxBytes": 16,
+  "labels": [
+    "O",
+    "B-KIND",
+    "I-KIND",
+    "B-ACTOR",
+    "I-ACTOR",
+    "B-RECIPIENT",
+    "I-RECIPIENT",
+    "B-PARTICIPANT",
+    "I-PARTICIPANT",
+    "B-MENTION",
+    "I-MENTION",
+    "B-CONTAINER",
+    "I-CONTAINER",
+    "B-TIME",
+    "I-TIME",
+    "B-ATTR",
+    "I-ATTR",
+    "B-ORDER",
+    "I-ORDER",
+    "B-TOPIC",
+    "I-TOPIC",
+    "B-NEG",
+    "I-NEG"
+  ],
+  "params": 79351,
+  "bestEpoch": 2,
+  "valSpanF1": 0.673873873873874,
+  "note": "S7 feature model, seed 42, picked on the llm-written dev set (best dev F1 of 3 seeds). S02 0.772, GLM 0.754: eval/results/s7-dev/feat-42.eval.json",
+  "tensors": [
+    {
+      "name": "encoder.bytes.embed.weight",
+      "shape": [
+        257,
+        16
+      ],
+      "offset": 0
+    },
+    {
+      "name": "encoder.bytes.conv.weight",
+      "shape": [
+        16,
+        16,
+        3
+      ],
+      "offset": 4112
+    },
+    {
+      "name": "encoder.bytes.conv.bias",
+      "shape": [
+        16
+      ],
+      "offset": 4880
+    },
+    {
+      "name": "encoder.bytes.proj.weight",
+      "shape": [
+        64,
+        16
+      ],
+      "offset": 4896
+    },
+    {
+      "name": "encoder.bytes.proj.bias",
+      "shape": [
+        64
+      ],
+      "offset": 5920
+    },
+    {
+      "name": "encoder.rule.weight",
+      "shape": [
+        24,
+        64
+      ],
+      "offset": 5984
+    },
+    {
+      "name": "encoder.lex.weight",
+      "shape": [
+        64,
+        3
+      ],
+      "offset": 7520
+    },
+    {
+      "name": "encoder.pos.weight",
+      "shape": [
+        48,
+        64
+      ],
+      "offset": 7712
+    },
+    {
+      "name": "encoder.blocks.0.ln1.weight",
+      "shape": [
+        64
+      ],
+      "offset": 10784
+    },
+    {
+      "name": "encoder.blocks.0.ln1.bias",
+      "shape": [
+        64
+      ],
+      "offset": 10848
+    },
+    {
+      "name": "encoder.blocks.0.attn.in_proj_weight",
+      "shape": [
+        192,
+        64
+      ],
+      "offset": 10912
+    },
+    {
+      "name": "encoder.blocks.0.attn.in_proj_bias",
+      "shape": [
+        192
+      ],
+      "offset": 23200
+    },
+    {
+      "name": "encoder.blocks.0.attn.out_proj.weight",
+      "shape": [
+        64,
+        64
+      ],
+      "offset": 23392
+    },
+    {
+      "name": "encoder.blocks.0.attn.out_proj.bias",
+      "shape": [
+        64
+      ],
+      "offset": 27488
+    },
+    {
+      "name": "encoder.blocks.0.ln2.weight",
+      "shape": [
+        64
+      ],
+      "offset": 27552
+    },
+    {
+      "name": "encoder.blocks.0.ln2.bias",
+      "shape": [
+        64
+      ],
+      "offset": 27616
+    },
+    {
+      "name": "encoder.blocks.0.ff.0.weight",
+      "shape": [
+        128,
+        64
+      ],
+      "offset": 27680
+    },
+    {
+      "name": "encoder.blocks.0.ff.0.bias",
+      "shape": [
+        128
+      ],
+      "offset": 35872
+    },
+    {
+      "name": "encoder.blocks.0.ff.2.weight",
+      "shape": [
+        64,
+        128
+      ],
+      "offset": 36000
+    },
+    {
+      "name": "encoder.blocks.0.ff.2.bias",
+      "shape": [
+        64
+      ],
+      "offset": 44192
+    },
+    {
+      "name": "encoder.blocks.1.ln1.weight",
+      "shape": [
+        64
+      ],
+      "offset": 44256
+    },
+    {
+      "name": "encoder.blocks.1.ln1.bias",
+      "shape": [
+        64
+      ],
+      "offset": 44320
+    },
+    {
+      "name": "encoder.blocks.1.attn.in_proj_weight",
+      "shape": [
+        192,
+        64
+      ],
+      "offset": 44384
+    },
+    {
+      "name": "encoder.blocks.1.attn.in_proj_bias",
+      "shape": [
+        192
+      ],
+      "offset": 56672
+    },
+    {
+      "name": "encoder.blocks.1.attn.out_proj.weight",
+      "shape": [
+        64,
+        64
+      ],
+      "offset": 56864
+    },
+    {
+      "name": "encoder.blocks.1.attn.out_proj.bias",
+      "shape": [
+        64
+      ],
+      "offset": 60960
+    },
+    {
+      "name": "encoder.blocks.1.ln2.weight",
+      "shape": [
+        64
+      ],
+      "offset": 61024
+    },
+    {
+      "name": "encoder.blocks.1.ln2.bias",
+      "shape": [
+        64
+      ],
+      "offset": 61088
+    },
+    {
+      "name": "encoder.blocks.1.ff.0.weight",
+      "shape": [
+        128,
+        64
+      ],
+      "offset": 61152
+    },
+    {
+      "name": "encoder.blocks.1.ff.0.bias",
+      "shape": [
+        128
+      ],
+      "offset": 69344
+    },
+    {
+      "name": "encoder.blocks.1.ff.2.weight",
+      "shape": [
+        64,
+        128
+      ],
+      "offset": 69472
+    },
+    {
+      "name": "encoder.blocks.1.ff.2.bias",
+      "shape": [
+        64
+      ],
+      "offset": 77664
+    },
+    {
+      "name": "encoder.ln.weight",
+      "shape": [
+        64
+      ],
+      "offset": 77728
+    },
+    {
+      "name": "encoder.ln.bias",
+      "shape": [
+        64
+      ],
+      "offset": 77792
+    },
+    {
+      "name": "head.weight",
+      "shape": [
+        23,
+        64
+      ],
+      "offset": 77856
+    },
+    {
+      "name": "head.bias",
+      "shape": [
+        23
+      ],
+      "offset": 79328
+    }
+  ]
+}

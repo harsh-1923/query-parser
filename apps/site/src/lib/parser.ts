@@ -1,4 +1,5 @@
-// The demo's parser: the Xyne Spaces schema, the rule tagger and a fictional directory.
+// The demo's parser: the Xyne Spaces schema, a tagger (rules or a trained model, see models.ts)
+// and a fictional directory.
 import { schema, toSearchParams } from "@qp/adapter-xyne-spaces"
 import {
   createParser,
@@ -7,6 +8,7 @@ import {
   type ParseResult,
   type Role,
   ruleTaggerFor,
+  type Tagger,
   type TimeValue,
 } from "@qp/core"
 import directory from "@/demo-directory.json"
@@ -18,24 +20,37 @@ export const people = new Map(directory.people.map((p) => [p.id, p]))
 export const channels = new Map(directory.channels.map((c) => [c.id, c]))
 export const nameOf = (id: string) => people.get(id)?.name ?? channels.get(id)?.name ?? id
 
-const parser = createParser({
-  schema,
-  tagger: ruleTaggerFor(schema),
-  sources: {
-    person: directorySource(directory.people, {
-      fields: (p) => ({ id: p.id, label: p.name, aliases: [p.handle] }),
-      self: SELF,
-    }),
-    channel: directorySource(directory.channels, {
-      fields: (c) => ({ id: c.id, label: c.name, aliases: [c.name.slice(1)] }),
-    }),
-  },
-  promoteKnownEntities: { source: "person", role: "ACTOR" },
-  unmarkedContainers: {
-    source: "channel",
-    nouns: ["channel", "folder", "project", "board", "space"],
-  },
-})
+export const rules = ruleTaggerFor(schema)
+
+const makeParser = (tagger: Tagger) =>
+  createParser({
+    schema,
+    tagger,
+    sources: {
+      person: directorySource(directory.people, {
+        fields: (p) => ({ id: p.id, label: p.name, aliases: [p.handle] }),
+        self: SELF,
+      }),
+      channel: directorySource(directory.channels, {
+        fields: (c) => ({ id: c.id, label: c.name, aliases: [c.name.slice(1)] }),
+      }),
+    },
+    promoteKnownEntities: { source: "person", role: "ACTOR" },
+    unmarkedContainers: {
+      source: "channel",
+      nouns: ["channel", "folder", "project", "board", "space"],
+    },
+  })
+
+const parsers = new Map<Tagger, ReturnType<typeof makeParser>>()
+function parserFor(tagger: Tagger) {
+  let p = parsers.get(tagger)
+  if (!p) {
+    p = makeParser(tagger)
+    parsers.set(tagger, p)
+  }
+  return p
+}
 
 export interface Settings {
   reference: Date | null // null = now
@@ -45,12 +60,12 @@ export interface Settings {
   fiscalYearStartMonth: number
 }
 
-export function parse(query: string, s: Settings): ParseResult {
+export function parse(query: string, s: Settings, tagger: Tagger = rules): ParseResult {
   // Time policies live on the schema; the demo flips them per parse.
   schema.policies.time.dayFirst = s.dayFirst
   schema.policies.time.weekStartsOn = s.weekStartsOn
   schema.policies.time.fiscalYearStartMonth = s.fiscalYearStartMonth
-  return parser.parseSync(query, {
+  return parserFor(tagger).parseSync(query, {
     reference: (s.reference ?? new Date()).toISOString(),
     timeZone: s.timeZone,
     self: SELF,
