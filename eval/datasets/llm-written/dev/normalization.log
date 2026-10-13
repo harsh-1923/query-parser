@@ -1,0 +1,14 @@
+exclude: "test" and "sample	!TOPIC:test → NEG:exclude	neg-tag
+not: newsletter	!KIND:newsletter → NEG:not	neg-tag
+not closed and not assigned	!ATTR:closed → NEG:not	neg-tag
+not closed and not assigned	!ATTR:assigned → NEG:not	neg-tag
+assigned to ravi and not done	!ATTR:done → NEG:not	neg-tag
+exclude closed	!ATTR:closed → NEG:exclude	neg-tag
+fixed but not verified	!ATTR:verified → NEG:not	neg-tag
+pdf not scanned	!ATTR:scanned → NEG:not	neg-tag
+budget excluding travel	!TOPIC:travel → NEG:excluding	neg-tag
+notes from monday standup	monday → from monday	time-operator
+exclude organic searches from report	!TOPIC:organic searches → NEG:exclude	neg-tag
+file name with "logo" but not old	!ATTR:old → NEG:not	neg-tag
+chat about influencer contract - not signed	!ATTR:signed → NEG:not	neg-tag
+shipping labels without pincode	!TOPIC:pincode → NEG:without	neg-tag

@@ -1,0 +1,60 @@
+assigned to me
+sprint 24
+bugs with high priority
+my open tickets
+epic: payment gateway
+crashes on android 14
+created last week
+status: in progress
+assigned to priya
+release 3.2
+blocked
+not closed and not assigned
+search: forgot password flow
+UI glitches in dark mode
+QA blocked by dev
+need to test today
+sprint 23 done tickets
+severity: critical, sort by updated
+assigned to ravi and not done
+retry logic bug
+webhook timeouts
+memory leak on login screen
+all epics in current release
+done in last 2 sprints
+my reported bugs
+status: open, priority: p2
+date: today
+release 3.1 regression
+filter by board: android
+created yesterday, no assignee
+ready for QA
+code review pending
+typo in empty state
+push notification not firing
+sort by priority high to low
+sprint 24 and type: bug
+story points > 5
+exclude closed
+assigned to me and due this week
+API response slow
+token expiry handling
+repro steps missing
+duplicate tickets
+linked to PR #123
+fixed but not verified
+labels: ui, payment
+search in description: "null pointer
+epic: user onboarding, sub-tasks
+blocked by external dependency
+no comments
+updated after 5pm
+created by me, status: review
+order by last commented
+hotfix candidates
+production incident
+all tickets with attachments
+assigned to nobody
+sprint 23, status: done
+release notes pending
+sign up OTP issue
