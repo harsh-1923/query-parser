@@ -1,0 +1,301 @@
+# query	spans (ROLE:text, "!" = negated, "|" separated)	flags
+customer onboarding checklist	TOPIC:customer onboarding checklist	
+invoice from sharma logistics	TOPIC:invoice|ACTOR:sharma logistics	
+pune warehouse address	TOPIC:pune warehouse address	
+soa file	TOPIC:soa|KIND:file	
+nisha said about the rfq	ACTOR:nisha|KIND:said|TOPIC:rfq	
+thread with rahul about esign	KIND:thread|PARTICIPANT:rahul|TOPIC:esign	
+call notes with hdfc	KIND:call notes|PARTICIPANT:hdfc	
+kunal's screen recording	ACTOR:kunal|KIND:screen recording	
+kafka error logs	TOPIC:kafka error logs	
+server outage mumbai	TOPIC:server outage mumbai	
+dated: 12th may	TIME:12th may	gap:spaced-operator
+the contract we sent to blue dart	TOPIC:contract|RECIPIENT:blue dart	
+edi mapping pdf	TOPIC:edi mapping|KIND:pdf	
+gst invoice format	TOPIC:gst invoice format	
+tariff card old version	TOPIC:tariff card|ATTR:old version	
+missed call from sbi	ATTR:missed|KIND:call|ACTOR:sbi	
+saved: vendor onboarding	ATTR:saved|TOPIC:vendor onboarding	gap:spaced-operator
+commonwealth bank swift code	TOPIC:commonwealth bank swift code	
+recon mismatch last month	TOPIC:recon mismatch|TIME:last month	
+da which has the penalty clause	TOPIC:da which has the penalty clause	
+broker agreement signed	TOPIC:broker agreement|ATTR:signed	
+lr number 44567	TOPIC:lr number 44567	
+camera footage loading bay	TOPIC:camera footage loading bay	
+google drive link for insurance	TOPIC:google drive link for insurance	
+channel: ops-mumbai	CONTAINER:ops-mumbai	gap:spaced-operator
+where did we put the nda?	TOPIC:nda	question
+cheque bounce charges	TOPIC:cheque bounce charges	
+dashboard refresh time	TOPIC:dashboard refresh time	
+sender id approval status	TOPIC:sender id approval status	
+kisan credit card statement	TOPIC:kisan credit card statement	
+file type: xlsx and name has "recon	KIND:xlsx|TOPIC:recon	gap:spaced-operator
+fwd from anil about the new delivery slot	ACTOR:anil|TOPIC:new delivery slot	
+tally backup	TOPIC:tally backup	
+pod for consignment 9987	TOPIC:pod for consignment 9987	
+client complaint email	TOPIC:client complaint|KIND:email	
+bulk upload template	TOPIC:bulk upload template	
+api key rotation	TOPIC:api key rotation	
+sla breach notification	TOPIC:sla breach notification	
+migration plan old database	TOPIC:migration plan old database	
+chat with meera on 3rd june	KIND:chat|PARTICIPANT:meera|TIME:on 3rd june	
+exclude: "test" and "sample	!TOPIC:test|!TOPIC:sample	gap:spaced-operator,gap:quoted
+sort by date oldest first	ORDER:oldest first	gap:sort-field
+sorry i missed this" - me	TOPIC:sorry i missed this|ACTOR:me	nocue
+warehouse pincode list	TOPIC:warehouse pincode list	
+bounce report from icici	TOPIC:bounce report|ACTOR:icici	
+sort by unread		gap:sort-field
+hyperledger notes	TOPIC:hyperledger|KIND:notes	
+the drawing of the new racking system	TOPIC:drawing of the new racking system	
+banker's name at kotak	TOPIC:banker's name at kotak	
+cn from tata steel	TOPIC:cn|ACTOR:tata steel	
+rejected invoice reason code 44	ATTR:rejected|TOPIC:invoice reason code 44	
+sanction letter limit	TOPIC:sanction letter limit	
+waybill from delhivery	TOPIC:waybill|ACTOR:delhivery	
+payment t+2 cycles	TOPIC:payment t+2 cycles	
+minutes of the vendor meet	KIND:minutes|TOPIC:vendor meet	
+barcode scanner manual	TOPIC:barcode scanner manual	
+msme certificate	TOPIC:msme certificate	
+invoice query with pune team	TOPIC:invoice query|PARTICIPANT:pune team	
+thread about the cancelled shipment	KIND:thread|TOPIC:cancelled shipment	
+zoho sign link	TOPIC:zoho sign link	
+invoice march	TOPIC:invoice|TIME:march	
+re: kumar	TOPIC:kumar	nocue
+attachments from raj	KIND:attachments|ACTOR:raj	
+unpaid invoices	ATTR:unpaid|TOPIC:invoices	
+sent by michael	ACTOR:michael	
+vendor list singapore	TOPIC:vendor list singapore	
+gst return draft	TOPIC:gst return|ATTR:draft	
+cc: priya	RECIPIENT:priya	gap:spaced-operator
+payroll june	TOPIC:payroll|TIME:june	
+contract signed	TOPIC:contract|ATTR:signed	
+meera's expense report	ACTOR:meera|TOPIC:expense report	
+cap table	TOPIC:cap table	
+subject: urgent	TOPIC:urgent	gap:spaced-operator
+from: lee	ACTOR:lee	gap:spaced-operator
+label: clients	TOPIC:clients	gap:spaced-operator
+board deck v3	TOPIC:board|KIND:deck|TOPIC:v3	
+receipts missing	TOPIC:receipts|ATTR:missing	
+salary revision	TOPIC:salary revision	
+po 4521	TOPIC:po 4521	
+emails about the audit	KIND:emails|TOPIC:audit	
+from: aisha	ACTOR:aisha	gap:spaced-operator
+deleted items	ATTR:deleted items	
+travel policy	TOPIC:travel policy	
+reimbursement status	TOPIC:reimbursement status	
+invoice #882	TOPIC:invoice #882	
+has attachment	ATTR:has attachment	
+bank statement april	TOPIC:bank statement|TIME:april	
+reminder sent	TOPIC:reminder|ATTR:sent	
+swift code	TOPIC:swift code	
+nric	TOPIC:nric	
+gst exempt	TOPIC:gst exempt	
+out of office	TOPIC:out of office	
+vendor: tan logistics	TOPIC:tan logistics	gap:spaced-operator
+gst filing	TOPIC:gst filing	
+salary slip may	TOPIC:salary slip|TIME:may	
+draft to cfo	ATTR:draft|RECIPIENT:cfo	
+received today	TIME:today	
+from: david (sg)	ACTOR:david	gap:spaced-operator
+quote comparison	TOPIC:quote comparison	
+contract renewal	TOPIC:contract renewal	
+not: newsletter	!KIND:newsletter	gap:spaced-operator
+forwarded by jen	ACTOR:jen	
+expense approval	TOPIC:expense approval	
+client: meridian	TOPIC:meridian	gap:spaced-operator
+payroll variance	TOPIC:payroll variance	
+late payment	TOPIC:late payment	
+vendor: sharma & co	TOPIC:sharma & co	gap:spaced-operator
+from: ceo's office	ACTOR:ceo's office	gap:spaced-operator
+cc: finance team	RECIPIENT:finance team	gap:spaced-operator
+label: pending	ATTR:pending	gap:spaced-operator
+subject: fyi	TOPIC:fyi	gap:spaced-operator
+invoice from hong kong	TOPIC:invoice|ACTOR:hong kong	
+tax invoice	TOPIC:tax invoice	
+exchange rate	TOPIC:exchange rate	
+credit note	TOPIC:credit note	
+purchase order	TOPIC:purchase order	
+draft reply	ATTR:draft|KIND:reply	
+with attachment pdf	ATTR:with attachment|KIND:pdf	
+from: vikram	ACTOR:vikram	gap:spaced-operator
+meeting minutes	KIND:meeting minutes	
+assigned to me	RECIPIENT:me	
+sprint 24	CONTAINER:sprint 24	
+bugs with high priority	KIND:bugs|ATTR:high priority	
+my open tickets	ACTOR:my|ATTR:open|KIND:tickets	
+epic: payment gateway	KIND:epic|TOPIC:payment gateway	gap:spaced-operator
+crashes on android 14	TOPIC:crashes on android 14	
+created last week	TIME:last week	
+status: in progress	ATTR:in progress	gap:spaced-operator
+assigned to priya	RECIPIENT:priya	
+release 3.2	CONTAINER:release 3.2	
+blocked	ATTR:blocked	
+not closed and not assigned	!ATTR:closed|!ATTR:assigned	
+search: forgot password flow	TOPIC:forgot password flow	gap:spaced-operator
+UI glitches in dark mode	TOPIC:UI glitches in dark mode	
+QA blocked by dev	TOPIC:QA|ATTR:blocked by dev	
+need to test today	TOPIC:need to test|TIME:today	
+sprint 23 done tickets	CONTAINER:sprint 23|ATTR:done|KIND:tickets	
+severity: critical, sort by updated	ATTR:critical	gap:spaced-operator,gap:sort-field
+assigned to ravi and not done	RECIPIENT:ravi|!ATTR:done	
+retry logic bug	TOPIC:retry logic|KIND:bug	
+webhook timeouts	TOPIC:webhook timeouts	
+memory leak on login screen	TOPIC:memory leak on login screen	
+all epics in current release	KIND:epics|CONTAINER:current release	
+done in last 2 sprints	ATTR:done|TIME:in last 2 sprints	gap:sprint-range
+my reported bugs	ACTOR:my|KIND:bugs	
+status: open, priority: p2	ATTR:open|ATTR:p2	gap:spaced-operator
+date: today	TIME:today	gap:spaced-operator
+release 3.1 regression	CONTAINER:release 3.1|TOPIC:regression	
+filter by board: android	CONTAINER:android	gap:spaced-operator
+created yesterday, no assignee	TIME:yesterday|ATTR:no assignee	
+ready for QA	ATTR:ready for QA	
+code review pending	TOPIC:code review|ATTR:pending	
+typo in empty state	TOPIC:typo in empty state	
+push notification not firing	TOPIC:push notification not firing	
+sort by priority high to low	ORDER:high to low	gap:sort-field
+sprint 24 and type: bug	CONTAINER:sprint 24|KIND:bug	gap:spaced-operator
+story points > 5		gap:numeric-field
+exclude closed	!ATTR:closed	
+assigned to me and due this week	RECIPIENT:me|TIME:this week	
+API response slow	TOPIC:API response slow	
+token expiry handling	TOPIC:token expiry handling	
+repro steps missing	TOPIC:repro steps|ATTR:missing	
+duplicate tickets	ATTR:duplicate|KIND:tickets	
+linked to PR #123	TOPIC:PR #123	
+fixed but not verified	ATTR:fixed|!ATTR:verified	
+labels: ui, payment	TOPIC:ui|TOPIC:payment	gap:spaced-operator
+search in description: "null pointer	TOPIC:null pointer	gap:spaced-operator,gap:quoted
+epic: user onboarding, sub-tasks	KIND:epic|TOPIC:user onboarding|KIND:sub-tasks	gap:spaced-operator
+blocked by external dependency	ATTR:blocked by external dependency	
+no comments	ATTR:no comments	
+updated after 5pm	TIME:after 5pm	
+created by me, status: review	ACTOR:me|ATTR:review	gap:spaced-operator
+order by last commented		gap:sort-field
+hotfix candidates	TOPIC:hotfix candidates	
+production incident	TOPIC:production incident	
+all tickets with attachments	KIND:tickets|ATTR:with attachments	
+assigned to nobody	ATTR:assigned to nobody	
+sprint 23, status: done	CONTAINER:sprint 23|ATTR:done	gap:spaced-operator
+release notes pending	TOPIC:release|KIND:notes|ATTR:pending	
+sign up OTP issue	TOPIC:sign up OTP issue	
+budget v3 final	TOPIC:budget v3 final	
+finance deck q3	TOPIC:finance|KIND:deck|TIME:q3	
+contract with acme	TOPIC:contract|PARTICIPANT:acme	
+math lesson plan fractions	TOPIC:math lesson plan fractions	
+clickup notes from sarah	TOPIC:clickup|KIND:notes|ACTOR:sarah	
+edtech curriculum pdf	TOPIC:edtech curriculum|KIND:pdf	
+adobe stock images folder	TOPIC:adobe stock images|KIND:folder	
+invoice may	TOPIC:invoice|TIME:may	
+student data sheet spring	TOPIC:student data|KIND:sheet|TIME:spring	
+legal nda template	TOPIC:legal nda template	
+brainstorm whiteboard photo	TOPIC:brainstorm whiteboard|KIND:photo	
+edited by mark yesterday	ACTOR:mark|TIME:yesterday	
+loan agreement draft	TOPIC:loan agreement|ATTR:draft	
+teacher onboarding slides	TOPIC:teacher onboarding|KIND:slides	
+science experiment instructions	TOPIC:science experiment instructions	
+shared with hr	RECIPIENT:hr	
+content calendar august	TOPIC:content|KIND:calendar|TIME:august	
+sales forecast spreadsheet	TOPIC:sales forecast|KIND:spreadsheet	
+privacy policy update	TOPIC:privacy policy update	
+spreadsheet with formulas	KIND:spreadsheet|TOPIC:formulas	
+pdf not scanned	KIND:pdf|!ATTR:scanned	
+video script for ads	TOPIC:video script for ads	
+grant proposal draft	TOPIC:grant proposal|ATTR:draft	
+starred folder q2	ATTR:starred|KIND:folder|TIME:q2	
+letter of intent from school	TOPIC:letter of intent|ACTOR:school	
+marketing funnel diagram	TOPIC:marketing funnel|KIND:diagram	
+quiz answers chapter 4	TOPIC:quiz answers chapter 4	
+worksheet decimals	TOPIC:worksheet decimals	
+meeting notes 6/12	KIND:meeting notes|TIME:6/12	
+font files zip	TOPIC:font|KIND:files|TOPIC:zip	
+logo png transparent	TOPIC:logo|KIND:png|ATTR:transparent	
+permits for filming	TOPIC:permits for filming	
+syllabus algebra 1	TOPIC:syllabus algebra 1	
+case study customer x	TOPIC:case study customer x	
+invoices paid 2024	TOPIC:invoices|ATTR:paid|TIME:2024	
+brand guidelines old	TOPIC:brand guidelines|ATTR:old	
+training video mp4	TOPIC:training|KIND:video mp4	
+audit trail for payroll	TOPIC:audit trail for payroll	
+ppt templates for teachers	KIND:ppt|TOPIC:templates for teachers	
+student progress report	TOPIC:student progress report	
+signed contract from linda	ATTR:signed|TOPIC:contract|ACTOR:linda	
+copy deck for youtube	TOPIC:copy|KIND:deck|TOPIC:youtube	
+budget excluding travel	TOPIC:budget|!TOPIC:travel	
+draft of annual report	ATTR:draft|TOPIC:annual report	
+image of whiteboard meeting	KIND:image|TOPIC:whiteboard meeting	
+course outline history	TOPIC:course outline history	
+terms of service draft	TOPIC:terms of service|ATTR:draft	
+invoice from agency april	TOPIC:invoice|ACTOR:agency|TIME:april	
+folders shared with legal	KIND:folders|RECIPIENT:legal	
+teacher feedback form	TOPIC:teacher feedback form	
+google form responses	TOPIC:google form responses	
+final pdf for printing	ATTR:final|KIND:pdf|TOPIC:printing	
+archived folder 2023	ATTR:archived|KIND:folder|TIME:2023	
+liability waiver signed	TOPIC:liability waiver|ATTR:signed	
+content brief instagram	TOPIC:content brief instagram	
+spreedsheet typo version	KIND:spreedsheet|TOPIC:typo version	typo
+homework answer key	TOPIC:homework answer key	
+book list for grade 5	TOPIC:book list for grade 5	
+proposal for state grant	TOPIC:proposal for state grant	
+landing page copy	TOPIC:landing page copy	
+kavya ka last message	ACTOR:kavya|ORDER:last|KIND:message	lang:hinglish
+meeting recording with supplier	KIND:meeting recording|PARTICIPANT:supplier	
+puneet sheet final	ACTOR:puneet|KIND:sheet|ATTR:final	
+pending approval from rahul	ATTR:pending approval|ACTOR:rahul	
+instagram ad cost last month	TOPIC:instagram ad cost|TIME:last month	
+notes from brand review	KIND:notes|TOPIC:brand review	
+call with ananya transcript	KIND:call|PARTICIPANT:ananya|KIND:transcript	
+design file for diwali campaign	TOPIC:design|KIND:file|TOPIC:diwali campaign	
+anjali shared files	ACTOR:anjali|KIND:shared files	
+budget sheet q3	TOPIC:budget|KIND:sheet|TIME:q3	
+who said "ship it" in launch meeting	KIND:said|TOPIC:ship it|TOPIC:launch|KIND:meeting	question
+feedback from mihir on packaging	TOPIC:feedback|ACTOR:mihir|TOPIC:packaging	
+client call yesterday recording	TOPIC:client|KIND:call|TIME:yesterday|KIND:recording	
+task list for this week	KIND:task list|TIME:this week	
+amazon listing images final	TOPIC:amazon listing|KIND:images|ATTR:final	
+meeta's note on influencer tie-up	ACTOR:meeta|KIND:note|TOPIC:influencer tie-up	
+video call link with logistics	KIND:video call|TOPIC:link|PARTICIPANT:logistics	
+chat with nikhil about courier charges	KIND:chat|PARTICIPANT:nikhil|TOPIC:courier charges	
+pending tasks in creative team	ATTR:pending|KIND:tasks|CONTAINER:creative	
+funnel numbers for july	TOPIC:funnel numbers|TIME:july	
+meeting with rohan on retention	KIND:meeting|PARTICIPANT:rohan|TOPIC:retention	
+notes from monday standup	KIND:notes|TIME:monday|KIND:standup	
+maillot print mockup v2	TOPIC:maillot print|KIND:mockup|TOPIC:v2	
+payment status for pr agency	TOPIC:payment status for pr agency	
+karan's comment on pricing doc	ACTOR:karan|KIND:comment|TOPIC:pricing|KIND:doc	
+transcript of call with facebook rep	KIND:transcript|KIND:call|PARTICIPANT:facebook rep	
+inventory sheet last updated	TOPIC:inventory|KIND:sheet|ORDER:last updated	
+swati's file on customer survey	ACTOR:swati|KIND:file|TOPIC:customer survey	
+campaign performance by city	TOPIC:campaign performance by city	
+what did we decide about the coupon code	TOPIC:decide about the coupon code	question
+lost order complaint thread	TOPIC:lost order complaint|KIND:thread	
+screenshot from insta dm	KIND:screenshot|TOPIC:insta|KIND:dm	
+vendor contract signed	TOPIC:vendor contract|ATTR:signed	
+gaurav's old note on packaging	ACTOR:gaurav|ATTR:old|KIND:note|TOPIC:packaging	
+meeting on growth hack - recording	KIND:meeting|TOPIC:growth hack|KIND:recording	
+copy for email blast - draft	TOPIC:copy for email blast|ATTR:draft	
+cancelled orders list	ATTR:cancelled|TOPIC:orders list	
+gst invoice from warehouse	TOPIC:gst invoice|ACTOR:warehouse	
+recording of website redesign call	KIND:recording|TOPIC:website redesign|KIND:call	
+bhavna's task on returns	ACTOR:bhavna|KIND:task|TOPIC:returns	
+chat with amit about retargeting	KIND:chat|PARTICIPANT:amit|TOPIC:retargeting	
+pitch deck for nykaa - final	TOPIC:pitch|KIND:deck|TOPIC:nykaa|ATTR:final	
+customer support tags - pending	TOPIC:customer support tags|ATTR:pending	
+sale data for september	TOPIC:sale data|TIME:september	
+exclude organic searches from report	!TOPIC:organic searches|TOPIC:report	
+notes from hiring interview - priya	KIND:notes|TOPIC:hiring interview|PARTICIPANT:priya	nocue
+deadlink report from vaibhav	TOPIC:deadlink report|ACTOR:vaibhav	
+content calendar - october updates	TOPIC:content|KIND:calendar|TIME:october|TOPIC:updates	
+what time is the shoot tomorrow	TOPIC:shoot|TIME:tomorrow	question
+cost per acquisition for meta ads	TOPIC:cost per acquisition for meta ads	
+meeting notes - sort by date oldest first	KIND:meeting notes|ORDER:oldest first	gap:sort-field
+file name with "logo" but not old	TOPIC:logo|!ATTR:old	
+refund request from archana	TOPIC:refund request|ACTOR:archana	
+video file of unboxing test	KIND:video file|TOPIC:unboxing test	
+what did shreya say about the new packaging	ACTOR:shreya|KIND:say|TOPIC:new packaging	question
+puneet's pending review on creative	ACTOR:puneet|ATTR:pending|TOPIC:review on creative	
+chat about influencer contract - not signed	KIND:chat|TOPIC:influencer contract|!ATTR:signed	
+delhi warehouse pickup schedule	TOPIC:delhi warehouse pickup schedule	
+shipping labels without pincode	TOPIC:shipping labels|!TOPIC:pincode	
+brand ambassador list - shortlisted	TOPIC:brand ambassador list|ATTR:shortlisted	

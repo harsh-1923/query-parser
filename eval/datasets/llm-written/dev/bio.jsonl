@@ -1,0 +1,300 @@
+{"text":"customer onboarding checklist","tokens":["customer","onboarding","checklist"],"offsets":[[0,8],[9,19],[20,29]],"tags":["B-TOPIC","I-TOPIC","I-TOPIC"],"source":"dev","product":"chat"}
+{"text":"invoice from sharma logistics","tokens":["invoice","from","sharma","logistics"],"offsets":[[0,7],[8,12],[13,19],[20,29]],"tags":["B-TOPIC","O","B-ACTOR","I-ACTOR"],"source":"dev","product":"chat"}
+{"text":"pune warehouse address","tokens":["pune","warehouse","address"],"offsets":[[0,4],[5,14],[15,22]],"tags":["B-TOPIC","I-TOPIC","I-TOPIC"],"source":"dev","product":"chat"}
+{"text":"soa file","tokens":["soa","file"],"offsets":[[0,3],[4,8]],"tags":["B-TOPIC","B-KIND"],"source":"dev","product":"chat"}
+{"text":"nisha said about the rfq","tokens":["nisha","said","about","the","rfq"],"offsets":[[0,5],[6,10],[11,16],[17,20],[21,24]],"tags":["B-ACTOR","B-KIND","O","O","B-TOPIC"],"source":"dev","product":"chat"}
+{"text":"thread with rahul about esign","tokens":["thread","with","rahul","about","esign"],"offsets":[[0,6],[7,11],[12,17],[18,23],[24,29]],"tags":["B-KIND","O","B-PARTICIPANT","O","B-TOPIC"],"source":"dev","product":"chat"}
+{"text":"call notes with hdfc","tokens":["call","notes","with","hdfc"],"offsets":[[0,4],[5,10],[11,15],[16,20]],"tags":["B-KIND","I-KIND","O","B-PARTICIPANT"],"source":"dev","product":"chat"}
+{"text":"kunal's screen recording","tokens":["kunal","'s","screen","recording"],"offsets":[[0,5],[5,7],[8,14],[15,24]],"tags":["B-ACTOR","O","B-KIND","I-KIND"],"source":"dev","product":"chat"}
+{"text":"kafka error logs","tokens":["kafka","error","logs"],"offsets":[[0,5],[6,11],[12,16]],"tags":["B-TOPIC","I-TOPIC","I-TOPIC"],"source":"dev","product":"chat"}
+{"text":"server outage mumbai","tokens":["server","outage","mumbai"],"offsets":[[0,6],[7,13],[14,20]],"tags":["B-TOPIC","I-TOPIC","I-TOPIC"],"source":"dev","product":"chat"}
+{"text":"dated: 12th may","tokens":["dated","12th","may"],"offsets":[[0,5],[7,11],[12,15]],"tags":["O","B-TIME","I-TIME"],"source":"dev","product":"chat"}
+{"text":"the contract we sent to blue dart","tokens":["the","contract","we","sent","to","blue","dart"],"offsets":[[0,3],[4,12],[13,15],[16,20],[21,23],[24,28],[29,33]],"tags":["O","B-TOPIC","O","O","O","B-RECIPIENT","I-RECIPIENT"],"source":"dev","product":"chat"}
+{"text":"edi mapping pdf","tokens":["edi","mapping","pdf"],"offsets":[[0,3],[4,11],[12,15]],"tags":["B-TOPIC","I-TOPIC","B-KIND"],"source":"dev","product":"chat"}
+{"text":"gst invoice format","tokens":["gst","invoice","format"],"offsets":[[0,3],[4,11],[12,18]],"tags":["B-TOPIC","I-TOPIC","I-TOPIC"],"source":"dev","product":"chat"}
+{"text":"tariff card old version","tokens":["tariff","card","old","version"],"offsets":[[0,6],[7,11],[12,15],[16,23]],"tags":["B-TOPIC","I-TOPIC","B-ATTR","I-ATTR"],"source":"dev","product":"chat"}
+{"text":"missed call from sbi","tokens":["missed","call","from","sbi"],"offsets":[[0,6],[7,11],[12,16],[17,20]],"tags":["B-ATTR","B-KIND","O","B-ACTOR"],"source":"dev","product":"chat"}
+{"text":"saved: vendor onboarding","tokens":["saved","vendor","onboarding"],"offsets":[[0,5],[7,13],[14,24]],"tags":["B-ATTR","B-TOPIC","I-TOPIC"],"source":"dev","product":"chat"}
+{"text":"commonwealth bank swift code","tokens":["commonwealth","bank","swift","code"],"offsets":[[0,12],[13,17],[18,23],[24,28]],"tags":["B-TOPIC","I-TOPIC","I-TOPIC","I-TOPIC"],"source":"dev","product":"chat"}
+{"text":"recon mismatch last month","tokens":["recon","mismatch","last","month"],"offsets":[[0,5],[6,14],[15,19],[20,25]],"tags":["B-TOPIC","I-TOPIC","B-TIME","I-TIME"],"source":"dev","product":"chat"}
+{"text":"da which has the penalty clause","tokens":["da","which","has","the","penalty","clause"],"offsets":[[0,2],[3,8],[9,12],[13,16],[17,24],[25,31]],"tags":["B-TOPIC","I-TOPIC","I-TOPIC","I-TOPIC","I-TOPIC","I-TOPIC"],"source":"dev","product":"chat"}
+{"text":"broker agreement signed","tokens":["broker","agreement","signed"],"offsets":[[0,6],[7,16],[17,23]],"tags":["B-TOPIC","I-TOPIC","B-ATTR"],"source":"dev","product":"chat"}
+{"text":"lr number 44567","tokens":["lr","number","44567"],"offsets":[[0,2],[3,9],[10,15]],"tags":["B-TOPIC","I-TOPIC","I-TOPIC"],"source":"dev","product":"chat"}
+{"text":"camera footage loading bay","tokens":["camera","footage","loading","bay"],"offsets":[[0,6],[7,14],[15,22],[23,26]],"tags":["B-TOPIC","I-TOPIC","I-TOPIC","I-TOPIC"],"source":"dev","product":"chat"}
+{"text":"google drive link for insurance","tokens":["google","drive","link","for","insurance"],"offsets":[[0,6],[7,12],[13,17],[18,21],[22,31]],"tags":["B-TOPIC","I-TOPIC","I-TOPIC","I-TOPIC","I-TOPIC"],"source":"dev","product":"chat"}
+{"text":"channel: ops-mumbai","tokens":["channel","ops-mumbai"],"offsets":[[0,7],[9,19]],"tags":["O","B-CONTAINER"],"source":"dev","product":"chat"}
+{"text":"where did we put the nda?","tokens":["where","did","we","put","the","nda"],"offsets":[[0,5],[6,9],[10,12],[13,16],[17,20],[21,24]],"tags":["O","O","O","O","O","B-TOPIC"],"source":"dev","product":"chat"}
+{"text":"cheque bounce charges","tokens":["cheque","bounce","charges"],"offsets":[[0,6],[7,13],[14,21]],"tags":["B-TOPIC","I-TOPIC","I-TOPIC"],"source":"dev","product":"chat"}
+{"text":"dashboard refresh time","tokens":["dashboard","refresh","time"],"offsets":[[0,9],[10,17],[18,22]],"tags":["B-TOPIC","I-TOPIC","I-TOPIC"],"source":"dev","product":"chat"}
+{"text":"sender id approval status","tokens":["sender","id","approval","status"],"offsets":[[0,6],[7,9],[10,18],[19,25]],"tags":["B-TOPIC","I-TOPIC","I-TOPIC","I-TOPIC"],"source":"dev","product":"chat"}
+{"text":"kisan credit card statement","tokens":["kisan","credit","card","statement"],"offsets":[[0,5],[6,12],[13,17],[18,27]],"tags":["B-TOPIC","I-TOPIC","I-TOPIC","I-TOPIC"],"source":"dev","product":"chat"}
+{"text":"file type: xlsx and name has \"recon","tokens":["file","type","xlsx","and","name","has","recon"],"offsets":[[0,4],[5,9],[11,15],[16,19],[20,24],[25,28],[30,35]],"tags":["O","O","B-KIND","O","O","O","B-TOPIC"],"source":"dev","product":"chat"}
+{"text":"fwd from anil about the new delivery slot","tokens":["fwd","from","anil","about","the","new","delivery","slot"],"offsets":[[0,3],[4,8],[9,13],[14,19],[20,23],[24,27],[28,36],[37,41]],"tags":["O","O","B-ACTOR","O","O","B-TOPIC","I-TOPIC","I-TOPIC"],"source":"dev","product":"chat"}
+{"text":"tally backup","tokens":["tally","backup"],"offsets":[[0,5],[6,12]],"tags":["B-TOPIC","I-TOPIC"],"source":"dev","product":"chat"}
+{"text":"pod for consignment 9987","tokens":["pod","for","consignment","9987"],"offsets":[[0,3],[4,7],[8,19],[20,24]],"tags":["B-TOPIC","I-TOPIC","I-TOPIC","I-TOPIC"],"source":"dev","product":"chat"}
+{"text":"client complaint email","tokens":["client","complaint","email"],"offsets":[[0,6],[7,16],[17,22]],"tags":["B-TOPIC","I-TOPIC","B-KIND"],"source":"dev","product":"chat"}
+{"text":"bulk upload template","tokens":["bulk","upload","template"],"offsets":[[0,4],[5,11],[12,20]],"tags":["B-TOPIC","I-TOPIC","I-TOPIC"],"source":"dev","product":"chat"}
+{"text":"api key rotation","tokens":["api","key","rotation"],"offsets":[[0,3],[4,7],[8,16]],"tags":["B-TOPIC","I-TOPIC","I-TOPIC"],"source":"dev","product":"chat"}
+{"text":"sla breach notification","tokens":["sla","breach","notification"],"offsets":[[0,3],[4,10],[11,23]],"tags":["B-TOPIC","I-TOPIC","I-TOPIC"],"source":"dev","product":"chat"}
+{"text":"migration plan old database","tokens":["migration","plan","old","database"],"offsets":[[0,9],[10,14],[15,18],[19,27]],"tags":["B-TOPIC","I-TOPIC","I-TOPIC","I-TOPIC"],"source":"dev","product":"chat"}
+{"text":"chat with meera on 3rd june","tokens":["chat","with","meera","on","3rd","june"],"offsets":[[0,4],[5,9],[10,15],[16,18],[19,22],[23,27]],"tags":["B-KIND","O","B-PARTICIPANT","B-TIME","I-TIME","I-TIME"],"source":"dev","product":"chat"}
+{"text":"exclude: \"test\" and \"sample","tokens":["exclude","test","and","sample"],"offsets":[[0,7],[10,14],[16,19],[21,27]],"tags":["B-NEG","B-TOPIC","O","B-TOPIC"],"source":"dev","product":"chat"}
+{"text":"sort by date oldest first","tokens":["sort","by","date","oldest","first"],"offsets":[[0,4],[5,7],[8,12],[13,19],[20,25]],"tags":["O","O","O","B-ORDER","I-ORDER"],"source":"dev","product":"chat"}
+{"text":"sorry i missed this\" - me","tokens":["sorry","i","missed","this","me"],"offsets":[[0,5],[6,7],[8,14],[15,19],[23,25]],"tags":["B-TOPIC","I-TOPIC","I-TOPIC","I-TOPIC","B-ACTOR"],"source":"dev","product":"chat"}
+{"text":"warehouse pincode list","tokens":["warehouse","pincode","list"],"offsets":[[0,9],[10,17],[18,22]],"tags":["B-TOPIC","I-TOPIC","I-TOPIC"],"source":"dev","product":"chat"}
+{"text":"bounce report from icici","tokens":["bounce","report","from","icici"],"offsets":[[0,6],[7,13],[14,18],[19,24]],"tags":["B-TOPIC","I-TOPIC","O","B-ACTOR"],"source":"dev","product":"chat"}
+{"text":"sort by unread","tokens":["sort","by","unread"],"offsets":[[0,4],[5,7],[8,14]],"tags":["O","O","O"],"source":"dev","product":"chat"}
+{"text":"hyperledger notes","tokens":["hyperledger","notes"],"offsets":[[0,11],[12,17]],"tags":["B-TOPIC","B-KIND"],"source":"dev","product":"chat"}
+{"text":"the drawing of the new racking system","tokens":["the","drawing","of","the","new","racking","system"],"offsets":[[0,3],[4,11],[12,14],[15,18],[19,22],[23,30],[31,37]],"tags":["O","B-TOPIC","I-TOPIC","I-TOPIC","I-TOPIC","I-TOPIC","I-TOPIC"],"source":"dev","product":"chat"}
+{"text":"banker's name at kotak","tokens":["banker","'s","name","at","kotak"],"offsets":[[0,6],[6,8],[9,13],[14,16],[17,22]],"tags":["B-TOPIC","I-TOPIC","I-TOPIC","I-TOPIC","I-TOPIC"],"source":"dev","product":"chat"}
+{"text":"cn from tata steel","tokens":["cn","from","tata","steel"],"offsets":[[0,2],[3,7],[8,12],[13,18]],"tags":["B-TOPIC","O","B-ACTOR","I-ACTOR"],"source":"dev","product":"chat"}
+{"text":"rejected invoice reason code 44","tokens":["rejected","invoice","reason","code","44"],"offsets":[[0,8],[9,16],[17,23],[24,28],[29,31]],"tags":["B-ATTR","B-TOPIC","I-TOPIC","I-TOPIC","I-TOPIC"],"source":"dev","product":"chat"}
+{"text":"sanction letter limit","tokens":["sanction","letter","limit"],"offsets":[[0,8],[9,15],[16,21]],"tags":["B-TOPIC","I-TOPIC","I-TOPIC"],"source":"dev","product":"chat"}
+{"text":"waybill from delhivery","tokens":["waybill","from","delhivery"],"offsets":[[0,7],[8,12],[13,22]],"tags":["B-TOPIC","O","B-ACTOR"],"source":"dev","product":"chat"}
+{"text":"payment t+2 cycles","tokens":["payment","t","2","cycles"],"offsets":[[0,7],[8,9],[10,11],[12,18]],"tags":["B-TOPIC","I-TOPIC","I-TOPIC","I-TOPIC"],"source":"dev","product":"chat"}
+{"text":"minutes of the vendor meet","tokens":["minutes","of","the","vendor","meet"],"offsets":[[0,7],[8,10],[11,14],[15,21],[22,26]],"tags":["B-KIND","O","O","B-TOPIC","I-TOPIC"],"source":"dev","product":"chat"}
+{"text":"barcode scanner manual","tokens":["barcode","scanner","manual"],"offsets":[[0,7],[8,15],[16,22]],"tags":["B-TOPIC","I-TOPIC","I-TOPIC"],"source":"dev","product":"chat"}
+{"text":"msme certificate","tokens":["msme","certificate"],"offsets":[[0,4],[5,16]],"tags":["B-TOPIC","I-TOPIC"],"source":"dev","product":"chat"}
+{"text":"invoice query with pune team","tokens":["invoice","query","with","pune","team"],"offsets":[[0,7],[8,13],[14,18],[19,23],[24,28]],"tags":["B-TOPIC","I-TOPIC","O","B-PARTICIPANT","I-PARTICIPANT"],"source":"dev","product":"chat"}
+{"text":"thread about the cancelled shipment","tokens":["thread","about","the","cancelled","shipment"],"offsets":[[0,6],[7,12],[13,16],[17,26],[27,35]],"tags":["B-KIND","O","O","B-TOPIC","I-TOPIC"],"source":"dev","product":"chat"}
+{"text":"zoho sign link","tokens":["zoho","sign","link"],"offsets":[[0,4],[5,9],[10,14]],"tags":["B-TOPIC","I-TOPIC","I-TOPIC"],"source":"dev","product":"chat"}
+{"text":"invoice march","tokens":["invoice","march"],"offsets":[[0,7],[8,13]],"tags":["B-TOPIC","B-TIME"],"source":"dev","product":"email"}
+{"text":"re: kumar","tokens":["re","kumar"],"offsets":[[0,2],[4,9]],"tags":["O","B-TOPIC"],"source":"dev","product":"email"}
+{"text":"attachments from raj","tokens":["attachments","from","raj"],"offsets":[[0,11],[12,16],[17,20]],"tags":["B-KIND","O","B-ACTOR"],"source":"dev","product":"email"}
+{"text":"unpaid invoices","tokens":["unpaid","invoices"],"offsets":[[0,6],[7,15]],"tags":["B-ATTR","B-TOPIC"],"source":"dev","product":"email"}
+{"text":"sent by michael","tokens":["sent","by","michael"],"offsets":[[0,4],[5,7],[8,15]],"tags":["O","O","B-ACTOR"],"source":"dev","product":"email"}
+{"text":"vendor list singapore","tokens":["vendor","list","singapore"],"offsets":[[0,6],[7,11],[12,21]],"tags":["B-TOPIC","I-TOPIC","I-TOPIC"],"source":"dev","product":"email"}
+{"text":"gst return draft","tokens":["gst","return","draft"],"offsets":[[0,3],[4,10],[11,16]],"tags":["B-TOPIC","I-TOPIC","B-ATTR"],"source":"dev","product":"email"}
+{"text":"cc: priya","tokens":["cc","priya"],"offsets":[[0,2],[4,9]],"tags":["O","B-RECIPIENT"],"source":"dev","product":"email"}
+{"text":"payroll june","tokens":["payroll","june"],"offsets":[[0,7],[8,12]],"tags":["B-TOPIC","B-TIME"],"source":"dev","product":"email"}
+{"text":"contract signed","tokens":["contract","signed"],"offsets":[[0,8],[9,15]],"tags":["B-TOPIC","B-ATTR"],"source":"dev","product":"email"}
+{"text":"meera's expense report","tokens":["meera","'s","expense","report"],"offsets":[[0,5],[5,7],[8,15],[16,22]],"tags":["B-ACTOR","O","B-TOPIC","I-TOPIC"],"source":"dev","product":"email"}
+{"text":"cap table","tokens":["cap","table"],"offsets":[[0,3],[4,9]],"tags":["B-TOPIC","I-TOPIC"],"source":"dev","product":"email"}
+{"text":"subject: urgent","tokens":["subject","urgent"],"offsets":[[0,7],[9,15]],"tags":["O","B-TOPIC"],"source":"dev","product":"email"}
+{"text":"from: lee","tokens":["from","lee"],"offsets":[[0,4],[6,9]],"tags":["O","B-ACTOR"],"source":"dev","product":"email"}
+{"text":"label: clients","tokens":["label","clients"],"offsets":[[0,5],[7,14]],"tags":["O","B-TOPIC"],"source":"dev","product":"email"}
+{"text":"board deck v3","tokens":["board","deck","v3"],"offsets":[[0,5],[6,10],[11,13]],"tags":["B-TOPIC","B-KIND","B-TOPIC"],"source":"dev","product":"email"}
+{"text":"receipts missing","tokens":["receipts","missing"],"offsets":[[0,8],[9,16]],"tags":["B-TOPIC","B-ATTR"],"source":"dev","product":"email"}
+{"text":"salary revision","tokens":["salary","revision"],"offsets":[[0,6],[7,15]],"tags":["B-TOPIC","I-TOPIC"],"source":"dev","product":"email"}
+{"text":"po 4521","tokens":["po","4521"],"offsets":[[0,2],[3,7]],"tags":["B-TOPIC","I-TOPIC"],"source":"dev","product":"email"}
+{"text":"emails about the audit","tokens":["emails","about","the","audit"],"offsets":[[0,6],[7,12],[13,16],[17,22]],"tags":["B-KIND","O","O","B-TOPIC"],"source":"dev","product":"email"}
+{"text":"from: aisha","tokens":["from","aisha"],"offsets":[[0,4],[6,11]],"tags":["O","B-ACTOR"],"source":"dev","product":"email"}
+{"text":"deleted items","tokens":["deleted","items"],"offsets":[[0,7],[8,13]],"tags":["B-ATTR","I-ATTR"],"source":"dev","product":"email"}
+{"text":"travel policy","tokens":["travel","policy"],"offsets":[[0,6],[7,13]],"tags":["B-TOPIC","I-TOPIC"],"source":"dev","product":"email"}
+{"text":"reimbursement status","tokens":["reimbursement","status"],"offsets":[[0,13],[14,20]],"tags":["B-TOPIC","I-TOPIC"],"source":"dev","product":"email"}
+{"text":"invoice #882","tokens":["invoice","#882"],"offsets":[[0,7],[8,12]],"tags":["B-TOPIC","I-TOPIC"],"source":"dev","product":"email"}
+{"text":"has attachment","tokens":["has","attachment"],"offsets":[[0,3],[4,14]],"tags":["B-ATTR","I-ATTR"],"source":"dev","product":"email"}
+{"text":"bank statement april","tokens":["bank","statement","april"],"offsets":[[0,4],[5,14],[15,20]],"tags":["B-TOPIC","I-TOPIC","B-TIME"],"source":"dev","product":"email"}
+{"text":"reminder sent","tokens":["reminder","sent"],"offsets":[[0,8],[9,13]],"tags":["B-TOPIC","B-ATTR"],"source":"dev","product":"email"}
+{"text":"swift code","tokens":["swift","code"],"offsets":[[0,5],[6,10]],"tags":["B-TOPIC","I-TOPIC"],"source":"dev","product":"email"}
+{"text":"nric","tokens":["nric"],"offsets":[[0,4]],"tags":["B-TOPIC"],"source":"dev","product":"email"}
+{"text":"gst exempt","tokens":["gst","exempt"],"offsets":[[0,3],[4,10]],"tags":["B-TOPIC","I-TOPIC"],"source":"dev","product":"email"}
+{"text":"out of office","tokens":["out","of","office"],"offsets":[[0,3],[4,6],[7,13]],"tags":["B-TOPIC","I-TOPIC","I-TOPIC"],"source":"dev","product":"email"}
+{"text":"vendor: tan logistics","tokens":["vendor","tan","logistics"],"offsets":[[0,6],[8,11],[12,21]],"tags":["O","B-TOPIC","I-TOPIC"],"source":"dev","product":"email"}
+{"text":"gst filing","tokens":["gst","filing"],"offsets":[[0,3],[4,10]],"tags":["B-TOPIC","I-TOPIC"],"source":"dev","product":"email"}
+{"text":"salary slip may","tokens":["salary","slip","may"],"offsets":[[0,6],[7,11],[12,15]],"tags":["B-TOPIC","I-TOPIC","B-TIME"],"source":"dev","product":"email"}
+{"text":"draft to cfo","tokens":["draft","to","cfo"],"offsets":[[0,5],[6,8],[9,12]],"tags":["B-ATTR","O","B-RECIPIENT"],"source":"dev","product":"email"}
+{"text":"received today","tokens":["received","today"],"offsets":[[0,8],[9,14]],"tags":["O","B-TIME"],"source":"dev","product":"email"}
+{"text":"from: david (sg)","tokens":["from","david","sg"],"offsets":[[0,4],[6,11],[13,15]],"tags":["O","B-ACTOR","O"],"source":"dev","product":"email"}
+{"text":"quote comparison","tokens":["quote","comparison"],"offsets":[[0,5],[6,16]],"tags":["B-TOPIC","I-TOPIC"],"source":"dev","product":"email"}
+{"text":"contract renewal","tokens":["contract","renewal"],"offsets":[[0,8],[9,16]],"tags":["B-TOPIC","I-TOPIC"],"source":"dev","product":"email"}
+{"text":"not: newsletter","tokens":["not","newsletter"],"offsets":[[0,3],[5,15]],"tags":["B-NEG","B-KIND"],"source":"dev","product":"email"}
+{"text":"forwarded by jen","tokens":["forwarded","by","jen"],"offsets":[[0,9],[10,12],[13,16]],"tags":["O","O","B-ACTOR"],"source":"dev","product":"email"}
+{"text":"expense approval","tokens":["expense","approval"],"offsets":[[0,7],[8,16]],"tags":["B-TOPIC","I-TOPIC"],"source":"dev","product":"email"}
+{"text":"client: meridian","tokens":["client","meridian"],"offsets":[[0,6],[8,16]],"tags":["O","B-TOPIC"],"source":"dev","product":"email"}
+{"text":"payroll variance","tokens":["payroll","variance"],"offsets":[[0,7],[8,16]],"tags":["B-TOPIC","I-TOPIC"],"source":"dev","product":"email"}
+{"text":"late payment","tokens":["late","payment"],"offsets":[[0,4],[5,12]],"tags":["B-TOPIC","I-TOPIC"],"source":"dev","product":"email"}
+{"text":"vendor: sharma & co","tokens":["vendor","sharma","co"],"offsets":[[0,6],[8,14],[17,19]],"tags":["O","B-TOPIC","I-TOPIC"],"source":"dev","product":"email"}
+{"text":"from: ceo's office","tokens":["from","ceo","'s","office"],"offsets":[[0,4],[6,9],[9,11],[12,18]],"tags":["O","B-ACTOR","I-ACTOR","I-ACTOR"],"source":"dev","product":"email"}
+{"text":"cc: finance team","tokens":["cc","finance","team"],"offsets":[[0,2],[4,11],[12,16]],"tags":["O","B-RECIPIENT","I-RECIPIENT"],"source":"dev","product":"email"}
+{"text":"label: pending","tokens":["label","pending"],"offsets":[[0,5],[7,14]],"tags":["O","B-ATTR"],"source":"dev","product":"email"}
+{"text":"subject: fyi","tokens":["subject","fyi"],"offsets":[[0,7],[9,12]],"tags":["O","B-TOPIC"],"source":"dev","product":"email"}
+{"text":"invoice from hong kong","tokens":["invoice","from","hong","kong"],"offsets":[[0,7],[8,12],[13,17],[18,22]],"tags":["B-TOPIC","O","B-ACTOR","I-ACTOR"],"source":"dev","product":"email"}
+{"text":"tax invoice","tokens":["tax","invoice"],"offsets":[[0,3],[4,11]],"tags":["B-TOPIC","I-TOPIC"],"source":"dev","product":"email"}
+{"text":"exchange rate","tokens":["exchange","rate"],"offsets":[[0,8],[9,13]],"tags":["B-TOPIC","I-TOPIC"],"source":"dev","product":"email"}
+{"text":"credit note","tokens":["credit","note"],"offsets":[[0,6],[7,11]],"tags":["B-TOPIC","I-TOPIC"],"source":"dev","product":"email"}
+{"text":"purchase order","tokens":["purchase","order"],"offsets":[[0,8],[9,14]],"tags":["B-TOPIC","I-TOPIC"],"source":"dev","product":"email"}
+{"text":"draft reply","tokens":["draft","reply"],"offsets":[[0,5],[6,11]],"tags":["B-ATTR","B-KIND"],"source":"dev","product":"email"}
+{"text":"with attachment pdf","tokens":["with","attachment","pdf"],"offsets":[[0,4],[5,15],[16,19]],"tags":["B-ATTR","I-ATTR","B-KIND"],"source":"dev","product":"email"}
+{"text":"from: vikram","tokens":["from","vikram"],"offsets":[[0,4],[6,12]],"tags":["O","B-ACTOR"],"source":"dev","product":"email"}
+{"text":"meeting minutes","tokens":["meeting","minutes"],"offsets":[[0,7],[8,15]],"tags":["B-KIND","I-KIND"],"source":"dev","product":"email"}
+{"text":"assigned to me","tokens":["assigned","to","me"],"offsets":[[0,8],[9,11],[12,14]],"tags":["O","O","B-RECIPIENT"],"source":"dev","product":"tracker"}
+{"text":"sprint 24","tokens":["sprint","24"],"offsets":[[0,6],[7,9]],"tags":["B-CONTAINER","I-CONTAINER"],"source":"dev","product":"tracker"}
+{"text":"bugs with high priority","tokens":["bugs","with","high","priority"],"offsets":[[0,4],[5,9],[10,14],[15,23]],"tags":["B-KIND","O","B-ATTR","I-ATTR"],"source":"dev","product":"tracker"}
+{"text":"my open tickets","tokens":["my","open","tickets"],"offsets":[[0,2],[3,7],[8,15]],"tags":["B-ACTOR","B-ATTR","B-KIND"],"source":"dev","product":"tracker"}
+{"text":"epic: payment gateway","tokens":["epic","payment","gateway"],"offsets":[[0,4],[6,13],[14,21]],"tags":["B-KIND","B-TOPIC","I-TOPIC"],"source":"dev","product":"tracker"}
+{"text":"crashes on android 14","tokens":["crashes","on","android","14"],"offsets":[[0,7],[8,10],[11,18],[19,21]],"tags":["B-TOPIC","I-TOPIC","I-TOPIC","I-TOPIC"],"source":"dev","product":"tracker"}
+{"text":"created last week","tokens":["created","last","week"],"offsets":[[0,7],[8,12],[13,17]],"tags":["O","B-TIME","I-TIME"],"source":"dev","product":"tracker"}
+{"text":"status: in progress","tokens":["status","in","progress"],"offsets":[[0,6],[8,10],[11,19]],"tags":["O","B-ATTR","I-ATTR"],"source":"dev","product":"tracker"}
+{"text":"assigned to priya","tokens":["assigned","to","priya"],"offsets":[[0,8],[9,11],[12,17]],"tags":["O","O","B-RECIPIENT"],"source":"dev","product":"tracker"}
+{"text":"release 3.2","tokens":["release","3.2"],"offsets":[[0,7],[8,11]],"tags":["B-CONTAINER","I-CONTAINER"],"source":"dev","product":"tracker"}
+{"text":"blocked","tokens":["blocked"],"offsets":[[0,7]],"tags":["B-ATTR"],"source":"dev","product":"tracker"}
+{"text":"not closed and not assigned","tokens":["not","closed","and","not","assigned"],"offsets":[[0,3],[4,10],[11,14],[15,18],[19,27]],"tags":["B-NEG","B-ATTR","O","B-NEG","B-ATTR"],"source":"dev","product":"tracker"}
+{"text":"search: forgot password flow","tokens":["search","forgot","password","flow"],"offsets":[[0,6],[8,14],[15,23],[24,28]],"tags":["O","B-TOPIC","I-TOPIC","I-TOPIC"],"source":"dev","product":"tracker"}
+{"text":"UI glitches in dark mode","tokens":["UI","glitches","in","dark","mode"],"offsets":[[0,2],[3,11],[12,14],[15,19],[20,24]],"tags":["B-TOPIC","I-TOPIC","I-TOPIC","I-TOPIC","I-TOPIC"],"source":"dev","product":"tracker"}
+{"text":"QA blocked by dev","tokens":["QA","blocked","by","dev"],"offsets":[[0,2],[3,10],[11,13],[14,17]],"tags":["B-TOPIC","B-ATTR","I-ATTR","I-ATTR"],"source":"dev","product":"tracker"}
+{"text":"need to test today","tokens":["need","to","test","today"],"offsets":[[0,4],[5,7],[8,12],[13,18]],"tags":["B-TOPIC","I-TOPIC","I-TOPIC","B-TIME"],"source":"dev","product":"tracker"}
+{"text":"sprint 23 done tickets","tokens":["sprint","23","done","tickets"],"offsets":[[0,6],[7,9],[10,14],[15,22]],"tags":["B-CONTAINER","I-CONTAINER","B-ATTR","B-KIND"],"source":"dev","product":"tracker"}
+{"text":"severity: critical, sort by updated","tokens":["severity","critical",",","sort","by","updated"],"offsets":[[0,8],[10,18],[18,19],[20,24],[25,27],[28,35]],"tags":["O","B-ATTR","O","O","O","O"],"source":"dev","product":"tracker"}
+{"text":"assigned to ravi and not done","tokens":["assigned","to","ravi","and","not","done"],"offsets":[[0,8],[9,11],[12,16],[17,20],[21,24],[25,29]],"tags":["O","O","B-RECIPIENT","O","B-NEG","B-ATTR"],"source":"dev","product":"tracker"}
+{"text":"retry logic bug","tokens":["retry","logic","bug"],"offsets":[[0,5],[6,11],[12,15]],"tags":["B-TOPIC","I-TOPIC","B-KIND"],"source":"dev","product":"tracker"}
+{"text":"webhook timeouts","tokens":["webhook","timeouts"],"offsets":[[0,7],[8,16]],"tags":["B-TOPIC","I-TOPIC"],"source":"dev","product":"tracker"}
+{"text":"memory leak on login screen","tokens":["memory","leak","on","login","screen"],"offsets":[[0,6],[7,11],[12,14],[15,20],[21,27]],"tags":["B-TOPIC","I-TOPIC","I-TOPIC","I-TOPIC","I-TOPIC"],"source":"dev","product":"tracker"}
+{"text":"all epics in current release","tokens":["all","epics","in","current","release"],"offsets":[[0,3],[4,9],[10,12],[13,20],[21,28]],"tags":["O","B-KIND","O","B-CONTAINER","I-CONTAINER"],"source":"dev","product":"tracker"}
+{"text":"done in last 2 sprints","tokens":["done","in","last","2","sprints"],"offsets":[[0,4],[5,7],[8,12],[13,14],[15,22]],"tags":["B-ATTR","B-TIME","I-TIME","I-TIME","I-TIME"],"source":"dev","product":"tracker"}
+{"text":"my reported bugs","tokens":["my","reported","bugs"],"offsets":[[0,2],[3,11],[12,16]],"tags":["B-ACTOR","O","B-KIND"],"source":"dev","product":"tracker"}
+{"text":"status: open, priority: p2","tokens":["status","open",",","priority","p2"],"offsets":[[0,6],[8,12],[12,13],[14,22],[24,26]],"tags":["O","B-ATTR","O","O","B-ATTR"],"source":"dev","product":"tracker"}
+{"text":"date: today","tokens":["date","today"],"offsets":[[0,4],[6,11]],"tags":["O","B-TIME"],"source":"dev","product":"tracker"}
+{"text":"release 3.1 regression","tokens":["release","3.1","regression"],"offsets":[[0,7],[8,11],[12,22]],"tags":["B-CONTAINER","I-CONTAINER","B-TOPIC"],"source":"dev","product":"tracker"}
+{"text":"filter by board: android","tokens":["filter","by","board","android"],"offsets":[[0,6],[7,9],[10,15],[17,24]],"tags":["O","O","O","B-CONTAINER"],"source":"dev","product":"tracker"}
+{"text":"created yesterday, no assignee","tokens":["created","yesterday",",","no","assignee"],"offsets":[[0,7],[8,17],[17,18],[19,21],[22,30]],"tags":["O","B-TIME","O","B-ATTR","I-ATTR"],"source":"dev","product":"tracker"}
+{"text":"ready for QA","tokens":["ready","for","QA"],"offsets":[[0,5],[6,9],[10,12]],"tags":["B-ATTR","I-ATTR","I-ATTR"],"source":"dev","product":"tracker"}
+{"text":"code review pending","tokens":["code","review","pending"],"offsets":[[0,4],[5,11],[12,19]],"tags":["B-TOPIC","I-TOPIC","B-ATTR"],"source":"dev","product":"tracker"}
+{"text":"typo in empty state","tokens":["typo","in","empty","state"],"offsets":[[0,4],[5,7],[8,13],[14,19]],"tags":["B-TOPIC","I-TOPIC","I-TOPIC","I-TOPIC"],"source":"dev","product":"tracker"}
+{"text":"push notification not firing","tokens":["push","notification","not","firing"],"offsets":[[0,4],[5,17],[18,21],[22,28]],"tags":["B-TOPIC","I-TOPIC","I-TOPIC","I-TOPIC"],"source":"dev","product":"tracker"}
+{"text":"sort by priority high to low","tokens":["sort","by","priority","high","to","low"],"offsets":[[0,4],[5,7],[8,16],[17,21],[22,24],[25,28]],"tags":["O","O","O","B-ORDER","I-ORDER","I-ORDER"],"source":"dev","product":"tracker"}
+{"text":"sprint 24 and type: bug","tokens":["sprint","24","and","type","bug"],"offsets":[[0,6],[7,9],[10,13],[14,18],[20,23]],"tags":["B-CONTAINER","I-CONTAINER","O","O","B-KIND"],"source":"dev","product":"tracker"}
+{"text":"story points > 5","tokens":["story","points","5"],"offsets":[[0,5],[6,12],[15,16]],"tags":["O","O","O"],"source":"dev","product":"tracker"}
+{"text":"exclude closed","tokens":["exclude","closed"],"offsets":[[0,7],[8,14]],"tags":["B-NEG","B-ATTR"],"source":"dev","product":"tracker"}
+{"text":"assigned to me and due this week","tokens":["assigned","to","me","and","due","this","week"],"offsets":[[0,8],[9,11],[12,14],[15,18],[19,22],[23,27],[28,32]],"tags":["O","O","B-RECIPIENT","O","O","B-TIME","I-TIME"],"source":"dev","product":"tracker"}
+{"text":"API response slow","tokens":["API","response","slow"],"offsets":[[0,3],[4,12],[13,17]],"tags":["B-TOPIC","I-TOPIC","I-TOPIC"],"source":"dev","product":"tracker"}
+{"text":"token expiry handling","tokens":["token","expiry","handling"],"offsets":[[0,5],[6,12],[13,21]],"tags":["B-TOPIC","I-TOPIC","I-TOPIC"],"source":"dev","product":"tracker"}
+{"text":"repro steps missing","tokens":["repro","steps","missing"],"offsets":[[0,5],[6,11],[12,19]],"tags":["B-TOPIC","I-TOPIC","B-ATTR"],"source":"dev","product":"tracker"}
+{"text":"duplicate tickets","tokens":["duplicate","tickets"],"offsets":[[0,9],[10,17]],"tags":["B-ATTR","B-KIND"],"source":"dev","product":"tracker"}
+{"text":"linked to PR #123","tokens":["linked","to","PR","#123"],"offsets":[[0,6],[7,9],[10,12],[13,17]],"tags":["O","O","B-TOPIC","I-TOPIC"],"source":"dev","product":"tracker"}
+{"text":"fixed but not verified","tokens":["fixed","but","not","verified"],"offsets":[[0,5],[6,9],[10,13],[14,22]],"tags":["B-ATTR","O","B-NEG","B-ATTR"],"source":"dev","product":"tracker"}
+{"text":"labels: ui, payment","tokens":["labels","ui",",","payment"],"offsets":[[0,6],[8,10],[10,11],[12,19]],"tags":["O","B-TOPIC","O","B-TOPIC"],"source":"dev","product":"tracker"}
+{"text":"search in description: \"null pointer","tokens":["search","in","description","null","pointer"],"offsets":[[0,6],[7,9],[10,21],[24,28],[29,36]],"tags":["O","O","O","B-TOPIC","I-TOPIC"],"source":"dev","product":"tracker"}
+{"text":"epic: user onboarding, sub-tasks","tokens":["epic","user","onboarding",",","sub-tasks"],"offsets":[[0,4],[6,10],[11,21],[21,22],[23,32]],"tags":["B-KIND","B-TOPIC","I-TOPIC","O","B-KIND"],"source":"dev","product":"tracker"}
+{"text":"blocked by external dependency","tokens":["blocked","by","external","dependency"],"offsets":[[0,7],[8,10],[11,19],[20,30]],"tags":["B-ATTR","I-ATTR","I-ATTR","I-ATTR"],"source":"dev","product":"tracker"}
+{"text":"no comments","tokens":["no","comments"],"offsets":[[0,2],[3,11]],"tags":["B-ATTR","I-ATTR"],"source":"dev","product":"tracker"}
+{"text":"updated after 5pm","tokens":["updated","after","5pm"],"offsets":[[0,7],[8,13],[14,17]],"tags":["O","B-TIME","I-TIME"],"source":"dev","product":"tracker"}
+{"text":"created by me, status: review","tokens":["created","by","me",",","status","review"],"offsets":[[0,7],[8,10],[11,13],[13,14],[15,21],[23,29]],"tags":["O","O","B-ACTOR","O","O","B-ATTR"],"source":"dev","product":"tracker"}
+{"text":"order by last commented","tokens":["order","by","last","commented"],"offsets":[[0,5],[6,8],[9,13],[14,23]],"tags":["O","O","O","O"],"source":"dev","product":"tracker"}
+{"text":"hotfix candidates","tokens":["hotfix","candidates"],"offsets":[[0,6],[7,17]],"tags":["B-TOPIC","I-TOPIC"],"source":"dev","product":"tracker"}
+{"text":"production incident","tokens":["production","incident"],"offsets":[[0,10],[11,19]],"tags":["B-TOPIC","I-TOPIC"],"source":"dev","product":"tracker"}
+{"text":"all tickets with attachments","tokens":["all","tickets","with","attachments"],"offsets":[[0,3],[4,11],[12,16],[17,28]],"tags":["O","B-KIND","B-ATTR","I-ATTR"],"source":"dev","product":"tracker"}
+{"text":"assigned to nobody","tokens":["assigned","to","nobody"],"offsets":[[0,8],[9,11],[12,18]],"tags":["B-ATTR","I-ATTR","I-ATTR"],"source":"dev","product":"tracker"}
+{"text":"sprint 23, status: done","tokens":["sprint","23",",","status","done"],"offsets":[[0,6],[7,9],[9,10],[11,17],[19,23]],"tags":["B-CONTAINER","I-CONTAINER","O","O","B-ATTR"],"source":"dev","product":"tracker"}
+{"text":"release notes pending","tokens":["release","notes","pending"],"offsets":[[0,7],[8,13],[14,21]],"tags":["B-TOPIC","B-KIND","B-ATTR"],"source":"dev","product":"tracker"}
+{"text":"sign up OTP issue","tokens":["sign","up","OTP","issue"],"offsets":[[0,4],[5,7],[8,11],[12,17]],"tags":["B-TOPIC","I-TOPIC","I-TOPIC","I-TOPIC"],"source":"dev","product":"tracker"}
+{"text":"budget v3 final","tokens":["budget","v3","final"],"offsets":[[0,6],[7,9],[10,15]],"tags":["B-TOPIC","I-TOPIC","I-TOPIC"],"source":"dev","product":"drive"}
+{"text":"finance deck q3","tokens":["finance","deck","q3"],"offsets":[[0,7],[8,12],[13,15]],"tags":["B-TOPIC","B-KIND","B-TIME"],"source":"dev","product":"drive"}
+{"text":"contract with acme","tokens":["contract","with","acme"],"offsets":[[0,8],[9,13],[14,18]],"tags":["B-TOPIC","O","B-PARTICIPANT"],"source":"dev","product":"drive"}
+{"text":"math lesson plan fractions","tokens":["math","lesson","plan","fractions"],"offsets":[[0,4],[5,11],[12,16],[17,26]],"tags":["B-TOPIC","I-TOPIC","I-TOPIC","I-TOPIC"],"source":"dev","product":"drive"}
+{"text":"clickup notes from sarah","tokens":["clickup","notes","from","sarah"],"offsets":[[0,7],[8,13],[14,18],[19,24]],"tags":["B-TOPIC","B-KIND","O","B-ACTOR"],"source":"dev","product":"drive"}
+{"text":"edtech curriculum pdf","tokens":["edtech","curriculum","pdf"],"offsets":[[0,6],[7,17],[18,21]],"tags":["B-TOPIC","I-TOPIC","B-KIND"],"source":"dev","product":"drive"}
+{"text":"adobe stock images folder","tokens":["adobe","stock","images","folder"],"offsets":[[0,5],[6,11],[12,18],[19,25]],"tags":["B-TOPIC","I-TOPIC","I-TOPIC","B-KIND"],"source":"dev","product":"drive"}
+{"text":"invoice may","tokens":["invoice","may"],"offsets":[[0,7],[8,11]],"tags":["B-TOPIC","B-TIME"],"source":"dev","product":"drive"}
+{"text":"student data sheet spring","tokens":["student","data","sheet","spring"],"offsets":[[0,7],[8,12],[13,18],[19,25]],"tags":["B-TOPIC","I-TOPIC","B-KIND","B-TIME"],"source":"dev","product":"drive"}
+{"text":"legal nda template","tokens":["legal","nda","template"],"offsets":[[0,5],[6,9],[10,18]],"tags":["B-TOPIC","I-TOPIC","I-TOPIC"],"source":"dev","product":"drive"}
+{"text":"brainstorm whiteboard photo","tokens":["brainstorm","whiteboard","photo"],"offsets":[[0,10],[11,21],[22,27]],"tags":["B-TOPIC","I-TOPIC","B-KIND"],"source":"dev","product":"drive"}
+{"text":"edited by mark yesterday","tokens":["edited","by","mark","yesterday"],"offsets":[[0,6],[7,9],[10,14],[15,24]],"tags":["O","O","B-ACTOR","B-TIME"],"source":"dev","product":"drive"}
+{"text":"loan agreement draft","tokens":["loan","agreement","draft"],"offsets":[[0,4],[5,14],[15,20]],"tags":["B-TOPIC","I-TOPIC","B-ATTR"],"source":"dev","product":"drive"}
+{"text":"teacher onboarding slides","tokens":["teacher","onboarding","slides"],"offsets":[[0,7],[8,18],[19,25]],"tags":["B-TOPIC","I-TOPIC","B-KIND"],"source":"dev","product":"drive"}
+{"text":"science experiment instructions","tokens":["science","experiment","instructions"],"offsets":[[0,7],[8,18],[19,31]],"tags":["B-TOPIC","I-TOPIC","I-TOPIC"],"source":"dev","product":"drive"}
+{"text":"shared with hr","tokens":["shared","with","hr"],"offsets":[[0,6],[7,11],[12,14]],"tags":["O","O","B-RECIPIENT"],"source":"dev","product":"drive"}
+{"text":"content calendar august","tokens":["content","calendar","august"],"offsets":[[0,7],[8,16],[17,23]],"tags":["B-TOPIC","B-KIND","B-TIME"],"source":"dev","product":"drive"}
+{"text":"sales forecast spreadsheet","tokens":["sales","forecast","spreadsheet"],"offsets":[[0,5],[6,14],[15,26]],"tags":["B-TOPIC","I-TOPIC","B-KIND"],"source":"dev","product":"drive"}
+{"text":"privacy policy update","tokens":["privacy","policy","update"],"offsets":[[0,7],[8,14],[15,21]],"tags":["B-TOPIC","I-TOPIC","I-TOPIC"],"source":"dev","product":"drive"}
+{"text":"spreadsheet with formulas","tokens":["spreadsheet","with","formulas"],"offsets":[[0,11],[12,16],[17,25]],"tags":["B-KIND","O","B-TOPIC"],"source":"dev","product":"drive"}
+{"text":"pdf not scanned","tokens":["pdf","not","scanned"],"offsets":[[0,3],[4,7],[8,15]],"tags":["B-KIND","B-NEG","B-ATTR"],"source":"dev","product":"drive"}
+{"text":"video script for ads","tokens":["video","script","for","ads"],"offsets":[[0,5],[6,12],[13,16],[17,20]],"tags":["B-TOPIC","I-TOPIC","I-TOPIC","I-TOPIC"],"source":"dev","product":"drive"}
+{"text":"grant proposal draft","tokens":["grant","proposal","draft"],"offsets":[[0,5],[6,14],[15,20]],"tags":["B-TOPIC","I-TOPIC","B-ATTR"],"source":"dev","product":"drive"}
+{"text":"starred folder q2","tokens":["starred","folder","q2"],"offsets":[[0,7],[8,14],[15,17]],"tags":["B-ATTR","B-KIND","B-TIME"],"source":"dev","product":"drive"}
+{"text":"letter of intent from school","tokens":["letter","of","intent","from","school"],"offsets":[[0,6],[7,9],[10,16],[17,21],[22,28]],"tags":["B-TOPIC","I-TOPIC","I-TOPIC","O","B-ACTOR"],"source":"dev","product":"drive"}
+{"text":"marketing funnel diagram","tokens":["marketing","funnel","diagram"],"offsets":[[0,9],[10,16],[17,24]],"tags":["B-TOPIC","I-TOPIC","B-KIND"],"source":"dev","product":"drive"}
+{"text":"quiz answers chapter 4","tokens":["quiz","answers","chapter","4"],"offsets":[[0,4],[5,12],[13,20],[21,22]],"tags":["B-TOPIC","I-TOPIC","I-TOPIC","I-TOPIC"],"source":"dev","product":"drive"}
+{"text":"worksheet decimals","tokens":["worksheet","decimals"],"offsets":[[0,9],[10,18]],"tags":["B-TOPIC","I-TOPIC"],"source":"dev","product":"drive"}
+{"text":"meeting notes 6/12","tokens":["meeting","notes","6/12"],"offsets":[[0,7],[8,13],[14,18]],"tags":["B-KIND","I-KIND","B-TIME"],"source":"dev","product":"drive"}
+{"text":"font files zip","tokens":["font","files","zip"],"offsets":[[0,4],[5,10],[11,14]],"tags":["B-TOPIC","B-KIND","B-TOPIC"],"source":"dev","product":"drive"}
+{"text":"logo png transparent","tokens":["logo","png","transparent"],"offsets":[[0,4],[5,8],[9,20]],"tags":["B-TOPIC","B-KIND","B-ATTR"],"source":"dev","product":"drive"}
+{"text":"permits for filming","tokens":["permits","for","filming"],"offsets":[[0,7],[8,11],[12,19]],"tags":["B-TOPIC","I-TOPIC","I-TOPIC"],"source":"dev","product":"drive"}
+{"text":"syllabus algebra 1","tokens":["syllabus","algebra","1"],"offsets":[[0,8],[9,16],[17,18]],"tags":["B-TOPIC","I-TOPIC","I-TOPIC"],"source":"dev","product":"drive"}
+{"text":"case study customer x","tokens":["case","study","customer","x"],"offsets":[[0,4],[5,10],[11,19],[20,21]],"tags":["B-TOPIC","I-TOPIC","I-TOPIC","I-TOPIC"],"source":"dev","product":"drive"}
+{"text":"invoices paid 2024","tokens":["invoices","paid","2024"],"offsets":[[0,8],[9,13],[14,18]],"tags":["B-TOPIC","B-ATTR","B-TIME"],"source":"dev","product":"drive"}
+{"text":"brand guidelines old","tokens":["brand","guidelines","old"],"offsets":[[0,5],[6,16],[17,20]],"tags":["B-TOPIC","I-TOPIC","B-ATTR"],"source":"dev","product":"drive"}
+{"text":"training video mp4","tokens":["training","video","mp4"],"offsets":[[0,8],[9,14],[15,18]],"tags":["B-TOPIC","B-KIND","I-KIND"],"source":"dev","product":"drive"}
+{"text":"audit trail for payroll","tokens":["audit","trail","for","payroll"],"offsets":[[0,5],[6,11],[12,15],[16,23]],"tags":["B-TOPIC","I-TOPIC","I-TOPIC","I-TOPIC"],"source":"dev","product":"drive"}
+{"text":"ppt templates for teachers","tokens":["ppt","templates","for","teachers"],"offsets":[[0,3],[4,13],[14,17],[18,26]],"tags":["B-KIND","B-TOPIC","I-TOPIC","I-TOPIC"],"source":"dev","product":"drive"}
+{"text":"student progress report","tokens":["student","progress","report"],"offsets":[[0,7],[8,16],[17,23]],"tags":["B-TOPIC","I-TOPIC","I-TOPIC"],"source":"dev","product":"drive"}
+{"text":"signed contract from linda","tokens":["signed","contract","from","linda"],"offsets":[[0,6],[7,15],[16,20],[21,26]],"tags":["B-ATTR","B-TOPIC","O","B-ACTOR"],"source":"dev","product":"drive"}
+{"text":"copy deck for youtube","tokens":["copy","deck","for","youtube"],"offsets":[[0,4],[5,9],[10,13],[14,21]],"tags":["B-TOPIC","B-KIND","O","B-TOPIC"],"source":"dev","product":"drive"}
+{"text":"budget excluding travel","tokens":["budget","excluding","travel"],"offsets":[[0,6],[7,16],[17,23]],"tags":["B-TOPIC","B-NEG","B-TOPIC"],"source":"dev","product":"drive"}
+{"text":"draft of annual report","tokens":["draft","of","annual","report"],"offsets":[[0,5],[6,8],[9,15],[16,22]],"tags":["B-ATTR","O","B-TOPIC","I-TOPIC"],"source":"dev","product":"drive"}
+{"text":"image of whiteboard meeting","tokens":["image","of","whiteboard","meeting"],"offsets":[[0,5],[6,8],[9,19],[20,27]],"tags":["B-KIND","O","B-TOPIC","I-TOPIC"],"source":"dev","product":"drive"}
+{"text":"course outline history","tokens":["course","outline","history"],"offsets":[[0,6],[7,14],[15,22]],"tags":["B-TOPIC","I-TOPIC","I-TOPIC"],"source":"dev","product":"drive"}
+{"text":"terms of service draft","tokens":["terms","of","service","draft"],"offsets":[[0,5],[6,8],[9,16],[17,22]],"tags":["B-TOPIC","I-TOPIC","I-TOPIC","B-ATTR"],"source":"dev","product":"drive"}
+{"text":"invoice from agency april","tokens":["invoice","from","agency","april"],"offsets":[[0,7],[8,12],[13,19],[20,25]],"tags":["B-TOPIC","O","B-ACTOR","B-TIME"],"source":"dev","product":"drive"}
+{"text":"folders shared with legal","tokens":["folders","shared","with","legal"],"offsets":[[0,7],[8,14],[15,19],[20,25]],"tags":["B-KIND","O","O","B-RECIPIENT"],"source":"dev","product":"drive"}
+{"text":"teacher feedback form","tokens":["teacher","feedback","form"],"offsets":[[0,7],[8,16],[17,21]],"tags":["B-TOPIC","I-TOPIC","I-TOPIC"],"source":"dev","product":"drive"}
+{"text":"google form responses","tokens":["google","form","responses"],"offsets":[[0,6],[7,11],[12,21]],"tags":["B-TOPIC","I-TOPIC","I-TOPIC"],"source":"dev","product":"drive"}
+{"text":"final pdf for printing","tokens":["final","pdf","for","printing"],"offsets":[[0,5],[6,9],[10,13],[14,22]],"tags":["B-ATTR","B-KIND","O","B-TOPIC"],"source":"dev","product":"drive"}
+{"text":"archived folder 2023","tokens":["archived","folder","2023"],"offsets":[[0,8],[9,15],[16,20]],"tags":["B-ATTR","B-KIND","B-TIME"],"source":"dev","product":"drive"}
+{"text":"liability waiver signed","tokens":["liability","waiver","signed"],"offsets":[[0,9],[10,16],[17,23]],"tags":["B-TOPIC","I-TOPIC","B-ATTR"],"source":"dev","product":"drive"}
+{"text":"content brief instagram","tokens":["content","brief","instagram"],"offsets":[[0,7],[8,13],[14,23]],"tags":["B-TOPIC","I-TOPIC","I-TOPIC"],"source":"dev","product":"drive"}
+{"text":"spreedsheet typo version","tokens":["spreedsheet","typo","version"],"offsets":[[0,11],[12,16],[17,24]],"tags":["B-KIND","B-TOPIC","I-TOPIC"],"source":"dev","product":"drive"}
+{"text":"homework answer key","tokens":["homework","answer","key"],"offsets":[[0,8],[9,15],[16,19]],"tags":["B-TOPIC","I-TOPIC","I-TOPIC"],"source":"dev","product":"drive"}
+{"text":"book list for grade 5","tokens":["book","list","for","grade","5"],"offsets":[[0,4],[5,9],[10,13],[14,19],[20,21]],"tags":["B-TOPIC","I-TOPIC","I-TOPIC","I-TOPIC","I-TOPIC"],"source":"dev","product":"drive"}
+{"text":"proposal for state grant","tokens":["proposal","for","state","grant"],"offsets":[[0,8],[9,12],[13,18],[19,24]],"tags":["B-TOPIC","I-TOPIC","I-TOPIC","I-TOPIC"],"source":"dev","product":"drive"}
+{"text":"landing page copy","tokens":["landing","page","copy"],"offsets":[[0,7],[8,12],[13,17]],"tags":["B-TOPIC","I-TOPIC","I-TOPIC"],"source":"dev","product":"drive"}
+{"text":"kavya ka last message","tokens":["kavya","ka","last","message"],"offsets":[[0,5],[6,8],[9,13],[14,21]],"tags":["B-ACTOR","O","B-ORDER","B-KIND"],"source":"dev","product":"workspace"}
+{"text":"meeting recording with supplier","tokens":["meeting","recording","with","supplier"],"offsets":[[0,7],[8,17],[18,22],[23,31]],"tags":["B-KIND","I-KIND","O","B-PARTICIPANT"],"source":"dev","product":"workspace"}
+{"text":"puneet sheet final","tokens":["puneet","sheet","final"],"offsets":[[0,6],[7,12],[13,18]],"tags":["B-ACTOR","B-KIND","B-ATTR"],"source":"dev","product":"workspace"}
+{"text":"pending approval from rahul","tokens":["pending","approval","from","rahul"],"offsets":[[0,7],[8,16],[17,21],[22,27]],"tags":["B-ATTR","I-ATTR","O","B-ACTOR"],"source":"dev","product":"workspace"}
+{"text":"instagram ad cost last month","tokens":["instagram","ad","cost","last","month"],"offsets":[[0,9],[10,12],[13,17],[18,22],[23,28]],"tags":["B-TOPIC","I-TOPIC","I-TOPIC","B-TIME","I-TIME"],"source":"dev","product":"workspace"}
+{"text":"notes from brand review","tokens":["notes","from","brand","review"],"offsets":[[0,5],[6,10],[11,16],[17,23]],"tags":["B-KIND","O","B-TOPIC","I-TOPIC"],"source":"dev","product":"workspace"}
+{"text":"call with ananya transcript","tokens":["call","with","ananya","transcript"],"offsets":[[0,4],[5,9],[10,16],[17,27]],"tags":["B-KIND","O","B-PARTICIPANT","B-KIND"],"source":"dev","product":"workspace"}
+{"text":"design file for diwali campaign","tokens":["design","file","for","diwali","campaign"],"offsets":[[0,6],[7,11],[12,15],[16,22],[23,31]],"tags":["B-TOPIC","B-KIND","O","B-TOPIC","I-TOPIC"],"source":"dev","product":"workspace"}
+{"text":"anjali shared files","tokens":["anjali","shared","files"],"offsets":[[0,6],[7,13],[14,19]],"tags":["B-ACTOR","B-KIND","I-KIND"],"source":"dev","product":"workspace"}
+{"text":"budget sheet q3","tokens":["budget","sheet","q3"],"offsets":[[0,6],[7,12],[13,15]],"tags":["B-TOPIC","B-KIND","B-TIME"],"source":"dev","product":"workspace"}
+{"text":"who said \"ship it\" in launch meeting","tokens":["who","said","ship","it","in","launch","meeting"],"offsets":[[0,3],[4,8],[10,14],[15,17],[19,21],[22,28],[29,36]],"tags":["O","B-KIND","B-TOPIC","I-TOPIC","O","B-TOPIC","B-KIND"],"source":"dev","product":"workspace"}
+{"text":"feedback from mihir on packaging","tokens":["feedback","from","mihir","on","packaging"],"offsets":[[0,8],[9,13],[14,19],[20,22],[23,32]],"tags":["B-TOPIC","O","B-ACTOR","O","B-TOPIC"],"source":"dev","product":"workspace"}
+{"text":"client call yesterday recording","tokens":["client","call","yesterday","recording"],"offsets":[[0,6],[7,11],[12,21],[22,31]],"tags":["B-TOPIC","B-KIND","B-TIME","B-KIND"],"source":"dev","product":"workspace"}
+{"text":"task list for this week","tokens":["task","list","for","this","week"],"offsets":[[0,4],[5,9],[10,13],[14,18],[19,23]],"tags":["B-KIND","I-KIND","O","B-TIME","I-TIME"],"source":"dev","product":"workspace"}
+{"text":"amazon listing images final","tokens":["amazon","listing","images","final"],"offsets":[[0,6],[7,14],[15,21],[22,27]],"tags":["B-TOPIC","I-TOPIC","B-KIND","B-ATTR"],"source":"dev","product":"workspace"}
+{"text":"meeta's note on influencer tie-up","tokens":["meeta","'s","note","on","influencer","tie-up"],"offsets":[[0,5],[5,7],[8,12],[13,15],[16,26],[27,33]],"tags":["B-ACTOR","O","B-KIND","O","B-TOPIC","I-TOPIC"],"source":"dev","product":"workspace"}
+{"text":"video call link with logistics","tokens":["video","call","link","with","logistics"],"offsets":[[0,5],[6,10],[11,15],[16,20],[21,30]],"tags":["B-KIND","I-KIND","B-TOPIC","O","B-PARTICIPANT"],"source":"dev","product":"workspace"}
+{"text":"chat with nikhil about courier charges","tokens":["chat","with","nikhil","about","courier","charges"],"offsets":[[0,4],[5,9],[10,16],[17,22],[23,30],[31,38]],"tags":["B-KIND","O","B-PARTICIPANT","O","B-TOPIC","I-TOPIC"],"source":"dev","product":"workspace"}
+{"text":"pending tasks in creative team","tokens":["pending","tasks","in","creative","team"],"offsets":[[0,7],[8,13],[14,16],[17,25],[26,30]],"tags":["B-ATTR","B-KIND","O","B-CONTAINER","O"],"source":"dev","product":"workspace"}
+{"text":"funnel numbers for july","tokens":["funnel","numbers","for","july"],"offsets":[[0,6],[7,14],[15,18],[19,23]],"tags":["B-TOPIC","I-TOPIC","O","B-TIME"],"source":"dev","product":"workspace"}
+{"text":"meeting with rohan on retention","tokens":["meeting","with","rohan","on","retention"],"offsets":[[0,7],[8,12],[13,18],[19,21],[22,31]],"tags":["B-KIND","O","B-PARTICIPANT","O","B-TOPIC"],"source":"dev","product":"workspace"}
+{"text":"notes from monday standup","tokens":["notes","from","monday","standup"],"offsets":[[0,5],[6,10],[11,17],[18,25]],"tags":["B-KIND","B-TIME","I-TIME","B-KIND"],"source":"dev","product":"workspace"}
+{"text":"maillot print mockup v2","tokens":["maillot","print","mockup","v2"],"offsets":[[0,7],[8,13],[14,20],[21,23]],"tags":["B-TOPIC","I-TOPIC","B-KIND","B-TOPIC"],"source":"dev","product":"workspace"}
+{"text":"payment status for pr agency","tokens":["payment","status","for","pr","agency"],"offsets":[[0,7],[8,14],[15,18],[19,21],[22,28]],"tags":["B-TOPIC","I-TOPIC","I-TOPIC","I-TOPIC","I-TOPIC"],"source":"dev","product":"workspace"}
+{"text":"karan's comment on pricing doc","tokens":["karan","'s","comment","on","pricing","doc"],"offsets":[[0,5],[5,7],[8,15],[16,18],[19,26],[27,30]],"tags":["B-ACTOR","O","B-KIND","O","B-TOPIC","B-KIND"],"source":"dev","product":"workspace"}
+{"text":"transcript of call with facebook rep","tokens":["transcript","of","call","with","facebook","rep"],"offsets":[[0,10],[11,13],[14,18],[19,23],[24,32],[33,36]],"tags":["B-KIND","O","B-KIND","O","B-PARTICIPANT","I-PARTICIPANT"],"source":"dev","product":"workspace"}
+{"text":"inventory sheet last updated","tokens":["inventory","sheet","last","updated"],"offsets":[[0,9],[10,15],[16,20],[21,28]],"tags":["B-TOPIC","B-KIND","B-ORDER","I-ORDER"],"source":"dev","product":"workspace"}
+{"text":"swati's file on customer survey","tokens":["swati","'s","file","on","customer","survey"],"offsets":[[0,5],[5,7],[8,12],[13,15],[16,24],[25,31]],"tags":["B-ACTOR","O","B-KIND","O","B-TOPIC","I-TOPIC"],"source":"dev","product":"workspace"}
+{"text":"campaign performance by city","tokens":["campaign","performance","by","city"],"offsets":[[0,8],[9,20],[21,23],[24,28]],"tags":["B-TOPIC","I-TOPIC","I-TOPIC","I-TOPIC"],"source":"dev","product":"workspace"}
+{"text":"what did we decide about the coupon code","tokens":["what","did","we","decide","about","the","coupon","code"],"offsets":[[0,4],[5,8],[9,11],[12,18],[19,24],[25,28],[29,35],[36,40]],"tags":["O","O","O","B-TOPIC","I-TOPIC","I-TOPIC","I-TOPIC","I-TOPIC"],"source":"dev","product":"workspace"}
+{"text":"lost order complaint thread","tokens":["lost","order","complaint","thread"],"offsets":[[0,4],[5,10],[11,20],[21,27]],"tags":["B-TOPIC","I-TOPIC","I-TOPIC","B-KIND"],"source":"dev","product":"workspace"}
+{"text":"screenshot from insta dm","tokens":["screenshot","from","insta","dm"],"offsets":[[0,10],[11,15],[16,21],[22,24]],"tags":["B-KIND","O","B-TOPIC","B-KIND"],"source":"dev","product":"workspace"}
+{"text":"vendor contract signed","tokens":["vendor","contract","signed"],"offsets":[[0,6],[7,15],[16,22]],"tags":["B-TOPIC","I-TOPIC","B-ATTR"],"source":"dev","product":"workspace"}
+{"text":"gaurav's old note on packaging","tokens":["gaurav","'s","old","note","on","packaging"],"offsets":[[0,6],[6,8],[9,12],[13,17],[18,20],[21,30]],"tags":["B-ACTOR","O","B-ATTR","B-KIND","O","B-TOPIC"],"source":"dev","product":"workspace"}
+{"text":"meeting on growth hack - recording","tokens":["meeting","on","growth","hack","recording"],"offsets":[[0,7],[8,10],[11,17],[18,22],[25,34]],"tags":["B-KIND","O","B-TOPIC","I-TOPIC","B-KIND"],"source":"dev","product":"workspace"}
+{"text":"copy for email blast - draft","tokens":["copy","for","email","blast","draft"],"offsets":[[0,4],[5,8],[9,14],[15,20],[23,28]],"tags":["B-TOPIC","I-TOPIC","I-TOPIC","I-TOPIC","B-ATTR"],"source":"dev","product":"workspace"}
+{"text":"cancelled orders list","tokens":["cancelled","orders","list"],"offsets":[[0,9],[10,16],[17,21]],"tags":["B-ATTR","B-TOPIC","I-TOPIC"],"source":"dev","product":"workspace"}
+{"text":"gst invoice from warehouse","tokens":["gst","invoice","from","warehouse"],"offsets":[[0,3],[4,11],[12,16],[17,26]],"tags":["B-TOPIC","I-TOPIC","O","B-ACTOR"],"source":"dev","product":"workspace"}
+{"text":"recording of website redesign call","tokens":["recording","of","website","redesign","call"],"offsets":[[0,9],[10,12],[13,20],[21,29],[30,34]],"tags":["B-KIND","O","B-TOPIC","I-TOPIC","B-KIND"],"source":"dev","product":"workspace"}
+{"text":"bhavna's task on returns","tokens":["bhavna","'s","task","on","returns"],"offsets":[[0,6],[6,8],[9,13],[14,16],[17,24]],"tags":["B-ACTOR","O","B-KIND","O","B-TOPIC"],"source":"dev","product":"workspace"}
+{"text":"chat with amit about retargeting","tokens":["chat","with","amit","about","retargeting"],"offsets":[[0,4],[5,9],[10,14],[15,20],[21,32]],"tags":["B-KIND","O","B-PARTICIPANT","O","B-TOPIC"],"source":"dev","product":"workspace"}
+{"text":"pitch deck for nykaa - final","tokens":["pitch","deck","for","nykaa","final"],"offsets":[[0,5],[6,10],[11,14],[15,20],[23,28]],"tags":["B-TOPIC","B-KIND","O","B-TOPIC","B-ATTR"],"source":"dev","product":"workspace"}
+{"text":"customer support tags - pending","tokens":["customer","support","tags","pending"],"offsets":[[0,8],[9,16],[17,21],[24,31]],"tags":["B-TOPIC","I-TOPIC","I-TOPIC","B-ATTR"],"source":"dev","product":"workspace"}
+{"text":"sale data for september","tokens":["sale","data","for","september"],"offsets":[[0,4],[5,9],[10,13],[14,23]],"tags":["B-TOPIC","I-TOPIC","O","B-TIME"],"source":"dev","product":"workspace"}
+{"text":"exclude organic searches from report","tokens":["exclude","organic","searches","from","report"],"offsets":[[0,7],[8,15],[16,24],[25,29],[30,36]],"tags":["B-NEG","B-TOPIC","I-TOPIC","O","B-TOPIC"],"source":"dev","product":"workspace"}
+{"text":"notes from hiring interview - priya","tokens":["notes","from","hiring","interview","priya"],"offsets":[[0,5],[6,10],[11,17],[18,27],[30,35]],"tags":["B-KIND","O","B-TOPIC","I-TOPIC","B-PARTICIPANT"],"source":"dev","product":"workspace"}
+{"text":"deadlink report from vaibhav","tokens":["deadlink","report","from","vaibhav"],"offsets":[[0,8],[9,15],[16,20],[21,28]],"tags":["B-TOPIC","I-TOPIC","O","B-ACTOR"],"source":"dev","product":"workspace"}
+{"text":"content calendar - october updates","tokens":["content","calendar","october","updates"],"offsets":[[0,7],[8,16],[19,26],[27,34]],"tags":["B-TOPIC","B-KIND","B-TIME","B-TOPIC"],"source":"dev","product":"workspace"}
+{"text":"what time is the shoot tomorrow","tokens":["what","time","is","the","shoot","tomorrow"],"offsets":[[0,4],[5,9],[10,12],[13,16],[17,22],[23,31]],"tags":["O","O","O","O","B-TOPIC","B-TIME"],"source":"dev","product":"workspace"}
+{"text":"cost per acquisition for meta ads","tokens":["cost","per","acquisition","for","meta","ads"],"offsets":[[0,4],[5,8],[9,20],[21,24],[25,29],[30,33]],"tags":["B-TOPIC","I-TOPIC","I-TOPIC","I-TOPIC","I-TOPIC","I-TOPIC"],"source":"dev","product":"workspace"}
+{"text":"meeting notes - sort by date oldest first","tokens":["meeting","notes","sort","by","date","oldest","first"],"offsets":[[0,7],[8,13],[16,20],[21,23],[24,28],[29,35],[36,41]],"tags":["B-KIND","I-KIND","O","O","O","B-ORDER","I-ORDER"],"source":"dev","product":"workspace"}
+{"text":"file name with \"logo\" but not old","tokens":["file","name","with","logo","but","not","old"],"offsets":[[0,4],[5,9],[10,14],[16,20],[22,25],[26,29],[30,33]],"tags":["O","O","O","B-TOPIC","O","B-NEG","B-ATTR"],"source":"dev","product":"workspace"}
+{"text":"refund request from archana","tokens":["refund","request","from","archana"],"offsets":[[0,6],[7,14],[15,19],[20,27]],"tags":["B-TOPIC","I-TOPIC","O","B-ACTOR"],"source":"dev","product":"workspace"}
+{"text":"video file of unboxing test","tokens":["video","file","of","unboxing","test"],"offsets":[[0,5],[6,10],[11,13],[14,22],[23,27]],"tags":["B-KIND","I-KIND","O","B-TOPIC","I-TOPIC"],"source":"dev","product":"workspace"}
+{"text":"what did shreya say about the new packaging","tokens":["what","did","shreya","say","about","the","new","packaging"],"offsets":[[0,4],[5,8],[9,15],[16,19],[20,25],[26,29],[30,33],[34,43]],"tags":["O","O","B-ACTOR","B-KIND","O","O","B-TOPIC","I-TOPIC"],"source":"dev","product":"workspace"}
+{"text":"puneet's pending review on creative","tokens":["puneet","'s","pending","review","on","creative"],"offsets":[[0,6],[6,8],[9,16],[17,23],[24,26],[27,35]],"tags":["B-ACTOR","O","B-ATTR","B-TOPIC","I-TOPIC","I-TOPIC"],"source":"dev","product":"workspace"}
+{"text":"chat about influencer contract - not signed","tokens":["chat","about","influencer","contract","not","signed"],"offsets":[[0,4],[5,10],[11,21],[22,30],[33,36],[37,43]],"tags":["B-KIND","O","B-TOPIC","I-TOPIC","B-NEG","B-ATTR"],"source":"dev","product":"workspace"}
+{"text":"delhi warehouse pickup schedule","tokens":["delhi","warehouse","pickup","schedule"],"offsets":[[0,5],[6,15],[16,22],[23,31]],"tags":["B-TOPIC","I-TOPIC","I-TOPIC","I-TOPIC"],"source":"dev","product":"workspace"}
+{"text":"shipping labels without pincode","tokens":["shipping","labels","without","pincode"],"offsets":[[0,8],[9,15],[16,23],[24,31]],"tags":["B-TOPIC","I-TOPIC","B-NEG","B-TOPIC"],"source":"dev","product":"workspace"}
+{"text":"brand ambassador list - shortlisted","tokens":["brand","ambassador","list","shortlisted"],"offsets":[[0,5],[6,16],[17,21],[24,35]],"tags":["B-TOPIC","I-TOPIC","I-TOPIC","B-ATTR"],"source":"dev","product":"workspace"}
