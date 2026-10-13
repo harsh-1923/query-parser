@@ -1,0 +1,21 @@
+Using CPython 3.12.15
+Creating virtual environment at: .venv
+   Building qp-train @ file:///Users/harsh.sharma.001/Documents/Git/personal/query-parser-s7/training
+      Built qp-train @ file:///Users/harsh.sharma.001/Documents/Git/personal/query-parser-s7/training
+Installed 18 packages in 381ms
+tagger/medium: 77,623 params, 71154 train, 300 val
+epoch   1  loss 1.7447  val acc 0.5064  val F1 0.3688  30.8s
+epoch   2  loss 0.6275  val acc 0.6062  val F1 0.4813  25.9s
+epoch   3  loss 0.3801  val acc 0.6310  val F1 0.5241  25.5s
+epoch   4  loss 0.2883  val acc 0.6310  val F1 0.5293  25.6s
+epoch   5  loss 0.2429  val acc 0.6337  val F1 0.5422  25.3s
+epoch   6  loss 0.2198  val acc 0.6603  val F1 0.5632  25.5s
+epoch   7  loss 0.2018  val acc 0.6447  val F1 0.5521  25.6s
+epoch   8  loss 0.1885  val acc 0.6484  val F1 0.5604  25.6s
+epoch   9  loss 0.1765  val acc 0.6685  val F1 0.5782  26.2s
+epoch  10  loss 0.1671  val acc 0.6419  val F1 0.5517  25.2s
+epoch  11  loss 0.1588  val acc 0.6538  val F1 0.5664  26.0s
+epoch  12  loss 0.1534  val acc 0.6538  val F1 0.5775  25.5s
+epoch  13  loss 0.1459  val acc 0.6474  val F1 0.5645  26.1s
+epoch  14  loss 0.1392  val acc 0.6658  val F1 0.5754  25.5s
+early stop: no val F1 gain for 5 epochs

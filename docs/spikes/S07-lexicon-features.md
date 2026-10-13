@@ -1,6 +1,7 @@
 # S7: lexicon and rule features as tagger inputs
 
-**Status:** done. Inputs help; whether the model beats the rules depends on when training stops.
+**Status:** done (rerun 2026-10-13 with dev-set selection, 3 seeds; see [Rerun](#rerun-checkpoints-picked-on-an-llm-written-dev-set)).
+The feature model beats the rules on S02 at every seed; on GLM it ties them within noise. No ADR yet.
 Branch: `spike/lexicon-features`.
 
 ## Hypothesis
@@ -84,3 +85,72 @@ Latency of the feature model: forward + Viterbi p50 1.2–1.3 ms (batch 1, 1 thr
 3. **If it holds,** write ADR 0004 "runtime rule and lexicon features as tagger input", update
    PLAN §6.2, and pin the featurizer with a TS ↔ Python fixture (AGENTS rule 6).
 4. **The real test is the Xyne Spaces data.** Both LLM-written sets are stand-ins.
+
+## Rerun: checkpoints picked on an LLM-written dev set
+
+**Hypothesis.** The epoch-9 vs full-training swing came from picking checkpoints on generated val.
+Picking on queries written by another model family should give a stable answer.
+
+**What was run** ([run-dev.sh](../../spikes/S07-lexicon-features/run-dev.sh),
+[summarize-dev.py](../../spikes/S07-lexicon-features/summarize-dev.py)):
+
+- **Dev set:** [eval/datasets/llm-written/dev/](../../eval/datasets/llm-written/dev/). It has 300 queries
+  written by `open-fast` on the gateway, which self-reports as DeepSeek-V3. A Sonnet subagent labelled
+  them without seeing any predictions. It is passed as `--val`, so it drives early stopping
+  (patience 5) and the choice of best checkpoint. It is never trained on and not reported as a test
+  number. The feature model gets it featurized with `--names all`, like the test sets.
+- **Training:** same data and settings as above, but seeds 42, 43 and 44, one run at a time.
+- **Inputs at test time:** all of them, with the name pool as the directory (the "… + directory
+  (name pool)" row above).
+
+**Numbers.** Span F1. Per-run results are in [eval/results/s7-dev/](../../eval/results/s7-dev/), and
+the summary is in [summary.json](../../eval/results/s7-dev/summary.json). Rules are from
+[eval/results/report.md](../../eval/results/report.md).
+
+| System | Seed | Best epoch (stopped) | S02 (204) | GLM (300) |
+|---|---|---|---|---|
+| Rules | – | – | 0.727 | 0.726 |
+| Baseline medium | 42 | 9 (14) | 0.723 | 0.660 |
+| | 43 | 12 (17) | 0.744 | 0.700 |
+| | 44 | 18 (23) | 0.752 | 0.626 |
+| Feature model | 42 | 2 (7) | 0.772 | 0.754 |
+| | 43 | 3 (8) | 0.773 | 0.714 |
+| | 44 | 5 (10) | 0.774 | 0.721 |
+
+| System | S02 mean (min–max) | GLM mean (min–max) | vs rules S02 | vs rules GLM |
+|---|---|---|---|---|
+| Baseline medium | 0.740 (0.723–0.752) | 0.662 (0.626–0.700) | +1.3 | −6.4 |
+| Feature model | **0.773** (0.772–0.774) | **0.730** (0.714–0.754) | **+4.6** | +0.4 |
+
+**Reading.**
+
+- **S02: a clear win.** The feature model beats the rules at every seed by +4.5 to +4.7, with a
+  spread of only 0.2.
+- **GLM: a tie.** The mean is +0.4 over the rules, but the seeds range from −1.2 to +2.8, so the
+  rules sit inside the spread. The win at seed 42 (0.754) matches the old epoch-9 number, and the
+  other two seeds don't reproduce it.
+- **The features matter more than the seed.** Over the plain model, the feature model gains +3.3 on
+  S02 and +6.8 on GLM. Its GLM spread (4.0) is about half the baseline's (7.4).
+- **The dev set stops the feature model very early (epoch 2–5).**
+  - Dev F1 is flat from epoch 1 (0.61–0.67). After one epoch the model mostly copies the rule
+    labels, and further training on generated data doesn't help on LLM-written queries.
+  - This fits the first run, where longer training lost to the rules on GLM. It also means the
+    model adds little beyond the rules on GLM-style queries.
+- **The dev set is noisy.** It has 300 queries, and the curve moves ±2 between epochs, so which
+  epoch "wins" is partly chance. That is part of the GLM spread.
+- **The baseline doesn't change the picture.** Picked on dev, it still loses to the rules on GLM
+  at every seed.
+
+**Decision.**
+
+1. **Not beyond the noise on both sets, so no ADR 0004 and no PLAN §6.2 change.** The condition
+   for writing them was a win on both S02 and GLM.
+2. **Keep the branch.** The S02 gain is stable, and the features clearly help the model.
+3. **The deciding test is the Xyne Spaces data** (real queries, labelled). Rerun these 6 checkpoints
+   on it rather than retraining.
+4. **Things that might move GLM:**
+   - Training data that is less template-like, so more epochs help instead of hurting.
+   - A larger dev set, to cut selection noise.
+   - Training for a fixed number of epochs instead of early stopping, since dev F1 is flat.
+
+   None of these has been tried.

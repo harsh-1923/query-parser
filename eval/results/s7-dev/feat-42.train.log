@@ -1,0 +1,9 @@
+tagger/medium-feat: 79,351 params, 71154 train, 300 val
+epoch   1  loss 1.2196  val acc 0.6850  val F1 0.6327  26.1s
+epoch   2  loss 0.4218  val acc 0.7308  val F1 0.6739  25.8s
+epoch   3  loss 0.2744  val acc 0.6886  val F1 0.6294  25.7s
+epoch   4  loss 0.2193  val acc 0.6951  val F1 0.6242  25.6s
+epoch   5  loss 0.1893  val acc 0.6832  val F1 0.6115  25.8s
+epoch   6  loss 0.1712  val acc 0.6896  val F1 0.6341  26.1s
+epoch   7  loss 0.1582  val acc 0.7042  val F1 0.6340  25.6s
+early stop: no val F1 gain for 5 epochs
