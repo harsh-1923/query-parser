@@ -100,6 +100,7 @@ export function loadTagger(manifest: TaggerManifest, weights: ArrayBuffer): Mode
   function run(tokens: readonly string[], featRows?: readonly TokenFeatures[]): TaggerOutput {
     if (feats && !featRows) throw new Error(`${manifest.name} needs per-token features`)
     const t = Math.min(tokens.length, maxTokens)
+    if (t === 0) return { labels: [], confidence: [], logits: [] }
     let xs: Float64Array[] = []
     for (let i = 0; i < t; i++) {
       const x = byteVector(tokens[i] ?? "")

@@ -44,5 +44,10 @@ for (const file of readdirSync(fixtures).filter((f) => f.endsWith(".json"))) {
       }
       expect(maxDiff).toBeLessThan(1e-3)
     })
+
+    it("returns nothing for a query with no tokens", () => {
+      const feats = tagger.usesFeatures ? [] : undefined
+      expect(tagger.run([], feats)).toEqual({ labels: [], confidence: [], logits: [] })
+    })
   })
 }

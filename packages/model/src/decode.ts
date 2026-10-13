@@ -79,6 +79,7 @@ export function viterbi(emit: Float64Array[], { trans, start }: Transitions): nu
 /** P(tag_i = j | input) under the constrained transitions (forward-backward). */
 export function marginals(emit: Float64Array[], { trans, start }: Transitions): Float64Array[] {
   const t = emit.length
+  if (t === 0) return []
   const c = start.length
   const alphas: Float64Array[] = [start.map((s, j) => s + (emit[0]?.[j] ?? 0))]
   const tmp = new Float64Array(c)
