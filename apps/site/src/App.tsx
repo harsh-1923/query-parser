@@ -1,3 +1,4 @@
+import type { Tagger } from "@qp/core"
 import { ArrowUpRight } from "lucide-react"
 import { useEffect, useMemo, useRef, useState } from "react"
 import { Directory } from "@/components/Directory"
@@ -5,7 +6,6 @@ import { Highlighted, QueryBox } from "@/components/QueryBox"
 import { Result } from "@/components/Result"
 import { SettingsPanel } from "@/components/SettingsPanel"
 import { Card } from "@/components/ui/card"
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { loadModel, MODELS, type TaggerChoice } from "@/lib/models"
 import { LEGEND, parse, rules, type Settings, TONE_CLASS, ZONES } from "@/lib/parser"
 import { cn } from "@/lib/utils"
@@ -28,6 +28,18 @@ const EXAMPLES: [string, string][] = [
 
 const REPO = "https://github.com/harsh-1923/query-parser"
 
+const SYSTEMS = [
+  {
+    key: "rules",
+    label: "Rules",
+    blurb: "Hand-written rules",
+    scores: { s02: 0.727, glm: 0.726 },
+    results: `${REPO}/blob/main/eval/results/report.md`,
+  },
+  { key: "model", ...MODELS.model },
+  { key: "model-feat", ...MODELS["model-feat"] },
+] as const satisfies readonly ({ key: TaggerChoice } & (typeof MODELS)["model"])[]
+
 function Section({
   title,
   sub,
@@ -38,7 +50,7 @@ function Section({
   children: React.ReactNode
 }) {
   return (
-    <section className="mt-16">
+    <section className="mx-auto mt-16 max-w-xl">
       <h2 className="text-center text-lg font-semibold tracking-tight">{title}</h2>
       <p className="mx-auto mt-1 mb-5 max-w-sm text-center text-sm text-balance text-muted-foreground">
         {sub}
@@ -58,31 +70,36 @@ export function App() {
     fiscalYearStartMonth: 4,
   })
   const cardRef = useRef<HTMLDivElement>(null)
-  const [choice, setChoice] = useState<TaggerChoice>("rules")
-  const [tagger, setTagger] = useState(rules)
-  const [loadError, setLoadError] = useState<string | null>(null)
+  const [taggers, setTaggers] = useState<Partial<Record<TaggerChoice, Tagger | string>>>({
+    rules,
+  })
   useEffect(() => {
-    if (choice === "rules") {
-      setTagger(rules)
-      return
-    }
     let live = true
-    setLoadError(null)
-    loadModel(choice).then(
-      (t) => live && setTagger(t),
-      (e: unknown) => live && setLoadError(String(e)),
-    )
+    for (const key of ["model", "model-feat"] as const)
+      loadModel(key).then(
+        (t) => live && setTaggers((m) => ({ ...m, [key]: t })),
+        (e: unknown) => live && setTaggers((m) => ({ ...m, [key]: String(e) })),
+      )
     return () => {
       live = false
     }
-  }, [choice])
-  const loading = choice !== "rules" && tagger === rules && !loadError
-  const result = useMemo(() => parse(query, settings, tagger), [query, settings, tagger])
-  const tiles = useMemo(
-    () => EXAMPLES.map(([label, q]) => ({ label, q, spans: parse(q, settings, tagger).spans })),
-    [settings, tagger],
+  }, [])
+  const results = useMemo(
+    () =>
+      SYSTEMS.map((sys) => {
+        const t = taggers[sys.key]
+        return {
+          ...sys,
+          state: t === undefined ? "loading" : typeof t === "string" ? t : null,
+          result: t && typeof t !== "string" ? parse(query, settings, t) : null,
+        }
+      }),
+    [query, settings, taggers],
   )
-  const info = choice === "rules" ? null : MODELS[choice]
+  const tiles = useMemo(
+    () => EXAMPLES.map(([label, q]) => ({ label, q, spans: parse(q, settings).spans })),
+    [settings],
+  )
 
   const pick = (q: string) => {
     setQuery(q)
@@ -92,7 +109,7 @@ export function App() {
   }
 
   return (
-    <main className="mx-auto w-full max-w-xl px-4 pt-10 pb-10 sm:pt-14">
+    <main className="mx-auto w-full max-w-6xl px-4 pt-10 pb-10 sm:pt-14">
       <header className="flex items-center justify-center gap-2 text-lg font-medium tracking-tight">
         <img src="/icon.svg" alt="" className="size-7" />
         query-parser
@@ -114,43 +131,57 @@ export function App() {
             <SettingsPanel settings={settings} onChange={setSettings} />
           </div>
         </div>
-        <Tabs value={choice} onValueChange={(v) => setChoice(v as TaggerChoice)} className="mb-2">
-          <TabsList className="w-full">
-            <TabsTrigger value="rules">Rules</TabsTrigger>
-            <TabsTrigger value="model">{MODELS.model.label}</TabsTrigger>
-            <TabsTrigger value="model-feat">{MODELS["model-feat"].label}</TabsTrigger>
-          </TabsList>
-        </Tabs>
-        <p className="mb-3 min-h-8 text-center text-xs text-pretty text-muted-foreground">
-          {loadError ? (
-            <span className="text-red-600">Couldn't load the model: {loadError}</span>
-          ) : loading ? (
-            "Loading the model (about 300 KB)…"
-          ) : (
-            <>
-              {info ? info.blurb : "Hand-written rules"}. Span F1 {info ? info.scores.s02 : 0.727}{" "}
-              on S02 and {info ? info.scores.glm : 0.726} on GLM{" "}
-              <a
-                className="text-foreground underline-offset-4 hover:underline"
-                href={info ? info.results : `${REPO}/blob/main/eval/results/report.md`}
-              >
-                (results)
-              </a>
-            </>
-          )}
-        </p>
         <Card className="gap-0 overflow-hidden py-0 shadow-xs">
           <div className="bg-muted/50 focus-within:bg-muted/30">
-            <QueryBox value={query} spans={result.spans} onChange={setQuery} />
-          </div>
-          <div className="border-t">
-            {query.trim() ? (
-              <Result result={result} tz={settings.timeZone} onRewrite={setQuery} />
-            ) : (
-              <p className="px-4 py-4 text-sm text-muted-foreground">Type a search query.</p>
-            )}
+            <QueryBox value={query} spans={[]} onChange={setQuery} />
           </div>
         </Card>
+        <div className="mt-3 grid grid-cols-1 gap-3 lg:grid-cols-3">
+          {results.map((r) => (
+            <Card key={r.key} className="gap-0 overflow-hidden py-0 shadow-xs">
+              <div className="border-b px-4 py-3">
+                <div className="flex items-baseline justify-between gap-3">
+                  <span className="text-sm font-medium">{r.label}</span>
+                  <a
+                    className="shrink-0 text-xs text-muted-foreground underline-offset-4 hover:text-foreground hover:underline"
+                    href={r.results}
+                    title="Span F1 on the S02 and GLM test sets"
+                  >
+                    F1 {r.scores.s02.toFixed(3)} · {r.scores.glm.toFixed(3)}
+                  </a>
+                </div>
+                <p className="mt-0.5 text-xs text-pretty text-muted-foreground">{r.blurb}</p>
+              </div>
+              {r.result ? (
+                <>
+                  <p className="bg-muted/30 px-4 py-3 text-base leading-7 break-words">
+                    {query.trim() ? (
+                      <Highlighted text={query} spans={r.result.spans} />
+                    ) : (
+                      <span className="text-sm text-muted-foreground">Type a search query.</span>
+                    )}
+                  </p>
+                  {query.trim() && (
+                    <div className="border-t">
+                      <Result result={r.result} tz={settings.timeZone} onRewrite={setQuery} />
+                    </div>
+                  )}
+                </>
+              ) : (
+                <p
+                  className={cn(
+                    "px-4 py-4 text-sm",
+                    r.state === "loading" ? "text-muted-foreground" : "text-red-600",
+                  )}
+                >
+                  {r.state === "loading"
+                    ? "Loading the model (about 300 KB)…"
+                    : `Couldn't load the model: ${r.state}`}
+                </p>
+              )}
+            </Card>
+          ))}
+        </div>
         <ul className="mt-3 flex flex-wrap justify-center gap-x-4 gap-y-1.5 text-xs text-muted-foreground">
           {LEGEND.map(([tone, label]) => (
             <li key={tone} className="flex items-center gap-1.5">
@@ -161,7 +192,10 @@ export function App() {
         </ul>
       </div>
 
-      <Section title="Tap One, See the Filters" sub="Each of these runs in the box above">
+      <Section
+        title="Tap One, See the Filters"
+        sub="Each of these runs in the box above. Highlights here show the rules"
+      >
         <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
           {tiles.map(({ label, q, spans }) => (
             <button
@@ -208,7 +242,7 @@ toSearchParams(r)  // type=files&from=u_001&after=…&before=…&q=pdfs`}</code>
 
       <Section
         title="A Small Experiment. Still Growing"
-        sub="Switch between the rule baseline and two tiny trained models at the top. Both models run in your browser"
+        sub="The rule baseline and two tiny trained models run side by side at the top, all in your browser"
       >
         <div className="space-y-3 text-center text-sm leading-relaxed text-pretty text-muted-foreground">
           <p>
@@ -245,7 +279,7 @@ toSearchParams(r)  // type=files&from=u_001&after=…&before=…&q=pdfs`}</code>
         </div>
       </Section>
 
-      <footer className="mt-16 flex items-center justify-between border-t pt-4 text-xs text-muted-foreground">
+      <footer className="mx-auto mt-16 flex max-w-xl items-center justify-between border-t pt-4 text-xs text-muted-foreground">
         <a className="inline-flex items-center gap-1 hover:text-foreground" href={REPO}>
           query-parser <ArrowUpRight className="size-3" />
         </a>
