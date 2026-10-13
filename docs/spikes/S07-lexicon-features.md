@@ -2,7 +2,8 @@
 
 **Status:** done (rerun 2026-10-13 with dev-set selection, 3 seeds; see [Rerun](#rerun-checkpoints-picked-on-an-llm-written-dev-set)).
 The feature model beats the rules on S02 at every seed; on GLM it ties them within noise. No ADR yet.
-Branch: `spike/lexicon-features`.
+Branch: `spike/lexicon-features`, merged into main on 2026-10-13 with the site work below (results and
+runtime only; the ADR is still open).
 
 ## Hypothesis
 
@@ -157,7 +158,7 @@ the summary is in [summary.json](../../eval/results/s7-dev/summary.json). Rules 
 
 ## In the browser
 
-**Branch:** `spike/model-on-site`. The demo has a Rules / Model / Model + rules switch.
+**Branch:** `spike/model-on-site`, merged into main 2026-10-13. The demo has a Rules / Model / Model + rules switch.
 
 - **Export:** [export.py](../../training/qp_train/export.py) writes float32 weights and a manifest to
   `packages/model/weights/`, about 310 KB per model. It also writes a parity fixture to

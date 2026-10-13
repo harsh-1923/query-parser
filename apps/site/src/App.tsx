@@ -216,12 +216,21 @@ toSearchParams(r)  // type=files&from=u_001&after=…&before=…&q=pdfs`}</code>
             filters, and a fictional directory resolves names. Open Directory to see what it knows.
           </p>
           <p>
-            On 205 test queries the rules reach 69.5 span F1{" "}
+            On two sets of test queries written by other LLMs (204 and 300), the rules reach 0.727
+            and 0.726 span F1{" "}
             <a
               className="text-foreground underline-offset-4 hover:underline"
-              href={`${REPO}/blob/main/eval/results/rule-baseline-s02.txt`}
+              href={`${REPO}/blob/main/eval/results/report.md`}
             >
               (results)
+            </a>
+            . The models beat the rules on the first set; on the second, the feature model ties them
+            and the text-only model is behind{" "}
+            <a
+              className="text-foreground underline-offset-4 hover:underline"
+              href={`${REPO}/blob/main/docs/spikes/S07-lexicon-features.md`}
+            >
+              (S7)
             </a>
             . The time normalizer gets every test time phrase right and 84.9% of a held-out set,
             with zero wrong answers{" "}

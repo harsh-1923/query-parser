@@ -18,8 +18,7 @@ export interface ModelInfo {
   results: string
 }
 
-const RESULTS =
-  "https://github.com/harsh-1923/query-parser/blob/spike/model-on-site/eval/results/s7-dev"
+const RESULTS = "https://github.com/harsh-1923/query-parser/blob/main/eval/results/s7-dev"
 
 export const MODELS: Record<Exclude<TaggerChoice, "rules">, ModelInfo> = {
   model: {
