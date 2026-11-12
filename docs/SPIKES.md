@@ -10,16 +10,21 @@ nothing in `packages/` may import it.
 
 Suggested order: S2 → S4 → S1 → S3 → S6, with S5, S7, S8 alongside M3–M4.
 
+**Since [ADR 0004](decisions/0004-pretrained-fine-tuned-model.md) (2026-11-12):** the from-scratch
+line (S1, S6, S7) is closed. Next: the M3 holdout, then S9 (pretrained candidates), with S8
+(calibration) and S3 (names) rerun on the S9 winner.
+
 | # | Question | Blocks | Time box |
 |---|---|---|---|
-| S1 | Tagger or seq2seq? How small can it be? **Done: tagger (medium, 78k) wins. Round 2 data: 0.744 S02 / 0.636 GLM vs rules 0.727 / 0.726; bar 0.85 not met** ([result](spikes/S01-tagger-vs-seq2seq.md)) | M4 | 2 days |
+| S1 | Tagger or seq2seq? How small can it be? **Done: tagger (medium, 78k) wins. Round 2 data: 0.744 S02 / 0.636 GLM vs rules 0.727 / 0.726; bar 0.85 not met. Closed by ADR 0004** ([result](spikes/S01-tagger-vs-seq2seq.md)) | M4 | 2 days |
 | S2 | Does the role set cover real queries? **Done: pass with ADR 0002** ([result](spikes/S02-role-coverage.md)) | M2 | ½ day |
-| S3 | Can it spot names without cue words, including unseen Indian names? **Interim: not yet (no-cue recall 0.57 on S02); waits on data fixes** ([numbers](spikes/S01-tagger-vs-seq2seq.md#s3-from-the-same-runs-interim)) | M4 | 1 day |
+| S3 | Can it spot names without cue words, including unseen Indian names? **Interim: not yet (no-cue recall 0.57 on S02); rerun on the S9 winner** ([numbers](spikes/S01-tagger-vs-seq2seq.md#s3-from-the-same-runs-interim)) | M4 | 1 day |
 | S4 | Hand-written time grammar or chrono-node? **Done: pass, grammar only ([ADR 0003](decisions/0003-time-grammar-no-chrono.md))** ([result](spikes/S04-time-normalization.md)) | M2 | 1 day |
 | S5 | Do alias lists cover kinds and attributes, or do we need embeddings? **Done: fails the bar (85.4% on fresh data); aliases stay, no embeddings in core, `unknownKind` hook** ([result](spikes/S05-kind-attr-vocab.md)) | M2 | ½ day |
-| S6 | Is plain-JS CPU inference fast enough on a mid-range phone? **Done: pass (medium 1.2 ms laptop, 8 ms at 6× CPU throttle; no real phone yet)** ([result](spikes/S06-runtime.md)) | M4 | ½ day |
-| S7 | How big is the synthetic-to-handwritten gap? | M4 | runs with M3/M4 |
-| S8 | Can confidence be calibrated, and do negatives teach "nothing to extract"? | M4 | runs with M4 |
+| S6 | Is plain-JS CPU inference fast enough on a mid-range phone? **Done: pass (medium 1.2 ms laptop, 8 ms at 6× CPU throttle; no real phone yet). Applies to the from-scratch tagger; pretrained runtime is measured in S9** ([result](spikes/S06-runtime.md)) | M4 | ½ day |
+| S7 | How big is the synthetic-to-handwritten gap? Ran as rule and lexicon features as tagger inputs. **Done: helps, ties the rules on GLM; closed by ADR 0004** ([result](spikes/S07-lexicon-features.md)) | M4 | runs with M3/M4 |
+| S8 | Can confidence be calibrated, and do negatives teach "nothing to extract"? **Now a release gate (apps use confidence to decide on fallback)** | M4 | runs with M4 |
+| S9 | Which fine-tuned pretrained model wins on the holdout, and does it run in the browser? | M4 | 3 days |
 
 ---
 
@@ -137,3 +142,34 @@ the handwritten set.
 **Pass.** Both thresholds met.
 
 **If it fails.** Use a separate tiny "is this a filter query?" classifier head.
+
+## S9: Pretrained candidates
+
+**Hypothesis.** A small pretrained model fine-tuned with LoRA on our data beats both the rules and
+the from-scratch tagger on the private holdout, and runs in a laptop browser on WebGPU within the
+§10.3 latency target. From [ADR 0004](decisions/0004-pretrained-fine-tuned-model.md).
+
+**Method.**
+- **Before training:**
+  - Tokenizer check: how each candidate splits the test name pool, handles, typos and lowercase
+    text.
+  - Zero-shot baselines: each candidate prompted (B) or GLiNER-style (A) with no fine-tuning.
+  - The teacher LLM's own F1 on the holdout, which caps what teacher labels can reach.
+- **Candidates:**
+  - A: Ettin encoder 17M and 32M; the EmbeddingGemma 2 text encoder (270M). Each with a BIO head
+    and constrained Viterbi.
+  - B, only if A misses the bar: LFM2.5-1.2B or Qwen3-0.6B, writing spans under constrained
+    decoding.
+- **Training:** LoRA SFT on `@qp/datagen` v1 plus teacher-labelled queries; checkpoints picked
+  on the LLM-written dev set; runs tracked in Trackio.
+- **Measure:** span F1 per task family, ECE before and after temperature scaling, model download
+  size, p50/p95 latency in Chrome with WebGPU and with WASM, on the holdout.
+
+**Pass.** The best candidate reaches ≥ 0.85 span F1 on the holdout, beats the rules and the
+from-scratch tagger on every task family, and meets the latency target.
+
+**If it fails.**
+- A misses on accuracy: try B.
+- B is too slow or too big: ship the best A with the rules as fallback, and say so.
+- Everything misses: treat it as a data problem first (more real queries, better teacher labels)
+  before trying bigger models.

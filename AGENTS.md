@@ -5,17 +5,24 @@ Guidance for AI coding agents (and humans) working in this repo. Read this first
 
 ## What this is
 
-A product-agnostic SDK that turns plain-English search queries into structured filters. A tiny
+A product-agnostic SDK that turns plain-English search queries into structured filters. A small
 model tags spans of the query with generic **roles** (`ACTOR`, `TIME`, `KIND`, …); each product maps
 roles to its own **facets** and resolves names to its own IDs through configuration and callbacks.
 See PLAN §2 and [ADR 0001](docs/decisions/0001-roles-not-facets.md).
 
 ## Current phase
 
-M1/M2. Spikes S2, S4 and S5 done (see `docs/spikes/`); the M2 rule baseline runs end to end in
-`packages/core`, the Xyne adapter and `apps/site`. `packages/model` runs exported taggers in the
-browser (S7; the site can switch to them, rules stay the default). Other packages are stubs. Don't implement M2+ features until the
-relevant spikes in [docs/SPIKES.md](docs/SPIKES.md) have results, unless asked.
+M3/M4. The M2 rule baseline runs end to end in `packages/core`, the Xyne adapter and `apps/site`.
+The from-scratch tagger (S1, S7) is closed: [ADR 0004](docs/decisions/0004-pretrained-fine-tuned-model.md)
+switches to fine-tuning a small pretrained model. Order of work:
+
+1. Build the private holdout and task families (PLAN §10.0). Nothing is trained before this.
+2. S9: compare pretrained candidates on it, encoder tagger (A) before small LLM (B).
+3. Calibrate the winner (S8) and export it to the browser.
+
+The SDK never calls an LLM; fallback is the application's job, driven by our confidence. Don't
+implement M4+ features until the relevant spikes in [docs/SPIKES.md](docs/SPIKES.md) have results,
+unless asked.
 
 ## Layout
 
@@ -27,7 +34,7 @@ relevant spikes in [docs/SPIKES.md](docs/SPIKES.md) have results, unless asked.
 | `packages/datagen` | Synthetic training/eval data |
 | `packages/adapter-xyne-spaces` | Reference adapter |
 | `apps/site` | Demo website |
-| `training/` | Python training/export (uv, not pnpm) |
+| `training/` | Python fine-tuning/export (uv, not pnpm; GPU for pretrained models) |
 | `eval/` | Datasets and harness |
 | `spikes/` | Throwaway spike code; never imported by `packages/`. `spikes/names/` builds the name pools |
 | `docs/` | Plan, spikes, decision records |

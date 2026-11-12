@@ -1,6 +1,6 @@
 # Query Parser: Plan
 
-Status: draft v0.3 · Owner: Harsh · Last updated: 2026-10-12 (after [S02](spikes/S02-role-coverage.md), [S04](spikes/S04-time-normalization.md))
+Status: draft v0.4 · Owner: Harsh · Last updated: 2026-11-12 (after [S01](spikes/S01-tagger-vs-seq2seq.md), [S07](spikes/S07-lexicon-features.md) and [ADR 0004](decisions/0004-pretrained-fine-tuned-model.md): fine-tune a small pretrained model, benchmark first)
 
 A small, offline, product-agnostic SDK that turns a plain-English search query into structured
 filters plus residual search text:
@@ -22,20 +22,25 @@ The parser does not search anything. It sits in front of whatever search a produ
 
 1. **Product-agnostic.** No product's IDs, entity types, field names or vocabulary are baked into
    the model or the core. A product plugs in through configuration and callbacks.
-2. **Offline and fast.** Runs in the browser, in Node, in React Native and on a server with no
-   network calls of its own. Target: a few milliseconds per query on a laptop.
+2. **Offline.** Runs in the browser (WebGPU, with a CPU fallback), in Node and on a server with no
+   network calls of its own. Fast enough to run on every keystroke-debounced search; the exact
+   latency budget is set by the benchmark (§10.3), not assumed.
 3. **Deterministic.** Same query, schema, reference time, timezone and model version → same
    output, every time.
 4. **Grounded.** Every filter value is traceable to characters the user actually typed. The parser
    never invents a person, channel or date the query didn't mention.
 5. **Honest about uncertainty.** Ambiguous names, unresolvable entities and low-confidence parses
-   come back as explicit issues, not silent guesses.
-6. **Small.** Model weights in the tens to low hundreds of KB.
+   come back as explicit issues, not silent guesses. Confidence is calibrated, so an application
+   can use it to decide when to fall back to something heavier (§6.5).
+6. **Small enough for the browser.** Under ~2B parameters, quantized; smaller wins when accuracy
+   is equal. Was "tens to low hundreds of KB" before [ADR 0004](decisions/0004-pretrained-fine-tuned-model.md).
 7. **Measurable.** Every claim about quality is backed by an eval set and a number.
 
 ### Non-goals (v1)
 
 - Ranking or retrieval. That is the search engine's job.
+- Calling an LLM. If a parse isn't confident enough, the application decides what to do (call an
+  LLM, ask the user, search text only). The SDK only reports the confidence.
 - Answering questions ("what did X decide?"). The parser extracts filters from such queries; it
   does not answer them.
 - Languages other than English. Hinglish is a candidate for v2 (see Open questions).
@@ -393,55 +398,84 @@ Products without an adapter write their own; it's a function of a typed object.
 
 ## 6. The model
 
+Direction set by [ADR 0004](decisions/0004-pretrained-fine-tuned-model.md): fine-tune a small
+**pretrained** model on our task instead of training one from scratch. The from-scratch tagger
+(S1, S7) stays as a baseline; its design is kept in §6.7 for reference.
+
 ### 6.1 Task formulation
 
-**Default hypothesis: per-token BIO tagging, not text generation.** Spike S1 decides.
+Two candidates, picked by the benchmark (§10), A first:
 
-| | Tagger (default) | Seq2seq with constrained decoding (gpu-cron style) |
+| | A: pretrained encoder + BIO tagger | B: small LLM writes the parse |
 |---|---|---|
-| Output grounded in input | Yes, by construction | Needs a substring-copy constraint |
-| Structural validity | Constrained Viterbi over BIO transitions | Grammar automaton over the DSL |
-| Normalized values (dates) | No; done by `@qp/time` | Could emit them, but couples model to date logic |
-| Speed | One forward pass | One pass per output character |
-| Product-agnostic | Naturally | Only if the DSL is role-based |
+| What it does | Labels each token with a role (`B-ACTOR`, `I-TIME`, `O`, …) | Reads the query and writes role spans as structured output |
+| Output grounded in input | Yes, by construction | Only with a substring-copy constraint during decoding |
+| Structural validity | Constrained Viterbi over BIO transitions | Grammar-constrained decoding over the output schema |
+| Confidence | Token marginals (forward–backward) | Token probabilities of the constrained output |
+| Size | Tens of MB | About 0.5–1 GB at 4-bit |
+| Speed | One forward pass | One pass per output token |
+| Candidates | Ettin encoder 17M / 32M; EmbeddingGemma 2 text encoder (270M) | LFM2.5-1.2B; Qwen3-0.6B |
 
-The gpu-cron insight still applies: make invalid output unreachable, not just unlikely. For a
-tagger that means masking illegal transitions (`O → I-ACTOR`, `B-TIME → I-ACTOR`) during
-decoding, so every output is a well-formed span sequence.
+The gpu-cron insight still applies to both: make invalid output unreachable, not just unlikely.
+For A that means masking illegal transitions (`O → I-ACTOR`, `B-TIME → I-ACTOR`); for B it means
+a decoding grammar that only allows our schema and only copies text from the query.
+
+If B wins, its plain-text output partly supersedes "tagger, not generation" and needs its own
+decision record.
 
 ### 6.2 Input representation
 
-- Deterministic pre-tokenizer: split on whitespace and punctuation, keep `#`, `@` and `'s` as
-  their own tokens, record character offsets.
-- Each token is encoded from its **bytes** (byte embeddings → small convolution → pooled vector),
-  so unseen names, typos and mixed case get sensible representations without a vocabulary.
-- A small transformer encoder over tokens (bidirectional) produces per-token tag scores.
+- The deterministic pre-tokenizer stays (§4 offsets, `#`, `@`, `'s`). Pretrained models bring
+  their own subword tokenizer; labels are assigned to the first subword of each of our tokens and
+  mapped back, so grounding and offsets are unchanged.
+- Check early (S9): Indian names, handles, typos and lowercase text must split into sensible
+  subwords. The old byte encoder handled these by design; a pretrained vocabulary may not.
+- Rule labels and alias/directory bits from S7 can still be added as extra inputs if they help;
+  the benchmark decides.
 
-### 6.3 Size and training
+### 6.3 Base models and training
 
-- Starting point: 2–3 layers, width 48–64, 2–4 heads; roughly 50–150k parameters. S1 sets the
-  final size.
-- Trained in PyTorch on CPU (`training/`, managed with `uv`). Target: under an hour per run.
-- Exported as int8 per-row weights with float32 scales, as in gpu-cron.
+- **Base models**: open-weight, permissive license, under ~2B parameters, with an ONNX or
+  WebGPU-ready build. Shortlist in §6.1; compared against the smallest models on public
+  leaderboards (e.g. Artificial Analysis) as a sanity check.
+- **Method**: supervised fine-tuning with LoRA. No reinforcement learning until SFT has plateaued
+  on the benchmark.
+- **Data**: §9, plus labels from a strong LLM teacher on varied, realistic queries (§9.0).
+- **Hardware**: a single rented GPU or Colab; a first LoRA pass on a ~1B model is minutes to
+  tens of minutes, per [Liquid AI's fine-tuning docs](https://docs.liquid.ai/lfm/fine-tuning/overview).
+- **Tracking**: Trackio, so every run's curves are visible and comparable.
+- **Export**: ONNX, quantized (int8 / 4-bit), with a TS ↔ Python parity fixture (AGENTS rule 6).
 
 ### 6.4 Runtime (`@qp/model`)
 
-- Plain TypeScript inference on CPU. At this size, a forward pass is a few hundred thousand
-  multiply-adds, so WebGPU is optional and comes later if S6 shows a need.
-- Weights ship inside the package (base64 or a binary asset), loaded once; `loadModel()` is
-  idempotent and returns the same promise, so it is safe with React `use()`.
-- A conformance fixture generated from the Python side (inputs → expected logits within tolerance)
-  keeps the TS and Python implementations from drifting.
+- Browser inference on WebGPU through Transformers.js / ONNX Runtime Web (A) or WebLLM (B), with a
+  CPU (WASM) fallback. Node uses the same runtime.
+- This adds a runtime dependency to `@qp/model` (ADR 0004); `core` still never imports `model`.
+- Weights are downloaded once and cached by the consumer; `loadModel()` is idempotent and returns
+  the same promise, so it is safe with React `use()`.
+- Environments that can't load the model use `ruleTagger` (§6.6).
 
 ### 6.5 Confidence
 
-- Per-span confidence from token marginals (forward–backward over the constrained transitions).
+Confidence is a product feature, not a diagnostic: applications use it to decide whether to trust
+the parse or fall back to something heavier (an LLM, a clarifying question, plain text search).
+
+- Per-span confidence from the model's probabilities (token marginals for A, constrained output
+  probabilities for B).
 - Query confidence = minimum span confidence, adjusted by an out-of-distribution check (high
   probability of all-`O` on queries that look like filter requests is a warning sign).
-- Calibrated on a held-out set so that 0.9 means "right about 90% of the time". Calibration is
-  part of the eval report.
+- **Calibrated** on a held-out set (temperature scaling first) so that 0.9 means "right about 90%
+  of the time". Expected calibration error (ECE) is reported next to span F1 for every candidate,
+  and a candidate doesn't ship without it (S8).
 - **Negatives in training** (gibberish, chit-chat, questions with nothing to extract) teach the
-  model to produce all-`O`. gpu-cron lacks this and cannot say "I don't know"; we want to.
+  model to produce nothing. gpu-cron lacks this and cannot say "I don't know"; we want to.
+
+Example of what an application does with it (application code, not ours):
+
+```ts
+const result = parser.parse(query)
+if (result.confidence < 0.8) callLlm(query)   // threshold is the app's choice
+```
 
 ### 6.6 Pluggable taggers
 
@@ -454,9 +488,18 @@ interface Tagger {
 }
 ```
 
-Two implementations ship: `neuralTagger` (default) and `ruleTagger` (the baseline from M2). The rule
-tagger is useful for tests, for environments where the model can't load, and as the baseline the
-model must beat.
+Implementations: `ruleTagger` (the M2 baseline; also the fallback where the model can't load), the
+from-scratch tagger (S1/S7, kept as a baseline), and the fine-tuned pretrained tagger once it wins
+the benchmark. Every candidate is plugged in through this interface, so the eval harness scores
+them all the same way.
+
+### 6.7 Previous design: from-scratch byte tagger (S1, S7)
+
+Kept for reference and as a baseline. A ~78k-parameter transformer over byte-encoded tokens,
+trained from scratch in PyTorch on CPU, exported as float32 weights (~310 KB) and run in plain
+TypeScript at about 1.2 ms per query (S6, S7). It reached 0.744 S02 / 0.636 GLM span F1 (S1) and
+about 0.78 / 0.75 with rule and lexicon inputs (S7), against the rules' 0.727 / 0.726; see ADR
+0004 for why it was set aside.
 
 ---
 
@@ -600,6 +643,8 @@ safeguards:
 | Test queries | Cheap LLM (Claude Haiku) writing queries per product persona, without being told about roles | `eval/datasets/llm-written/`. Never used for training |
 | Training paraphrases | A cheap LLM from a **different** model family than the one that wrote test queries | So the eval doesn't reward imitating one model's phrasing |
 | Topics, channels, kinds | Lexicons in `@qp/datagen`, plus LLM-written lists per product domain | |
+| Teacher labels (ADR 0004) | A strong LLM labels varied, realistic queries with role spans; 10–20k to start | Spans checked mechanically against the text (unalignable labels dropped), labels cached so the dataset still regenerates from a seed (AGENTS rule 7). Measure the teacher's own F1 on the holdout first: it caps what training on its labels can reach |
+| Real queries | Labelled real queries from a product (Xyne Spaces first) | `eval/datasets/handwritten/`. The private holdout: committed, never trained on |
 
 Contamination rules: test queries are de-duplicated against training data (exact and near-duplicate
 after normalization) on every generator run, and test names come only from the test name pools.
@@ -649,9 +694,29 @@ Everything is seeded; the same seed regenerates the same bytes.
 - `test-real`: anonymized real queries from a product's search logs, if we can get them (see Open
   questions). The number that matters most.
 
+Since ADR 0004 the **handwritten / real holdout** is the gate for every model decision. It is built
+before any pretrained candidate is trained (M3) and is never used for training, prompt tuning or
+checkpoint selection; the LLM-written dev set (`eval/datasets/llm-written/dev/`) does that job.
+
 ---
 
 ## 10. Evaluation
+
+### 10.0 Benchmark first
+
+The benchmark is built before any candidate is trained, and is designed to be hard to game:
+
+- **Task families**, scored separately so a win in one can't hide a loss in another: role
+  extraction (span F1), time phrases, names without cue words, kind words inside topics, negation
+  and or-lists, negatives (nothing to extract). The families come from
+  [failure-modes.md](failure-modes.md).
+- **Private holdout**: ~300 handwritten or real queries, labelled per `eval/ANNOTATION.md`, never
+  trained on (§9.3).
+- **Hard by default**: public slot-filling sets (ATIS, SNIPS and similar on Hugging Face) as an
+  extra out-of-domain family, and generated edge cases per family. If a candidate scores well on
+  generated data but not on the holdout, the generated data is too easy, not the model too good.
+- **One command**: `pnpm eval` scores every tagger (§6.6) on every family and writes the report,
+  including calibration.
 
 ### 10.1 Metrics
 
@@ -675,18 +740,25 @@ negation, typos, query length.
    slices; otherwise ship the rules.
 2. **Xyne Spaces' current behavior** (`searchFilterParser` + `timeKeywordParser`), ported as a
    comparison baseline.
-3. **An LLM with structured output** as a reference ceiling (not shipped; for perspective on how
-   close a 100k-parameter model gets).
+3. **The from-scratch tagger** (S1/S7, §6.7). A pretrained candidate has to beat it too.
+4. **Off-the-shelf small models** with no fine-tuning (prompted, or zero-shot like GLiNER), to show
+   how much fine-tuning adds.
+5. **An LLM with structured output** as a reference ceiling (not shipped; for perspective on how
+   close a small model gets).
 
-### 10.3 Initial targets (to be revised after spikes)
+### 10.3 Initial targets (to be revised after S9)
 
 | Metric | Target |
 |---|---|
-| Span F1 on `test-handwritten` | ≥ 0.90 |
-| End-to-end filter accuracy on `test-handwritten` | ≥ 0.85 |
+| Span F1 on the holdout (`test-handwritten` / `test-real`) | ≥ 0.90 |
+| End-to-end filter accuracy on the holdout | ≥ 0.85 |
 | Negative precision | ≥ 0.95 |
-| p95 latency, mid-range phone | ≤ 20 ms (including resolution against 1,000 people) |
-| Weights + runtime, gzipped | ≤ 200 KB |
+| Calibration (ECE) on the holdout | ≤ 0.05 |
+| p95 latency, laptop browser with WebGPU | ≤ 50 ms (including resolution against 1,000 people) |
+| Model download, quantized | Reported per candidate; smaller wins at equal accuracy |
+
+The latency target replaces the earlier ≤ 20 ms on a mid-range phone and the ≤ 200 KB bundle,
+which assumed the from-scratch tagger (ADR 0004). Both are re-set once S9 has real numbers.
 
 ---
 
@@ -701,7 +773,7 @@ packages/
   adapter-xyne-spaces/   reference adapter: schema, sources, serializer
 apps/
   site/                  demo website
-training/                PyTorch training + export (Python, uv; not in pnpm)
+training/                LoRA fine-tuning + ONNX export on a GPU (Python, uv; not in pnpm)
 eval/                    datasets + harness
 docs/                    this plan, spikes, decision records
 ```
@@ -744,8 +816,8 @@ Dependency rules:
 | **M0** | Plan and scaffold | This doc reviewed; workspace builds; agent guides in place |
 | **M1** | Spikes | Each spike in [SPIKES.md](SPIKES.md) has a written result and a decision |
 | **M2** | Core SDK + rule tagger | `defineSchema`, `createParser`, directory source, `@qp/time` v1, Xyne adapter; unit tests; rule baseline numbers on `test-llm-written` |
-| **M3** | Data + eval harness | `datagen` v1, `test-llm-written` ≥ 500 queries across ≥ 2 model families, eval report generated by one command |
-| **M4** | Model | Trained tagger in `@qp/model`, TS/Python conformance passing, beats rule baseline on `test-llm-written` |
+| **M3** | Data + benchmark | `datagen` v1, `test-llm-written` ≥ 500 queries across ≥ 2 model families (done); **private holdout of ~300 handwritten or real queries**; task families and calibration in the report (§10.0); eval report generated by one command |
+| **M4** | Model | Fine-tuned pretrained candidate (ADR 0004, S9) in `@qp/model`, exported to ONNX, TS/Python parity passing, calibrated (S8), and beats the rules and the from-scratch tagger on the holdout |
 | **M5** | Website | gpu-time-style demo: live parse, chips, resolved ranges, eval table, model vs rules toggle |
 | **M6** | Integration demo | Parser in front of a Vespa index with the Xyne Spaces schema (separate project) |
 
@@ -759,6 +831,11 @@ Dependency rules:
 | Role set too coarse for some product | `facet.custom` + `bind` hook; new roles only with evidence from ≥ 2 products |
 | Name recognition without cue words is weak | S3; `promoteKnownEntities` as a suggestion-only fallback |
 | Model doesn't beat the rule tagger | Then ship the rule tagger; the SDK design still holds |
+| Pretrained model too big or slow for the browser | Candidate A (encoder, tens of MB) before B (LLM); quantize; report latency per candidate; `ruleTagger` as fallback |
+| Pretrained tokenizer splits Indian names, handles and typos badly | Checked in S9 before training; S7's directory and alias bits as extra inputs if needed |
+| Teacher LLM labels are wrong | Measure the teacher on the holdout first; mechanical span checks; drop unalignable labels |
+| Overfitting the benchmark | Private holdout never used for training or selection; separate dev set for checkpoints |
+| Confidence not honest, so apps can't decide when to fall back | Calibration is a release gate (§6.5, S8) |
 | Time normalization becomes a rabbit hole | Narrow v1 coverage, `unsupported` instead of guessing; held-out coverage tracked in eval (S04) |
 | Paraphrase alignment loses labels | Drop unalignable examples; report the drop rate |
 
@@ -766,8 +843,11 @@ Dependency rules:
 
 ## 16. Open questions
 
-1. **Real queries.** Not available for now; we use LLM-written queries (§9.0). If anonymized logs
-   become available later, rerun S02 and add a `test-real` split.
+0. **Candidate A or B?** Decided by S9 on the holdout. Start with A.
+
+1. **Real queries.** Needed for the holdout (§10.0). First source: Xyne Spaces search queries,
+   labelled by hand. Until then, handwritten queries from people who haven't seen the templates.
+   When they arrive, rerun S02 and add a `test-real` split.
 2. **Hinglish.** "utkarsh ke pdfs pichle hafte ke" is plausible in an Indian team. In scope for v1,
    v2, or never?
 3. **Multi-value semantics.** "from ankit and neha": OR (either sent it) or AND (a thread with both)?
