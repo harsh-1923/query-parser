@@ -7,7 +7,9 @@ Evaluation datasets and harness.
 - `datasets/llm-written/dev/`: a dev set from a fourth model family, used only to pick checkpoints
   and stop training. Never trained on, never reported as a test number. Written by
   `scripts/gen-dev-queries.mjs`.
-- `datasets/handwritten/`: queries written by people, never used for training. Versioned in git.
+- `datasets/handwritten/`: queries written by people (and real product queries, anonymized), never
+  used for training, prompt tuning or checkpoint selection. Versioned in git. This is the private
+  holdout that gates every model decision (PLAN §10.0, ADR 0004).
 - `datasets/generated/`: regenerated deterministically by `@qp/datagen` from a seed. Not committed.
 
 See "Evaluation" in docs/PLAN.md.
